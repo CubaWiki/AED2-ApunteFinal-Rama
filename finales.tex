@@ -1,0 +1,644 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[paper=a4paper, left=1.5cm, right=1.5cm, bottom=1.5cm, top=3.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{xspace}
+\usepackage{xargs}
+\usepackage{listings} 
+\usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{sidecap}
+\usepackage{textcomp}
+\usepackage{fancybox}
+
+\begin{document}
+
+% 1) Dado un TAD generico, explique como se arma el esquema de induccion estructural y justifique por que anda.
+% 
+% 2) De ejemplos concretos de las rotaciones de un AVL. Explique como se usan en la inserci\'on y eliminacion.
+% 
+% 3) Explique la relacion entre un algoritmo que usa D&C y la formula general de recurrencia para obtener su complejidad.
+% 
+% 5) Te daban cachitos de enunciados y TAD, encuentre errores y justifique.
+
+% El 1: me pare y le pregunte eso mismo a esteban y me miro con cara de "de que mierda me hablas pibe?", y me dijo que de una justificacion medio chamuyada por mi mismo.
+% 
+% El 3: Fijate en la clase de D&C, que se da el teorema maestro. Ahi te dan una formula general para recurrencias de D&C, es solamente poner a que corresponde cada parte de la formula. Tambien esta muy bien explicado en el introduction to algorithms
+% 
+% El 2: Si, AVL completo. Aunque me parecio escuchar que le contestaron a alguien que si va a hacer un equemita tiene que aclarar que elementos son mayores a que otros.
+
+\section{2/2C/2009 (1)}
+
+\subsection*{Ejercicio 1}
+
+\begin{enumerate}
+ \item Escribir (en castellano) la propiedad que hace que un ABB sea AVL (o sea, el invariante).
+ \item Proponer un algoritmo que verifique en tiempo lineal si un ABB cumple el invariante de AVL.
+ \item Presentar un ejemplo de \'arbol AVL en el cual el borrado de un elemento dé lugar a más de una rotaci\'on.
+\end{enumerate}
+
+\begin{enumerate}
+ \item Para todo nodo $x$ perteneciente a $T$, siendo $T$ un AVL, se debe cumplir que $!Hoja?(x) \implies |altura(izq(x))-altura(der(x))| \leq 1$, es decir que la diferencia entre el sub-\'arbol derecho e izquierdo de cualquier nodo $x$ del \'arbol debe ser menor o igual a $1$.
+ \item Sea $dameAlturaAVL(AVL: T)$ una funci\'on que devuelve la altura del AVL si cumple con el invariante y devuelve $\infty$ en caso contrario. 
+ 
+ El caso base de esta funci\'on se dar\'a cuando $Nil?(T) = True$, en donde trivialmente cumplir\'a con el invariante y su altura sera cero. Luego, para el caso recursivo verificaremos la propiedad $|dameAlturaAVL(izq(x))-dameAlturaAVL(der(x))| < 2$, en donde $\infty - \infty < 2 \equiv False$. Si la propiedad es falsa devolveremos $\infty$ mientras que si es verdadera devolveremos $\max\{dameAlturaAVL(izq(x)),dameAlturaAVL(der(x))\}+1$.
+ 
+ La recurrencia de esta funci\'on sera de la forma $T(n) = 2\cdot T(2/n) + \Theta(1)$, por lo que $a=2$, $b=2$ y $f(n) \subseteq \Theta(1)$. Luego, tendremos que $n^{log_b(a)} = n^{log_2(2)} = n^1$, que con un $\epsilon = 1 > 0$ puede dejarse como $n^{1-\epsilon} = n^0 = 1$ y como $f(n) \subseteq \Theta(1)$ en particular $f(n) \subseteq O(1)$, por lo que caeremos en el primer caso del teorema maestro, lo que implicara que $T(n) \subseteq \Theta(n)$.
+ 
+ \item $3$ nodos, $P$, $Q$ y $R$, est\'an establecidos de la forma $izq(Q) = h$, $der(Q) = P$, $izq(P) = R$, $der(P) = h-1$, $izq(R) = der(R) = h-1$, por lo que sus FDB son $Fdb(Q) = 1$, $Fdb(P) = -1$ y $Fdb(R) = 0$. Finalmente si eliminamos algun elemento que pertenezca al sub-\'arbol $izq(Q)$, el FDB de $Q$ pasar\'a a valer $2$ y el caso ser\'a el mismo que se da en $LR$ luego de la inserci\'on.
+\end{enumerate}
+
+
+\subsection*{Ejercicio 2}
+
+\begin{enumerate}
+ \item Cu\'ando decimos que una funci\'on no es congruente con la igualdad observacional?
+  \begin{enumerate}
+    \item Cuando diferencia m\'as instancias que los observadores b\'asicos.
+    \item Cuando es redundante con respecto a los observadores b\'asicos.
+    \item Ambas.
+    \item Ninguna.
+  \end{enumerate}
+ \item Cual es la diferencia entre tipo y g\'enero (por ejemplo, entre NAT y nat)?
+ \item Qu\'e criterio utilizar\'ia para definir si una operaci\'on puede ser generador o ser otra operaci\'on?
+\end{enumerate}
+
+\begin{enumerate}
+ \item Cuando diferencia m\'as instancias que los observadores b\'asicos.
+ \item El tipo es el conjunto de operaciones y axiomas que componen a un TAD especifico mientras que el genero es el nombre con el que representamos las instancias de un TAD.
+ \item Esto depende bastante del contexto en donde estemos. En los casos en donde podremos estar entre hacer una funcion como generador o como otra operacion son aquellos en donde la operacion nos debe devolver una nueva instancia del TAD modificada. Si decidimos hacer un generador estaremos agregando una ''capa`` mas para informar de una nueva situacion en donde nos encontramos, de forma contraria si decidimos hacer una otra operacion posiblemente estemos quitando una capa de las agregadas anteriormente. 
+ 
+ ~
+ 
+ Para dar un ejemplo, supongamos el ejercicio de fila del banco que se presenta en la guia. En este ejercicio inicialmente tendremos una fila simple a la que solamente pueden llegar personas y ser atendida, y a medida que nos desplazamos por los puntos del ejercicio se necesita incrementar el nivel de expresion del modelo por lo que se agregan nuevas operaciones, siendo una de estas ''retirarse``. La operacion retirarse puede ser implementada como un generador recursivo o como una otra operacion. En el caso de ser un generador estaremos representando cuando una persona se retira de la fila agregando mas informacion a la instancia, mientras que si la implementamos como una otra operacion podremos buscar la llegada de la persona a la fila para eliminarla de la instancia. Si bien observacionalmente los resultados son identicos (si no nos interesa saber quien se fue sin ser atendido), en el segundo caso tendremos menos informacion ya que la instancia construida por los generadores ser\'a igual en los casos 
+cuando alguien se retira de la fila y en el caso de que nunca estuvo en la misma.
+ 
+ ~
+ 
+ Por esto mismo, al decidir si una operacion debe ser generador o no, bajo mi criterio, deberemos pensar en posibles modificaciones a futuro del TAD, ya que si alguna vez deseamos conocer cierta informacion con respecto a la aplicacion de la operacion, si la definimos como un generador podremos obtenerla facilmente agregando algun observador, mientras que si la definimos de la otra forma deberemos modificar mas intensivamente el TAD. La desventaja de agregar un generador mas al TAD es que deberemos crear un axioma mas por cada observador basico que tengamos. 
+\end{enumerate}
+
+
+\subsection*{Ejercicio 3}
+Considere el TAD MinColaDePrioridad enriquecido con la operaci\'on DisminuirPrioridad(p,x) que, dado un elemento de clave p, le disminuye la prioridad a p en x unidades.
+
+\begin{enumerate}
+ \item Discutir las modificaciones a realizar a las representaciones cl\'asicas de colas de prioridad para incorporar eficientemente la operaci\'on DisminuirPrioridad(p,x) y describir brevemente el algoritmo para esa operaci\'on, y su complejidad.
+
+ \item Y si adem\'as se quiere incorporar la operaci\'on AumentarPrioridad(p,x)?
+\end{enumerate}
+
+Respuesta:
+
+\begin{enumerate}
+ \item  Las dos implementaciones clasicas para una cola de prioridad son la lista enlazada y max-heap. Si utilizamos una lista enlazada encontrar el elemento a modificar su prioridad a partir de su clave nos llevara $O(n)$ ya que en el peor caso deberemos recorrer toda la lista, luego ubicarlo en su nueva posicion nos llevara nuevamente $O(n)$ en el peor caso. El algoritmo en este caso no tiene mucha dificultad.
+ 
+ En el caso del heap implementado sobre un arreglo, podremos recorrer el arreglo para encontrar el elemento y luego de reducir su prioridad ejecutar ''bajar``, lo que volvera la operacion $O(n+lg(n))\subseteq O(n)$. Sin embargo podremos hacerlo mejor si agregamos a la estructura de representacion algo que nos permita encontrar mas rapidamente el elemento con la clave. Para esto podremos agregar un $Dicc(clave, puntero(nodo))$, en donde los punteros apunten a los nodos del heap, que puede estar representado de diferentes formas dependiendo el tipo de datos de la clave:
+ 
+ \begin{enumerate}
+  \item Para cualquier tipo de dato al que pertenezca la clave siempre podremos utilizar una tabla de hash como representacion para el diccionario, la cual nos dara una complejidad de $O(lg(n))$ en el caso promedio y $O(n)$ en el peor caso.
+  \item Si el dato de la clave es comparable, es decir tiene un orden, podremos utilizar un AVL como representacion del diccionario, lo que nos dejara el algoritmo en una complejidad de $O(lg(n))$ en el peor caso ya que la busqueda.
+  \item Si el dato de la clave es un string, podremos usar el caso anterior (con un orden lexicogr\'afico), o podremos utilizar un trie. Esto nos dejara con una complejidad resultante de $O(|p|+lg(n))$ en donde $|p|$ es la longitud de la clave. Si podemos acotar la longitud de las claves por alguna constante, entonces nos quedara que la complejidad en el peor caso es de $O(lg(n))$.
+ \end{enumerate}
+ 
+ Las mismas 3 variantes se podran implementar para encontrar un elemento mas velozmente en el caso de la lista enlazada, aunque no mejorara la complejidad del algoritmo ya que ubicarlo en su nueva posicion todavia tendra costo $O(n)$.
+
+ \item Para la operacion de AumentarPrioridad, utilizaremos la misma estructura secundaria para ubicar el elemento mas rapidamente y luego de haber modificado su valor haremos un procedimiento similar al que realizamos durante la inserci\'on de un valor nuevo en el heap. Sea $x$ el nodo que habremos modificado su valor de forma incremental, podremos estar rompiendo el invariante del sub-heap que tiene su raiz en el padre de $x$. Para reestablecer el mismo compararemos el valor de $x$ con el valor de su padre. Si el valor de $x$ es mayor al valor de su padre $x.p$, haremos un intercambio de posiciones en el heap por lo que ahora $x \gets x.p$. Repetiremos esta operacion hasta que el invariante del heap este satisfecho. La operacion a lo sumo llevara $O(lg(n))$ ya que a lo sumo llegaremos a la raiz y la altura maxima del \'arbol es de $lg(n)$, lo que nos deja con los mismos costos que DisminuirPrioridad a la operacion AumentarPrioridad.
+\end{enumerate}
+
+\subsection*{Ejercicio 4}
+
+Responda justificando.
+\begin{enumerate}
+ \item Tiene sentido programar una implementaci\'on del invariante de representaci\'on?
+ \item Y la funci\'on de abstracci\'on?
+ \item Puede el invariante ser restricci\'on de una funci\'on auxiliar? Debe serlo?
+ \item De dos ejemplos de relaciones entre invariante de representaci\'on y complejidad de los algoritmos.
+\end{enumerate}
+
+\begin{enumerate}
+ \item Bajo mi punto de vista, solamente tiene sentido implementarlo si en la implementaci\'on tenemos algun constructor que usa directamente una instancia de la estructura de representacion para construir la instancia del modulo. De esta forma con un invariante de representacion implementado podriamos verificar que la instancia de la estructura que nos pasan como parametro es una instancia valida. Otro caso en donde puede ser util la implementacion del invariante es para verificar que las operaciones funcionen correctamente exponiendolas a distintos escenarios, es decir para testear nuestro modulo. Igualmente habr\'a que tener en cuenta que en el momento de verificar la validez del predicado del invariante podra tomar mucho tiempo por la naturaleza del mismo, ya que puede contener cuantificadores y podremos caer en un problema intratable.
+ \item No tiene sentido ya que la funcion de abstraccion nos devolvera una instancia del TAD que describe al modulo y que no nos servira para nada en la implementacion, ya que la misma servira para demostrar formalmente que nuestras operaciones exportadas realizan lo que el TAD que explica nuestro modulo especifica.
+ \item El invariante de representaci\'on esta implicito en todas las operaciones exportadas del modulo, no aplicara sobre las funciones que no se exportan del mismo, incluyendo las funciones auxiliares.
+ \item Un ejemplo es entre el invariante de un ABB y un AVL. El invariante del ABB nos dice que todo nodo en el sub-arbol izquierdo de un nodo $x$ debe ser menor o igual a $x$ y que todo nodo en el sub-arbol derecho de $x$ debe ser mayor a $x$, lo que nos da una complejidad de $O(lg(n))$ en el caso promedio y $O(n)$ en el peor caso. En cambio, si agregamos el predicado del invariante del AVL que dice que entre todo sub-arbol derecho e izquierdo de un nodo $x$ no puede haber una diferencia total de mas de 1 unidad de alto, automaticamente las complejidades pasan a ser todas $O(lg(n))$ en el peor caso, si es que implementamos los algoritmos de forma coherente. Es decir que de cierta forma el invariante de representacion no solo obliga a las operaciones a mantener la coherencia de la estructura sino que las obliga a tener una complejidad.
+\end{enumerate}
+
+\subsection*{Ejercicio 5}
+
+Dada la siguiente frase construida sobre el alfabeto $\{ESP,N,O,S,T,R,M,L,C,Z\}$: NOSOTROS NO SOMOS COMO LOS OROZCOS
+(El enunciado fue cambiado por el final del 2/2C/2009, es exactamente el mismo ejercicio)
+
+\begin{enumerate}
+ \item Construir un c\'odigo de Huffman para los caracteres de la frase (dar el \'arbol o la tabla de c\'odigos).
+ \item Cu\'antos bits se ganan en la codificaci\'on de la frase con respecto a la utilizaci\'on de un c\'odigo de longitud fija?
+ \item Discutir aspectos relacionados con la implementaci\'on del algoritmo de Huffman (qu\'e estructuras de datos usar\'ia para hacerlo en forma eficiente? qu\'e complejidad resultar\'ia su algoritmo?).
+\end{enumerate}
+
+\begin{enumerate}
+ \item Construccion siguiendo el algoritmo de Huffman.
+ \item Teniendo 10 caracteres disintos que codificar, necesitaremos al menos 4 bits para hacerlo ya que $2^3 < 10 < 2^4$, por lo que tendremos $34 \cdot 4 = 136$ bits para codificar el texto contra $98$ utilizando un codigo variable con prefijos optimos, lo que nos deja una ganancia de $38$ bits.
+ \item Para construir el \'arbol de Huffman propiamente dicho utilizaria nodos cuyos atributos sean un valor, punteros a sus hijos izquierdo y derecho y un caracter (en el caso de que corresponda alguna codificacion). Luego, en el algoritmo utilizaria un min-heap de nodos, ordenados a partir de su valor. El algoritmo comenzaria construyendo un arreglo $A$ de nodos de longitud $n = |C|$, en donde cada uno corresponderia a un caracter que necesita ser codificado y su valor seria la frecuencia de dicho caracter. Luego, se aplicara Heapify al arreglo $A$ para convertirlo en un min-heap $Q$ en $O(n)$.
+ 
+ ~
+ 
+ Durante el ciclo del algoritmo de Huffman, en cada paso se obtendr\'an los dos nodos $x,y$ con menor valor, se construira un nuevo nodo $z$, se asignaran como hijos de $z$ a $x,y$, de la forma $z.der = x$, $z.izq = y$ y se asignara el valor de $z$ de la forma $z.valor = x.valor + y.valor$. Luego se insertara $z$ en $Q$. Podremos acotar la cantidad de elementos en $Q$ por $n$, ya que en la primera iteracion es en donde tendr\'a mas elementos, y por lo tanto el tiempo insumido en un paso sera de $O(3lg(n)) \subseteq O(lg(n))$. Nuestro \'arbol tendra $n = |C|$ hojas, por lo que tendra $n-1$ nodos internos, que sera la cantidad de pasos anteriormente descriptos que se ejecutaran, dejando al bucle con una complejidad total de $O(n \cdot lg(n))$ y al algoritmo como $O(n \cdot lg(n) + n) \subseteq O(n \cdot lg(n))$.
+\end{enumerate}
+
+\newpage
+\section{2/2C/2009 (2)}
+
+\subsection*{Ejercicio 1}
+
+Daban una especificacion de un TAD, y debian marcarse y corregirse los errores, especificando porque eran errores.
+
+\subsection*{Ejercicio 2}
+
+Dado dos array de numeros enteros A y B (pueden haber elementos repetidos), de tama\~no $n$ y $m$ respectivamente, proponer algoritmos para calcular la interseccion de manera EFICIENTE si
+
+\begin{enumerate}
+ \item $n = m$
+ \item $n >> m$, $m$ es chico
+ \item $n >> m$, $m$ es grande
+\end{enumerate}
+
+\begin{enumerate}
+ \item Ordenaremos los dos arreglos por el metodo $O(n\cdot lg(n))$ de nuestra preferencia, luego haremos una comparacion de la misma forma que merge lo hace, con la diferencia que guardaremos en una lista nueva los elementos que sean iguales. Finalmente devolveremos la lista. La complejidad de ordenar ambos arreglos sera de $O(n\cdot lg(n) + m \cdot lg(m))$ mientras que la comparacion e inserci\'on en el caso de tener elementos iguales tomara tiempo $O(n+m)$. Finalmente nos dara una complejidad total de $O(n\cdot lg(n) + m \cdot lg(m) + (n+m)) \subseteq O(4n \cdot 2lg(n)) \subseteq O(n \cdot lg(n))$. Otra forma de realizar esto es, cargar todos los $m$ elementos en un $Conj$ representado con un $AVL$, lo que llevara tiempo $O(m \cdot lg(m))$. Luego, se comprobara la existencia en el conjunto para cada uno de los $n$ elementos y de existir, se lo agregara a la lista que sera devuelta. El tiempo de este algoritmo sera de $O(m\cdot lg(m) + n \cdot lg(m)) \subseteq O((m+n) \cdot lg(m)) \subseteq O(2n \
+\cdot lg(n)) \subseteq O(n \cdot lg(n))$.
+ \item Si utilizamos el ultimo algoritmo propuesto tendremos una complejidad de $O((m+n) \cdot lg(m))$, si tomamos en consideracion que $m$ es chico y $n$ ser\'a mucho mas grande, esto puede ser facilmente acotado por $O(n)$. 
+
+ \item {\color{red}Mismo algoritmo?}
+\end{enumerate}
+
+
+\subsection*{Ejercicio 3}
+
+Proponer una estructura de datos que permita implementar un diccionario de palabras de manera de que la busqueda de un termino especifico sea eficiente. Ademas, se debe poder buscar todas las palabras que tengan un cierto largo y un cierto prefijo en comun. Dar las complejidades de estas dos operaciones, y de la de carga del diccionario (dado un texto, cargar todas sus palabras)
+
+~
+
+La estructura de datos sera un $Dicc_{AVL}(Int: clave, Dicc_{Trie}: valor)$. Durante la inserci\'on de una palabra $l$ se utilizara su longitud $|l|$ como clave del diccionario $Dicc_{AVL}$, y luego se la insertar\'a en el $Dicc_{Trie}$ que se encuentre en el significado de la clave. Si la clave $|l|$ resulta nueva, se creara un nuevo $Trie$. Esto nos dejara con una complejidad de $O(lg(|D|)+|l|)$ para la operacion de inserci\'on en donde $D$ ser\'a el diccionario total de palabras. Luego, la operacion especial tomara tiempo $O(lg(|D|)+|l| \cdot |P|)$, en donde $P$ es el conjunto de palabras que comienza con el prefijo que se dio, esto es asi ya que dentro del trie podremos ir hasta el nodo que contenga el final del prefijo, y desde alli explorar todas las ramas posibles, lo que nos tomara tiempo $O(|l| \cdot |P|)$, en donde $|l|$ en este caso hara referencia a la longitud que nos den por parametro. Sea un texto $W$, y sea $w_i$ la palabra en la posicion $i$ del texto, la complejidad de la carga del 
+diccionario 
+sera de $O(\sum_{i=1}^{|W|}lg(|D|)+|w_i|)$, en donde en el peor caso cargaremos una palabra diferente por cada vez, lo que incrementara nuestro diccionario en una unidad por cada palabra dejando asi $O(\sum_{i=1}^{|W|}lg(i)+|w_i|)$ lo que puede ser acotado por $O(|W|\cdot lg(|W|)+ |W| \max_{i \in |W|}|w_i|)$.
+
+~
+
+En el caso de poder acotar las palabras por una longitud maxima, podremos reemplazar el AVL por un arreglo de $c$ posiciones, en donde $c$ sera la longitud maxima. Luego la inserci\'on pasar\'a a ser $O(1)$, y la operacion especial pasara a ser $O(|P|)$. En este caso la carga del diccionario tendra una complejidad de $O(|W|\cdot lg(|W|)+ c \cdot |W|) \subseteq O(|W| \cdot lg(|W|))$ para un texto con suficientemente grande cantidad de palabras.
+
+\subsection*{Ejercicio 4}
+
+Mismo ejercicio que en 2/2C/2009 (1)
+
+\subsection*{Ejercicio 5}
+
+Responda justificando.
+Tiene sentido programar una implementacion del invariante de representacion?
+Y la funcion de abstraccion?
+De dos ejemplos de relaciones entre invariante de representacion y complejidad de los algoritmos.
+
+Mismo ejercicio que el ejercicio 4 de 2/2C/2009 (1)
+
+\newpage
+\section{1C/2010}
+
+\subsection*{Ejercicio 1}
+
+Sea S una secuencia de n claves enteras. No hacemos ninguna hipotesis sobre el rango de valores que cubren las claves, que puede ser arbitrariamente grande. Sin embargo, sabemos que las claves pueden tomar $\lfloor log(n) \rfloor$ valores distintos. Por ejemplo, para $n=8$ una secuencia con esas caracteristicas podria ser $\langle349, 12, 12, 102, 349, 12, 102, 102\rangle$.
+
+\begin{enumerate}
+ \item Desarrollar un algoritmo para ordenar $S$ en tiempo $o(n\cdot lg(n))$ (o sea ESTRICTAMENTE menor que $O(n\cdot lg(n))$), explicarlo y analizar su complejidad.
+ \item Discutir si el resultado obtenido en el item anterior contradice la cota inferior $\Omega(n\cdot lg(n))$
+\end{enumerate}
+
+\begin{enumerate}
+ \item Utilizando $Dicc_{AVL}(Int clave, Int significado)$, en donde las claves seran los numeros de la lista $S$ y los significados ser\'an la cantidad de veces que aparece el numero en $S$. Como a lo sumo tendremos $\lfloor log(n) \rfloor$ valores distintos, la cantidad de elementos del \'arbol sera esa misma, por lo que su altura sera a lo sumo $lg(lg(n))$. Luego, el algoritmo por cada $v \in S$ verificara su existencia en el \'arbol, si el elemento no existe lo insertara con un significado de $0$ y si existe le incrementara $1$ a su significado. La complejidad total para los $n$ elementos en este paso sera de $n \cdot lg(lg(n))$. 
+ 
+ Luego de tener el AVL cargado con cada uno de los elementos, extraeremos el minimo o maximo (minimo si ordenamos de menor a mayor, maximo si el orden es el inverso) con un costo de $O(lg(lg(n)))$ y siendo $k$ su significado, agregaremos a la lista que devolveremos como resultado $k$ copias del mismo. Repetiremos esta operacion hasta que el \'arbol quede vacio, es decir hasta un maximo de $lg(lg(n))$ veces, con el fin de obtener la lista ordenada y con un costo total que podra ser acotado por $O(n \cdot lg(lg(n)))$. Finalmente la complejidad total del algoritmo sera $O(2n \cdot lg(lg(n))) \subseteq o(n\cdot lg(n))$.
+ 
+ \item Si lo hace, de hecho las definiciones mismas ya se contradicen ya que la cota $\Omega(n\cdot lg(n))$ nos dice por definicion que siendo $g(n) = n\cdot lg(n)$ y $f(n)$ que ser\'a la funcion que representara la complejidad de nuestro algoritmo, para algun $n_o$ y $c>0$, valdra que $c\cdot g(n) \leq f(n)$. Lo que no podra ser cierto ya que por la definicion de $o$ valdra que $f(n) < d\cdot g(n)$ y juntando ambas tendremos $c\cdot g(n) \leq f(n) < d\cdot g(n)$ lo que no es cierto para todo $n$, ya que $c\cdot g(n)$ y $d\cdot g(n)$ seran asintoticamente iguales.
+ 
+ Buscando un segundo argumento para obtener la contradiccion con $\Omega$, podremos ver que nuestra funcion sera $f(n) = n \cdot lg(lg(n)))$ y por la definicion de $\Omega$ nos quedara que $cn\cdot lg(n) \leq n \cdot lg(lg(n)))$, lo que no podra cumplirse para todo $n$ a partir de algun $n_0$ y $c$.
+ 
+ 
+\end{enumerate}
+
+
+\subsection*{Ejercicio 2}
+
+Considerar el TAD diccionario al que se agrega la operacion $PrecPrec(D,k)$, que dado un diccionario $D$ y una clave $k$ devuelve la clave precedente a la precedente a $k$ en $D$, o un valor especial si no existe.
+\begin{enumerate}
+ \item Discutir la complejidad de implementacion de $PrecPrec(D,k)$ en al menos $3$ implementaciones eficientes de diccionario.
+ \item Describir el algoritmo de $PrecPrec(D,k)$ en la implementacion de diccionarios con ABBs.
+\end{enumerate}
+
+\begin{enumerate}
+ \item 
+ \item
+\end{enumerate}
+
+
+\subsection*{Ejercicio 3}
+
+Supongamos una secuencia $S = \langle s_1, s_2, ..., s_n \rangle$ de $n$ enteros distintos (positivos y negativos) en orden creciente. Queremos determinar si existe una posicion $i$ tal que $S[i]=i$. Por ejemplo, dada la secuencia $S = \{-4,-1,2,4,7\}$, $i=4$ es esa posicion. Se pide:
+\begin{enumerate}
+ \item Dise\~nar un algoritmo Divide and Conquer eficiente que resuelva el problema
+ \item Explicar por que el algoritmo propuesto es correcto.
+\end{enumerate}
+
+\begin{enumerate}
+ \item El algoritmo tomara como parametros una cota menor $a$, una cota mayor $b$ y una secuencia $S$. Al comienzo de la iteracion con $S$ completo, $a=0$ y $b=|S|=n$. Luego, sea $i = \lfloor b/2+n \rfloor$, los \textbf{casos bases} seran si $S[i] = i$ devolveremos $True$ y si $S[i] \not= i \land a=b$ devolveremos $False$. De lo contrario estaremos en un \textbf{caso recursivo}, en donde si tenemos que $S[i] < i$ entonces definiremos $a=i$ y ejecutaremos recursion, de lo contrario si $S[i] > i$ definiremos $b=i$ y ejecutaremos recursion. La complejidad del algoritmo ser\'a exactamente igual que la de busqueda binaria $O(lg(n))$, ya que el algoritmo es el mismo solo que en vez de comparar por un valor $v$ compararemos por el indice en la posicion que nos encontremos verificando.
+ 
+ \item Sea $j < S[j]$, suponiendo que el arreglo no tiene elementos repetidos (lo que significara que la lista de numeros sera estrictamente creciente) se cumplira que $i < S[i]$ para todo $i \in [j,n]$. Por lo tanto de existir algun $i \in [1,n]$ tal que $S[i]=i$, debera encontrarse en el lado izquierdo del arreglo, es decir que $i \in [1,j)$. El caso sim\'etrico ser\'a cuando tengamos $S[j] < j$, en cuyo caso el resultado lo encontraremos a la derecha de $j$, es decir que $i \in (j,n]$. -- {\color{red}Falta argumentacion de porque vale con elementos repetidos} --.
+\end{enumerate}
+
+\subsection*{Ejercicio 4}
+
+Dada la siguiente especificacion de un TAD
+\begin{enumerate}
+ \item Explicar en palabras las caracteristicas principales del tipo.
+ \item Escribir la igualdad observacional.
+ \item El tipo tal como esta especificado tiene un problema (podriamos decir que esta incorrectamente especificado)) Indique cual es y proponga una solucion.
+\end{enumerate}
+
+\subsection*{Ejercicio 5}
+
+Explique cual es la utilidad de las tecnicas de eliminacion de la recursion. Cuales son las principales ventajas de un algoritmo iterativo respecto a uno recursivo? Es posible que al final del proceso obtengamos un codigo menos eficiente que el original? Ejemplifique.
+
+\newpage
+\section{1C/2011}
+
+\subsection*{Ejercicio 1}
+
+Verdadero o Falso, justifique o de un contraejemplo:
+\begin{enumerate}
+ \item Si $f$ es $O(g)$ y $g$ es $\Omega(f)$, entonces $f$ es $\Theta(g)$.
+ \item Si $f$ es $O(n)$, entonces para cualquier entrada $f$ es $\Omega(n)$.
+ \item Si $f$ es $\Omega(n)$, entonces para cualquier entrada $f$ es $\Theta(n)$.
+\end{enumerate}
+
+\subsection*{Ejercicio 2}
+
+Sea S una secuencia de inserci\'ones sobre un \'arbol binario de busqueda, donde $S = \{ s_1, s_2, s_3, s_4, s_5, s_6, s_7\}$ en donde $s_1 \leq s_2 \leq s_3 ... \leq s_7$, describir las permutaciones de $S$ que formen lo siguiente:
+\begin{enumerate}
+ \item Un \'arbol de altura minima
+ \item Un \'arbol de altura maxima
+\end{enumerate}
+
+\begin{enumerate}
+ \item $S = \{ s_4, s_2, s_1, s_3, s_6, s_5, s_7\}$ que dara un ABB de altura $3$, sera minimo ya que en un \'arbol binario completo con $n$ nodos tiene una altura de $\lfloor lg(n) \rfloor + 1$ y con $n=7$ esto nos da $\lfloor lg(n) \rfloor + 1 = 3$.
+ \item $S = \{ s_1, s_2, s_3, s_4, s_5, s_6, s_7\}$ que dara un ABB de altura $7$.
+\end{enumerate}
+
+\subsection*{Ejercicio 3}
+
+Dada la siguiente especificacion sobre una cena con participantes, encuentre los errores y corr\'ijalos (axiomatice o describa como arreglar el error)
+
+\begin{verbatim}
+Tad Persona
+generadores:
+nueva: edad x dni -> persona
+
+observadores:
+. = . persona x persona -> bool
+
+Tad Cena
+generadores:
+crear: conj(personas) -> cena
+llegaInvitado: persona x plato x cena -> cena
+
+observadores:
+invitados: cena -> conj(personas)
+quePlatoTrajo?: persona p x cena c -> plato ( p pertenece invitados(c) )
+sumaDeEdades: cena -> nat
+
+Tad Regalo es Nat
+\end{verbatim}
+
+
+\subsection*{Ejercicio 4}
+
+Se quiere implementar un diccionario sobre una novedosa estructura x, se quiere dividir el trabajo entre 3 personas de la siguiente manera:
+\begin{enumerate}
+ \item Escribe la interfaz
+ \item Escribe algoritmos de inserci\'on y borrado 
+ \item Escribe algoritmos de busqueda
+\end{enumerate}
+
+Que le daria como minimo de la siguiente lista a cada uno como para que puedan hacer su trabajo, justificar y sea conciso.
+
+\begin{itemize}
+ \item TAD Dicc
+ \item TAD X
+ \item Invariante de representacion de dicc sobre x
+ \item invariante de repr de x
+ \item Funcion de abs de x
+ \item Funcion de abs de diccionario sobre x
+ \item Interfaz de x
+\end{itemize}
+
+\subsection*{Ejercicio 5}
+
+Se quiere implementar conjunto y diccionario cuyas operaciones tipicas sean en orden logaritmico (insertar, borrar, buscar o sus equivalentes). De los siguientes disenos, diga cual usaria y porque, si no le convence ninguna proponga una y justifique
+\begin{enumerate}
+ \item Dicc y Conjunto sobre AVL, AVL sobre punteros a nodos
+ \item AVL sobre ABB, ABB sobre AB, AB sobre nodos, Dicc y Conj sobre AVL
+\end{enumerate}
+
+\newpage
+\section{1C/2012 (Pombo y Feuerstein)}
+
+\subsection*{Ejercicio 1}
+Habia tres codigos distintos que hacian mas o menos lo mismo con leves diferencias, tenias que decir la complejidad de cada uno. Habia para todos los gustos: el primero era $O(n^2)$, el segundo era $O(nlg(n))$ y el tercero era $O(n)$.
+
+\subsection*{Ejercicio 2}
+Que modificaciones se le puede efectuar al TAD diccionario con el objetivo de poder definir un termino varias veces y agregar una operacion de retorno a la definicion anterior (que pueda llamarse tantas veces como definiciones anteriores haya)? Sobre que estructura lo implementarias? Dar el pseudocodigo de la operacion y la complejidad de todas las operaciones.
+
+\subsection*{Ejercicio 3}
+Induccion estructural. Dar el esquema de induccion, un ejemplo y explicar bien que es cada cosa separando casos base y casos inductivos. Que particularidad tienen las pruebas de induccion sobre Rosetree?
+
+\subsection*{Ejercicio 4}
+Invariante de representacion. Decir las motivaciones y dar ejemplos.
+
+\subsection*{Ejercicio 5}
+Eliminacion de la recursion. Contar la motivacion, decir que tipos de funciones recursivas hay, dar un ejemplo para cada una y decir la complejidad tanto de la version recursiva como de la imperativa.
+
+\newpage
+\section{2C/2012}
+
+\subsection*{Ejercicio 1}
+
+Se deben ordenar los parciales de $500$ alumnos, en base a su apellido. Para facilitar la practica, los $m$ docentes deciden dividir la tarea entre ellos. Recomiende dos posibles metodos para que utilicen. Tenga en cuenta que:
+\begin{itemize}
+ \item Debe ser realizado por personas
+ \item Por mas de una
+ \item Se pretende ademas que sea eficiente (por ejemplo, tratando de que no haya gente sin hacer nada durante mucho tiempo)
+\end{itemize}
+
+Calcule la complejidad de los metodos propuestos.
+
+\begin{itemize}
+ \item Se empezara por repartir $\lfloor500/m\rfloor$ parciales a cada persona, el ultimo docente al que se le repatiran tendra suerte ya que probablemente recibira menos parciales. La siguiente accion sera que cada uno de los docentes ordenara su porcion de los parciales en orden lexicografico y a medida que vayan terminando se moveran de lugar para explicitarlo. Cuando haya al menos dos docentes que hayan terminado con su porcion de parciales se organizaran para juntarlos en una sola porcion, lo cual haran observando el parcial en el tope de la pila de parciales y formando una nueva pila encolando el menor al final de la misma (en realidad funcionara como una fila) segun el orden lexicografico, esto lo haran hasta que alguno de los dos se quede sin parciales y en dicho momento los parciales restantes iran encolados al final de la pila. Luego, el grupo de dos docentes esperara que se forme otro grupo de dos docentes para juntar sus parciales con el mismo procedimiento, y luego el grupo de cuatro docentes e
+ 
+ \item Otra forma sera organizar 26 cajas, una para cada letra con que comience el nombre del apellido, repartir $\lfloor500/m\rfloor$ parciales a cada persona y que cada docente vaya ubicando los parciales que recibio en la caja correspondiente. Luego
+\end{itemize}
+
+
+\subsection*{Ejercicio 2}
+
+Se tiene un diccionario de idioma castellano representado en un TRIE. Se desea poder manejar palabras acentuadas, de manera tal que cuando se realiza una busqueda se obtienen los resultados correspondientes a la version con y sin acento. Por ejemplo se busca ''esta`` y se obtiene ''esta: pronombre...`` ''esta: verbo estar, primera persona...`` etc. Suponga que se cuenta con una funcion llamada normalizar() que dada una letra acentuada devuelve su equivalente sin acento.
+
+\begin{enumerate}
+ \item Que modificaciones deberian realizarse en la estructura y en los algoritmos para poder contemplar dicha funcionalidad?
+ \item Este diccionario va a adaptarse para una variante del checo donde son muchos los caracteres que pueden acentuarse. Proponga una variacion de la estructura que permita realizar la consulta mencionada en una sola pasada.
+\end{enumerate}
+
+\subsection*{Ejercicio 3}
+
+Se tiene el siguiente TAD:
+
+\begin{verbatim}
+TAD PUNTO
+generadores:
+comenzar: -> punto
+subir: punto x nat -> punto
+derecha: punto x nat -> punto
+
+observadores:
+X: punto -> nat
+Y: punto -> nat
+
+otras operaciones:
+mover: punto x nat n x nat m -> punto
+
+axiomas:
+X(comenzar) = 0
+Y(comenzar) = 0
+X(subir(p,n)) = X(p)
+Y(subir(p,n)) = Y(p)+n
+X(derecha(p,n)) = X(p)+n
+Y(derecha(p,n)) = Y(p)
+mover(p,n,m) = subir(derecha(p,n),m)
+\end{verbatim}
+
+¿Se puede plantear la demostracion por induccion estructural de una propiedad sobre el TAD punto utilizando en los teoremas a demostrar solo comenzar(), mover(), X() e Y()? Justifique.
+
+\subsection*{Ejercicio 4}
+
+Se dise\~na un conjunto C de tama\~no no acotado sobre una estructura acotada A. Para cada una de las siguientes afirmaciones indique si deberian estar de alguna manera en el invariante de C sobre A, en la funcion de abstraccion de A en C, en ambas o en ninguna. Justifique sus respuestas.
+
+\begin{enumerate}
+ \item Todos los elementos de C estan en A
+ \item Todos los elementos de A estan en C
+ \item En A no hay repeticiones
+ \item En C no hay repeticiones
+ \item C no tiene mas elementos que los que entran en A
+ \item Los elementos de C tienen que tener un orden (por si A es un AVL)
+ \item Algunas de las caracteristicas del invariante de A
+\end{enumerate}
+
+\subsection*{Ejercicio 5}
+
+Especifique el TAD vela, que debe modelar la simulacion discreta de una vela. Al comenzar se indica la longitud de la vela en centimetros, que corresponde a la parte cubierta de cera. El cabo mide al comienzo 10 mm. Una vez que se enciende, el cabo disminuye 1 mm por cada pulsacion de un reloj. Cuando disminuye el trecho final del cabo (el ultimo milimetro), se derrite instantaneamente 1 cm mas de cera, descubriendo el cabo nuevamente.
+
+\newpage
+\begin{verbatim}
+TAD Vela
+igualdad observacional: (\forall v, v': vela) (v =_obs sii 
+                                                 ( 
+                                                   longitudInicial(v) = longitudInicial(v') 
+                                                   y 
+                                                   tiempoTranscurrido(v) = tiempoTranscurrido(v')
+                                                 )
+                                               )
+
+generos: Vela
+
+exporta: Vela, generadores, observadores, velaAcabada?, longCabo?, longCera?, tiempoRestante?
+
+usa: Bool, Nat
+
+generadores:
+encender: Nat n -> Vela {n > 0}
+pulsacion: Vela -> Vela
+
+observadores:
+longitudInicial: Vela -> nat
+tiempoTranscurrido: Vela -> nat
+
+otras operaciones:
+velaAcabada?: Vela -> bool
+longCabo?: Vela -> nat
+longCera?: Vela -> nat
+tiempoRestante?: Vela -> nat
+
+axiomas:
+longitudInicial(encender(n)) = n
+longitudInicial(pulsacion(v)) = longitudInicial(v)
+
+tiempoTranscurrido(encender(n)) = 0
+tiempoTranscurrido(pulsacion(v)) = 1 + tiempoTranscurrido(v)
+
+velaAcabada?(v) = tiempoTranscurrido(v) >= (longitudInicial(v)+1)*10
+longCabo?(v) = if velaAcabada?(v) then 0 else tiempoTranscurrido(v) mod 10 fi
+longCera?(v) = if velaAcabada?(v) then 0 
+               else longitudInicial(v)-floor(tiempoTranscurrido(v)/10) fi
+tiempoRestante?(v) = longCabo?(v) + longCera?(v)*10
+
+
+\end{verbatim}
+
+\newpage
+\section{07/02/2013}
+
+\subsection*{Ejercicio 1}
+
+\begin{enumerate}
+ \item El invariante de representacion suele escribirse de manera formal y eso permite utilizarlo para una serie de cosas. Si se escribiese en castellano, ¿cuales de esas cosas se podrian seguir haciendo y cuales no? Justifique.
+ \item Si el invariante de un tipo resultase programable, ¿lo haria? ¿para que lo usaria? Justifique.
+\end{enumerate}
+
+\begin{enumerate}
+ \item En primer lugar el invariante escrito en castellano podria presentar ambiguedades por la naturaleza del lenguaje, por lo que podriamos tener diferentes interpretaciones de las condiciones que se cumplen sobre la estructura de datos a la hora de usarla y usarla de forma erronea o asumiendo cosas que no son ciertas. Suponiendo en un plano utopico que no presenta ambiguedades y que siempre es interpretado de la misma forma, no podriamos realizar demostraciones formales acerca de la correctitud de las funciones, es decir, verificar formalmente si las funciones mantienen el invariante.
+ 
+ \item Bajo mi punto de vista, solamente tiene sentido implementarlo si en la implementaci\'on tenemos algun constructor que usa directamente una instancia de la estructura de representacion para construir la instancia del modulo. De esta forma con un invariante de representacion implementado podriamos verificar que la instancia de la estructura que nos pasan como parametro es una instancia valida. Otro caso en donde puede ser util la implementacion del invariante es para verificar que las operaciones funcionen correctamente exponiendolas a distintos escenarios, es decir para testear nuestro modulo.
+\end{enumerate}
+
+
+
+\subsection*{Ejercicio 2}
+El siguiente algoritmo, dado un array $A$ determina si el mismo contiene $3$ elementos $x$, $y$, $z$ que forman una terna pitagorica (es decir, tales que $x^2 + y^2 = z^2$)
+
+\begin{verbatim}
+FIND-PITNUM(a)
+1 for i = 1 to length[a] do
+2   for j = 1 to length[a] do
+3     for k = 1 to length[a] do
+4       if a[i]^2 + a[j]^2 = a[k]^2 then
+5         return true
+6 return false
+\end{verbatim}
+
+\begin{enumerate}
+ \item Analice la complejidad del algoritmo anterior.
+ \item Proponer un algoritmo diferente y analizar su complejidad, que debe ser estrictamente menor que el algoritmo anterior. Para elaborar su solucion puede utilizar la siguiente funcion:
+
+ \begin{verbatim}
+EXACT-SUM2(A, n, x)
+1  i <- n
+2  j <- 1
+3  while j < i do
+4    if A[i]^2 + A[j]^2 = x then
+5      return true
+6    else
+7      if A[i]^2 + A[j]^2 < x then
+8        j <- j + 1
+9      else
+10       i <- i - 1
+11 return false
+\end{verbatim}
+
+\end{enumerate}
+
+\begin{enumerate}
+ \item La complejidad del algoritmo es $O(n^3)$ en el peor caso en donde $n$ es la cantidad de elementos del arreglo. El peor caso se da cuando no existe una terna en el arreglo que cumpla la condicion.
+ \item Una posible solucion de esto sin utilizar la funcion y no in-place, seria llenar un AVL con todos los elementos del arreglo al cuadrado. Luego con un doble for comparariamos cada una de las combinaciones. La complejidad del algoritmo seria de $O(n^2 \cdot lg(n))$. Otra posible solucion con igual complejidad pero in-place seria ordenar el arreglo llevando esto $O(n \cdot lg(n))$ y luego probar todos los pares posibles teniendo asi $n^2$ pares utilizando una busqueda binaria siendo $x = \sqrt{A[i]^2+A[j]^2}$ el elemento a buscar.
+\end{enumerate}
+
+
+
+\subsection*{Ejercicio 3}
+Responda y justifique:
+\begin{enumerate}
+ \item Una funcion recursiva a la cola, ¿siempre puede transformarse en iterativa?
+ \item Y una funcion con recursion multiple?
+\end{enumerate}
+
+
+\subsection*{Ejercicio 4} 
+A continuacion se muestran unos breves enunciados junto a fragmentos de su especificacion como TADs. Indicar si dichos fragmentos son correctos o presentan errores, y si es asi, cuales y por que.
+
+\begin{enumerate}
+ \item En un frasco aislado en un laboratorio se cuenta con una cantidad de hielo, que al ser sometido a calor se transforma en agua, a razon de un $dm^2$ por caloria. Como el frasco esta aislado, esa es la unica transformacion posible.
+
+ \begin{verbatim}
+TAD frasco
+generadores:
+    nuevo_frasco: tamanio -> frasco
+observadores:
+    volumen_hielo: frasco -> nat
+    volumen_agua:  frasco -> nat
+operaciones:
+    aportar_calorias: frasco x nat -> frasco
+    disminuir_hielo: frasco x nat -> frasco
+    incrementar_agua: frasco x nat -> frasco
+Fin TAD
+\end{verbatim}
+
+ \item Una bolita se desplaza sobre una recta a medida que recibe impulsos. Los impulsos se miden en kilos, y la relacion entre ambos es que por cada kilo la bolita avanza dos metros.
+\begin{verbatim}
+[...]
+observadores:
+    posicion: bolita -> nat
+operaciones:
+    empujar: bolita x nat i x distancia d -> bolita {d = 2i}
+[...]
+\end{verbatim}
+
+
+ \item Se desea modelar una pila que siempre permite aplicar la operacion top(), pero indica cuando no hay ningun elemento valido.
+observadores:
+\begin{verbatim}
+    top: pila -> <elem, bool>
+\end{verbatim}
+
+ \item Idem anterior:
+\begin{verbatim}
+    top: pila -> indicador
+    hay_elem?: indicador -> bool
+    elem: pila x indicador i -> elem {hay_elem?(i)}
+\end{verbatim}
+
+\end{enumerate}
+
+\subsection*{Ejercicio 5}    
+Supongamos que extendemos el TAD Diccionario agregandole una operacion RestriccionDeRango(x,y) con $x \leq y$, que elimina del diccionario todos los valores que son mayores que $y$ o menores que $x$. Por ejemplo, si las claves son reales, luego de una operacion RestriccionDeRango(x,y) el diccionario contendria solamente las claves en el intervalo cerrado $[x, y]$. Proponga una estructura de datos para implementar eficientemente tanto las operaciones tradicionales de diccionario como la nueva operacion, considerando los siguientes casos:
+
+\begin{enumerate}
+ \item Se puede asumir que $x$ e $y$ estan en el diccionario. 
+ \item No se puede asumir que $x$ e $y$ estan en el diccionario. 
+\end{enumerate}
+
+\begin{enumerate}
+ \item La primera opcion podria ser un AVL aumentado con una lista enlazada entre sus nodos. Para ser posible esta modificacion en primer lugar tendremos dos datos satelite en cada nodo, un puntero dirigido a su predecesor y otro a su antecesor (de forma tal de tener una lista doblemente enlazada). Durante la inserci\'on deberiamos obtener el sucesor y el antecesor, el sucesor sera el minimo de los mayores predecesores de nuestro nuevo nodo $x$ y el antecesor sera el maximo de los menores predecesores. Para obtenerlos en cada paso durante la inserci\'on compararemos y guardaremos si corresponde en los datos satelites de $x$ los punteros al sucesor y antecesor. Una vez insertado $x$ en el lugar los punteros a antecesor y predecesor estaran correctamente definidos, lo unico que restaria hacer es modificar el puntero de predecesor en el antecesor de $x$, apuntadolo a $x$, como asi tambi\'en modificar el puntero de antecesor en el predecesor de $x$. Una vez realizado esto se proseguira con los balanceos normales 
+del 
+AVL. Para la eliminacion se ejecutaran los procedimientos normales que ejecutariamos en una doble lista enlazada, y luego los balanceos del AVL. Las operaciones adicionales para construir y borrar la lista seran todas $O(1)$, por lo que la inserci\'on y eliminacion seguiran teniendo $O(lg(n))$ en el peor caso, la busqueda no se vera alterada por lo que seguira siendo $O(lg(n))$ tambi\'en. 
+ 
+ Para la operacion de RestriccionDeRango buscaremos el minimo elemento del AVL (yendonos siempre por la rama izquierda hasta encontrar un NIL de hijo izquierdo) y una vez encontrado borraremos elementos utilizando la doble lista enlazada para movernos hasta que la condicion $e < x$ no sea cierta. Una vez borrados todos los elementos menores a $x$, borraremos todos los elementos mayores a $y$ buscando el maximo y borrando utilizando la doble lista enlazada hasta que la condicion $y < e$ no se cumpla, en donde $e$ es el elemento actual en donde nos encontremos iterando. La operacion tendra una complejidad de $O((\#elemMen + \#elemMay) \cdot lg(n))$, en donde $\#elemMen$ es la cantidad de elementos $e$ que pertenecen al AVL y cumplen $e < x$ y $\#elemMay$ es la cantidad de elementos que cumplen $y < e$. El en el peor caso borraremos todo el \'arbol, lo que nos dara una complejidad de $O(n \cdot lg(n))$. Otra opcion sin utilizar la doble lista enlazada sera, luego de cada borrado, volver a buscar el minimo o el 
+maximo desde la raiz lo que tardara $lg(n)$, en este caso la complejidad asintotica sera la misma pero tendremos una constante mas de $lg(n)$ proveniente de la busqueda de cada nuevo minimo.
+ 
+ ~
+ 
+ Alternativamente a utilizar un AVL podriamos utilizar un Splay Tree, en el cual buscariamos el elemento $x$, hariamos Splaying sobre el mismo y luego borrariamos todo el sub-\'arbol izquierdo ya que por el invariante de los ABB, el sub-\'arbol izquierdo contendra claves menores a $x$ (suponiendo que no hay claves repetidas), repetiriamos la misma operacion pero ejecutando Splaying sobre $y$ y borrando el sub-\'arbol derecho. Para borrar cada uno de los sub-\'arboles utilizaremos $\#elemMen$ operaciones para el sub-\'arbol izquierdo y $\#elemMay$ para el sub-\'arbol derecho. En los Splay Tree podremos garantizar que una secuencia de $m$ operaciones consume tiempo $O(m \cdot lg(n))$. Siendo que borraremos $\#elemMen + \#elemMay$ elementos, tendremos una complejidad de $O((\#elemMen + \#elemMay) \cdot lg(n))$ amortizada para la operacion, aunque podremos hacerlo mas rapidamente si nos olvidamos de realizar Splaying a medida que borramos los elementos de un sub-\'arbol entero. La complejidades de las demas 
+operaciones del 
+diccionario seran $O(lg(n))$ amortizado para todas.
+ 
+ ~
+ 
+ Si tenemos valores acotados una opcion viable es la del uso de un \'arbol binario digital. En el mismo, a medida que busquemos el elemento $x$ mediante su representacion binaria, borraremos en cada paso todo lo que se encuentre en el sub-\'arbol izquierdo a medida que avanzamos por sus bits, si es que continuamos por el sub-\'arbol derecho. Ya que como la longitud de los numeros estara acotada por $b$ bits, tardaremos tiempo $O(b \cdot \#elemMay)$ en borrar las claves que correspondan. Podremos hacer lo mismo con $y$ pero borrando los sub-\'arboles derechos si es que continuamos por el sub-\'arbol izquierdo a medida que avanzamos en su representacion binaria. La complejidad total de la operacion RestriccionDeRango sera de $O(b \cdot (\#elemMen + \#elemMay))$, las complejidades de eliminacion, inserci\'on y busqueda seran $O(b)$.
+ 
+ \item Podremos utilizar todas las variantes presentadas anteriormente, con leves o ninguna modificacion. En la variante del AVL puede realizarse lo mismo sin importar si el elemento esta o no esta en el diccionario, en la variante del \'arbol binario digital bastara hasta encontrar el elemento o un NIL y en la variante del Splay Tree es importante que $x$ e $y$ existan, pero se podra solucionar facilmente insertandolos (si es que no existen) como nodos sentinelas antes del borrado y borrandolos luego si es que no se encontraban.
+ 
+\end{enumerate}
+\end{document}

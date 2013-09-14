@@ -1,0 +1,200 @@
+\chapter{Tipos Abstractos de Datos}
+
+\section{Introducci\'on y noci\'on}
+Los tipos abstractos de datos (TADs) son modelos matem\'aticos que se construyen con el fin de exponer los aspectos relevantes de un problema bajo an\'alisis. La raz\'on por la cual son usados es porque gracias a los mismos es posible realizar un an\'alisis exhaustivo junto con la comprensi\'on cabal del funcionamiento del objeto de estudio, esto se logra utilizando la abstracci\'on como herramienta para lograr la comprensi\'on y mediante conceptos claves como lo son el encapsulamiento, podremos resaltar las cualidades relevantes de lo que queremos analizar.
+
+De cierta forma lo que queremos lograr es capturar lo m\'as fielmente posible, y con precisi\'on matem\'atica, un problema, para el que luego encontraremos una soluci\'on. Es importante tener en cuenta que en la etapa de especificaci\'on solo debe preocuparnos describir el problema que se intenta resolver, y no sus eventuales soluciones.
+
+\section{Sintaxis y sem\'antica de un TAD}
+
+Todo lenguaje tiene una gram\'atica o sintaxis, las cuales son un conjunto de reglas que indican c\'omo se escriben las oraciones del lenguaje y las reglas sem\'anticas, que indican c\'omo deben interpretarse las oraciones v\'alidas del lenguaje. Los lenguajes l\'ogicos no son una excepci\'on a estas.
+
+\subsubsection*{Sintaxis}
+
+Para determinar un TAD, utilizaremos especificaciones de TADs (de la misma forma que se usan axiomas para caracterizar estructuras matem\'aticas). Para especificar un TAD es necesario definir:
+
+\begin{itemize}
+ \item La \textbf{signatura} que exponen las operaciones y que aridad tienen los modelos.
+ \item Los \textbf{axiomas} son formulas bien formadas seg\'un ciertas reglas (sint\'acticas) que determinan el comportamiento de las operaciones.
+\end{itemize}
+
+\subsubsection*{Sem\'antica}
+
+La sem\'antica declara con precisi\'on qu\'e cosas son modelos de nuestra teor\'ia, es decir le da un significado a las cosas que se pueden escribir de acuerdo a las reglas sint\'acticas. Un modelo de de nuestra teor\'ia es un ente matem\'atico tal que cumple que cada uno de sus conjuntos corresponden con un g\'enero del TAD y cada funci\'on con una operaci\'on, nosotros definiremos nuestro TAD de forma tal que acomodar\'a los modelos matem\'aticos que se ajusten a el, de cierta forma la especificaci\'on del TAD funciona como un descriptor del modelo matem\'atico. Un modelo matem\'atico determina qu\'e elementos del mundo real estar\'an reflejados en la especificaci\'on y que operaciones se permitir\'a realizar sobre ellos. 
+
+Por otro lado una teor\'ia es consistente cuando en ella no existe una igualdad que afirme que \textbf{verdadero} es \textbf{falso}. Si introducimos una teor\'ia inconsistente al TAD provocara que no haya un modelo que se ajuste al mismo, y por lo tanto, y burdamente dicho, provocar\'a que el TAD no tenga sentido alguno ya que ning\'un modelo se ajustara a el y en consecuencia no seremos capaces de modelar nada.
+
+Las instancias de un TAD son las que representan, mediante la abstracci\'on, un objeto de la vida real y cualquier modelo que sea descripto por un TAD especifico representa a todas las instancias posibles del objeto modelado. Es interesante remarcar que cuando nos referimos a instancias podemos estar hablando del mismo objeto y su evoluci\'on con respecto al tiempo, esto tambi\'en es modelable y podremos definir una instancia del objeto para cada instante de tiempo (o al menos para los cambios relevantes que queramos observar mediante el modelo).
+
+\section{Conceptos a tener en cuenta}
+\subsection{Metalenguaje}
+
+Muchas veces al intentar describir propiedades acerca de un lenguaje formal no nos alcanza con dicho lenguaje, y es por ello que necesitamos de un metalenguaje para lograrlo. En las especificaciones de TADs, el metalenguaje es utilizado para escribir las restricciones de las funciones y para describir la igualdad observacional.
+
+\subsection{Restricciones sobre funciones totales}
+
+En el formalismo de los tipos abstractos de datos s\'olo se permite especificar funciones totales, es decir aquellas que est\'an definidas para todo su dominio. Lo que t\'ecnicamente estamos haciendo no es restringir el dominio de las funciones sino definirlas s\'olo para la parte del dominio que nos interesa (por este motivo utilizaremos predicados del metalenguaje para restringirlas), o dicho de otra forma no diremos que valores toma la funci\'on cuando sus par\'ametros no cumplen con la restricci\'on. 
+
+En consecuencia, cuando utilizamos una restricci\'on estaremos subespecificando. Las restricciones son una parte fundamental del TAD, con ellas explicitamos los casos para los cuales ciertas operaciones no tienen sentido (por el marco del problema o por una limitaci\'on t\'ecnica) y aportan claridad y coherencia a una especificaci\'on, por ello en este caso estaremos haciendo un uso l\'icito de la subespecificaci\'on. De cierta forma las restricciones nos permiten limitar el universo al cual aplican ciertas operaciones de nuestros TADs.
+
+~
+
+Es importante remarcar el caso cuando utilizamos una funci\'on con su dominio restringido $g(x)$ dentro de la definici\'on de otra funci\'on $h(x)$. Cuando sucede esto tendremos que asegurarnos de no llamar a $g$ con par\'ametros de su dominio que est\'en restringidos. Para evitar esto y lograr que $h$ este bien definida tendremos dos opciones. La primera consiste en agregar las restricciones necesarias a $h$ para no llamar a $g$ con par\'ametros restringidos, y la segunda, que es pr\'acticamente lo mismo pero desde otra perspectiva, es manejar la parte conflictiva del dominio de $h$, es decir aquellos valores de los par\'ametros de $h$ en donde llamar\'iamos a $g$ de forma ilegal, mediante un condicional en $h$ para efectuar otras operaciones o hacer un ajuste antes de llamar a $g$ de forma tal de no producir ninguna violaci\'on. Dicho de otra forma esto ultimo seria como definir a $h$ como una funci\'on partida.
+
+\subsection{Incertidumbre mediante subespecificaci\'on}
+
+Las restricciones nos servir\'an para expresar sobre que valores de los par\'ametros de una funci\'on determinada no daremos ninguna descripci\'on, sin embargo es por ello que tambi\'en deberemos asegurarnos de que si determinado valor de los par\'ametros de una operaci\'on es v\'alido de acuerdo a las restricciones, este indicando mediante los axiomas, cu\'al es el resultado para aquellos valores. En algunos casos no diremos exactamente qu\'e resultado da la funci\'on, si no que indicaremos qu\'e caracter\'isticas tiene ese resultado.
+
+~
+
+Esto \'ultimo es un concepto sutil y avanzando que a veces tambi\'en recibe el nombre de subespecificaci\'on y solo comparte el nombre con el descripto en al secci\'on anterior. La intenci\'on que reside detr\'as de el es la de dejar algunos aspectos particulares del TAD sin una definici\'on precisa, lo cual se convierte en un recurso muy \'util para manejar algunas incertidumbres de forma pr\'actica. La forma de lograr esto es caracterizando el resultado de una funci\'on de forma d\'ebil. Un ejemplo especifico de los tipos b\'asicos es la operaci\'on \textbf{dameUno} del tipo \textbf{conjunto}, la cual lo \'unico que nos dice es que nos devolvera un elemento perteneciente al conjunto sin especificar bajo que criterio lo har\'a. Esto significa que cualquier forma de elecci\'on que se decida implementar al conjunto va a ser apropiada, mientras que satisfagan la caracter\'istica de elegir un elemento del conjunto.
+
+\subsection{No existe el orden de evaluaci\'on}
+En algunos lenguajes de programaci\'on una funci\'on puede estar definida en partes y las partes de la misma pueden estar ordenadas mediante un orden de evaluaci\'on. Esto de alguna forma simplifica el esquema de evaluaci\'on de las funciones, ya que en vez de usar condicionales en la funci\'on y sobre los datos, podremos usar m\'ultiples definiciones a las que un dato se ajustara dependiendo si el pattern matching lo detecta como v\'alido y en donde la evaluaci\'on terminar\'a con la primer coincidencia, es decir con la primer definici\'on en el orden de evaluaci\'on que sea v\'alida para el dato. En estos casos las funciones se suelen ordenar desde los casos mas particulares hacia los casos mas generales.
+
+En la especificaci\'on de los TADs la idea del pattern matching todav\'ia estar\'a latente, pero por otro lado el orden de evaluaci\'on no existir\'a. Esto sucede ya que todos los axiomas valen a la vez, no se eval\'uan en orden, y a causa de ello no deberemos definir un axioma para un caso particular de alg\'un par\'ametro (como ejemplo, si es un numero cuando el mismo vale cero).
+
+\newpage
+\section{Estructura de un TAD}
+Se explicaran a continuaci\'on cada uno de los componentes que conforman un tipo abstracto de datos.
+
+
+\subsection{Igualdad observacional o Sem\'antica observacional}
+\subsubsection*{Definici\'on}
+La igualdad observacional es un predicado que nos dice cu\'ando dos instancias del aspecto de la vida real que nuestro TAD est\'a modelando se comportan de la misma manera. El concepto de la igualdad observacional es un concepto sem\'antico (es decir que le da sentido al TAD) y no sint\'actico, por lo que es necesario utilizar el metalenguaje para describirla.
+
+\subsubsection*{Sem\'antica inicial}
+Para los TADS, una sem\'antica posible es la sem\'antica inicia, que burdamente descripta trata de partir el universo de acuerdo a las ecuaciones que aparecen en el TAD, de esta forma la relaci\'on de igualdad que queda definida es una congruencia (significa que las instancias del tipo est\'an en la misma clase de equivalencia y pertenecer\'an a la misma sin importar que funci\'on se les aplique). La desventaja de esto \'ultimo es que los modelos resultantes no son muy bonitos. 
+
+\subsubsection*{Sem\'antica observacional}
+A causa de la incomodidad de la sem\'antica inicial se invento la sem\'antica observacional, en la cual hay un conjunto de funciones etiquetadas como observadores b\'asicos que particionan el universo de instancias de acuerdo a ellos. La intenci\'on es que estas particiones sean congruencias por lo que no puede haber inconsistencias entre declarar una igualdad entre dos instancias y la informaci\'on (distinta) que nos puede brindar alguna de sus funciones acerca de ellas.
+
+\subsection{Observadores b\'asicos}
+
+\subsubsection*{Definici\'on}
+Los observadores b\'asicos son un conjunto de funciones pertenecientes al TAD que permiten particionar el universo de sus instancias en clases de equivalencia, con la idea de agrupar en cada clase a las instancias que posean un comportamiento similar con respecto al estudio que queremos realizar. Deseamos que el TAD se convierta en una congruencia, es decir, una relaci\'on de equivalencia en la que si se aplica cualquier operaci\'on a dos instancias de la misma clase los resultados obtenidos formen parte de la misma clase.
+
+\subsubsection*{Ruptura de congruencia}
+Si comparamos instancias observacionalmente iguales no deber\'ia pasar que al aplicar un observador a ambas obtengamos resultados observacionalmente distintos, de la misma forma que si tenemos instancias observacionalmente distintas no podr\'a pasar que al aplicar todos los observadores a ambas obtengamos los mismos resultados. En ambos casos el TAD no se comportar\'ia como una congruencia (solamente seria una clase de equivalencia dada por la igualdad observacional).
+
+\subsubsection*{Minimalismo y axiomatizaci\'on de observadores}
+Cuando realizamos la selecci\'on de funciones del TAD para agruparlas como observadores es preferible tener un conjunto de observadores minimal, esto es que no deber\'ian existir observadores que s\'olo identifiquen aspectos de la instancia que ya han sido identificados por otros observadores. Adem\'as, es considerado buena pr\'actica axiomatizar los observadores b\'asicos en funci\'on de los generadores y no de otros observadores. La axiomatizaci\'on utilizando otros observadores se reserva, en la pr\'actica, para \textbf{otras operaciones}. Notar que, salvo en los casos en los que la operaci\'on tenga una restricci\'on con respecto a alguna instancia, la cantidad de axiomas que tendremos sera aproximadamente el producto cartesiano entre la cantidad de observadores b\'asicos y los generadores.
+
+\subsubsection*{Sobreespecificaci\'on en los observadores}
+Decimos que una operaci\'on esta sobreespecificada cuando hay varias formas de saber cu\'al es su resultado para unos valores dados de sus par\'ametros. Si bien esto puede estar definido en forma legal y no romper con el modelo, puede resultar un poco confuso a la hora de conocer un resultado ya que pueden haber varios caminos para obtenerlo. El problema se presenta cuando obtenemos resultados distintos dependiendo si seguimos caminos distintos
+
+\newpage
+
+\subsection{Generadores}
+
+\subsubsection*{Definici\'on}
+Los generadores son un conjunto de funciones que retornan un resultado del g\'enero principal del TAD especificado, y que tienen la particularidad de que a partir de una aplicaci\'on finita de ellos se pueden generar o construir absolutamente todas las instancias del TAD. Esto es, que no puede existir una instancia del problema que estamos modelando que sea relevante y que no podamos generar su representaci\'on a partir de una sucesi\'on de aplicaci\'on de los generadores del TAD.
+
+\subsubsection*{Estructura de generadores}
+El conjunto de generadores puede ser clasificado de la siguiente manera:
+
+\begin{itemize}
+ \item \textbf{Generadores base o no recursivos} son aquellos que no reciben como par\'ametro ninguna instancia del tipo que est\'an generando, es decir, ser\'an usados como base de los generadores recursivos.
+ \item \textbf{Generadores recursivos} son aquellos que reciben como par\'ametro al menos una instancia del tipo que est\'an generando, esto es, un generador base o una aplicaci\'on de un generador recursivo a otra/s instancia/s del TAD (que bien esta misma puede ser una sucesi\'on de aplicaciones de generadores).
+\end{itemize}
+
+Adem\'as de recibir como par\'ametro a instancias del tipo que generan, los generadores pueden recibir como par\'ametro otros tipos que usaran como informaci\'on de la instancia (por ejemplo n\'umeros o strings). 
+
+\subsubsection*{Transparencia referencial}
+Es importante notar que al aplicar un generador recursivo a una instancia de un TAD no se est\'a modificando la instancia que recibe como par\'ametro dado que en nuestro lenguaje no existe la noci\'on de ``cambio de estado'', por lo que realmente se estar\'a haciendo ser\'a generar una nueva instancia basada en la anterior, cuyo comportamiento podr\'a ser descripto mediante la aplicaci\'on de los observadores b\'asicos sobre ella. Es definitiva, los resultados de las funciones s\'olo dependen de sus argumentos.
+
+\subsubsection*{Importancia en la estructura de los generadores / Inducci\'on estructural}
+Dado que todas las instancias de un TAD est\'an generadas a partir de un generador base o a partir de la aplicaci\'on de un generador recursivo, se vuelve un pilar fundamental a la hora de realizar demostraciones de propiedades sobre los tipos abstractos de datos, ya que nos ofrece un esquema de demostraci\'on dividido en dos partes mapeable a una esquema de inducci\'on; en donde la primer parte demostrara la propiedad para todas las instancias generadas por generadores base y la segunda demostrara la propiedad para todas las instancias generadas por generadores recursivos. Este esquema de inducci\'on es conocido como \textbf{inducci\'on estructural}.
+
+\subsection{Otras operaciones}
+
+En esta categor\'ia estar\'an el resto de las operaciones que se necesiten declarar en un TAD incluyendo las operaciones auxiliares que no se exportan. La diferencia primordial entre las operaciones que se encuentren en esta categor\'ia y las operaciones encontradas en la categor\'ia de observadores b\'asicos, es que las operaciones en esta secci\'on no deber\'an devolver valores distintos cuando se apliquen sobre dos instancias observacionalmente iguales del TAD. Dicho de otra forma, no deber\'an dar informaci\'on del TAD que no este cubierta por los observadores b\'asicos, de lo contrario la congruencia del mismo sera imposibilitada.
+
+\subsection{G\'eneros, Usa y Exporta}
+
+En la secci\'on de g\'eneros se incluir\'an todos los g\'eneros nuevos que se describen en el TAD. El g\'enero es el nombre colectivo con el que se va a hacer referencia a instancias del TAD que estamos definiendo, el cual es diferente al Tipo del TAD. Un tipo es el conjunto de operaciones, axiomas y demas que componen al TAD. En la secci\'on de usa se incluyen los nombres de los TADs que necesitaremos para definir el nuevo tipo, desde el punto de vista formal lo que estamos haciendo es incluir otras teor\'ias en la que estamos definiendo. Por \'ultimo, la secci\'on exporta servir\'a para incluir todos los elementos declarados en el TAD que queremos que puedan ser utilizados por otros TADs, por defecto se exportaran los \textbf{generadores} y \textbf{observadores b\'asicos}.
+
+\section{Al especificar recordar}
+
+Estas son una serie de consideraciones a tener en cuenta en el momento de especificar. Algunas de ellas son buenas pr\'acticas, otras son ideas de formas que deberemos, o es recomendable, hacer ciertas cosas y otras est\'an escritas para remarcar en que cosas no deberemos caer.
+
+\subsection{No axiomatizar sobre casos restringidos}
+
+A la hora de axiomatizar una funci\'on con restricciones no se ha de realizar ning\'un tipo de consideraci\'on para ``controlar''  que los argumentos cumplan efectivamente las restricciones ya que cuando la funci\'on es usada todos los argumentos siempre cumplen las restricciones que impusimos, y es por ello que asi debe considerarse cuando los axiomatizamos.
+
+\subsection{No axiomatizar sobre generadores de otros tipos}
+
+Si bien no es algo que este completamente mal como en el punto anterior, la axiomatizaci\'on de operaciones sobre generadores de otros tipos puede ocasionar que la igualdad observacional del tipo usado sea violada, algo que nunca se podr\'a dar si en su lugar utilizamos los observadores b\'asicos. Es por ello que es preferible que al realizar las axiomatizaciones se efect\'uen en funci\'on de los observadores del tipo usado y no sobre los generadores.
+
+\subsection{Comportamiento autom\'atico}
+
+La idea del comportamiento autom\'atico es no modelar operaciones para casos que se dan de forma impl\'icita o autom\'atica. Por ejemplo si cada vez que se da cierta condici\'on $A$ se produce el efecto $B$ a trav\'es de una acci\'on $C$ que se da de forma autom\'atica, seguramente no haga falta hacer alusi\'on a la acci\'on $C$ de ninguna forma (si es que no nos interesa conocer nada de ella puntualmente) para modelar correctamente el objeto de estudio. Muchas veces podremos tener cadenas de condiciones - acciones - consecuencias en donde las acciones y consecuencias se den de forma autom\'atica y la consecuencia de una sea la condici\'on de otra cadena de este tipo. En estos casos solamente hara falta modelar lo suficiente para saber cuando se cumple la primera condici\'on de la cadena y en base de eso podremos definir alguna operaci\'on que modele solamente la ultima consecuencia de la satisfacci\'on de la condici\'on, pasando por alto todas aquellas acciones o consecuencias de la vida real que ocurren en 
+el medio y no nos interesa modelar.
+
+\subsection{Recursion y recursion mutua}
+
+La idea detr\'as de una definici\'on recursiva es ir simplificando la instancia hasta el punto en donde no se puede simplificar m\'as, el llamado caso base. All\'i el axioma se resuelve directamente sin usar el concepto que est\'a definiendo, lo importante es que para resolver el caso base nos basta con saber qu\'e tiene que devolver la funci\'on para ese caso particular, lo cual es relativamente sencillo.
+
+~
+
+La auto-referencia a la definici\'on que se est\'a dando se realiza en el caso recursivo, donde se descompone el objeto sobre el cual se esta definiendo y se aplica la definici\'on a esas simplificaciones del mismo. En nuestras definiciones recursivas deberemos garantizar que eventualmente se llegar\'a al caso base para todos los valores sobre los que se encuentra definida (mejor dicho, no restringida) la operaci\'on. La manera mas habitual de garantizar esto es que en cada caso recursivo se logre disminuir la complejidad de los par\'ametros involucrados.
+
+~
+
+La auto-referencia a las definiciones puede darse de manera indirecta. Lo que encontramos en estos casos es recursion mutua; donde una definici\'on no hace auto-referencia directamente sino que lo hace a trav\'es de otra definici\'on. La recursion mutua puede darse en m\'as de dos niveles. En estos casos las consideraciones respecto de la disminuci\'on de la complejidad se ver\'an un poco mas complicadas pero seguir\'an vigentes. Cuando planteamos una recursion debemos concentrarnos en resolver cada caso particular correctamente sin preocuparnos por los otros. Luego si cada caso se resuelve bien, el conjunto tambi\'en sera correcto.
+
+\subsection{Interfaces gruesas}
+
+Se define como interfaz gruesa a la situaci\'on que se da cuando se proveen mas datos que los necesarios en una determinada funci\'on. Un indicador de que estamos cayendo en esto es el uso excesivo de los observadores dentro de la axiomatizaci\'on de una funci\'on. Es decir, si no utilizamos toda la instancia que tenemos, sino que proyectamos sistem\'aticamente una de las caracter\'isticas de la instancia, vale preguntarse si no corresponder\'ia tener solo esa caracter\'istica en primer lugar.
+
+\newpage
+\section{Inducci\'on estructural}
+
+La inducci\'on estructural nos servir\'a para demostrar teoremas o propiedades sobre nuestros tipos mediante el uso de sus axiomas y la inducci\'on como herramienta para demostrar su validez para un dominio coordinable con todo $N$. Para hacerlo se podr\'an seguir una serie de pasos:
+
+\begin{itemize}
+ \item \textbf{Convencernos que es cierto} Si bien no es un paso realmente necesario, es importante para nosotros. Si la propiedad es cierta a simple vista entonces no tendremos problemas en buscar una demostraci\'on a la misma, pero cuando su veracidad no es tan f\'acilmente visible es importante darnos cuenta de porque vale, ya que de lo contrario tendremos problemas al demostrarlo o al creer que la demostraci\'on es correcta.
+ \item \textbf{Plantear la propiedad como predicado unario} B\'asicamente esto consiste en quitar el cuantificador que liga a la variable sobre la que vamos a realizar inducci\'on. Por ejemplo si tenemos algo como $(\forall s: secu(\alpha))\\ (Long(Duplicar(s)) = 2 \cdot Long(s))$ el predicado unario resultante seria $P(s) \equiv (Long(Duplicar(s)) = 2 \cdot Long(s))$, de forma tal que la expresi\'on inicial nos quedar\'ia $(\forall s: secu(\alpha)) P(s)$, que seria equivalente.
+ \item \textbf{Plantear el esquema de inducci\'on} El esquema de inducci\'on consiste en plantear los casos base que debemos probar as\'i como los pasos inductivos. Este esquema es propio del tipo, ya que se deriva de su conjunto de generadores, por lo tanto para cualquier propiedad que se quiera probar sobre un TAD dado, el esquema de inducci\'on ser\'a el mismo. Para ejemplo anterior, el esquema de inducci\'on quedar\'ia de la forma $(\forall s: secu(\alpha)) P(s) \implies (\forall a: \alpha) P(a \text{\textbullet} s)$ en donde $P(s)$ es la hip\'otesis inductiva y $(\forall a: \alpha) P(a \text{\textbullet} s)$ es la tesis inductiva.
+ \item \textbf{Demostraci\'on} Para probar la validez de la propiedad probaremos primero el caso base para cada uno de los generadores base y luego el paso inductivo con cada uno de los generadores recursivos, tal como lo sugiere el esquema de inducci\'on.
+\end{itemize}
+
+
+\subsection{Fundamento te\'orico}
+
+La inducci\'on completa es una instancia particular de la inducci\'on estructural, es decir que la inducci\'on estructural es una generalizaci\'on de la inducci\'on completa para otros tipos de datos mas all\'a de los n\'umeros naturales. La inducci\'on estructural tiene su fundamento te\'orico sobre el principio de inducci\'on bien fundada, para el cual es necesario previamente un orden bien fundado.
+
+\begin{itemize}
+ \item \textbf{Orden bien fundado} Decimos que $\prec$ define un buen orden sobre un conjunto $A$ (o equivalentemente, que tiene un buen orden fundado), sii $\prec$ es un orden total sobre $A$ y todo $X \subseteq A$ tal que $X \not= \emptyset$ tiene un elemento que es m\'inimo de acuerdo a $\prec$. Es decir, si hay un orden total definido sobre $A$ y adem\'as todo subconjunto de $A$ tiene un m\'inimo, entonces tendremos un buen orden fundado. De cierta forma se pide que el orden total definido sea consistente.
+ \item \textbf{Orden total} Decimos que $\prec$ define un orden total sobre el conjunto $A$, sii define un orden parcial y adem\'as tiene comparabilidad (o tricotom\'ia). Esto ultimo es $\forall a,b \in A$ se cumple que $a\prec b \lor b\prec a$. Por ejemplo $\leq$ es un orden total en $N$. 
+ \item \textbf{Orden parcial} Decimos que $\prec$ define un orden parcial sobre un conjunto $A$, sii $\prec$ es una relaci\'on reflexiva, antisim\'etrica y transitiva. Si se quita la reflexividad se habla de un orden parcial d\'ebil. Por ejemplo $<$ es un orden parcial d\'ebil en $N$.
+\end{itemize}
+
+\subsubsection{Construcci\'on de un orden bien fundado}
+
+Si los elementos de un conjunto son numerables podremos realizar una construcci\'on de un orden bien fundado realizando un mapeo con los n\'umeros naturales. Como las instancias de cualquier TAD son numerables, siendo $T$ las instancias del TAD que estamos mapeando y $N$ el conjunto de naturales definiremos la funci\'on $f: T \rightarrow N$ tal que $x \prec_f y \iff f(x) \leq f(y)$. De esta forma $\prec_f$ sera el orden bien fundado sobre $T$. En el caso particular de los TADs sabemos que los mismos son definidos de forma inductiva. Por ello, $f$ puede ser definida de la siguiente forma:
+\begin{itemize}
+ \item Si $x$ es un elemento base de $T$, entonces $f(x)=0$
+ \item Si $x$ se construye a partir de los elementos $x_1,...,x_n$, entonces $f(x)=1+\max(f(x_1),...,f(x_n))$
+\end{itemize}
+
+~
+
+\subsubsection{Principio de inducci\'on bien fundada}
+
+Una vez definido un orden bien fundado sobre el conjunto podemos hablar del \textbf{principio de inducci\'on bien fundada}. Para tener esto ultimo $\prec$ debe definir un buen orden sobre el conjunto $A$, $P$ debe ser un predicado sobre $A$ y $P$ debe cumplir
+
+\begin{itemize}
+ \item $P$ debe valer para todos los elementos m\'inimos de $A$ de acuerdo a $\prec$, es decir $P$ debe valer para todos los elementos base.
+ \item Se debe cumplir que $(\forall a\in A)[(\forall b \in A | b \prec a) P(b) \implies P(a)]$. Es decir que se debe cumplir que para todo $a$ cuya valuaci\'on $P(a)$ es verdadera, las valuaciones de todos sus ``predecesores'' $P(b)$ (en donde predecesores son aquellos que cumplen $b \prec a$), tambi\'en valen.
+\end{itemize}
+
+
+\subsubsection{Esquema de inducci\'on estructural}
+
+\begin{itemize}
+ \item Llamaremos $g_1,...,g_k$ a los generadores del tipo $T$ que no toman como par\'ametro una instancia de $T$, es decir que estos ser\'an los generadores base.
+ \item Llamaremos $g_{k+1},...,g_n$ a los que si toman una instancia de $T$, es decir que estos ser\'an los generadores recursivos.
+ \item El primer paso para la inducci\'on es probar el caso base, es decir $P(g_1) \land ... \land P(g_k)$ debe ser verdadero.
+ \item Luego probaremos el paso inductivo, esto es $(\forall i : T) [P(i) \implies P(g_{k+1}(i))] \land ... \land (\forall i : T) [P(i) \implies P(g_{n}(i))]$. Esto es, para cada uno de los generadores recursivos, pruebo el paso inductivo con todas las instancias posibles como precedente de forma tal de obtener todas sus posibles variantes (por simplificar no se incluyo la variaci\'on de los argumentos de los generadores). De esto podremos concluir que $(\forall i : T) P(i)$.
+\end{itemize}

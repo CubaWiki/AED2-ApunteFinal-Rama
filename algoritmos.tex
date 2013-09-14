@@ -1,0 +1,357 @@
+\chapter{Algoritmos}
+
+\section{Eliminaci\'on de la recursion}
+
+La motivaci\'on de la eliminaci\'on de la recursion es b\'asicamente optimizar funciones recursivas mediante distintas formas. Para hacerlo se intentara cumplir ciertos objetivos como no repetir los c\'alculos (generalmente en problemas que presenten sub-estructura \'optima), no recorrer una estructura mas de una vez (o intentar hacerlo la menor cantidad posible de veces) y finalmente eliminar la recursion, ya que si bien una funci\'on iterativa y una recursiva podr\'an tener complejidades asint\'oticamente iguales, en la practica las funciones iterativas son mas o\'ptimas por diferencias de constantes (b\'asicamente por no tener llamadas recursivas).
+
+~
+
+\textbf{Inmersi\'on de rango} Agregar un nuevo par\'ametro de salida a la funci\'on, es decir si la salida original era un entero, ahora sera una dupla de enteros. La idea del nuevo par\'ametro que agregamos es darnos ''algo mas`` que lo estrictamente necesario de forma tal que nos sirva para calcular mas eficientemente otro resultado y as\'i reducir la complejidad. Esta t\'ecnica tambi\'en es conocida como \textbf{generalizaci\'on de funciones}.
+
+~
+
+\textbf{Inmersi\'on de dominio} En este caso agregaremos un par\'ametro de entrada que va conteniendo resultados intermedios. De esta forma podremos optimizar la complejidad de problemas que presenten subestructura \'optima.
+
+~
+
+\textbf{Inmersion de genero} Se amplia el dominio de alg\'un par\'ametro de la funci\'on. Por ejemplo de naturales a enteros.
+
+~
+
+\textbf{Recursion a cola} Esta sera una clase de funciones recursivas lineales en donde su ultimo paso es la llamada recursiva y adem\'as es \'unica. La propiedad de estas es que pueden ser transformadas autom\'aticamente a funciones iterativas.
+
+~
+
+\textbf{Recursivas lineales no a cola} Son aquellas que tienen una \'unica llamada recursiva (por eso lineales) pero esta no es la ultima operaci\'on. Una funci\'on de este tipo puede ser aquella que tenga un condicional para separar entre el caso base y el caso recursivo. Este tipo de funciones pueden tambi\'en ser convertidas autom\'aticamente.
+
+~
+
+\textbf{Recursivas no lineales} Ser\'an aquellas que tienen mas de una llamada recursiva. Pueden ser \textbf{m\'ultiples} en donde contienen varias llamadas pero no es la ultima operaci\'on o \textbf{anidadas}, las cuales tienen mas de una llamada recursiva pero anidadas y adem\'as la llamada es la ultima operaci\'on.
+
+~
+
+\textbf{Folding/Unfolding} Es desplegado consiste en reemplazar la definici\'on de la funci\'on por su expresi\'on. El plegado puede pensarse como la inversa de la anterior. Se trata de reemplazar la definici\'on de una expresi\'on por una llamada a funci\'on.
+
+\newpage
+\section{Dividir y Conquistar}
+
+La metodolog\'ia consiste en \textbf{dividir} el problema en un numero de subproblemas que son instancias mas chicas del mismo problema, \textbf{conquistar} los subproblemas resolvi\'endolos recursivamente y cuando sean suficientemente chicos resolverlos de una forma directa y \textbf{combinar} las soluciones de los subproblemas en la soluci\'on para el problema original.
+
+Cuando los subproblemas son suficientemente grandes para resolverlos recursivamente, llamaremos al \textbf{caso recursivo}. Una vez que los subproblemas se vuelvan suficientemente chicos, diremos que la recursion ''toco fondo`` y que habremos llegado al \textbf{caso base}. A veces, en adici\'on a los subproblemas que son instancias mas chicas del mismo problema, deberemos resolver problemas que no son exactamente lo mismo que el problema original. Consideraremos resolver dichos subproblemas como una parte del paso de combinaci\'on.
+
+\subsection{Recurrencias}
+
+Las recurrencias van a la par con el paradigma de DyC, ya que nos dan una forma natural de caracterizar los tiempos de los algoritmos que hagan uso del paradigma. Una recurrencia es una ecuaci\'on o inecuaci\'on que describe una funci\'on en t\'erminos de su valor en entradas mas chicas. Las recurrencias pueden tomar muchas formas. Por ejemplo, un algoritmo recursivo podr\'a dividir los subproblemas en tama\~nos desiguales, tales como $2/3$ a $1/3$. Si los pasos de dividir y combinar toman tiempo lineal, tal algoritmo nos dar\'a la recurrencia $T(n) = T(2n/3) + T(n/3) + \Theta(n)$. Los subproblemas no estas necesariamente acotados a ser una fracci\'on constante del tama\~no del problema original. Por ejemplo, si en cada paso disminuy\'eramos 1 solo elemento, nos quedar\'ia una recurrencia del tipo $T(n) = T(n-1) + \Theta(1)$. Habr\'a 3 m\'etodos para resolver recurrencias, esto es para obtener las cotas asint\'oticas ``$\Theta$ o ''$O$`` de la soluci\'on:
+
+\begin{itemize}
+ \item En el m\'etodo de substituci\'on, conjeturaremos una cota y luego la probaremos utilizando inducci\'on matem\'atica.
+ \item En el m\'etodo del \'arbol de recursion, convertiremos la recurrencia en un \'arbol cuyos nodos representaran los costos de varios niveles de la recursion. Usaremos t\'ecnicas para acotar sumatorias para resolver la recurrencia.
+ \item El m\'etodo maestro proveer\'a cotas para recurrencias de la forma $T(n) = aT(n/b) + f(n)$, en donde $a \geq 1$, $b > 1$ y $f(n)$ es una funci\'on dada, las recurrencias de este tipo se presentan muy frecuentemente. Para utilizar el m\'etodo maestro ser\'a necesario memorizar tres casos, pero una vez hecho, podremos determinar cotas asint\'oticas muy f\'acilmente para recurrencias simples.
+\end{itemize}
+
+~
+
+Ocasionalmente podremos ver recurrencias que no son igualdades sino que ser\'an desigualdades, como lo es $T(n) \leq 2T(n/2) + \Theta(n)$. Dada que dicha recurrencia solo nos da noci\'on de una cota superior en $T(n)$, daremos la soluci\'on con notaci\'on $O$ en vez de $\Theta$. De igual forma, con la desigualdad invertida $T(n) \geq 2T(n/2) + \Theta(n)$, la recurrencia solo nos dar\'a la idea de una cota inferior de $T(n)$, por lo tanto usaremos $\Omega$ para dar su soluci\'on.
+
+\subsubsection{M\'etodo de substituci\'on}
+
+El m\'etodo de substituci\'on para resolver recurrencias se compone de dos pasos. El primero de ellos es conjeturar una formula general de la soluci\'on y el segundo es usar inducci\'on matem\'atica para encontrar las constantes y mostrar que la soluci\'on funciona. Veamos este m\'etodo mediante un ejemplo. Tomemos la recurrencia perteneciente a Merge Sort.
+
+\begin{equation*}
+  T(n) = \begin{cases}
+	      1         		& \text{si} \ n = 1 \\
+	      2T(n/2) + n         	& \text{caso contrario}
+	  \end{cases}
+\end{equation*}
+
+~
+
+El caso base hace referencia a cuando nuestro arreglo tiene tama\~no $1$, en cuyo caso devolveremos el arreglo sin ejecutar ninguna operaci\'on sobre el, y el caso recursivo hace referencia a la recursion del arreglo sobre cada una de sus mitades (siendo as\'i divide) y luego uni\'endolo en tiempo $n$ (siendo el conquer). En primer lugar vamos a acotar a $n$ por el m\'ultiplo de $2$ mayor o igual mas cercano, quedando as\'i $n \leq 2^k$ para alg\'un $k \in N$. Luego, reescribiremos a $T(n)$ haciendo el reemplazo por $k$.
+
+\begin{equation*}
+  T(2^k) = \begin{cases}
+	      1         		& \text{si} \ k = 0 \\
+	      2T(2^{k-1}) + 2^k        	& \text{caso contrario}
+	  \end{cases}
+\end{equation*}
+
+~
+
+Probemos alguno de sus valores y analicemos los resultados correspondientes para encontrar alg\'un patr\'on que nos ayude a visualizar la formula general.
+
+\begin{equation*}
+\begin{align*}
+ T(2^0) & = 1 \\
+ T(2^1) & = 2 \cdot T(2^0) + 2^1 = 2 + 2 & = 2^1 + 1 \cdot 2^1 \\
+ T(2^2) & = 2 \cdot T(2^1) + 2^2 & = 2^2 + 2 \cdot 2^2 \\
+ T(2^3) & = 2 \cdot T(2^2) + 2^3 &= 2^3 + 3 \cdot 2^3 \\
+ T(2^4) & = 2 \cdot T(2^3) + 2^4 &= 2^4 + 4 \cdot 2^4 \\ \\
+ T(2^k) & = 2^k + k \cdot 2^k
+\end{align*}
+\end{equation*}
+
+~
+
+Probaremos que esta conjetura es valida utilizando inducci\'on en $N$. El caso base es trivial, ya que $T(2^0) = 2^0 + 0 \cdot 2^0 = 0$, por lo que coincide con la definici\'on. Luego para el paso inductivo, consideraremos que la formula vale hasta $k$ (nuestra hip\'otesis inductiva) y queremos ver que vale para $k+1$ (nuestra tesis inductiva).
+
+\begin{equation*}
+ T(2^{k+1}) = 2T(2^k) + 2^{k+1} \overset{HI}{=} 2(2^k + k \cdot 2^k) + 2^{k+1} = 2^{k+1} + k \cdot 2^{k+1} + 2^{k+1} = 2^{k+1} + (k+1) \cdot 2^{k+1}
+\end{equation*}
+
+Por lo que nuestra tesis inductiva inductiva sera v\'alida y la formula general que encontramos valdr\'a para todo $n \in N$. Como $n \leq 2^k \iff log(n) \leq k$ para alg\'un $k$, tendremos que $T(n) \leq n + n \cdot log(n)$ y por lo tanto $T(n) \subseteq O(n \cdot log(n))$. De la misma forma, si utilizamos el m\'ultiplo de $2$ menor o igual mas cercano a $n$, obtendremos la misma cota pero perteneciente a $\Omega(n \cdot log(n))$, por lo que nos implicara que $T(n) \subseteq \Theta(n \cdot log(n))$. 
+
+~
+
+La ultima formula puede ser generalizada cambiando sus constantes por variables.
+
+\begin{equation*}
+  T(2^k) = \begin{cases}
+	      c         		& \text{si} \ k = 0 \\
+	      2T(2^{k-1}) + f(2^k)        	& \text{caso contrario}
+	  \end{cases}
+\end{equation*}
+
+~
+
+Luego, la conjetura quedar\'ia de la forma $T(2^k) = 2^k \cdot c + \sum_{i=1}^k 2^{k-i} f(2^i) \leq 2^k \cdot c + k \cdot 2^k f(2^k)$. Si definimos a $f(n) = n$ y a $c=1$, podremos observar que nos quedar\'a $T(2^k) \leq 2^k + k \cdot 2^{k+1}$ la cual solo difiere en una constante ya que utilizamos una cota mas bruta, pero pertenecer\'a a la misma clase que la funci\'on anterior.
+
+\subsubsection{M\'etodo del \'arbol de recursion}
+
+Si bien podremos usar el m\'etodo de substituci\'on para proveer una prueba suficiente de que una soluci\'on a una recurrencia es correcta, tendremos problemas en encontrar una buena conjetura, algo en lo que nos ayudara el \'arbol de recursion. 
+
+En un \'arbol de recursion, cada nodo representa el costo de un de un solo subproblema en alg\'un momento del conjunto de invocaciones recursivas, el nodo principal representar\'a el costo inmediato inicial de la funci\'on (sin contabilizar la recursion) y los nodos adyacentes a el, es decir el primer nivel, representar\'an el costo inmediato de cada paso. Como hojas del \'arbol tendremos los casos base de la recursion. Para obtener nuestra conjetura, sumaremos los costos de cada uno de los niveles del \'arbol para obtener un conjunto de costos por nivel, y luego sumaremos todos los conjuntos por nivel para obtener el costo total de todos los niveles de la recursion.
+
+~
+
+Un \'arbol de recursion es el mejor m\'etodo para generar una buena conjetura, que luego podremos verificar utilizando el m\'etodo de substituci\'on. Cuando utilizamos el m\'etodo del \'arbol del recursion para generar una conjetura buena, por lo general es tolerable un leve grado de ''descuido``, dado que luego estaremos verificando la conjetura. Si somos suficientemente cuidadosos al dibujar el \'arbol de recursion y sumar los costos, podremos usar el \'arbol de recursion como una prueba directa para la soluci\'on de una recurrencia.
+
+\subsubsection{M\'etodo maestro}
+
+El m\'etodo maestro provee una receta para resolver recurrencias que tengan la forma:
+
+\begin{equation*}
+  T(n) = \begin{cases}
+	      \Theta(1)         		& n=1 \\
+	      a \cdot T(n/b) + f(n)        	& n > 1
+	  \end{cases}
+\end{equation*}
+
+En donde $a \geq 1$ y $b>1$ son constantes y $f(n)$ es una funci\'on asint\'oticamente positiva. Para usar el m\'etodo maestro, habr\'a que memorizar tres casos, pero una vez hecho se podr\'an resolver recurrencias muy f\'acilmente, muchas veces sin la necesidad de usar l\'apiz y papel. 
+
+~
+
+El m\'etodo maestro tiene su base en el teorema maestro, el cual dice que siendo $a\geq 1$ y $b>1$ constantes, $f(n)$ una funci\'on y $T(n)$ esta definido en los enteros no-negativos por la recurrencia anterior, entonces $T(n)$ tiene las siguientes cotas asint\'oticas:
+
+\begin{itemize}
+ \item Si $f(n) \subseteq O(n^{log_b(a)-\epsilon})$ para alguna constante $\epsilon > 0$, entonces $T(n) \subseteq \Theta(n^{log_b(a)})$.
+ \item Si $f(n) \subseteq \Theta(n^{log_b(a)})$, entonces $T(n) \subseteq \Theta(n^{log_b(a)} \cdot lg(n))$.
+ \item Si $f(n) \subseteq \Omega(n^{log_b(a)+\epsilon})$ para alguna constante $\epsilon > 0$, y si existe alguna constante $c < 1$ y se cumple que $af(n/b) \leq cf(n)$ a partir de un $n$ suficientemente grande, entones $T(n) \subseteq \Theta(f(n))$.
+\end{itemize}
+
+En cada uno de los tres casos, comparamos la funci\'on $f(n)$ con la funci\'on $n^{log_b(a)}$. Intuitivamente, la polinomialmente m\'as grande de las dos funciones determina la soluci\'on a la recurrencia. En el primer caso, la funci\'on $n^{log_b(a)}$ es polinomialmente m\'as grande, entonces la soluci\'on ser\'a $\Theta(n^{log_b(a)})$. En el tercer caso si $f(n)$ significa que es la funci\'on polinomialmente m\'as grande, entonces la soluci\'on ser\'a $T(n) \subseteq \Theta(f(n))$, la condici\'on de regularidad en este caso esta presente para asegurarse de que $f(n)$ sea polinomialmente mas grande. Finalmente, en el segundo caso, las dos funciones son ''del mismo tama\~no``, esto quiere decir que cualquiera puede ser utilizada como cota asint\'otica de la otra, se multiplicar\'an por un factor logar\'itmico y la soluci\'on ser\'a $T(n) \subseteq \Theta(n^{log_b(a)} \cdot lg(n)) \subseteq \Theta(f(n) \cdot lg(n))$. Es importante remarcar que el teorema maestro no cubre todos los casos de $f(n)$, por lo cual 
+habr\'a algunos casos que caer\'an en las brechas entre alguno de los casos, puntualmente cuando $f(n)$ sea mas grande o mas chica que $n^{log_b(a)}$ asint\'oticamente pero no lo sea polinomialmente.
+
+~
+
+Para utilizar el teorema maestro simplemente debemos determinar a que caso pertenece la recurrencia (si es que lo hace) y escribir la respuesta. Algunos ejemplos de uso del teorema maestro son:
+
+\begin{itemize}
+ \item En la recurrencia $T(n) = 9T(n/3) + n$ tendremos que $a=9$, $b=3$ y $f(n)=n$, por lo que tendremos que $n^{log_b(a)} = n^{log_3(9)} = n^2 \subseteq \Theta(n^2)$. Como $f(n) \subseteq O(n^{2-\epsilon})$ con $\epsilon = 1$, entonces podremos aplicar el primer caso del teorema maestro por lo que la soluci\'on a esta recurrencia ser\'a $T(n) \subseteq \Theta(n^2)$.
+ 
+ \item En la recurrencia $T(n) = T(2n/3) + 1$ tendremos que $a=1$, $b=3/2$ y $f(n) = 1$, por lo que tendremos que $n^{log_b(a)} = n^{log_{3/2}(1)} = n^0 \subseteq \Theta(1)$. Como $f(n) \subseteq O(1)$ con $\epsilon = 0$, como $\epsilon > 0$ para que pueda pertenecer al primer caso, la soluci\'on a esta recurrencia se ajusta al segundo caso del teorema maestro, por lo que $T(n) \subseteq \Theta(n^2)$.
+ 
+ \item En la recurrencia $T(n) = 3T(n/4) + n \cdot lg(n)$ tendremos que $a=3$, $b=4$ y $f(n) = n \cdot lg(n)$, por lo que tendremos que $n^{log_b(a)} = n^{log_4(3)} = 0.79$. Con $epsilon \approx 0.2$ tendremos que $f(n) \subseteq \Omega(n)$, lo que se acerca al tercer caso del teorema maestro si podemos cumplir la condici\'on de regularidad. Sea $af(n/b) \leq cf(n) \implies 3f(n/4) \leq cf(n) \implies 3nlg(n/4)/4 \leq cnlg(n)$ lo cual se cumplir\'a para todo $c \geq 3/4$ y para un $n$ suficientemente grande. Esto nos dice que la soluci\'on de la recurrencia es entonces $T(n) \subseteq \Theta(lg(n))$.
+ 
+ \item En la recurrencia $T(n) = 2T(n/2) + n \cdot lg(n)$ tendremos que $a=2$, $b=2$ y $f(n) = n \cdot lg(n)$, por lo que tendremos que $n^{log_b(a)} = n^{log_2(2)} = n$. El tercer caso del teorema maestro parece ajustarse ya que $f(n) \subseteq \Omega(n)$ con $\epsilon = 0$. El problema es que $\epsilon$ debe ser mayor a $1$, y en el segundo caso del teorema la cota superior esta por debajo de $f(n)$. El problema en este caso es que $f(n)$ es asint\'oticamente mas grande que $n$ pero no lo es polinomialmente, por lo que la recurrencia cae en la brecha entre el segundo y tercer caso. En este caso el teorema maestro no decide nada respecto a la recurrencia.
+ 
+ \item En la recurrencia $T(n) = 2T(n/2) + n$, que corresponde al merge sort, tendremos que $a=2$, $b=2$ y $f(n) = n$, por lo que tendremos que $n^{log_b(a)} = n^{log_2(2)} = n$. Luego, esto cae en el segundo caso del teorema ya que $f(n) \subseteq \Theta(n)$, por lo que $T(n) \subseteq \Theta(nlg(n))$.
+\end{itemize}
+
+\subsection{En resumen}
+
+La metodolog\'ia consiste en dividir un problema en problemas similares pero mas chicos, en resolver estos problemas menores hasta que podamos resolverlos de forma ADHOC y luego combinar las soluciones de los problemas menores para obtener la soluci\'on del problema original. Este m\'etodo tiene sentido siempre y cuando la divisi\'on y la combinaci\'on no sean excesivamente caras.
+
+~
+
+El esquema general de dividir y conquistar consiste en:
+
+\begin{itemize}
+ \item Si $X$ es suficientemente chico, entonces resolveremos el problema de forma ADHOC.
+ \item En caso contrario, haremos una descomposici\'on en sub-instancias $X_1, X_2, ..., X_k$, en donde para cada una tendremos $Y_i \gets DC(X_i)$ sub-soluciones, que luego combinaremos las $Y_i$ soluciones para construir la soluci\'on general para $X$.
+\end{itemize}
+
+\newpage
+
+\section{Ordenamiento}
+
+\subsection{Cota inferior para algoritmos basados en comparaciones}
+
+Una lista de $n$ elementos distintos puede tener $n!$ permutaciones o formas de orden distintas. Luego, una cota arbitrariamente mayor para $n! \leq n \cdot n \cdot ... \cdot n = n^n$ y una cota arbitrariamente menor podra ser $n! \geq n/2 \cdot n/2 \cdot ... \cdot n/2 = n/2^{n/2}$. Luego, ambas cotas perteneceran a $\Theta(n log(n))$ si les aplicamos un logaritmo, lo que nos implicara que $log(n!) \in \Theta(n lg(n))$.
+Todas las decisiones estaran basadas en comparar claves, tipicamente mediante ifs, es decir que estan basadas en resultados booleanos. Un algoritmo de ordenamiento correcto debe generar una secuencia distinta de comparaciones booleanas para cada permutacion distinta de $1.. n$. Como habra $n!$ diferentes permutaciones en una secuencia de $n$ elementos, deberemos tener $n!$ secuencias distintas de comparaciones. Si un algoritmo hace $\leq d$ preguntas booleanas, generara $\leq 2^d$ secuencias distintas de respuestas booleanas, y por lo tanto:
+
+\begin{equation*}
+ n! \leq 2^d \implies lg_2(n!) \leq d \implies d \in \Omega(n \cdot lg(n))
+\end{equation*}
+
+~
+
+No podremos preguntar $d$ preguntas en menos de $d$ tiempo, si suponemos un tiempo acotado para cada preguntar, por lo que el algoritmo gasta $\Theta(d)$ tiempo preguntando $d$ preguntas. Por lo que todo algoritmo de ordenamiento basado en comparaciones toma en el peor caso $\Omega(n \cdot lg(n))$ tiempo. Algoritmos mas r\'apidos que estos deber\'an hacer decisiones de $q$-caminos para un $q$ grande.
+
+\subsection{Insertion sort}
+
+Es un algoritmo de ordenamiento in-place (es decir que no consume demasiada memoria adicional para ordenar la lista) y corre en tiempo $n^2$ en el peor caso. El invariante de este algoritmo es que la lista $S$ este ordenada. El algoritmo funcionara teniendo una lista $S$ que comenzara vacia y una lista sin ordenar $I$ de $n$ elementos, en cada paso obtendremos un elemento de $n$ y lo \textbf{insertaremos} ordenadamente en $S$, $S$ e $I$ pueden ser sub-arreglos del arreglo original. En el caso que tengamos $n$ claves fuera de lugar, el tiempo es de $O(w)$ en donde $w$ es el numero de ''intercambios`` a realizar. Si utilizamos un \'arbol balanceado de b\'usqueda como la estructura en $S$ el algoritmo se volver\'a $O(n\cdot lg(n))$ aunque sera mas lento que otros algoritmos de b\'usqueda por las constantes ocultas del \'arbol balanceado.
+
+\subsection{Selection sort y Heap sort} 
+
+Es un algoritmo de ordenamiento in-place (es decir que no consume demasiada memoria adicional para ordenar la lista) y corre en tiempo $n^2$ en el peor caso. El invariante de este algoritmo es que la lista $S$ este ordenada. El algoritmo funcionara teniendo una lista $S$ que comenzara vacia y una lista sin ordenar $I$ de $n$ elementos, en cada paso \textbf{seleccionaremos} el m\'inimo elemento de $I$ y lo insertaremos al final en $S$, $S$ e $I$ pueden ser sub-arreglos del arreglo original.
+
+Si cambiamos $I$ por un min-heap, podremos realizar la operaci\'on de encontrar un elemento m\'inimo en tiempo $O(lg(n))$, dejando al algoritmo con tiempo total en $O(n\cdot lg(n) + n) \subseteq P(n\cdot lg(n))$, en donde la suma en el primer caso ser\'a causada por convertir el arreglo en un heap. Esta ultima modificaci\'on nos dar\'a el algoritmo denominado como Heap sort, el cual tambi\'en ser\'a un ordenamiento in-place ya que el \'arbol del heap podr\'a ser guardado en un arreglo. Una optimizaci\'on importante para evitar algunas constantes a la hora de implementar el Heap sort es representar el mismo a la inversa de lo que normalmente lo har\'iamos en el arreglo, dejando la ra\'iz del \'arbol en el final del mismo. Esto provocara que a medida que saquemos el m\'inimo elemento del arreglo, el mismo vaya a parar (por el comportamiento mismo de la eliminaci\'on del heap) al comienzo del arreglo, que por definici\'on del tama\~no del heap, estar\'a fuera del mismo. Si queremos implementar esto mismo 
+utilizando la representaci\'on cl\'asica del Heap sort, deberemos invertir el orden del arreglo una vez finalizadas las $n$ iteraciones.
+
+\subsection{Mergesort}
+
+Mergesort es el algoritmo de ordenamiento Divide and Conquer por excelencia. El mismo comenzara con una lista de $I$ elementos, la cual \textbf{dividir\'a} a la mitad por un total de $\lceil lg(n) \rceil$ veces. Una vez llegado al caso base, el cual tendr\'a un arreglo trivialmente ordenado de $1$ elemento, utilizara merge para combinar los resultados parciales de cada divisi\'on y de esta forma obtener el resultado al problema original. La funci\'on de recursion para este algoritmo sera de $T(n) = 2 \cdot T(n/2) + \Theta(n)$, que por el teorema maestro siendo $a=2$, $b=n/2$ y $f(n) = n$, nos quedara que $n^{lg_b(a)} = n^{lg_2(2)} = n^1$, por lo que se ajustara al segundo caso del teorema ya que $f(n) \subseteq O(n)$ lo que implicara que $T(n) \subseteq \Theta(n \cdot lg(n))$. Si bien Mergesort funcionara bien para listas y arreglos en el tiempo dado anteriormente, no es un algoritmo de ordenamiento in-sort, por lo que utilizara memoria adicional, lo que es para considerar ya que para arreglos habr\'a otras 
+soluciones 
+mejores en lo que respecta a espacio.
+
+\subsection{Bubble sort}
+
+\subsection{Bucket sort} 
+
+Funcionara cuando tengamos claves peque\~nas en un rango, por ejemplo desde $0$ hasta $q-1$, en donde $q \in O(n)$. Tendremos un arreglo de $q$ colas, numeradas desde $0$ a $q-1$, y encolaremos cada elemento de forma tal que la clave $i$ vaya a la cola $i$. Una vez hecho esto concatenaremos las colas en orden, de forma tal que el fin de la cola $i$ concatenado con el siguiente de la cola $i+1$. El tiempo del algoritmo sera de $\Theta(q+n)$, tomara $\Theta(q)$ en inicializar y concatenar cada una de las colas y $\Theta(n)$  en poner cada uno de los elementos en las colas. Si $q \in O(n)$, el tiempo total sera de $\Theta(n)$, si esta condici\'on no se cumple deberemos utilizar algoritmos mas complicados para resolver esto.
+
+%Dibujin de ejemplo sobre esto?
+
+Bucket sort es estable, esto quiere decir que elementos con las mismas claves se obtendr\'an en el mismo orden en el que ingresaron luego de que el arreglo sea ordenado por sus claves. Insertion, selection, mergesort pueden ser hechos f\'acilmente estables, al igual que quicksort con una lista enlazada (la versi\'on con arreglo no lo es). Heapsort, por otro lado nunca es estable.
+
+\subsection{Counting sort}
+
+Si los elementos son claves y no hay informaci\'on asociada, contaremos las copias de cada uno de los elementos utilizando por ejemplo un arreglo $S$. El arreglo comenzara lleno de ceros y a medida que contaremos iremos incrementando para la clave $i$ la posici\'on $i$ del arreglo. Luego construiremos el arreglo final en tiempo $O(n)$. Al igual que bucket sort el algoritmo toma $O(q+n)$ tiempo, y si $q \in O(n)$ el tiempo total sera de $\Theta(n)$.
+
+\subsection{Radix sort}
+
+Supongamos que queremos ordenar mil elementos que estar\'an en un rango de $[0, 10^8]$. En vez de proveer $10^8$ buckets, proveamos $10$ buckets, luego ordenaremos los elementos por el primer d\'igito solamente. En el ejemplo anterior los buckets tendran rangos, el primer bucket  contendra elementos desde $0$ hasta $9999$, el segundo desde $10000$ hasta $19999$, y asi. Luego al obtener cada cola podremos ordenar cada una recursivamente por el segundo d\'igito, etc. De esta forma dividiremos en subconjuntos cada vez mas peque\~nos el problema original. El problema con esto es que los buckets mas chicos ser\'an ordenados de forma ineficiente.
+
+~
+
+Una idea interesante es mantener los n\'umeros en una pila mientras se ordena, y ordenar primero utilizando el d\'igito menos significativo y continuando hasta el d\'igito mas significativo. Esto funcionara ya que bucket sort es estable, y por lo tanto el orden relativo que le demos en una primera iteraci\'on se mantendr\'a en las iteraciones que le contin\'uen. Podremos incrementar la velocidad utilizando mas cantidad de buckets, es decir ordenando de a 2 o 3 d\'igitos ($q=10$ o $q=100$). $q$ sera la cantidad de buckets y adem\'as el ''radix`` de d\'igitos que usaremos como una clave de ordenamiento.
+
+~
+
+Cada iteraci\'on en un radix sort inspecciona $lg_2(q)$ bits de cada clave. Si utilizamos $q=256$, estaremos explorando $8$ bits de cada clave en cada iteraci\'on. Si utilizamos ints de $32$ bits, necesitaremos realizar $4$ pasadas para ordenar cualquier cantidad de n\'umeros (si bien a mayor cantidad usaremos mucha mas memoria para realizarlo). Si todas las claves est\'an representadas en $b$ bits, la cantidad de iteraciones que necesitaremos sera de $\lceil \frac{b}{lg_2(q)} \rceil$. El tiempo de corrida del radix sort sera de $O((n+q) \cdot \lceil \frac{b}{lg_2(q)} \rceil)$.
+
+~
+
+El criterio para elegir $q$ sera de forma tal que $q \in O(n)$, de forma tal que cada iteraci\'on tome tiempo lineal. Si hacemos $q$ suficientemente grande, la cantidad de iteraciones sera chica, por lo que deberemos elegir $q$ proporcional a $n$. Si hacemos esta elecci\'on la complejidad total de radix sort nos quedara de la forma $O(n + \lceil \frac{b \cdot n}{lg(n)} \rceil)$, si por otro lado podemos considerar a $b$ como una constante, el ordenamiento tomara tiempo lineal. Por otro lado si queremos usar menos memoria podr\'iamos usar $q$ proporcional a $\sqrt{n}$, redondeada a la potencia de $2$ mas cercana lo que incrementara la cantidad de iteraciones necesarias al doble pero decrementara la memoria que utilizamos de forma potencial.
+
+\newpage
+\section{Compresi\'on}
+\subsection{Codificaci\'on por longitud de series}
+
+La codificaci\'on por longitud de series esta basada en la redundancia de los caracteres en una serie. Podremos reemplazar una secuencia de repeticiones de un car\'acter por un solo ejemplar del mismo acompa\~nado de la cantidad de repeticiones. Por ejemplo la secuencia $AAABBAABCDCCCD$ puede ser codificada como $4A3B2A1B1C1D3C1D$. A esta ultima, podremos mejorarla obviando los $1$ y no cambiar las secuencias pares (ya que ocupan lo mismo) dejando as\'i $4A3BAABCDCD$.
+
+~
+
+Para los archivos binarios se puede presentar una variante mucho mas eficiente, la misma se trata de almacenar solo la longitud de la secuencia, sabiendo que los caracteres est\'an alternados. En archivos gen\'ericos, necesitamos representaciones separadas para los elementos del archivo y los de su versi\'on codificada. Por ejemplo, no habr\'ia forma de distinguir $47 64$ de $4 764$ si no tuvi\'esemos el espacio. Si tenemos un alfabeto fijo (por ejemplo solo letras y el espacio en blanco), para lograr una diferenciaci\'on entre cadenas podremos usar un car\'acter que no aparece dentro de la misma como car\'acter de escape. Cada aparici\'on indica que los siguientes caracteres son un par de $\langle longitud, caracter \rangle$, en donde la longitud estar\'a representada por un car\'acter tambi\'en en donde se traducir\'a seg\'un su posici\'on en el alfabeto. Por ejemplo si tenemos la cadena $QEA$, siendo $Q$ el car\'acter de escape, significara que la $A$ se repetir\'a $5$ veces, quedando la cadena 
+decodificada como $AAAAA$. Si tenemos una serie mas larga que el alfabeto mismo podremos usar varas secuencias de escape, por ejemplo si tenemos $51$ repeticiones del car\'acter $A$ podremos codificarlo de la forma $QZAQYA$ $(26+25)$.
+
+\subsection{C\'odigos de longitud fija}
+
+Hay varias formas de representar la informaci\'on de un archivo. Una de ellas es dise\~nar un c\'odigo binario de caracteres en el cual cada car\'acter sera representado por un \'unico string binario, el cual llamaremos simplemente c\'odigo. Si usamos c\'odigos de longitud fija en un alfabeto de $6$ caracteres, necesitaremos $3$ bits para representar esos $6$ caracteres ($a=000$, $b=001$, ...). Suponiendo que tenemos un archivo con 100mil caracteres necesitar\'iamos 300mil bits para codificarlo.
+
+\subsection{C\'odigos de longitud variable}
+
+Un c\'odigo de longitud variable reduce el espacio utilizado por los c\'odigos de longitud fija asign\'andole c\'odigos mas cortos a los caracteres mas usados y c\'odigos mas largos a caracteres menos usados. De esta forma, utilizando el mismo texto en el ejemplo anterior con una codificaci\'on apropiada, podremos reducir de 300mil bits a 224bits, ganando as\'i un $25\%$. Sin embargo esta codificaci\'on lleva consigo un problema.
+
+La codificaci\'on es simple para cualquier codificaci\'on binaria de caracteres (sea o no variable), dado que lo \'unico que tenemos que hacer es traducir cada uno de los caracteres a su correspondiente c\'odigo y concatenarlo. El problema se presenta decodificaci\'on de un archivo codificado. En la decodificaci\'on de un archivo codificado con c\'odigos de longitud fija la tarea es trivial, ya que estaremos seleccionando una cantidad fija de bits para cada letra distinta. En cambio, si la codificaci\'on fue realizada con longitud variable, podr\'iamos tener problemas al reconocer el c\'odigo de un car\'acter si no tomamos recaudos al respecto. Una forma de lograr esto es agregar un car\'acter que indique una separaci\'on entre dos c\'odigos, otra forma para lograr esto sin el uso de un separador son los c\'odigos prefijos.
+
+~
+
+Los c\'odigos prefijos simplifican la decodificaci\'on ya que ning\'un c\'odigo es prefijo de ning\'un otro, de esta forma el c\'odigo con el que comienza un archivo codificado no es ambiguo y por lo tanto nos desambigua el resto del archivo. Podremos simplemente identificar el c\'odigo inicial, traducirlo al car\'acter correspondiente, y repetir el proceso de decodificaci\'on del resto del archivo codificado. El proceso de decodificaci\'on necesita una representaci\'on conveniente para el c\'odigo prefijo de forma tal que f\'acilmente pueda obtener el car\'acter inicial. Un \'arbol binario cuyas hojas sean los caracteres dados nos dar\'a dicha representaci\'on. Interpretaremos el c\'odigo binario como un camino desde la ra\'iz hasta el car\'acter, en donde $0$ significara ir al hijo derecho y $1$ significara ir al hijo izquierdo. Notar que estos no son \'arboles de b\'usqueda binarios, sino que ser\'an mas bien equivalentes a tries binarios.
+
+\subsection{C\'odigos prefijos \'optimos}
+
+Un c\'odigo \'optimo para un archivo es siempre representado como un \'arbol binario completo, en donde cada nodo que no sea una hoja tiene dos hijos. Por ejemplo, si una codificaci\'on contiene c\'odigos comenzando en $10$ pero ning\'un comenzando en $11$, entonces no ser\'a \'optimo. Si $C$ es el alfabeto de donde todos los caracteres son obtenidos y todas las frecuencias de aparici\'on de los caracteres son positivas, entonces el \'arbol de prefijo \'optimo tiene exactamente $|C|$ hojas, una para cada letra del alfabeto, y exactamente $|C|-1$ nodos internos.
+
+Dado un \'arbol $T$ correspondiente a un c\'odigo de prefijos, f\'acilmente podremos computar el numero de bits requeridos para codificar un archivo para cada car\'acter $c$ en el alfabeto $C$. Sea el atributo $c.frec$ el que denote la frecuencia de $c$ en el archivo y sea $d_T(c)$ una funci\'on que denota la profundidad de $c$ en el \'arbol (notar que adem\'as es la longitud de bits utilizados para codificar $c$), el numero de bits requeridos para codificar un archivo sera:
+
+\begin{equation*}
+ B(T) = \sum_{c \in C} c.frec \cdot d_T(c)
+\end{equation*}
+
+Que definiremos como el costo de un \'arbol $T$.
+
+\subsection{C\'odigos de Huffman}
+
+Huffman invento un algoritmo goloso que construye un c\'odigo prefijo \'optimo o \'arbol prefijo \'optimo llamado \'codigo de Huffman o \'arbol de Huffman. En el pseudoc\'odigo a continuaci\'on, asumiremos que $C$ es un conjunto de $n$ caracteres y que cada car\'acter $c \in C$ es un objeto con el atributo $c.frec$ que nos informara de su frecuencia. El algoritmo construye el \'arbol de Huffman $T$ correspondiente al c\'odigo de Huffman de forma bottom-up. Comienza con un conjunto de $|C|$ hojas y realiza una secuencia de $|C|-1$ operaciones de ''merge`` para crear el \'arbol final. El algoritmo utiliza una cola de prioridad $Q$ ordenada por el atributo $frec$ en donde el elemento que tendr\'a mas prioridad ser\'a aquel con el valor m\'inimo. $Q$ sera utilizada para identificar los $2$ objetos menos frecuentes de forma tal de mergearlos. Cuando mergeamos dos objetos, el resultado es un nuevo objeto cuya frecuencia es la suma de las frecuencias de los dos objetos que fueron mergeados. En esta implementaci\'on 
+los costos estar\'an calculados como si hubi\'esemos implementado la cola de prioridad con un heap.
+
+~
+
+\begin{algorithmic}[1]
+ \Function{crearHuffman}{$C$}
+    \State $n = |C|$
+    \State $Q = C$ \Comment{$O(n \cdot lg(n))$}
+    \ForAll{$i \in [1,n-1]$}
+      \State Nodo $z$
+      \State $z.izq = izq = $ popRemoveMin($Q$) \Comment{$O(lg(n))$}
+      \State $z.der = der = $ popRemoveMin($Q$) \Comment{$O(lg(n))$}
+      \State $z.frec = izq.frec + der.frec$
+      \State push($Q$, $z$) \Comment{$O(lg(n))$}
+    \EndFor
+    \State \Return popMin($Q$) \Comment{$O(1)$}
+ \EndFunction \Comment{$O(2n \cdot lg(n)) \subseteq O(n \cdot lg(n))$}
+\end{algorithmic}
+
+~
+
+La complejidad del algoritmo esta calculada groseramente ya que el \'unico momento en el que el heap tendr\'a $n$ elementos ser\'a cuando se agregue el ultimo elemento al mismo en la linea $3$ o en el comienzo de la iteraci\'on en la linea $6$.
+
+~
+
+Es importante remarcar la relaci\'on existente entre las repeticiones de los caracteres y la altura del \'arbol de Huffman. Un texto que contiene $|C|$ caracteres distintos ser\'a representado por un \'arbol de altura $\lceil log_2(|C|) \rceil$ como m\'inimo. Cuando decimos como m\'inimo hacemos referencia al caso cuando todos los caracteres tienen la misma frecuencia. Es interesante remarcar que el la longitud del \'arbol en el caso m\'inimo coincide con la cantidad de bits necesarios para una codificaci\'on de longitud fija de $|C|$ elementos, lo cual tiene sentido ya que al ser todas las frecuencias iguales los caracteres terminar\'an con la misma longitud en su codificaci\'on. 
+
+A medida que haya caracteres que aparezcan con distinta frecuencia que otros, el \'arbol se ''degenerar\'a`` y por lo consecuente su altura se extender\'a, llegando esta pudiendo ser $|C|-1$ en el caso de que el \'arbol este totalmente degenerado hacia un lado. Esto ocasionara que los c\'odigos de los caracteres sean de la forma $c_1=0, c_2=10, c_3=110, ... , z_n = 111...0$, es decir que si tenemos la lista de caracteres ordenados de forma descendente por la frecuencia, el car\'acter $i$ tendr\'a un c\'odigo de longitud $i$ (y se encontrar\'a a distancia $i$ de la ra\'iz en el \'arbol), tendr\'a $i-1$ unos precedentes y un $0$ al final de su c\'odigo. Esto \'ultimo tiene un caso an\'alogo en donde intercambiamos los ceros por unos.
+
+~
+
+La degeneraci\'on total hacia un solo lado de un \'arbol de Huffman ser\'a provocada si se encuentra cierta relaci\'on entre las frecuencias de los caracteres. Sea $C$ la lista de caracteres ordenada por sus frecuencias de forma ascendente en donde $c_i$ es el car\'acter en la posici\'on $i$ y sea $f: N \rightarrow N$ una funci\'on definida de la forma $f(i) = c_i.frec$, para que el \'arbol sea totalmente degenerado se debe cumplir que $f(i-1) + f(i-2) < f(i)$ para todo $i \in [3, n]$ en donde $n=|C| \geq 3$. Las frecuencias de los caracteres al menos valen $1$, ya que de lo contrario el car\'acter no esta presente en el texto a codificar. Es interesante recalcar que si tomamos un \'arbol totalmente degenerado con los m\'inimos valores de frecuencias posibles la sucesi\'on conformada por estos deber\'a coincidir con la sucesi\'on de Fibonacci, esto es la sucesi\'on $f(1), f(2), ..., f(n)$ deber\'a coincidir $f(i)$ con $fib(i)$ para cada $i \in [1,n]$.
+
+%Ejemplo: http://huffman.ooz.ie/?text=ABCCDDDEEEEEFFFFFFFFGGGGGGGGGGGGG
+
+% a) ¿Cuántos caracteres DISTINTOS tiene que tener un texto como mínimo para que alguno de ellos reciba un código de longitud k, en una codificación Huffman? Con k>1 y conocido. Justificar. (Es decir, pudiendo variar la cantidad de repeticiones de los caracteres en el texto lo mas favorablemente posible)
+% 
+% b) ¿Cuántos caracteres en total tiene que tener un texto como mínimo para que algún caracter reciba un código de longitud k, en una codificación Huffman? Con k>1 y conocido. Justificar. (Hay 2 interpretaciones de esto, la primera se refiere a una situacion en donde no controlamos la cantidad de caracteres repetidos pero si los caracteres distintos, la segunda se refiere a una situacion donde controlamos ambas variables, como en el punto a y consistiria en )
+% 
+% c) Responder a) y b) para códigos de longitud fija. Justificar.
+
+% Julian:
+% 
+% a) En la codificación de Huffman para que alguno de ellos tenga una codificación de k bits se necesitan al menos k+1 caracteres distintos, porque como no pueden tener prefijos en común, la parte inicial de los caracteres más usados debe quedar "reservado" para estos caracteres. Ejemplo (suponiendo 1 el más usado y 5 el menos):
+% 
+% 1 | 0
+% 2 | 1 0
+% 3 | 1 1 0
+% 4 | 1 1 1 0
+% 5 | 1 1 1 1
+% 
+% b) 2^k. El "Peor caso" del algoritmo de Huffman es que todos los caracteres sean igualmente probables, o sea el mismo que longitud fija.
+% 
+% c) a. Yo se que con k bits puedo represntar 2^k caracteres distintos. Entonces para representar k caracteres necesito parte entera asuperior de lg(k) bits.
+% 
+% b. En longitud fija, todos los caracteres tienen igual longitud, independientemente de la longitud del texto. Se puede establecer una cota inferior. Debe tener 2^k caracteres mínimo.
+
+
+% Nico:
+% 
+% Lo que se me ocurre ahora como justificación es, al tratarse de un árbol binario, la longitud del código aumenta en 1 a medida que vas aumentando en 1 la altura del árbol, y para aumentar la altura del árbol no te queda otra que agregar 2 nodos como hijos de alguna hoja. Entonces, la altura aumentaría en 1, el código aumenta en 1 su longitud, pero la cantidad de hojas, que equivale a la cantidad de caracteres distintos, aumenta en 2, uno más que el código. Para que el mínimo fuera k y no k+1, necesitarías poder aumentar la altura del árbol agregando únicamente un hijo a una hoja, lo cual no es posible por tratarse de un árbol binario. No sé si pretenderán algo más formal que eso.
+% 
+% Federico:
+% 
+% creo q la b necesitas algo asi como 6*(2**(k-4) -1), ya que para formar el \'arbol de huffman del punto a, siempre tenes q unir un nodo con una letra "pura" con uno que viene acumulando hasta ahora, osea q solo puede haber una letra menor al acumulado, x eso la siguiente letra q agregues tiene q ser mayor o igual al acumulado y a la letra q agregaste antes. armando la sumatoria me dio eso, tal vez me equivoque en algo....
+% 
+% lo arme con un ejemplo y despues generalice, las primeras 3 letras pueden ser de frecuencia 1, despues vas a necesitar una de 3 , de 6 , 12 , 24 , ant * 2, y si resolviendo esa sumatoria me dio eso. pero me parece q hay un error (o mejor dicho hay una forma cn un poco menos de letras)
+% 
+% creo q el b) la respuesta es fib(k) letras. las dos primeras son 1 y 1, el acum es 2, la siguiente puede ser 1. acum 3. ahora necesitas si o si 2, acum 5. generalizando necesitasel acumlado anterior mas el acum da el sig, y empieza con 1, 1. entonces me queda la sucesion de fib, (es fib(k) en el caso que fib(0)=1 y fib(1)=1 sino seria fib(k+1)
+
+\subsubsection{M\'etodos ZL}
