@@ -1,7 +1,7 @@
 Resumen Final Algoritmos 2 - FyCEN
 ===================
 
-Resumen para el final de Algoritmos y Estructuras de Datos 2 de la Facultad de Ciencias Exactas de la Universidad de Buenos Aires.
+Resumen para el final de Algoritmos y Estructuras de Datos 2 de la Facultad de Ciencias Exactas de la UBA.
 
 ## Disclaimer
 
