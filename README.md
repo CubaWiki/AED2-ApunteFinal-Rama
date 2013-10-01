@@ -25,7 +25,7 @@ Algunas de las cosas que utilice como referencia o copie textualmente o traduci 
 * Video de una clase de Berkeley sobre [Splay Trees][Berkeley-SplayTrees]
 * Video de una clase de Berkeley sobre [Arboles 234][Berkeley-234]
 * Videos de clases de Berkeley sobre [algoritmos de sorting][Berkeley-Sorting]
-* 
+ 
 ## Y el PDF compilado? Donde esta?!
 
 Bueno, bueno... pero pensa en contribuir si ves algo mejorable/mal! Podes ir a la [seccion de releases][Releases] para bajar la ultima compilacion de los PDFs.
