@@ -1,4 +1,4 @@
-Resumen Algoritmos y Estructura de Datos 2 - FyCEN
+Resumen Algoritmos 2 - FyCEN
 ===================
 
 Resumen para el final de Algoritmos y Estructuras de Datos 2 de la Facultad de Ciencias Exactas de la UBA.
