@@ -9,7 +9,7 @@ Si bien este resumen intento hacerse a conciencia y con la maxima correctitud y 
 
 ## La "Licencia"
 
-Si bien agregue una licencia GNUv2, lo hice (ademas de porque estaba a mano) a modo simbolico para representar mis intenciones con respecto a este resumen. Mucho del tipado que tuve que realizar se me hubiese hecho mas facil de haber tenido los codigos fuentes de los lugares en donde copie y reescribi las cosas. Es por esto que pido que si alguien utiliza esto como un fuente, tambien deje el fuente de lo suyo en algun lugar publico y lo haga saber, esta bueno compartir. Obviamente no voy a ir a buscar a nadie a la casa por no hacerlo...
+Si bien agregue una licencia GNUv2, lo hice (ademas de porque estaba a mano) a modo simbolico para representar mis intenciones con respecto a este resumen. Mucho del tipeado que tuve que realizar se me hubiese hecho mas facil de haber tenido los codigos fuentes de los lugares en donde copie y reescribi las cosas. Es por esto que pido que si alguien utiliza esto como un fuente, tambien deje el fuente de lo suyo en algun lugar publico y lo haga saber, esta bueno compartir. Obviamente no voy a ir a buscar a nadie a la casa por no hacerlo...
 
 ## Recursos utilizados
 
