@@ -27,7 +27,7 @@ El conjunto $\Theta$ asint\'oticamente acota una funci\'on inferior y superiorme
 
 ~
 
-Es decir que para todos los valores de $n$ a la derecha de $n_0$, el valor de la funci\'on $f(n)$ es o esta por debajo de $c \cdot g(n)$. Escribiremos $f(n) = O(g(n))$ para indicar que una funci\'on $f(n)$ es un miembro del set $O(g(n))$. Notar que $f(n) = \Theta(g(n))$ implica $f(n) = O(g(n))$, ya que la noci\'on de $\Theta$ es mucho mas fuerte que la noci\'on de $O$. Esto es, escrito en forma de teor\'ia de conjuntos, que vale la inclusi\'on $\Theta(g(n)) \subseteq O(g(n))$
+Es decir que para todos los valores de $n$ a la derecha de $n_0$, el valor de la funci\'on $f(n)$ est\'a por debajo de $c \cdot g(n)$. Escribiremos $f(n) = O(g(n))$ para indicar que una funci\'on $f(n)$ es un miembro del conjunto $O(g(n))$. Notar que $f(n) = \Theta(g(n))$ implica $f(n) = O(g(n))$, ya que la noci\'on de $\Theta$ es mucho mas fuerte que la noci\'on de $O$. Esto es, escrito en forma de teor\'ia de conjuntos, que vale la inclusi\'on $\Theta(g(n)) \subseteq O(g(n))$
 
 \subsubsection{Conjunto / Notaci\'on Asint\'otica $\Omega$}
 
@@ -171,7 +171,7 @@ Para insertar un nuevo elemento incrementaremos la variable $A.heap\_size$ en un
 
 \subsubsection{En resumen}
 
-Los heaps son \'arboles balanceados en donde la clave de cada nodo es mayor o igual que la de sus hijos y en donde todo sub-\'arbol es un heap. Adicionalmente puede o no cumple que por la forma de su implementaci\'on sea izquierdista, esto quiere decir que el \'arbol estar\'a todo lleno exceptuando su ultimo nivel, el cual se llenara de izquierda a derecha.
+Los heaps son \'arboles balanceados en donde la clave de cada nodo es mayor o igual que la de sus hijos y en donde todo sub-\'arbol es un heap. Adicionalmente puede o no cumplir que por la forma de su implementaci\'on sea izquierdista, esto quiere decir que el \'arbol estar\'a todo lleno exceptuando su ultimo nivel, el cual se llenara de izquierda a derecha.
 
 Su representaci\'on podr\'a estar dada por cualquier tipo de estructura para \'arboles binarios, pero si bien sera mas eficiente si se lo representa en un arreglo, pasaremos a una representaci\'on est\'atica por lo que podremos perder tiempo agrandando un arreglo. Sea un nodo $v$, la posici\'on dentro de un heap se calcula:
 
@@ -250,8 +250,7 @@ Para lograr caracterizar un peor caso en el rebalanceo luego de la eliminaci\'on
 \end{SCfigure}
 
 Para compensar esto ejecutaremos una rotaci\'on hacia la izquierda entre los nodos $z$ y $der(z)$, lo que dejara a $z$ como hijo izquierdo de $der(z)$ y al hijo izquierdo de $der(z)$ como hijo derecho de $z$. Luego de la rotaci\'on los FDB de ambos nodos quedar\'an en $0$ pero la altura del \'arbol se ver\'a reducida en $1$, lo que provocar\'a que el padre original de $z$ (el abuelo de $y$), cambie su FDB de $1$ a $2$. De la misma forma deberemos continuar balanceando el resto de los nodos hasta llegar a la ra\'iz, en donde tendremos que $FDB(izq(raiz)) = 0$, $FDB(der(raiz)) = 1$ y $FDB(raiz) = 2$. Para resolver esta ultima situac\'ion podremos ejecutar una rotaci\'on hacia la derecha entre $izq(raiz)$ y $raiz$, o una rotaci\'on hacia la izquierda entre $der(raiz)$ y $raiz$. Finalmente habremos realizado exactamente $lg(alt(y))$ rotaciones, en donde $alt(y)$ es distancia a la que se encontraba $y$ de la ra\'iz, es decir su altura o nivel. Dentro de este esquema, si seleccionamos a $y$ como uno de los nodos a 
-nivel $\
-lfloor lg(n) \rfloor$ del \'arbol, entonces tendremos el peor caso de balanceo, por lo que la complejidad de balanceo luego de una eliminaci\'on ser\'a de $O(lg(n))$.
+nivel $\lfloor lg(n) \rfloor$ del \'arbol, entonces tendremos el peor caso de balanceo, por lo que la complejidad de balanceo luego de una eliminaci\'on ser\'a de $O(lg(n))$.
 
 \subsubsection{Complejidades}
 
