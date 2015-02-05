@@ -20,7 +20,7 @@ Para determinar un TAD, utilizaremos especificaciones de TADs (de la misma forma
 
 \subsubsection*{Sem\'antica}
 
-La sem\'antica declara con precisi\'on qu\'e cosas son modelos de nuestra teor\'ia, es decir le da un significado a las cosas que se pueden escribir de acuerdo a las reglas sint\'acticas. Un modelo de de nuestra teor\'ia es un ente matem\'atico tal que cumple que cada uno de sus conjuntos corresponden con un g\'enero del TAD y cada funci\'on con una operaci\'on, nosotros definiremos nuestro TAD de forma tal que acomodar\'a los modelos matem\'aticos que se ajusten a el, de cierta forma la especificaci\'on del TAD funciona como un descriptor del modelo matem\'atico. Un modelo matem\'atico determina qu\'e elementos del mundo real estar\'an reflejados en la especificaci\'on y que operaciones se permitir\'a realizar sobre ellos. 
+La sem\'antica declara con precisi\'on qu\'e cosas son modelos de nuestra teor\'ia, es decir le da un significado a las cosas que se pueden escribir de acuerdo a las reglas sint\'acticas. Un modelo de nuestra teor\'ia es un ente matem\'atico tal que cumple que cada uno de sus conjuntos corresponden con un g\'enero del TAD y cada funci\'on con una operaci\'on, nosotros definiremos nuestro TAD de forma tal que acomodar\'a los modelos matem\'aticos que se ajusten a el, de cierta forma la especificaci\'on del TAD funciona como un descriptor del modelo matem\'atico. Un modelo matem\'atico determina qu\'e elementos del mundo real estar\'an reflejados en la especificaci\'on y que operaciones se permitir\'a realizar sobre ellos. 
 
 Por otro lado una teor\'ia es consistente cuando en ella no existe una igualdad que afirme que \textbf{verdadero} es \textbf{falso}. Si introducimos una teor\'ia inconsistente al TAD provocara que no haya un modelo que se ajuste al mismo, y por lo tanto, y burdamente dicho, provocar\'a que el TAD no tenga sentido alguno ya que ning\'un modelo se ajustara a el y en consecuencia no seremos capaces de modelar nada.
 
@@ -64,7 +64,7 @@ Se explicaran a continuaci\'on cada uno de los componentes que conforman un tipo
 La igualdad observacional es un predicado que nos dice cu\'ando dos instancias del aspecto de la vida real que nuestro TAD est\'a modelando se comportan de la misma manera. El concepto de la igualdad observacional es un concepto sem\'antico (es decir que le da sentido al TAD) y no sint\'actico, por lo que es necesario utilizar el metalenguaje para describirla.
 
 \subsubsection*{Sem\'antica inicial}
-Para los TADS, una sem\'antica posible es la sem\'antica inicia, que burdamente descripta trata de partir el universo de acuerdo a las ecuaciones que aparecen en el TAD, de esta forma la relaci\'on de igualdad que queda definida es una congruencia (significa que las instancias del tipo est\'an en la misma clase de equivalencia y pertenecer\'an a la misma sin importar que funci\'on se les aplique). La desventaja de esto \'ultimo es que los modelos resultantes no son muy bonitos. 
+Para los TADS, una sem\'antica posible es la sem\'antica inicial, que burdamente descripta trata de partir el universo de acuerdo a las ecuaciones que aparecen en el TAD, de esta forma la relaci\'on de igualdad que queda definida es una congruencia (significa que las instancias del tipo est\'an en la misma clase de equivalencia y pertenecer\'an a la misma sin importar que funci\'on se les aplique). La desventaja de esto \'ultimo es que los modelos resultantes no son muy bonitos. 
 
 \subsubsection*{Sem\'antica observacional}
 A causa de la incomodidad de la sem\'antica inicial se invento la sem\'antica observacional, en la cual hay un conjunto de funciones etiquetadas como observadores b\'asicos que particionan el universo de instancias de acuerdo a ellos. La intenci\'on es que estas particiones sean congruencias por lo que no puede haber inconsistencias entre declarar una igualdad entre dos instancias y la informaci\'on (distinta) que nos puede brindar alguna de sus funciones acerca de ellas.
@@ -150,7 +150,7 @@ Se define como interfaz gruesa a la situaci\'on que se da cuando se proveen mas 
 \newpage
 \section{Inducci\'on estructural}
 
-La inducci\'on estructural nos servir\'a para demostrar teoremas o propiedades sobre nuestros tipos mediante el uso de sus axiomas y la inducci\'on como herramienta para demostrar su validez para un dominio coordinable con todo $N$. Para hacerlo se podr\'an seguir una serie de pasos:
+La inducci\'on estructural nos servir\'a para demostrar teoremas o propiedades sobre nuestros tipos mediante el uso de sus axiomas y la inducci\'on como herramienta para demostrar su validez para un dominio coordinable con todo $\mathbb{N}$. Para hacerlo se podr\'an seguir una serie de pasos:
 
 \begin{itemize}
  \item \textbf{Convencernos que es cierto} Si bien no es un paso realmente necesario, es importante para nosotros. Si la propiedad es cierta a simple vista entonces no tendremos problemas en buscar una demostraci\'on a la misma, pero cuando su veracidad no es tan f\'acilmente visible es importante darnos cuenta de porque vale, ya que de lo contrario tendremos problemas al demostrarlo o al creer que la demostraci\'on es correcta.
