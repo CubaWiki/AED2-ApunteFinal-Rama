@@ -69,6 +69,25 @@ A medida que $n$ tiende a infinito la relaci\'on entre $f(n)/g(n)$ se vuelve arb
 \section{Estructuras b\'asicas}
 \subsection{Lista}
 \subsection{Cola}
+
+La estructura Cola se puede pensar como un arreglo para guardar los elementos m\'as un natural para saber la cantidad. Las colas se caracterizan por ser una estructura de tipo FIFO (First in, First out. O en castellano: Primero que entra, primero que sale).
+Una implementaci\'on efectiva de una Cola puede hacerse usando \textbf{Aritmetica Circular}, alias: funci\'on m\'odulo. Idea:
+\begin{enumerate}
+ \item Tengo un arreglo de MAX\_CANTIDAD elementos.
+ \item En una variable \textit{cant} guardo la cantidad de elementos actuales en la cola.
+ \item En una variable \textit{primero} guardo la posici\'on en el arreglo del primer elemento.
+ \item Encolar: agrega el nuevo elemento a la posici\'on $(primero + cant) \% MAX\_CANTIDAD$ del arreglo e  incrementa \textit{cant} en uno.
+ \item Desencolar: setea $primero=(primero + 1) \% MAX\_CANTIDAD$ y decrementa \textit{cant} en uno.
+\end{enumerate}
+Siendo las complejidades resultantes:
+\begin{itemize}
+ \item \textbf{Pr\'oximo} $O(1)$
+ \item \textbf{Desencolar} $O(1)$
+ \item \textbf{Encolar} $O(1)$
+ \item \textbf{B\'usqueda} $O(n)$
+\end{itemize}
+Una clara limitaci\'on de \'esta implementaci\'on es que solo puede almacenar hasta MAX\_CANTIDAD elementos al mismo tiempo. Se puede resolver esto y agregar algunas ventajas utilizando \textbf{Memoria Din\'amica}.
+
 \subsection{Pila}
 \subsection{Arreglo dimensionable}
 
