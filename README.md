@@ -28,7 +28,7 @@ Algunas de las cosas que utilice como referencia o copie textualmente o traduci 
  
 ## Y el PDF compilado? Donde esta?!
 
-Bueno, bueno... pero pensa en contribuir si ves algo mejorable/mal! Podes ir a la [seccion de releases][Releases] para bajar la ultima compilacion de los PDFs.
+Bueno, bueno... pero pensa en contribuir si ves algo mejorable/mal! Podes ir a la [seccion de releases][Releases] para bajar la ultima compilacion de los PDFs. ¡Ojo! Tene en cuenta que el PDF puede no estar en la última versión.
 
 [Issues]: https://github.com/ramaroberto/ResumenFinalAlgo2/issues
 [Releases]: https://github.com/ramaroberto/ResumenFinalAlgo2/releases
