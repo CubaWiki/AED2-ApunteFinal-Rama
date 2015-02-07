@@ -29,7 +29,7 @@ Este es el lenguaje que utilizaremos para dise\~nar nuestros m\'odulos. El mismo
 
 \subsection{Paradigma imperativo}
 
-Para especificar formalmente el problema a resolver escrib\'iamos el tipo abstracto de datos siguiendo un paradigma funcional. Sin embargo al dise\~nar, debemos realizar un cambio de paradigma para poder expresar nuestra representaci\'on del modelo en un lenguaje imperativo, el cual se ajusta a los lenguajes de programaci\'on mas bastamente usados. En esta secci\'on discutiremos los principales aspectos que deberemos tener en cuenta al afrontar tal cambio.
+Para especificar formalmente el problema a resolver escrib\'iamos el tipo abstracto de datos siguiendo un paradigma funcional. Sin embargo al dise\~nar, debemos realizar un cambio de paradigma para poder expresar nuestra representaci\'on del modelo en un lenguaje imperativo, el cual se ajusta a los lenguajes de programaci\'on mas usados. En esta secci\'on discutiremos los principales aspectos que deberemos tener en cuenta al afrontar tal cambio.
 
 \subsubsection*{Valores vs. Objetos}
 
@@ -103,7 +103,7 @@ Cuando dise\~namos un m\'odulo, no necesariamente debemos dise\~nar todos los ti
 
 \subsection{Implementaci\'on del m\'odulo de abstracci\'on para el tipo elegido}
 
-Una vez elegido el tipo a dise\~nar, implantaremos su m\'odulo de abstracci\'on correspondiente. El m\'odulo de abstracci\'on deber\'a describir de forma clara y concisa las operaciones que podr\'a realizar, como as\'i tambi\'en los efectos de las mismas sobre los datos, las complejidades temporales y espaciales que tomar\'an su uso y cuales de las operaciones podr\'an ser utilizadas externamente, es decir, cuales se exportar\'an. Adem\'as de dar una descripci\'on externa del mismo poseer\'a otra secci\'on en la cual se explicitar\'a la implementaci\'on de cada una de las operaciones (incluyendo operaciones privadas auxiliares) como as\'i tambi\'en la estructura de datos interna utilizada para llevar al cabo las tareas.
+Una vez elegido el tipo a dise\~nar, crearemos su m\'odulo de abstracci\'on correspondiente. El m\'odulo de abstracci\'on deber\'a describir de forma clara y concisa las operaciones que podr\'a realizar, como as\'i tambi\'en los efectos de las mismas sobre los datos, las complejidades temporales y espaciales que tomar\'an su uso y cuales de las operaciones podr\'an ser utilizadas externamente, es decir, cuales se exportar\'an. Adem\'as de dar una descripci\'on externa del mismo poseer\'a otra secci\'on en la cual se explicitar\'a la implementaci\'on de cada una de las operaciones (incluyendo operaciones privadas auxiliares) como as\'i tambi\'en la estructura de datos interna utilizada para llevar al cabo las tareas.
 
 \subsection{Iteraci\'on o finalizaci\'on.}
 En este punto tenemos un dise\~no que puede contener tipos para los que no tenemos una propuesta de dise\~no. En realidad son otros problemas a resolver de nivel de abstracci\'on menor al original. Por lo tanto, debemos volver a repetir el m\'etodo con los nuevos tipos a dise\~nar.
