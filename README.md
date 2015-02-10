@@ -31,7 +31,7 @@ Algunas de las cosas que utilice como referencia o copie textualmente o traduci 
 En un sistema GNU/Linux con TexLive debería alcanzar con:
 
 ~~~
-    make
+make
 ~~~
 
 ## Y el PDF compilado? Donde esta?!
