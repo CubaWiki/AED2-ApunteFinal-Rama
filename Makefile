@@ -1,7 +1,7 @@
 .PHONY: clean all
 
 LATEX := pdflatex
-LATEXFLAGS :=
+LATEXFLAGS := -interaction=nonstopmode
 
 PDFS := resumen.pdf finales.pdf
 
