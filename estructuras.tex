@@ -405,8 +405,54 @@ Las dem\'as operaciones del \'arbol usaran la operaci\'on de splay de formas sim
 \end{itemize}
 
 \subsection{Tries}
+Los Tries son arboles (K+1)-arios para alfabetos de K elementos, o lo que es lo mismo, cada nodo puede tener a lo sumo K+1 hijos. Su nombre viene de la palabra ``Re\textbf{trie}ve''.
+
+Motivaciones:
+\begin{itemize}
+ \item Tiempo menos dependiente de la cantidad de claves.
+ \item Rendimiento razonable en el peor caso.
+ \item R\'apidos en la pr\'actica.
+ \item Adecuados para claves de tamaño variable.
+\end{itemize}
+
+La idea principal del Trie es que los ejes del \'arbol representan componentes de las claves, y cada sub\'arbol representa al conjunto de claves que comienza con las etiquetas de los ejes que llevan hasta \'el. 
+De esta forma, se busca no hacer comparaciones de claves completas, sino de partes de ellas. Es decir, s\'i las claves son strings, trabajar con caracteres.
+
+Haciendo ciertas suposiciones, la b\'usqueda o inserci\'on en un \'arbol de \textit{n} claves de \textit{b} bits necesita en promedio \textit{log n} comparaciones de clave completa, y \textit{b} en el peor caso.
+
+~
+
+Algunas propiedades:
+\begin{itemize}
+ \item La estructura del trie es la misma independientemente del orden en el que se insertan las claves.
+ \item A lo sumo una comparaci\'on de clave completa (cuando llega a una hoja).
+\end{itemize}
+
+\begin{center}
+ \includegraphics[width=0.3\textwidth, height=0.4\textwidth]{./graficos/trie-simple.png}
+ % trie-simple.png: 315x378 pixel, 72dpi, 11.11x13.34 cm, bb=0 0 315 378
+\end{center}
+
+~
+
+Desventajas:
+\begin{itemize}
+ \item Algunas implementaciones pueden requerir mucha memoria.
+ \item Las operaciones sobre las componentes de las claves pueden no ser faciles, o ser muy ineficiente en algunos lenguajes de alto nivel.
+\end{itemize}
+
 \subsubsection{Tries compactos}
+Consiste en colapsar las cadenas de caracteres o bits que llevan hacia hojas.
+Ejemplo: en un trie con dos claves ``Algo'' y ``Algoritmos'', el camino que lleva desde la primer `o' hasta la `s' puede ser compactado en un solo nodo para ahorrar espacio.
 \subsubsection{Tries Patricia}
+Son Tries m\'as compactos que los mencionados anteriormente. \textit{Patricia} es un acronimo de: Practical Algorithm To Retrieve Information Coded in Alphanumeric.
+La idea es colapsar todas las cadenas, no solo las que llevan a hojas (un eje ahora puede representar una cadena). 
+Ejemplo: en un trie con dos claves ``Algoritmo'' y ``Algoritmos'', el camino que lleva desde el nodo `A' hasta la \'ultima `o' puede ser compactado en un solo nodo para ahorrar espacio.
+
+\begin{center}
+ \includegraphics[width=0.4\textwidth, height=0.4\textwidth]{./graficos/trie-patricia.png}
+ % trie-patricia.png: 320x200 pixel, 72dpi, 11.29x7.06 cm, bb=0 0 320 200
+\end{center}
 
 \subsection{Red-Black}
 
