@@ -17,6 +17,28 @@ Para una funci\'on $g(n)$ dada, notaremos a $\Theta(g(n))$ como el conjunto de f
 
 Una funci\'on pertenece al conjunto $\Theta(g(n))$ si existen constantes positivas $c_1$ y $c_2$ tal que $f(n)$ puede ser ``sandwicheada'' entre $c_1g(n)$ y $c_2g(n)$, para un $n$ suficientemente grande. Como $\Theta(g(n))$ es un conjunto, podremos escribir ``$f(n) \in \Theta(g(n))$'' para indicar que $f(n)$ es un miembro de $\Theta(g(n))$, a veces escribiremos ``$f(n) = \Theta(g(n))$'' para expresar exactamente lo mismo. Cuando una funci\'on $f(n)$ es acotada superiormente por otra funci\'on $c \cdot g(n)$ para alg\'un $c$ y a partir de alg\'un $n$, diremos que $f(n)$ esta \textbf{acotada asint\'oticamente} por $g(n)$ o que $f(n)$ tiene un \textbf{comportamiento asint\'otico} a $g(n)$. En el caso de $\Theta(g(n))$ diremos que $g(n)$ es una \textbf{cota asint\'oticamente ajustada} para $f(n)$.
 
+~
+
+\textbf{Propiedades de $\Theta$}:
+\begin{enumerate}
+ \item Para cualquier funci\'on $f$ se tiene que $f \in \Theta(f)$.
+ \item $f \in \Theta(g) \implies \Theta(f) \subset \Theta(g)$.
+ \item $\Theta(f) = \Theta(g) \iff f \in \Theta(g) \land g \in \Theta(f)$.
+ \item S\'i $f \in \Theta(g) \land g \in \Theta(h) \implies f \in \Theta(h)$.
+ \item S\'i $f \in \Theta(g) \land f \in \Theta(h) \implies f \in \Theta(max(g,h))$.
+ \item Regla de la suma:
+
+	S\'i $f_1 \in \Theta(g) \land f_2 \in \Theta(h) \implies f_1 + f_2 \in O(g+h)$.
+ \item Regla del producto:
+
+	S\'i $f_1 \in \Theta(g) \land f_2 \in \Theta(h) \implies f_1 * f_2 \in \Theta(g*h)$.
+ \item S\'i existe $\lim_{n \to \infty} \frac{f(n)}{g(n)} = k$, seg\'un los valores que tome $k$:
+	\begin{enumerate}
+	  \item S\'i $k \neq 0$ y $k < \infty$ entonces $\Theta(f) = \Theta(g)$.
+	  \item S\'i $k = 0$ entonces $\Theta(g) \neq \Theta(f)$.
+	\end{enumerate}
+\end{enumerate}
+
 \subsubsection{Conjunto / Notaci\'on Asint\'otica $O$}
 
 El conjunto $\Theta$ asint\'oticamente acota una funci\'on inferior y superiormente. Cuando solo tenemos una \textbf{cota asint\'otica superior}, usaremos el conjunto $O$. Para una funci\'on dada $g(n)$, denotaremos por $O(g(n))$ al conjunto de funciones tales que:
@@ -28,6 +50,28 @@ El conjunto $\Theta$ asint\'oticamente acota una funci\'on inferior y superiorme
 ~
 
 Es decir que para todos los valores de $n$ a la derecha de $n_0$, el valor de la funci\'on $f(n)$ es o esta por debajo de $c \cdot g(n)$. Escribiremos $f(n) = O(g(n))$ para indicar que una funci\'on $f(n)$ es un miembro del set $O(g(n))$. Notar que $f(n) = \Theta(g(n))$ implica $f(n) = O(g(n))$, ya que la noci\'on de $\Theta$ es mucho mas fuerte que la noci\'on de $O$. Esto es, escrito en forma de teor\'ia de conjuntos, que vale la inclusi\'on $\Theta(g(n)) \subseteq O(g(n))$
+
+~
+
+\textbf{Propiedades de $O$}:
+\begin{enumerate}
+ \item Para cualquier funci\'on $f$ se tiene que $f \in O(f)$.
+ \item $f \in O(g) \implies O(f) \subset O(g)$.
+ \item $O(f) = O(g) \iff f \in O(g) \land g \in O(f)$.
+ \item S\'i $f \in O(g) \land g \in O(h) \implies f \in O(h)$.
+ \item S\'i $f \in O(g) \land f \in O(h) \implies f \in O(min(g,h))$.
+ \item Regla de la suma:
+
+	S\'i $f_1 \in O(g) \land f_2 \in O(h) \implies f_1 + f_2 \in O(max(g,h))$.
+ \item Regla del producto:
+
+	S\'i $f_1 \in O(g) \land f_2 \in O(h) \implies f_1 * f_2 \in O(g*h)$.
+ \item S\'i existe $\lim_{n \to \infty} \frac{f(n)}{g(n)} = k$, seg\'un los valores que tome $k$:
+	\begin{enumerate}
+	  \item S\'i $k \neq 0$ y $k < \infty$ entonces $O(f) = O(g)$.
+	  \item S\'i $k = 0$ entonces $f \in O(g)$, es decir, $O(f) \subset O(g)$, pero sin embargo se verifica que $g \notin O(f)$.
+	\end{enumerate}
+\end{enumerate}
 
 \subsubsection{Conjunto / Notaci\'on Asint\'otica $\Omega$}
 
@@ -41,6 +85,27 @@ De forma tal como la notaci\'on $O$ proporciona una cota asint\'otica en una fun
 
 Cuando decimos que el tiempo de un algoritmo es $\Omega(g(n))$, significa que no importa que particular entrada de tama\~no $n$ para cada valor de $n$, el tiempo que tardara el algoritmo con dicha entrara sera de al menos un numero constante de veces $g(n)$, para un $n$ suficientemente grande. Equivalentemente, esto nos da una cota temporal inferior para el mejor caso del algoritmo. De las definiciones de las notaciones asint\'oticas, es f\'acil ver que para cualquier dos funciones $f(n)$ y $g(n)$, tendremos que $f(n) = \Theta(g(n))$ si y solo si $f(n) = O(g(n))$ y $f(n) = \Omega(g(n))$. Usando una notaci\'on de teor\'ia de conjuntos esto seria equivalente a decir que $\Omega(g(n)) \cap O(g(n)) = \Theta(g(n))$, y si $f(n) \in \Omega(g(n)) \land f \in O(g(n))$ entonces $f(n)$ pertenecer\'a a ambos conjuntos, por lo que en particular pertenecer\'a a la intersecci\'on $\Theta(g(n))$.
 
+~
+
+\textbf{Propiedades de $\Omega$}:
+\begin{enumerate}
+ \item Para cualquier funci\'on $f$ se tiene que $f \in \Omega(f)$.
+ \item $f \in \Omega(g) \implies \Omega(f) \subset O(g)$.
+ \item $\Omega(f) = \Omega(g) \iff f \in \Omega(g) \land g \in \Omega(f)$.
+ \item S\'i $f \in \Omega(g) \land g \in \Omega(h) \implies f \in \Omega(h)$.
+ \item S\'i $f \in \Omega(g) \land f \in \Omega(h) \implies f \in \Omega(max(g,h))$.
+ \item Regla de la suma:
+
+	S\'i $f_1 \in \Omega(g) \land f_2 \in \Omega(h) \implies f_1 + f_2 \in \Omega(g+h)$.
+ \item Regla del producto:
+
+	S\'i $f_1 \in \Omega(g) \land f_2 \in \Omega(h) \implies f_1 * f_2 \in \Omega(g*h)$.
+ \item S\'i existe $\lim_{n \to \infty} \frac{f(n)}{g(n)} = k$, seg\'un los valores que tome $k$:
+	\begin{enumerate}
+	  \item S\'i $k \neq 0$ y $k < \infty$ entonces $\Omega(f) = \Omega(g)$.
+	  \item S\'i $k = 0$ entonces $g \in \Omega(f)$, es decir, $\Omega(g) \subset \Omega(f)$, pero sin embargo se verifica que $g \notin O(f)$.
+	\end{enumerate}
+\end{enumerate}
 \subsubsection{Conjunto / Notaci\'on Asint\'otica No-Ajustada $o$}
 
 La cota superior asint\'otica provista por $O$ puede o no puede ser ajustada asint\'oticamente, pero la cota $2n = O(n^2)$ no lo es. Usaremos la notaci\'on $o$ (o chica) para definir una cota superior que no sea ajustada asint\'oticamente. Para una funci\'on dada $g(n)$, definiremos formalmente a $o(g(n))$ como el conjunto de funciones tales que:
@@ -64,6 +129,19 @@ Anal\'ogicamente, $\omega$ es a $\Omega$ como $o$ es a $O$. Usaremos la notaci\'
 ~
 
 A medida que $n$ tiende a infinito la relaci\'on entre $f(n)/g(n)$ se vuelve arbitrariamente grande, es decir que tiende a infinito.
+
+\subsection{Funciones de Complejidad temporal comunes}
+A continuaci\'on se listan las principales categorias de complejidad temporal, en orden creciente:
+\begin{enumerate}
+ \item $O(1)$ \textbf{Complejidad constante}: es independiente de los datos de entrada.
+ \item $O(lg(n))$ \textbf{Complejidad logar\'itmica}: suele aparecer en determinados algoritmos con iteraci\'on o recursi\'on (por ejemplo, b\'usqueda binaria). Todos los logaritmos, sea cual sea su base, son del mismo orden, por lo que se representan en cualquier base.
+ \item $O(n)$ \textbf{Complejidad lineal}: suele aparecer en bucles simples cuando la complejidad de las operaciones internas es constante o en algunos algoritmos con recursi\'on.
+ \item $O(n*lg(n))$: en algunos algoritmos de ``Divide \& Conquer'' (por ejemplo, Mergesort).
+ \item $O(n^2)$ \textbf{Complejidad cuadr\'atica}: aparece en bucles o recursiones doblemente anidados.
+ \item $O(n^3)$ \textbf{Complejidad c\'ubica}: en bucles o recursiones triples.
+ \item $O(n^k)$ \textbf{Complejidad polin\'omica} ($k \geq 1$).
+ \item $O(2^n)$ \textbf{Complejidad exponencial}: suele aparecer en subprogramas recursivos que contengan dos o m\'as llamadas recursivas.
+\end{enumerate}
 
 \newpage
 \section{Estructuras b\'asicas}
