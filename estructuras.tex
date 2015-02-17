@@ -348,11 +348,11 @@ reemplazarlo por el $42$.
 
 \subsection{Splay trees}
 
-Este tipo de \'arbol tiene su inspiraci\'on en los ABB \'optimos. Los ABB \'optimos son \'arboles cuyos elementos est\'an ubicados mas cerca o lejos de la ra\'iz seg\'un la frecuencia con la que son consultados (similar a la codificaci\'on de Huffman), de esta forma optimizando los tiempos de las operaciones. El problema de este tipo de \'arboles son la rigidez, el desconocimiento de la frecuencia de las operaciones y la variabilidad que pueden sufrir estas ultimas. Los Splay Trees son ABB \'optimos aproximados que se modifican seg\'un la frecuencia de los \'ultimos elementos consultados, de esta forma mantendremos algo cercano a un ABB \'optimo que se ira optimizando para los elementos que consultemos mas frecuentemente.
+Este tipo de \'arbol tiene su inspiraci\'on en los ABB \'optimos. Los ABB \'optimos son \'arboles cuyos elementos est\'an ubicados mas cerca o lejos de la ra\'iz seg\'un la frecuencia con la que son consultados (similar a la codificaci\'on de Huffman), de esta forma optimizando los tiempos de las operaciones. El problema de este tipo de \'arboles son la rigidez, el desconocimiento de la frecuencia de las operaciones y la variabilidad que pueden sufrir estas ultimas. Los Splay Trees son ABB \'optimos aproximados que se modifican seg\'un la frecuencia de los \'ultimos elementos consultados, de esta forma mantendremos algo cercano a un ABB \'optimo que se ir\'a optimizando para los elementos que consultemos mas frecuentemente.
 
 ~
 
-En estos \'arboles, los cuales utilizan exactamente la misma representaci\'on interna que un ABB com\'un sin ning\'un agregado, todas las operaciones toman $O(lg(n))$ en promedio. Cuando nos referimos a en promedio no nos referimos al promedio de los ABB o al Quicksort, no hay aleatorizaci\'on en los Splay Trees. De hecho, una operaci\'on simple puede tomar $\Theta(n)$ en el peor caso en donde $n$ es la cantidad de elementos en el \'arbol. Lo que podemos garantizar entonces es que cualquier secuencia de $k$ operaciones, comenzando con un \'arbol vac\'io, y con el \'arbol no creciendo mas que $>n$ elementos, entonces la secuencia a lo sumo toma $O(k\cdot lg(n))$ en el peor caso. Esto significa que podremos tener algunas pocas operaciones lentas pero la mayor\'ia ser\'an mucho mas r\'apidas, por lo que tendremos un balance en promedio de $lg(n)$ o mejor para cada operaci\'on.
+En estos \'arboles, los cuales utilizan exactamente la misma representaci\'on interna que un ABB com\'un sin ning\'un agregado, todas las operaciones toman $O(lg(n))$ en promedio. Cuando nos referimos a en promedio no nos referimos al promedio de los ABB o al Quicksort, no hay aleatorizaci\'on en los Splay Trees. De hecho, una operaci\'on simple puede tomar $\Theta(n)$ en el peor caso en donde $n$ es la cantidad de elementos en el \'arbol. Lo que podemos garantizar entonces es que cualquier secuencia de $k$ operaciones, comenzando con un \'arbol vac\'io, y con el \'arbol no creciendo mas que $>n$ elementos, entonces la secuencia a lo sumo toma $O(k\cdot lg(n))$ en el peor caso. Esto significa que podremos tener algunas pocas operaciones lentas pero la mayor\'ia ser\'an mucho mas r\'apidas, por lo que tendremos un balance en promedio de $lg(n)$ o mejor para cada operaci\'on. O dicho m\'as precisamente, los costos amortizados por operaci\'on son de $lg(n)$.
 
 ~
 
@@ -363,6 +363,13 @@ Otra ventaja en cuanto a otras estructuras es que los Splay Trees son mucho mas 
 Los Splay Trees, al igual que otros \'arboles balanceados, mantienen su balance mediante rotaciones. El balance de los Splay Trees no es perfecto, es por eso que si bien no nos garantizan una cota de $lg(n)$ en los peores casos los algoritmos utilizados para mantener cierto balance son mucho mas sencillos y r\'apidos que ene estructuras de datos balanceadas mas r\'igidamente. Adem\'as, no nos garantizaran una cota en el peor caso, pero si nos garantizan la cota en la mayor\'ia de las operaciones, lo que en la practica y para la mayor\'ia de los casos los hace igualmente buenos.
 
 ~
+
+\subsubsection{Optimalidad de los Splay trees}
+\begin{itemize}
+ \item Teorema de Optimalidad Est\'atica: asint\'oticamente, los Splay Trees son tan eficientes como \textit{cualquier} ABB fijo.
+ \item Teorema de Optimalidad Din\'amica: asint\'oticamente, los Splay Trees son tan eficientes como \textit{cualquier ABB que se modifique} a trav\'es de rotaciones.
+\end{itemize}
+
 
 \subsubsection{B\'usqueda}
 
