@@ -531,12 +531,90 @@ Eliminar un nodo de un \'arbol RB puede ser un poco mas complicado que insertar 
 \end{itemize}
 
 \newpage
-\section{Hash}
+\section{Tablas hash}
 
-Muchas aplicaciones requieren un conjunto din\'amico que solo soporte las operaciones de diccionario inserci\'on, b\'usqueda y eliminaci\'on. Una tabla de hash es una estructura de datos efectiva para implementar diccionarios. Si bien buscar un elemento en una tabla de hash puede tardar tanto como buscar un elemento en una lista enlazada ($\Theta(n)$ en el peor caso), en la practica la tabla de hash tiene una muy buena performance. Bajo asunciones razonables, el tiempo promedio de buscar un elemento en una tabla de hash es de $O(1)$.
+Muchas aplicaciones requieren un conjunto din\'amico que solo soporte las operaciones de diccionario inserci\'on, b\'usqueda y eliminaci\'on. Una tabla de hash es una estructura de datos efectiva para implementar diccionarios, que generaliza el concepto de arreglo. Si bien buscar un elemento en una tabla de hash puede tardar tanto como buscar un elemento en una lista enlazada ($\Theta(n)$ en el peor caso), en la practica la tabla de hash tiene una muy buena performance. Bajo suposiciones razonables, el tiempo promedio de buscar un elemento en una tabla de hash es de $O(1)$.
+
+\subsection{Direccionamiento directo}
+Se asocia a cada valor de la clave un \'indice de un arreglo. Por lo tanto, tenemos b\'usqueda, inserci\'on y borrado en $O(1)$. Por ejemplo, clave=n\'umero de DNI (n\'umero entre 0 y $10^8$).
+
+El \'unico problema: \textbf{mucho} desperdicio de memoria.
+
+\subsection{Conceptos b\'asicos}
+Representaremos un diccionario como una tupla $\langle T,h \rangle$. Donde:
+\begin{itemize}
+ \item $T$ es un arreglo con $N=tam(T)$ celdas.
+ \item $h: K \rightarrow\{0,\dots,N-1\}$ es la funci\'on hash (o de hash, o de hashing).
+ \item $K$ conjunto de claves posibles.
+ \item $\{0,\dots,N-1\}$ conjunto de las posiciones de la tabla (a veces llamadas \textit{pseudoclaves})
+ \item La posici\'on del elemento en el arreglo se calcula a trav\'es de la funci\'on $h$.
+\end{itemize}
+
+
+Se dice que una \textbf{funci\'on de hash es perfecta} s\'i: $\forall\ k_1 \neq k_2 \implies h(k_1) \neq h(k_2)$. Y \'esto requiere $N \geq |K|$, lo que es raramente razonable en la pr\'actica, ya que en general $N < |K|$, y muy habitualmente $N < < |K|$
+
+~
+
+La consecuencia de esto \'ultimo es que hay \textbf{colisiones} (y son mucho m\'as frecuentes que lo intuitivo). Es decir, es posible que $h(k_1) = h(k_2)$ a\'un con $k_1 \neq k_2 $. Para resolver esto se utilizan distintos m\'etodos, que se diferencian por la forma de ubicar a los elementos que dan lugar a colisi\'on, siendo las dos familias principales:
+\begin{itemize}
+ \item Direccionamiento cerrado o Concatenaci\'on: a la i\-\'esima posici\'on de la tabla se le asocia la lista de los elementos tales que $h(k)=i$
+ \item Direccionamiento abierto: todos los elementos se guardan en la tabla.
+\end{itemize}
+
+Llamaremos $P$ a la \textbf{distribuci\'on de probabilidad de las claves}, tal que $P(k) = $ ``probabilidad de la clave k''. Para disminuir la probabilidad de colisiones, nos gustar\'ia que los elementos se distribuyan en el arreglo de manera uniforme. O lo que es lo mismo, pedir Uniformidad Simple:
+$$\forall\ j \sum_{k \in K : h(k) = j}P(k) = 1 / |N|$$
+
+Pero es muy d\'ificil construir funciones que satisfagan Uniformidad Simple, ya que $P$ es generalmente desconocida.
+
+\subsection{Direccionamiento cerrado o Concatenaci\'on}
+A la i-\'esima posici\'on de la tabla se le asocia la lista de los elementos tales que $h(k)=i$. Por ejemplo, para una tabla de 5 celdas: $h(k) = k\ mod\ 5$
+
+Complejidades
+\begin{itemize}
+ \item \textbf{B\'usqueda}: lineal en la lista asociada a la posici\'on $h(k)$: $O($longitud de la lista asocidada a $h(k))$
+ \item \textbf{Inserci\'on}: al principio de la lista asociada a la posici\'on $h(k)$: $O(1)$
+ \item \textbf{Borrado}: b\'usqueda en la lista asociada a la posici\'on $h(k)$: $O($longitud de la lista asocidada a $h(k))$
+\end{itemize}
+
+~
+
+Luego, bajo la hip\'otesis de Uniformidad Simple de la funci\'on de hash, en promedio:
+\begin{itemize}
+\item Una b\'usqueda fallida requiere $\Theta(1+\alpha)$
+\item Una b\'usqueda exitosa requiere $\Theta(1+\alpha / 2)$
+\item Con $n=\#$elementos en la tabla, y $\alpha = n / |T|$ (factor de carga).
+\end{itemize}
+
+Por lo que sí $n \sim T$, obtenemos $O(1)$
 
 \subsection{Direccionamiento abierto}
-\subsection{Barrido lineal}
-\subsection{Barrido cuadr\'atico}
-\subsection{Hashing doble}
-\subsection{Hashing din\'amico o extensible}
+A diferencia del Direccionamiento cerrado, todos los elementos se almacenan en la tabla, y las colisiones tambi\'en se resuelven dentro de la tabla.
+
+Ideas b\'asicas:
+\begin{itemize}
+\item S\'i la posici\'on calculada est\'a ocupada, hay que buscar una posici\'on libre.
+\item La funci\'on de hash pasa a depender tambi\'en del n\'umero de intentos realizados para encontrar una posici\'on libre, es decir: $h(k,i)$ para el i-\'esimo intento, y $h$ debe generar todas las posiciones de $T$.
+\item Los distintos m\'etodos de direccionamiento abierto se distinguen por el m\'etodo de barrido que utilizan.
+\item Puede pasar que al buscar una posici\'on libre nos de \textit{overflow} (la tabla se llena y hay que borrar alg\'un elemento antes de poder insertar uno nuevo).
+\end{itemize}
+
+\subsubsection{Fen\'omenos de Aglomeraci\'on}
+\begin{itemize}
+\item Aglomeraci\'on primaria: s\'i dos secuencias de barrido tienen una colisi\'on, siguen colisionando, y los elementos se aglomeran por largos tramos.
+Ejemplo: $h(k,i) = (h'(k) + i)\ mod\ 101$, en una lista de 101 elementos, con la secuencia de inserciones: $\{2, 103, 104, 105,\dots\}$. Los elementos se aglomeran en un solo bloque.
+\item Aglomeraci\'on secundaria: s\'i dos secuencias de barrido tienen una colisi\'on en el primero intento, sigue habiendo colisiones.
+\end{itemize}
+
+\subsubsection{Barrido lineal}
+Para recorrer toda la tabla usamos:
+$$h(k,i) = (h'(k) + i)\ mod\ |T|$$
+donde $h'(k)$ es una funci\'on de hashing. Luego, se recorren todas las posiciones en la secuencia: $T[h'(k)], T[h'(k) + 1], \dots, T[|T|], 0, 1, \dots, T[h'(k) - 1]$. Tiene posibilidad de aglomeraci\'on primaria.
+\subsubsection{Barrido cuadr\'atico}
+Usamos:
+$$h(k,i) = (h'(k) + c_1 * i + c_2 * i^2)\ mod\ |T|$$
+donde $h'(k)$ es una funci\'on de hashing, $c_1$ y $c_2$ constantes. Tiene posibilidad de aglomeraci\'on secundaria.
+\subsubsection{Hashing doble}
+\'Este barrido depende tambi\'en de la clave:
+$$h(k,i) = (h_1(k) + i * h_2(k))\ mod\ |T|$$
+donde $h_1(k)$ y $h_2(k)$ son funciones de hashing. Reduce los fen\'omenos de aglomeraci\'on secundaria, y no tiene aglomeraci\'on primaria.
+\subsubsection{Hashing din\'amico o extensible}
