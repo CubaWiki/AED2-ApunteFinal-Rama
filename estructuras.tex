@@ -531,6 +531,40 @@ Eliminar un nodo de un \'arbol RB puede ser un poco mas complicado que insertar 
 \end{itemize}
 
 \newpage
+\section{Skip lists}
+
+Como vimos en la secci\'on de Estructuras B\'asicas, las listas son muy simples pero ineficientes. Implementar un Diccionario en dicha estructura nos dar\'ia complejidades $O(n)$ (b\'usqueda, inserci\'on y borrado).
+
+Las Skip lists buscan tomar ventaja de esta simplicidad, pero agregando una forma de avanzar ``m\'as r\'apido'' los elementos de la lista.
+En vez de que cada nodo de la lista tenga un puntero al siguiente, tendr\'an multiples punteros, dependiendo de su posici\'on en la lista, lo que nos permitir\'a dar saltos m\'as grandes a la hora de buscar/insertar un elemento.
+Llevado al l\'imite, cada $2^i$-\'esimo nodo posee una referencia al nodo $2^i$ posiciones m\'as adelante en la lista:
+
+\begin{center}
+ \includegraphics[width=0.75\textwidth, height=0.09\textwidth]{./graficos/skip-list-fixed.png}
+\end{center}
+
+Lo que nos da una b\'usqueda en tiempo $O(log_2(n))$ (muy similar a la b\'usqueda binaria). Notese que 1/2 de los nodos son de nivel 1, 1/4 de nivel 2, y $1/2^i$ son de nivel $2^i$.
+El problema principal de \'este modelo es la rigidez en el caso din\'amico (muy dif\'icil de mantener en el caso de borrados), adem\'as de que el n\'umero total de punteros necesarios se duplica.
+
+~
+
+Para mejorar la idea anterior, podemos ``aleatorizar'' el requerimiento, y asignar el nivel de cada nodo probabil\'isticamente (por ejemplo, subi\'endole el nivel mientras una moneda siga saliendo ``cara'').
+De \'esta forma, el costo de b\'usqueda (haciendo un an\'alisis completo) sigue siendo $O(log(n))$ en promedio (pero sin hacer hip\'otesis probabil\'isticas sobre el input). Y se pueden mejorar las constantes con una moneda cargada: $p(cara)= 1/e$
+
+\begin{center}
+ \includegraphics[width=0.75\textwidth, height=0.09\textwidth]{./graficos/skip-list-relaxed.png}
+\end{center}
+
+\subsubsection{Complejidades}
+
+\begin{itemize}
+ \item \textbf{B\'usqueda}: promedio $O(log(n))$, peor caso $O(n)$
+ \item \textbf{Inserci\'on}: promedio $O(log(n))$, peor caso $O(n)$
+ \item \textbf{Borrado}: promedio $O(log(n))$, peor caso $O(n)$
+ \item \textbf{Espacio} promedio $O(n)$, peor caso $O(n*log(n))$
+\end{itemize}
+
+\newpage
 \section{Tablas hash}
 
 Muchas aplicaciones requieren un conjunto din\'amico que solo soporte las operaciones de diccionario inserci\'on, b\'usqueda y eliminaci\'on. Una tabla de hash es una estructura de datos efectiva para implementar diccionarios, que generaliza el concepto de arreglo. Si bien buscar un elemento en una tabla de hash puede tardar tanto como buscar un elemento en una lista enlazada ($\Theta(n)$ en el peor caso), en la practica la tabla de hash tiene una muy buena performance. Bajo suposiciones razonables, el tiempo promedio de buscar un elemento en una tabla de hash es de $O(1)$.
