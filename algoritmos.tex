@@ -219,6 +219,20 @@ Mergesort es el algoritmo de ordenamiento Divide and Conquer por excelencia. El 
 soluciones
 mejores en lo que respecta a espacio.
 
+\subsection{Quick sort}
+
+El Quick sort es un algoritmo muy estudiado, analizado y utilizado en la pr\'actica, basado en Divide and Conquer.
+\'Este algoritmo eligir\'a un elemento del arreglo (idealmente el mediano), llamado \textit{pivot}, para luego separar el arreglo en dos mitades: los elementos menores al pivot por un lado y los mayores por el otro. Una vez \textit{particionado} el arreglo, se har\'a una llamada recursiva de Quick sort sobre cada mitad.
+
+~
+
+Los costos de \'este algoritmo son $O(n^2)$ en el caso peor, y $O(n*log(n))$ en el caso mejor y promedio. En la pr\'actica el algoritmo es eficiente, pero la elecci\'on del pivot es fundamental.
+
+Esto se puede ver ya que el caso peor (para obtener complejidad cuadr\'atica) se da cuando en cada llamada recursiva elejimos como pivot al m\'inimo (o m\'aximo) elemento del arreglo.
+Como contraparte, el caso mejor se da cuando para cada llamada recursiva elejimos como pivot al mediano del arreglo.
+Para el caso promedio, podr\'iamos pensar en un input proveniente de una distribuci\'on uniforme. O sea, que la probabilidad de que el elemento i-\'esimo sea el pivot es 1/n, en cuyo caso la complejidad del algoritmo nos quedar\'ia $O(n*log(n)$.
+Pero no siempre podemos suponer que el input proviene de una distribuci\'on uniforme. S\'i ese no es el caso, podemos forzarlo de alguna forma. Por ejemplo: permutando el input, o elijiendo el pivot al azar.
+
 \subsection{Bubble sort}
 
 \subsection{Bucket sort}
