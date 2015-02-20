@@ -17,6 +17,28 @@ Para una funci\'on $g(n)$ dada, notaremos a $\Theta(g(n))$ como el conjunto de f
 
 Una funci\'on pertenece al conjunto $\Theta(g(n))$ si existen constantes positivas $c_1$ y $c_2$ tal que $f(n)$ puede ser ``sandwicheada'' entre $c_1g(n)$ y $c_2g(n)$, para un $n$ suficientemente grande. Como $\Theta(g(n))$ es un conjunto, podremos escribir ``$f(n) \in \Theta(g(n))$'' para indicar que $f(n)$ es un miembro de $\Theta(g(n))$, a veces escribiremos ``$f(n) = \Theta(g(n))$'' para expresar exactamente lo mismo. Cuando una funci\'on $f(n)$ es acotada superiormente por otra funci\'on $c \cdot g(n)$ para alg\'un $c$ y a partir de alg\'un $n$, diremos que $f(n)$ esta \textbf{acotada asint\'oticamente} por $g(n)$ o que $f(n)$ tiene un \textbf{comportamiento asint\'otico} a $g(n)$. En el caso de $\Theta(g(n))$ diremos que $g(n)$ es una \textbf{cota asint\'oticamente ajustada} para $f(n)$.
 
+~
+
+\textbf{Propiedades de $\Theta$}:
+\begin{enumerate}
+ \item Para cualquier funci\'on $f$ se tiene que $f \in \Theta(f)$.
+ \item $f \in \Theta(g) \implies \Theta(f) \subset \Theta(g)$.
+ \item $\Theta(f) = \Theta(g) \iff f \in \Theta(g) \land g \in \Theta(f)$.
+ \item S\'i $f \in \Theta(g) \land g \in \Theta(h) \implies f \in \Theta(h)$.
+ \item S\'i $f \in \Theta(g) \land f \in \Theta(h) \implies f \in \Theta(max(g,h))$.
+ \item Regla de la suma:
+
+	S\'i $f_1 \in \Theta(g) \land f_2 \in \Theta(h) \implies f_1 + f_2 \in O(g+h)$.
+ \item Regla del producto:
+
+	S\'i $f_1 \in \Theta(g) \land f_2 \in \Theta(h) \implies f_1 * f_2 \in \Theta(g*h)$.
+ \item S\'i existe $\lim_{n \to \infty} \frac{f(n)}{g(n)} = k$, seg\'un los valores que tome $k$:
+	\begin{enumerate}
+	  \item S\'i $k \neq 0$ y $k < \infty$ entonces $\Theta(f) = \Theta(g)$.
+	  \item S\'i $k = 0$ entonces $\Theta(g) \neq \Theta(f)$.
+	\end{enumerate}
+\end{enumerate}
+
 \subsubsection{Conjunto / Notaci\'on Asint\'otica $O$}
 
 El conjunto $\Theta$ asint\'oticamente acota una funci\'on inferior y superiormente. Cuando solo tenemos una \textbf{cota asint\'otica superior}, usaremos el conjunto $O$. Para una funci\'on dada $g(n)$, denotaremos por $O(g(n))$ al conjunto de funciones tales que:
@@ -28,6 +50,28 @@ El conjunto $\Theta$ asint\'oticamente acota una funci\'on inferior y superiorme
 ~
 
 Es decir que para todos los valores de $n$ a la derecha de $n_0$, el valor de la funci\'on $f(n)$ est\'a por debajo de $c \cdot g(n)$. Escribiremos $f(n) = O(g(n))$ para indicar que una funci\'on $f(n)$ es un miembro del conjunto $O(g(n))$. Notar que $f(n) = \Theta(g(n))$ implica $f(n) = O(g(n))$, ya que la noci\'on de $\Theta$ es mucho mas fuerte que la noci\'on de $O$. Esto es, escrito en forma de teor\'ia de conjuntos, que vale la inclusi\'on $\Theta(g(n)) \subseteq O(g(n))$
+
+~
+
+\textbf{Propiedades de $O$}:
+\begin{enumerate}
+ \item Para cualquier funci\'on $f$ se tiene que $f \in O(f)$.
+ \item $f \in O(g) \implies O(f) \subset O(g)$.
+ \item $O(f) = O(g) \iff f \in O(g) \land g \in O(f)$.
+ \item S\'i $f \in O(g) \land g \in O(h) \implies f \in O(h)$.
+ \item S\'i $f \in O(g) \land f \in O(h) \implies f \in O(min(g,h))$.
+ \item Regla de la suma:
+
+	S\'i $f_1 \in O(g) \land f_2 \in O(h) \implies f_1 + f_2 \in O(max(g,h))$.
+ \item Regla del producto:
+
+	S\'i $f_1 \in O(g) \land f_2 \in O(h) \implies f_1 * f_2 \in O(g*h)$.
+ \item S\'i existe $\lim_{n \to \infty} \frac{f(n)}{g(n)} = k$, seg\'un los valores que tome $k$:
+	\begin{enumerate}
+	  \item S\'i $k \neq 0$ y $k < \infty$ entonces $O(f) = O(g)$.
+	  \item S\'i $k = 0$ entonces $f \in O(g)$, es decir, $O(f) \subset O(g)$, pero sin embargo se verifica que $g \notin O(f)$.
+	\end{enumerate}
+\end{enumerate}
 
 \subsubsection{Conjunto / Notaci\'on Asint\'otica $\Omega$}
 
@@ -41,6 +85,27 @@ De forma tal como la notaci\'on $O$ proporciona una cota asint\'otica en una fun
 
 Cuando decimos que el tiempo de un algoritmo es $\Omega(g(n))$, significa que no importa que particular entrada de tama\~no $n$ para cada valor de $n$, el tiempo que tardara el algoritmo con dicha entrara sera de al menos un numero constante de veces $g(n)$, para un $n$ suficientemente grande. Equivalentemente, esto nos da una cota temporal inferior para el mejor caso del algoritmo. De las definiciones de las notaciones asint\'oticas, es f\'acil ver que para cualquier dos funciones $f(n)$ y $g(n)$, tendremos que $f(n) = \Theta(g(n))$ si y solo si $f(n) = O(g(n))$ y $f(n) = \Omega(g(n))$. Usando una notaci\'on de teor\'ia de conjuntos esto seria equivalente a decir que $\Omega(g(n)) \cap O(g(n)) = \Theta(g(n))$, y si $f(n) \in \Omega(g(n)) \land f \in O(g(n))$ entonces $f(n)$ pertenecer\'a a ambos conjuntos, por lo que en particular pertenecer\'a a la intersecci\'on $\Theta(g(n))$.
 
+~
+
+\textbf{Propiedades de $\Omega$}:
+\begin{enumerate}
+ \item Para cualquier funci\'on $f$ se tiene que $f \in \Omega(f)$.
+ \item $f \in \Omega(g) \implies \Omega(f) \subset O(g)$.
+ \item $\Omega(f) = \Omega(g) \iff f \in \Omega(g) \land g \in \Omega(f)$.
+ \item S\'i $f \in \Omega(g) \land g \in \Omega(h) \implies f \in \Omega(h)$.
+ \item S\'i $f \in \Omega(g) \land f \in \Omega(h) \implies f \in \Omega(max(g,h))$.
+ \item Regla de la suma:
+
+	S\'i $f_1 \in \Omega(g) \land f_2 \in \Omega(h) \implies f_1 + f_2 \in \Omega(g+h)$.
+ \item Regla del producto:
+
+	S\'i $f_1 \in \Omega(g) \land f_2 \in \Omega(h) \implies f_1 * f_2 \in \Omega(g*h)$.
+ \item S\'i existe $\lim_{n \to \infty} \frac{f(n)}{g(n)} = k$, seg\'un los valores que tome $k$:
+	\begin{enumerate}
+	  \item S\'i $k \neq 0$ y $k < \infty$ entonces $\Omega(f) = \Omega(g)$.
+	  \item S\'i $k = 0$ entonces $g \in \Omega(f)$, es decir, $\Omega(g) \subset \Omega(f)$, pero sin embargo se verifica que $g \notin O(f)$.
+	\end{enumerate}
+\end{enumerate}
 \subsubsection{Conjunto / Notaci\'on Asint\'otica No-Ajustada $o$}
 
 La cota superior asint\'otica provista por $O$ puede o no puede ser ajustada asint\'oticamente, pero la cota $2n = O(n^2)$ no lo es. Usaremos la notaci\'on $o$ (o chica) para definir una cota superior que no sea ajustada asint\'oticamente. Para una funci\'on dada $g(n)$, definiremos formalmente a $o(g(n))$ como el conjunto de funciones tales que:
@@ -65,10 +130,42 @@ Anal\'ogicamente, $\omega$ es a $\Omega$ como $o$ es a $O$. Usaremos la notaci\'
 
 A medida que $n$ tiende a infinito la relaci\'on entre $f(n)/g(n)$ se vuelve arbitrariamente grande, es decir que tiende a infinito.
 
+\subsection{Funciones de Complejidad temporal comunes}
+A continuaci\'on se listan las principales categorias de complejidad temporal, en orden creciente:
+\begin{enumerate}
+ \item $O(1)$ \textbf{Complejidad constante}: es independiente de los datos de entrada.
+ \item $O(lg(n))$ \textbf{Complejidad logar\'itmica}: suele aparecer en determinados algoritmos con iteraci\'on o recursi\'on (por ejemplo, b\'usqueda binaria). Todos los logaritmos, sea cual sea su base, son del mismo orden, por lo que se representan en cualquier base.
+ \item $O(n)$ \textbf{Complejidad lineal}: suele aparecer en bucles simples cuando la complejidad de las operaciones internas es constante o en algunos algoritmos con recursi\'on.
+ \item $O(n*lg(n))$: en algunos algoritmos de ``Divide \& Conquer'' (por ejemplo, Mergesort).
+ \item $O(n^2)$ \textbf{Complejidad cuadr\'atica}: aparece en bucles o recursiones doblemente anidados.
+ \item $O(n^3)$ \textbf{Complejidad c\'ubica}: en bucles o recursiones triples.
+ \item $O(n^k)$ \textbf{Complejidad polin\'omica} ($k \geq 1$).
+ \item $O(2^n)$ \textbf{Complejidad exponencial}: suele aparecer en subprogramas recursivos que contengan dos o m\'as llamadas recursivas.
+\end{enumerate}
+
 \newpage
 \section{Estructuras b\'asicas}
 \subsection{Lista}
 \subsection{Cola}
+
+La estructura Cola se puede pensar como un arreglo para guardar los elementos m\'as un natural para saber la cantidad. Las colas se caracterizan por ser una estructura de tipo FIFO (First in, First out. O en castellano: Primero que entra, primero que sale).
+Una implementaci\'on efectiva de una Cola puede hacerse usando \textbf{Aritmetica Circular}, alias: funci\'on m\'odulo. Idea:
+\begin{enumerate}
+ \item Tengo un arreglo de MAX\_CANTIDAD elementos.
+ \item En una variable \textit{cant} guardo la cantidad de elementos actuales en la cola.
+ \item En una variable \textit{primero} guardo la posici\'on en el arreglo del primer elemento.
+ \item Encolar: agrega el nuevo elemento a la posici\'on $(primero + cant) \% MAX\_CANTIDAD$ del arreglo e  incrementa \textit{cant} en uno.
+ \item Desencolar: setea $primero=(primero + 1) \% MAX\_CANTIDAD$ y decrementa \textit{cant} en uno.
+\end{enumerate}
+Siendo las complejidades resultantes:
+\begin{itemize}
+ \item \textbf{Pr\'oximo} $O(1)$
+ \item \textbf{Desencolar} $O(1)$
+ \item \textbf{Encolar} $O(1)$
+ \item \textbf{B\'usqueda} $O(n)$
+\end{itemize}
+Una clara limitaci\'on de \'esta implementaci\'on es que solo puede almacenar hasta MAX\_CANTIDAD elementos al mismo tiempo. Se puede resolver esto y agregar algunas ventajas utilizando \textbf{Memoria Din\'amica}.
+
 \subsection{Pila}
 \subsection{Arreglo dimensionable}
 
@@ -128,11 +225,11 @@ Las rotaciones son operaciones locales en un \'arbol de b\'usqueda que cambian l
 
 \subsection{Heap}
 
-La estructura de datos del heap (binario) es un arreglo de objetos que podremos ver como un \'arbol binario casi-completo. Cada nodo del \'arbol corresponde a un elemento del arreglo y el \'arbol esta completamente lleno en todos los niveles excepto en el ultimo, el cual esta lleno desde la izquierda hasta alg\'un punto. Un arreglo $A$ que representa un heap es un objeto con dos atributos, $A.lenght$ que nos dir\'a la cantidad de elementos en el arreglo y $A.heap\_size$ que representara cuantos elementos en el heap est\'an guardados en el arreglo $A$. Esto es, que a pesar que $A[1..A.length]$ contenga n\'umeros, solo los elementos en $A[1..A.heap\_size]$ (en donde $0 \leq A.heap\_size \leq A.length$) son elementos validos del heap.
+La estructura de datos del heap (binario) es un arreglo de objetos que representa una Cola de Prioridad y que podremos ver como un \'arbol binario casi-completo. Cada nodo del \'arbol corresponde a un elemento del arreglo y el \'arbol esta completamente lleno en todos los niveles excepto en el ultimo, el cual esta lleno desde la izquierda hasta alg\'un punto. Un arreglo $A$ que representa un heap es un objeto con dos atributos, $A.lenght$ que nos dir\'a la cantidad de elementos en el arreglo y $A.heap\_size$ que representara cuantos elementos en el heap est\'an guardados en el arreglo $A$. Esto es, que a pesar que $A[1..A.length]$ contenga n\'umeros, solo los elementos en $A[1..A.heap\_size]$ (en donde $0 \leq A.heap\_size \leq A.length$) son elementos validos del heap.
 
 ~
 
-La ra\'iz del \'arbol estar\'a situada en $A[1]$, y dado el \'indice $i$ de un nodo, f\'acilmente podremos computar los \'indices de su padre, hijo derecho e izquierdo. Los c\'omputos del \'indice del padre estar\'a definido de la forma $Padre(i) = \lfloor i/2 \rfloor$, mientras que los \'indices de los hijos podr\'an ser computados de la forma $Izquierda(i) = 2i$ y $Derecha(i) = 2i+1$, en donde $i \in [1..A.heap\_size]$. Hay dos tipos de heaps binarios, max-heaps y min-heaps. En ambos casos, los valores de los nodos satisfacen el invariante del heap, el cual depende del tipo de heap con el que trabajemos. En un max-heap, el invariante del max-heap nos dice que para cada nodo $i$ que no sea la ra\'iz se debe cumplir que $A[Padre(i)] \geq A[i]$, esto es que el valor de un nodo debe ser como m\'aximo el valor de su padre. Entonces, el m\'aximo en un max-heap estar\'a guardado en la ra\'iz, y el sub-\'arbol con ra\'iz en un nodo no podr\'a contener valores mas grandes que el nodo en si mismo. Un min-heap esta 
+La ra\'iz del \'arbol estar\'a situada en $A[1]$, y dado el \'indice $i$ de un nodo, f\'acilmente podremos computar los \'indices de su padre, hijo derecho e izquierdo. El c\'omputo del \'indice del padre estar\'a definido de la forma $Padre(i) = \lfloor i/2 \rfloor$, mientras que los \'indices de los hijos podr\'an ser computados de la forma $Izquierda(i) = 2i$ y $Derecha(i) = 2i+1$, en donde $i \in [1..A.heap\_size]$. Hay dos tipos de heaps binarios, max-heaps y min-heaps. En ambos casos, los valores de los nodos satisfacen el invariante del heap, el cual depende del tipo de heap con el que trabajemos. En un max-heap, el invariante del max-heap nos dice que para cada nodo $i$ que no sea la ra\'iz se debe cumplir que $A[Padre(i)] \geq A[i]$, esto es que el valor de un nodo debe ser como m\'aximo el valor de su padre. Entonces, el m\'aximo en un max-heap estar\'a guardado en la ra\'iz, y el sub-\'arbol con ra\'iz en un nodo no podr\'a contener valores mas grandes que el nodo en si mismo. Un min-heap esta 
 organizado de la forma opuesta, el invariante de min-heap nos dice que para cada nodo $i$ distinto de la ra\'iz se debe cumplir $A[Padre(i)] \leq A[i]$, por lo que el elemento m\'inimo de un min-heap estar\'a en la ra\'iz.
 
 ~
@@ -151,7 +248,7 @@ Puntualmente lo que realiza Heapify es, estando situado en $i$, compara el valor
 
 El tiempo de Heapify en un sub-\'arbol de tama\~no $n$ con su ra\'iz en un nodo $i$ sera el tiempo $\Theta(1)$ para ajustar las relaciones entre los elementos $A[i]$, $A[Izquierda(i)]$ y $A[Derecha(i)]$, mas el tiempo que tome correr Heapify en un sub-\'arbol con su ra\'iz en alguno de los hijos del nodo $i$ (asumiendo que la llamada recursiva ocurra). El peor caso ocurrir\'a cuando el nivel inferior del \'arbol se encuentre exactamente a la mitad de estar lleno, por lo que cada uno de los sub-\'arboles de los hijos tendr\'an como mucho $2n/3$ elementos. Podremos describir el tiempo de Heapify con la recurrencia $T(n) \leq T(2n/3) + \Theta(1)$. Si tuvi\'esemos $T(n) = T(2n/3) + \Theta(1)$, la recurrencia se ajusta al segundo caso del teorema maestro, por lo que $T(n) \subseteq \Theta(lg(n))$ pero como tenemos una relaci\'on de menor o igual en la recurrencia original, $T(n) \subset O(lg(n))$.
 
-\subsubsection{Construyendo un heap}
+\subsubsection{Construyendo un heap (Algoritmo de Floyd)}
 
 Podremos usar el procedimiento Heapify de forma bottom-up para convertir un arreglo $A[1..n]$, en donde $n=A.length$, en un max-heap. Los elementos en el sub-arreglo $A[\lfloor n/2\rfloor + 1 .. n]$ son todas hojas del \'arbol, y por lo tanto cada uno es un heap de $1$ elemento por el cual podremos comenzar. El procedimiento para construir un heap va por cada uno de los nodos del \'arbol restantes comenzando por el \'indice mas grande, es decir $i = \lfloor A.length/2 \rfloor .. 1$, y ejecuta Heapify en cada uno de ellos. Una cota grosera para este procedimiento es $O(nlg(n))$, ya que har\'a $n$ llamadas a Heapify. Sin embargo, una cota mas ajustada puede ser dada bas\'andonos en que la altura de un \'arbol heap de $n$ elementos tiene altura $\lfloor lg(n) \rfloor$ y como mucho $\lceil n/2^{h+1}\rceil$ nodos de cualquier altura $h$, la cual corresponder\'a con $O(n)$.
 
@@ -328,11 +425,11 @@ reemplazarlo por el $42$.
 
 \subsection{Splay trees}
 
-Este tipo de \'arbol tiene su inspiraci\'on en los ABB \'optimos. Los ABB \'optimos son \'arboles cuyos elementos est\'an ubicados mas cerca o lejos de la ra\'iz seg\'un la frecuencia con la que son consultados (similar a la codificaci\'on de Huffman), de esta forma optimizando los tiempos de las operaciones. El problema de este tipo de \'arboles son la rigidez, el desconocimiento de la frecuencia de las operaciones y la variabilidad que pueden sufrir estas ultimas. Los Splay Trees son ABB \'optimos aproximados que se modifican seg\'un la frecuencia de los \'ultimos elementos consultados, de esta forma mantendremos algo cercano a un ABB \'optimo que se ira optimizando para los elementos que consultemos mas frecuentemente.
+Este tipo de \'arbol tiene su inspiraci\'on en los ABB \'optimos. Los ABB \'optimos son \'arboles cuyos elementos est\'an ubicados mas cerca o lejos de la ra\'iz seg\'un la frecuencia con la que son consultados (similar a la codificaci\'on de Huffman), de esta forma optimizando los tiempos de las operaciones. El problema de este tipo de \'arboles son la rigidez, el desconocimiento de la frecuencia de las operaciones y la variabilidad que pueden sufrir estas ultimas. Los Splay Trees son ABB \'optimos aproximados que se modifican seg\'un la frecuencia de los \'ultimos elementos consultados, de esta forma mantendremos algo cercano a un ABB \'optimo que se ir\'a optimizando para los elementos que consultemos mas frecuentemente.
 
 ~
 
-En estos \'arboles, los cuales utilizan exactamente la misma representaci\'on interna que un ABB com\'un sin ning\'un agregado, todas las operaciones toman $O(lg(n))$ en promedio. Cuando nos referimos a en promedio no nos referimos al promedio de los ABB o al Quicksort, no hay aleatorizaci\'on en los Splay Trees. De hecho, una operaci\'on simple puede tomar $\Theta(n)$ en el peor caso en donde $n$ es la cantidad de elementos en el \'arbol. Lo que podemos garantizar entonces es que cualquier secuencia de $k$ operaciones, comenzando con un \'arbol vac\'io, y con el \'arbol no creciendo mas que $>n$ elementos, entonces la secuencia a lo sumo toma $O(k\cdot lg(n))$ en el peor caso. Esto significa que podremos tener algunas pocas operaciones lentas pero la mayor\'ia ser\'an mucho mas r\'apidas, por lo que tendremos un balance en promedio de $lg(n)$ o mejor para cada operaci\'on.
+En estos \'arboles, los cuales utilizan exactamente la misma representaci\'on interna que un ABB com\'un sin ning\'un agregado, todas las operaciones toman $O(lg(n))$ en promedio. Cuando nos referimos a en promedio no nos referimos al promedio de los ABB o al Quicksort, no hay aleatorizaci\'on en los Splay Trees. De hecho, una operaci\'on simple puede tomar $\Theta(n)$ en el peor caso en donde $n$ es la cantidad de elementos en el \'arbol. Lo que podemos garantizar entonces es que cualquier secuencia de $k$ operaciones, comenzando con un \'arbol vac\'io, y con el \'arbol no creciendo mas que $>n$ elementos, entonces la secuencia a lo sumo toma $O(k\cdot lg(n))$ en el peor caso. Esto significa que podremos tener algunas pocas operaciones lentas pero la mayor\'ia ser\'an mucho mas r\'apidas, por lo que tendremos un balance en promedio de $lg(n)$ o mejor para cada operaci\'on. O dicho m\'as precisamente, los costos amortizados por operaci\'on son de $lg(n)$.
 
 ~
 
@@ -343,6 +440,13 @@ Otra ventaja en cuanto a otras estructuras es que los Splay Trees son mucho mas 
 Los Splay Trees, al igual que otros \'arboles balanceados, mantienen su balance mediante rotaciones. El balance de los Splay Trees no es perfecto, es por eso que si bien no nos garantizan una cota de $lg(n)$ en los peores casos los algoritmos utilizados para mantener cierto balance son mucho mas sencillos y r\'apidos que ene estructuras de datos balanceadas mas r\'igidamente. Adem\'as, no nos garantizaran una cota en el peor caso, pero si nos garantizan la cota en la mayor\'ia de las operaciones, lo que en la practica y para la mayor\'ia de los casos los hace igualmente buenos.
 
 ~
+
+\subsubsection{Optimalidad de los Splay trees}
+\begin{itemize}
+ \item Teorema de Optimalidad Est\'atica: asint\'oticamente, los Splay Trees son tan eficientes como \textit{cualquier} ABB fijo.
+ \item Teorema de Optimalidad Din\'amica: asint\'oticamente, los Splay Trees son tan eficientes como \textit{cualquier ABB que se modifique} a trav\'es de rotaciones.
+\end{itemize}
+
 
 \subsubsection{B\'usqueda}
 
@@ -385,8 +489,54 @@ Las dem\'as operaciones del \'arbol usaran la operaci\'on de splay de formas sim
 \end{itemize}
 
 \subsection{Tries}
+Los Tries son arboles (K+1)-arios para alfabetos de K elementos, o lo que es lo mismo, cada nodo puede tener a lo sumo K+1 hijos. Su nombre viene de la palabra ``Re\textbf{trie}ve''.
+
+Motivaciones:
+\begin{itemize}
+ \item Tiempo menos dependiente de la cantidad de claves.
+ \item Rendimiento razonable en el peor caso.
+ \item R\'apidos en la pr\'actica.
+ \item Adecuados para claves de tamaño variable.
+\end{itemize}
+
+La idea principal del Trie es que los ejes del \'arbol representan componentes de las claves, y cada sub\'arbol representa al conjunto de claves que comienza con las etiquetas de los ejes que llevan hasta \'el. 
+De esta forma, se busca no hacer comparaciones de claves completas, sino de partes de ellas. Es decir, s\'i las claves son strings, trabajar con caracteres.
+
+Haciendo ciertas suposiciones, la b\'usqueda o inserci\'on en un \'arbol de \textit{n} claves de \textit{b} bits necesita en promedio \textit{log n} comparaciones de clave completa, y \textit{b} en el peor caso.
+
+~
+
+Algunas propiedades:
+\begin{itemize}
+ \item La estructura del trie es la misma independientemente del orden en el que se insertan las claves.
+ \item A lo sumo una comparaci\'on de clave completa (cuando llega a una hoja).
+\end{itemize}
+
+\begin{center}
+ \includegraphics[width=0.25\textwidth, height=0.3\textwidth]{./graficos/trie-simple.png}
+ % trie-simple.png: 315x378 pixel, 72dpi, 11.11x13.34 cm, bb=0 0 315 378
+\end{center}
+
+~
+
+Desventajas:
+\begin{itemize}
+ \item Algunas implementaciones pueden requerir mucha memoria.
+ \item Las operaciones sobre las componentes de las claves pueden no ser faciles, o ser muy ineficiente en algunos lenguajes de alto nivel.
+\end{itemize}
+
 \subsubsection{Tries compactos}
+Consiste en colapsar las cadenas de caracteres o bits que llevan hacia hojas.
+Ejemplo: en un trie con dos claves ``Algo'' y ``Algoritmos'', el camino que lleva desde la primer `o' hasta la `s' puede ser compactado en un solo nodo para ahorrar espacio.
 \subsubsection{Tries Patricia}
+Son Tries m\'as compactos que los mencionados anteriormente. \textit{Patricia} es un acronimo de: Practical Algorithm To Retrieve Information Coded in Alphanumeric.
+La idea es colapsar todas las cadenas, no solo las que llevan a hojas (un eje ahora puede representar una cadena). 
+Ejemplo: en un trie con dos claves ``Algoritmo'' y ``Algoritmos'', el camino que lleva desde el nodo `A' hasta la \'ultima `o' puede ser compactado en un solo nodo para ahorrar espacio.
+
+\begin{center}
+ \includegraphics[width=0.4\textwidth, height=0.3\textwidth]{./graficos/trie-patricia.png}
+ % trie-patricia.png: 320x200 pixel, 72dpi, 11.29x7.06 cm, bb=0 0 320 200
+\end{center}
 
 \subsection{Red-Black}
 
@@ -465,12 +615,124 @@ Eliminar un nodo de un \'arbol RB puede ser un poco mas complicado que insertar 
 \end{itemize}
 
 \newpage
-\section{Hash}
+\section{Skip lists}
 
-Muchas aplicaciones requieren un conjunto din\'amico que solo soporte las operaciones de diccionario inserci\'on, b\'usqueda y eliminaci\'on. Una tabla de hash es una estructura de datos efectiva para implementar diccionarios. Si bien buscar un elemento en una tabla de hash puede tardar tanto como buscar un elemento en una lista enlazada ($\Theta(n)$ en el peor caso), en la practica la tabla de hash tiene una muy buena performance. Bajo asunciones razonables, el tiempo promedio de buscar un elemento en una tabla de hash es de $O(1)$.
+Como vimos en la secci\'on de Estructuras B\'asicas, las listas son muy simples pero ineficientes. Implementar un Diccionario en dicha estructura nos dar\'ia complejidades $O(n)$ (b\'usqueda, inserci\'on y borrado).
+
+Las Skip lists buscan tomar ventaja de esta simplicidad, pero agregando una forma de avanzar ``m\'as r\'apido'' los elementos de la lista.
+En vez de que cada nodo de la lista tenga un puntero al siguiente, tendr\'an multiples punteros, dependiendo de su posici\'on en la lista, lo que nos permitir\'a dar saltos m\'as grandes a la hora de buscar/insertar un elemento.
+Llevado al l\'imite, cada $2^i$-\'esimo nodo posee una referencia al nodo $2^i$ posiciones m\'as adelante en la lista:
+
+\begin{center}
+ \includegraphics[width=0.75\textwidth, height=0.09\textwidth]{./graficos/skip-list-fixed.png}
+\end{center}
+
+Lo que nos da una b\'usqueda en tiempo $O(log_2(n))$ (muy similar a la b\'usqueda binaria). Notese que 1/2 de los nodos son de nivel 1, 1/4 de nivel 2, y $1/2^i$ son de nivel $2^i$.
+El problema principal de \'este modelo es la rigidez en el caso din\'amico (muy dif\'icil de mantener en el caso de borrados), adem\'as de que el n\'umero total de punteros necesarios se duplica.
+
+~
+
+Para mejorar la idea anterior, podemos ``aleatorizar'' el requerimiento, y asignar el nivel de cada nodo probabil\'isticamente (por ejemplo, subi\'endole el nivel mientras una moneda siga saliendo ``cara'').
+De \'esta forma, el costo de b\'usqueda (haciendo un an\'alisis completo) sigue siendo $O(log(n))$ en promedio (pero sin hacer hip\'otesis probabil\'isticas sobre el input). Y se pueden mejorar las constantes con una moneda cargada: $p(cara)= 1/e$
+
+\begin{center}
+ \includegraphics[width=0.75\textwidth, height=0.09\textwidth]{./graficos/skip-list-relaxed.png}
+\end{center}
+
+\subsubsection{Complejidades}
+
+\begin{itemize}
+ \item \textbf{B\'usqueda}: promedio $O(log(n))$, peor caso $O(n)$
+ \item \textbf{Inserci\'on}: promedio $O(log(n))$, peor caso $O(n)$
+ \item \textbf{Borrado}: promedio $O(log(n))$, peor caso $O(n)$
+ \item \textbf{Espacio} promedio $O(n)$, peor caso $O(n*log(n))$
+\end{itemize}
+
+\newpage
+\section{Tablas hash}
+
+Muchas aplicaciones requieren un conjunto din\'amico que solo soporte las operaciones de diccionario inserci\'on, b\'usqueda y eliminaci\'on. Una tabla de hash es una estructura de datos efectiva para implementar diccionarios, que generaliza el concepto de arreglo. Si bien buscar un elemento en una tabla de hash puede tardar tanto como buscar un elemento en una lista enlazada ($\Theta(n)$ en el peor caso), en la practica la tabla de hash tiene una muy buena performance. Bajo suposiciones razonables, el tiempo promedio de buscar un elemento en una tabla de hash es de $O(1)$.
+
+\subsection{Direccionamiento directo}
+Se asocia a cada valor de la clave un \'indice de un arreglo. Por lo tanto, tenemos b\'usqueda, inserci\'on y borrado en $O(1)$. Por ejemplo, clave=n\'umero de DNI (n\'umero entre 0 y $10^8$).
+
+El \'unico problema: \textbf{mucho} desperdicio de memoria.
+
+\subsection{Conceptos b\'asicos}
+Representaremos un diccionario como una tupla $\langle T,h \rangle$. Donde:
+\begin{itemize}
+ \item $T$ es un arreglo con $N=tam(T)$ celdas.
+ \item $h: K \rightarrow\{0,\dots,N-1\}$ es la funci\'on hash (o de hash, o de hashing).
+ \item $K$ conjunto de claves posibles.
+ \item $\{0,\dots,N-1\}$ conjunto de las posiciones de la tabla (a veces llamadas \textit{pseudoclaves})
+ \item La posici\'on del elemento en el arreglo se calcula a trav\'es de la funci\'on $h$.
+\end{itemize}
+
+
+Se dice que una \textbf{funci\'on de hash es perfecta} s\'i: $\forall\ k_1 \neq k_2 \implies h(k_1) \neq h(k_2)$. Y \'esto requiere $N \geq |K|$, lo que es raramente razonable en la pr\'actica, ya que en general $N < |K|$, y muy habitualmente $N < < |K|$
+
+~
+
+La consecuencia de esto \'ultimo es que hay \textbf{colisiones} (y son mucho m\'as frecuentes que lo intuitivo). Es decir, es posible que $h(k_1) = h(k_2)$ a\'un con $k_1 \neq k_2 $. Para resolver esto se utilizan distintos m\'etodos, que se diferencian por la forma de ubicar a los elementos que dan lugar a colisi\'on, siendo las dos familias principales:
+\begin{itemize}
+ \item Direccionamiento cerrado o Concatenaci\'on: a la i\-\'esima posici\'on de la tabla se le asocia la lista de los elementos tales que $h(k)=i$
+ \item Direccionamiento abierto: todos los elementos se guardan en la tabla.
+\end{itemize}
+
+Llamaremos $P$ a la \textbf{distribuci\'on de probabilidad de las claves}, tal que $P(k) = $ ``probabilidad de la clave k''. Para disminuir la probabilidad de colisiones, nos gustar\'ia que los elementos se distribuyan en el arreglo de manera uniforme. O lo que es lo mismo, pedir Uniformidad Simple:
+$$\forall\ j \sum_{k \in K : h(k) = j}P(k) = 1 / |N|$$
+
+Pero es muy d\'ificil construir funciones que satisfagan Uniformidad Simple, ya que $P$ es generalmente desconocida.
+
+\subsection{Direccionamiento cerrado o Concatenaci\'on}
+A la i-\'esima posici\'on de la tabla se le asocia la lista de los elementos tales que $h(k)=i$. Por ejemplo, para una tabla de 5 celdas: $h(k) = k\ mod\ 5$
+
+Complejidades
+\begin{itemize}
+ \item \textbf{B\'usqueda}: lineal en la lista asociada a la posici\'on $h(k)$: $O($longitud de la lista asocidada a $h(k))$
+ \item \textbf{Inserci\'on}: al principio de la lista asociada a la posici\'on $h(k)$: $O(1)$
+ \item \textbf{Borrado}: b\'usqueda en la lista asociada a la posici\'on $h(k)$: $O($longitud de la lista asocidada a $h(k))$
+\end{itemize}
+
+~
+
+Luego, bajo la hip\'otesis de Uniformidad Simple de la funci\'on de hash, en promedio:
+\begin{itemize}
+\item Una b\'usqueda fallida requiere $\Theta(1+\alpha)$
+\item Una b\'usqueda exitosa requiere $\Theta(1+\alpha / 2)$
+\item Con $n=\#$elementos en la tabla, y $\alpha = n / |T|$ (factor de carga).
+\end{itemize}
+
+Por lo que sí $n \sim T$, obtenemos $O(1)$
 
 \subsection{Direccionamiento abierto}
-\subsection{Barrido lineal}
-\subsection{Barrido cuadr\'atico}
-\subsection{Hashing doble}
-\subsection{Hashing din\'amico o extensible}
+A diferencia del Direccionamiento cerrado, todos los elementos se almacenan en la tabla, y las colisiones tambi\'en se resuelven dentro de la tabla.
+
+Ideas b\'asicas:
+\begin{itemize}
+\item S\'i la posici\'on calculada est\'a ocupada, hay que buscar una posici\'on libre.
+\item La funci\'on de hash pasa a depender tambi\'en del n\'umero de intentos realizados para encontrar una posici\'on libre, es decir: $h(k,i)$ para el i-\'esimo intento, y $h$ debe generar todas las posiciones de $T$.
+\item Los distintos m\'etodos de direccionamiento abierto se distinguen por el m\'etodo de barrido que utilizan.
+\item Puede pasar que al buscar una posici\'on libre nos de \textit{overflow} (la tabla se llena y hay que borrar alg\'un elemento antes de poder insertar uno nuevo).
+\end{itemize}
+
+\subsubsection{Fen\'omenos de Aglomeraci\'on}
+\begin{itemize}
+\item Aglomeraci\'on primaria: s\'i dos secuencias de barrido tienen una colisi\'on, siguen colisionando, y los elementos se aglomeran por largos tramos.
+Ejemplo: $h(k,i) = (h'(k) + i)\ mod\ 101$, en una lista de 101 elementos, con la secuencia de inserciones: $\{2, 103, 104, 105,\dots\}$. Los elementos se aglomeran en un solo bloque.
+\item Aglomeraci\'on secundaria: s\'i dos secuencias de barrido tienen una colisi\'on en el primero intento, sigue habiendo colisiones.
+\end{itemize}
+
+\subsubsection{Barrido lineal}
+Para recorrer toda la tabla usamos:
+$$h(k,i) = (h'(k) + i)\ mod\ |T|$$
+donde $h'(k)$ es una funci\'on de hashing. Luego, se recorren todas las posiciones en la secuencia: $T[h'(k)], T[h'(k) + 1], \dots, T[|T|], 0, 1, \dots, T[h'(k) - 1]$. Tiene posibilidad de aglomeraci\'on primaria.
+\subsubsection{Barrido cuadr\'atico}
+Usamos:
+$$h(k,i) = (h'(k) + c_1 * i + c_2 * i^2)\ mod\ |T|$$
+donde $h'(k)$ es una funci\'on de hashing, $c_1$ y $c_2$ constantes. Tiene posibilidad de aglomeraci\'on secundaria.
+\subsubsection{Hashing doble}
+\'Este barrido depende tambi\'en de la clave:
+$$h(k,i) = (h_1(k) + i * h_2(k))\ mod\ |T|$$
+donde $h_1(k)$ y $h_2(k)$ son funciones de hashing. Reduce los fen\'omenos de aglomeraci\'on secundaria, y no tiene aglomeraci\'on primaria.
+\subsubsection{Hashing din\'amico o extensible}
