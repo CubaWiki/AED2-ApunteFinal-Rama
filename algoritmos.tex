@@ -264,6 +264,56 @@ Cada iteraci\'on en un radix sort inspecciona $lg_2(q)$ bits de cada clave. Si u
 El criterio para elegir $q$ sera de forma tal que $q \in O(n)$, de forma tal que cada iteraci\'on tome tiempo lineal. Si hacemos $q$ suficientemente grande, la cantidad de iteraciones sera chica, por lo que deberemos elegir $q$ proporcional a $n$. Si hacemos esta elecci\'on la complejidad total de radix sort nos quedara de la forma $O(n + \lceil \frac{b \cdot n}{lg(n)} \rceil)$, si por otro lado podemos considerar a $b$ como una constante, el ordenamiento tomara tiempo lineal. Por otro lado si queremos usar menos memoria podr\'iamos usar $q$ proporcional a $\sqrt{n}$, redondeada a la potencia de $2$ mas cercana lo que incrementara la cantidad de iteraciones necesarias al doble pero decrementara la memoria que utilizamos de forma potencial.
 
 \newpage
+\section{Algoritmos para memoria secundaria}
+
+En \'esta secci\'on vamos a considerar los casos en los cuales trabajamos con memoria secundaria. S\'i bien los problemas abstractos siguen siendo los mismos, el volumen de los datos hace que se encuentren necesariamente en memoria secundaria. 
+
+Las principales caracter\'isticas de \'estos dispositivos son:
+ \begin{enumerate}
+  \item El tiempo de acceso a los elementos es mucho mayor que en memoria principal (t\'ipicamente, $10^6$ veces m\'as lento). Por lo tanto, queremos minimizar la cantidad de veces que un elemento hace el viaje desde la memoria secundaria a la principal.
+  \item A su vez, el tiempo de acceso est\'a dominado por el posicionamiento (m\'as que la transferencia en s\'i misma), es decir, conviene acceder a bloques de datos simultaneamente. 
+  \item Muchas veces, el manejo de memoria por parte del SO (caching) puede ser de buena ayuda s\'i se usa un m\'etodo con buena ``localidad de referencia''.
+ \end{enumerate}
+
+\subsection{Ordenamiento para memoria secundaria}
+
+Introducimos el concepto de \textbf{Ordenaci\'on-Fusi\'on}:
+
+Consiste en hacer varias pasadas sobre el archivo, dividi\'endolo en bloques que entren en memoria interna, ordenando esos bloques y luego fusionando. Adem\'as, el acceso secuencial resulta apropiado para ese tipo de dispositivos. Se busca minimizar el n\'umero de pasadas sobre el archivo.
+Algunos m\'etodos:
+
+~
+
+\textbf{Fusi\'on M\'ultiple Equilibrada}: Supongamos que tenemos que ordenar los registros con valores: ``EJEMPLODEORDENACIONFUSION''.
+Los registros (o sus claves) est\'an en una cinta, y solo pueden ser accedidos secuencialmente. En memoria hay s\'olo espacio para un n\'umero constante pequeño de registros, pero disponemos de todas las cintas que necesitemos (vamos a suponer capacidad en memoria principal para 3 registros).
+El algoritmo se desarrolla en varias pasadas:
+% TODO: agregar imagenes mostrando el progreso del algoritmo para mayor claridad.
+ \begin{itemize}
+  \item Mientras haya elementos en la cinta de entrada. Para i desde 1 hasta 3, hacer: leer 3 registros a la vez y escribirlos, ordenados, en la cinta i.
+  \item Mientras haya bloques de 3 en las 3 primeras cintas, hacer: Fusionar los primeros bloques de cada cinta, armando un bloque de 9 (cada bloque en las cintas 1 a 3 ten\'ia longitud 3) en las cintas 4, 5 y 6 alternadamente.
+  \item Etcetera.
+ \end{itemize}
+
+ Complejidad (N registros, memoria interna de tamaño M, fusiones a P v\'ias): La primera pasada produce aprox. N/M bloques ordenados. Se hacen fusiones a P v\'ias en cada paso posterior, lo que requiere aprox. $log_P(N/M)$ pasadas.
+ Por ejemplo: para un archivo de 200 millones de palabras, con capacidad en memoria para 1 millon de palabras, y 4 v\'ias, no se requiere m\'as de 5 pasadas.
+
+~
+
+\textbf{Selecci\'on por sustituci\'on}: La idea en \'este m\'etodo es usar una Cola de Prioridad de tamaño M para armar bloques, ``pasar'' los elementos a trav\'es de una CP escribiendo siempre el m\'as pequeño y sustituyendolo por el siguiente. Pero, si el nuevo es menor que el que acaba de salir, lo marcamos como si fuera mayor, hasta que alguno de esos nuevos llegue al primer lugar de la CP.
+
+~
+
+\textbf{Fusi\'on Polif\'asica}
+
+\subsection{B\'usqueda para memoria secundaria}
+
+\textbf{Acceso Secuencial Indexado (ISAM)}
+
+\textbf{Arboles B}
+
+\textbf{Hashing Extensible}
+
+\newpage
 \section{Compresi\'on}
 \subsection{Codificaci\'on por longitud de series}
 
