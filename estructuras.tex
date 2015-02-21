@@ -248,8 +248,30 @@ Las rotaciones son operaciones locales en un \'arbol de b\'usqueda que cambian l
  \caption*{\newline \footnotesize Si nos imaginamos la rotaci\'on como bolillas e hilos, ''tirar\'iamos`` $y$ hacia arriba a la izquierda, haciendo que $x$ baje y quede a la altura del hijo izquierdo de $y$. Luego, como el hijo izquierdo de $y$ se encontraba en el sub-\'arbol derecho de $x$, sera mas grande que $x$, por lo que lo podremos asignar como hijo derecho de $x$.}
 \end{SCfigure}
 
+\subsubsection{Recorrido de \'arboles}
 
-%Falta ver inorder, preorder y postorder
+El recorrido de \'arboles, en ingles \textit{Tree traversal}, se refiere al proceso de visitar de manera sistem\'atica, exactamente una vez, a cada nodo de un \'arbol. Tales recorridos est\'an clasificados en el orden en el cual son visitados los nodos:
+
+\textbf{Preorden (o ``preorder'')}: (ra\'iz, izquierdo, derecho). Comenzando con el nodo ra\'iz:
+\begin{itemize}
+ \item Visitar la raiz.
+ \item Recorrer el sub\'arbol izquierdo en preorden.
+ \item Recorrer el sub\'arbol derecho en preorden.
+\end{itemize}
+
+\textbf{Inorden (o ``inorder'')}:  (izquierdo, ra\'iz, derecho). Comenzando con el nodo ra\'iz:
+\begin{itemize}
+ \item Recorrer el sub\'arbol izquierdo en inordern.
+ \item Visitar la raiz.
+ \item Recorrer el sub\'arbol derecho en inorden.
+\end{itemize}
+
+\textbf{Postorden (o ``postorder'')}:  (izquierdo, derecho, ra\'iz). Comenzando con el nodo ra\'iz:
+\begin{itemize}
+ \item Recorrer el sub\'arbol izquierdo en preorden.
+ \item Recorrer el sub\'arbol derecho en preorden.
+ \item Visitar la raiz.
+\end{itemize}
 
 \subsubsection{Complejidades}
 
