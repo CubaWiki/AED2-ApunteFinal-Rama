@@ -199,10 +199,6 @@ La estrategia general para eliminar un nodo $z$ de un \'arbol binario de b\'usqu
  \item Si $z$ tiene dos hijos, entonces encontraremos el m\'inimo $y$ en el sub-\'arbol derecho de $z$ (es decir, su sucesor), para tomar la posici\'on de $z$ en el \'arbol. Como $y$ era el m\'inimo del sub-\'arbol derecho de $z$, $y.izq$ sera $NIL$ y si $y$ tiene un hijo izquierdo lo elevaremos al padre de $y$. Luego, con $y$ libre hijos, lo reemplazaremos por $z$ y le asignaremos los sub-\'arboles derecho e izquierdo, como hijos de $y$. Esto mismo se puede hacer si tomamos como $y$ el m\'aximo del sub-\'arbol izquierdo de $z$.
 \end{itemize}
 
-\subsubsection{Factor de balanceo}
-
-Definimos el  \textbf{factor de balanceo} (FdB) de un nodo $x$ en un \'arbol como: $$FdB(x) = h(izq(x)) - h(der(x))$$ donde $izq$ y $der$ son los respectivos sub\'arboles de $x$, y $h$ es la altura de esos \'arboles.
-
 \subsubsection{Balanceo perfecto}
 
 Vimos que los ABB funcionan razonablemente bien en el caso promedio, pero no dan garant\'ias. Todos los algoritmos que vimos tienen un peor caso lineal. En \'este sentido, los arreglos tambi\'en son lineales en el peor caso, pero ocupan menos memoria.
