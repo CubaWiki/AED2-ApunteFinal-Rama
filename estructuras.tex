@@ -459,14 +459,16 @@ Durante la inserci\'on cada vez que encontremos un 3-nodo $x$ empujaremos al nod
 
 \subsubsection{Eliminaci\'on en Arboles 234}
 
-Para la eliminacion, en primer lugar buscaremos la clave a eliminar, si se encuentra en una hoja la eliminaremos y si es un nodo interno una vez encontrada la eliminaremos y buscaremos con la siguiente clave mas alta (que se encontrar\'a en un nodo hoja). Durante la eliminacion se traeran claves desde el padre o los hermanos de forma tal de asegurarnos de al menos tener dos claves en el nodo donde se efectuara la eliminacion (o de donde obtendremos el reemplazo), de cierta forma estaremos haciendo una estrategia inversa a la inserci\'on donde simplemente empujabamos las claves.
+Para la eliminacion, en primer lugar buscaremos la clave a eliminar. Si la clave se encuentra en una hoja la removeremos del \'arbol y si es un nodo interno la ``eliminaremos'' reemplazandola con la siguiente clave mas alta (que se encontrar\'a en un nodo hoja).
+Durante la eliminacion se traeran claves desde el padre o los hermanos de forma tal de asegurarnos de tener al menos  dos claves en el nodo donde se efectuara la eliminacion (o de donde obtendremos el reemplazo).
+De cierta forma estaremos haciendo una estrategia inversa a la inserci\'on donde simplemente empujabamos las claves.
 
 ~
 
-A medida que busquemos la clave a eliminar o su reemplazo, nos encontraremos en nodos que contengan solo una clave que deberemos lograr que tengan dos. Para lograr esto tendremos distintas estrategias seg\'un los posibles tres casos en donde nos encontremos:
+A medida que busquemos la clave a eliminar o su reemplazo, nos encontraremos en nodos que contengan solo una clave que deberemos lograr que tengan dos (para que al remover alguna de ellas, no nos quede un nodo vacio). Para lograr esto tendremos distintas estrategias seg\'un los posibles tres casos en donde nos encontremos:
 
 \begin{enumerate}
- \item Intenta robar una clave de los hermanos inmediatamente adyacentes. Si alguno de sus hermanos tiene mas de una clave ejecutara una rotaci\'on para obtenerlo.
+ \item Intentar robar una clave de los hermanos inmediatamente adyacentes. Si alguno de sus hermanos tiene mas de una clave ejecutara una rotaci\'on para obtenerlo.
  \item Si no hay hermano adyacente al que podamos robarle una clave, robaremos una clave al padre (esto sera posible al menos que sea la raiz) y fusionaremos la misma con el hermano siguiente u anterior (dependiendo de la desigualdad) formando un 3-nodo.
  \item Si no hay hermano adyacente al que podamos robarle una clave, el padre es la ra\'iz y tiene solo una clave, entonces fusionaremos en un 3-nodo los hermanos y la ra\'iz, obteniendo as\'i un nuevo 3-nodo ra\'iz. Este sera el \'unico caso en donde la altura del \'arbol se ver\'a disminuida en una unidad.
 \end{enumerate}
@@ -481,6 +483,20 @@ Mostraremos los tres casos mediante un ejemplo al cual se le remover\'a la ra\'i
 Como queremos remover el $40$, el objetivo sera reemplazarlo por el $42$ que se encuentra en una de las hojas del \'arbol. Una vez parados en el 1-nodo que contiene la clave $50$, veremos que aplica el tercer caso ya que el padre es la ra\'iz, y el \'unico hermano inmediato tiene solo una clave, por lo que haremos una fusi\'on como se aprecia en la segunda figura. Luego descenderemos por la rama dirigida hacia el 1-nodo que contiene el $43$, veremos que en esta instancia el primer caso es el que se ajusta, por lo cual realizaremos una rotaci\'on para terminar con un 2-nodo como se aprecia en la tercera figura. Finalmente en la tercera figura habremos descendido por el nodo que contiene a $42$ pero todav\'ia no podremos usarlo para reemplazar a $40$ ya que es un 1-nodo. En esta situaci\'on el caso que se ajustara ser\'a el segundo, ya que el \'unico hermano inmediato es el $47$, por lo que bajaremos el $43$ y lo fusionaremos con el $47$, llegando as\'i a la cuarta figura en donde podremos eliminar la clave de 
 la ra\'iz y 
 reemplazarlo por el $42$.
+
+\subsubsection{Complejidades}
+
+Supongamos un \'Arbol 2-3-4 con altura $d$, entonces es facil ver que dicho \'arbol tiene entre $2^d$ y $4^d$ hojas, por lo tanto la cantidad de nodos totales (lo llamaremos $n$) es $n \geq 2^{d+1} -1$.
+Luego, aplicando logaritmo a ambos lados y dando vuelta la desigualdad, $d \in O(log\ n)$.
+
+Ahora, el tiempo que tardamos en visitar cada nodo $\in O(1)$. Entonces, las operaciones sobre el \'arbol tienen como costo la cantidad de nodos que visitamos, o sea: $O(d) = O(log\ n)$.
+
+\begin{itemize}
+ \item \textbf{B\'usqueda} $O(lg(n))$
+ \item \textbf{Inserci\'on} $O(lg(n))$
+ \item \textbf{Borrado} $O(lg(n))$
+ \item \textbf{Espacio} $O(n)$
+\end{itemize}
 
 \subsection{Splay trees}
 
