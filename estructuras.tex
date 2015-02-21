@@ -199,7 +199,48 @@ La estrategia general para eliminar un nodo $z$ de un \'arbol binario de b\'usqu
  \item Si $z$ tiene dos hijos, entonces encontraremos el m\'inimo $y$ en el sub-\'arbol derecho de $z$ (es decir, su sucesor), para tomar la posici\'on de $z$ en el \'arbol. Como $y$ era el m\'inimo del sub-\'arbol derecho de $z$, $y.izq$ sera $NIL$ y si $y$ tiene un hijo izquierdo lo elevaremos al padre de $y$. Luego, con $y$ libre hijos, lo reemplazaremos por $z$ y le asignaremos los sub-\'arboles derecho e izquierdo, como hijos de $y$. Esto mismo se puede hacer si tomamos como $y$ el m\'aximo del sub-\'arbol izquierdo de $z$.
 \end{itemize}
 
-%TODO: Factor de Balanceo.
+\subsubsection{Factor de balanceo}
+
+Definimos el  \textbf{factor de balanceo} (FdB) de un nodo $x$ en un \'arbol como: $$FdB(x) = h(izq(x)) - h(der(x))$$ donde $izq$ y $der$ son los respectivos sub\'arboles de $x$, y $h$ es la altura de esos \'arboles.
+
+\subsubsection{Balanceo perfecto}
+
+Vimos que los ABB funcionan razonablemente bien en el caso promedio, pero no dan garant\'ias. Todos los algoritmos que vimos tienen un peor caso lineal. En \'este sentido, los arreglos tambi\'en son lineales en el peor caso, pero ocupan menos memoria.
+
+Pero si miramos en detalle, veremos que los algoritmos m\'as bien son $O(h)$, donde $h$ es la altura del \'arbol. Entonces, s\'i distribuy\'esemos los nodos del ABB de manera ``pareja'', de manera tal que el \'arbol tuviese la m\'inima altura y estuviese siempre parejo, obtendriamos unas complejidades mucho mejores.
+
+~
+
+\textbf{Teorema}: un \'arbol binario perfectamente balanceado de $n$ nodos (no nil, es decir $n>0$) tiene altura $\lfloor log_2 n \rfloor + 1$.
+
+~
+
+Supongamos que cada nodo tiene 0 o 2 hijos. Llamemos $n_i$ a la cantidad de nodos internos (m\'as la raiz) y $n_h$ a la cantidad de hojas.
+
+~
+
+\textit{Propiedad}: Si $n > 1$, $n_h = n_i + 1$
+
+El caso base es trivial. $n = 3$ (raiz con dos hijos) $\implies n_h = 2 \land n_i = 1$ (la raiz). Entonces se cumple la propiedad.
+
+Para el paso inductivo, supongamos que vale para $n_h$ y $n_i$. Ahora, agreguemos un nivel al arbol. Las hojas se duplican, $n_h' = 2n_h$ y los nodos internos crecen en tantos como antes ten\'ia hojas:
+$n_i' = n_i + n_h$, por hipotesis inductiva: $n_i' = (n_h - 1) + n_h = 2n_h - 1 = n_h' - 1$. $\square$
+
+\textit{Corolario}: al menos la mitad de los nodos son hojas.
+
+~
+
+Luego, sabemos que (1) $n' = n_i' + n_h'$ y (prop) s\'i $n > 1$, $n_h = n_i + 1$. Imaginemos que podamos las hojas: nos queda un \'arbol (llamemos $n$ a la cantidad de nodos) con las mismas propiedades, 1 menos de altura (llam\'emosla $h$), la mitad de los nodos y ahora todas las ramas de la misma longitud. ¿Cu\'antas veces m\'as podemos podarlo? O dicho de otra forma: ¿Cu\'antos niveles se pueden agregar desde el comienzo para tener un \'arbol de altura $h$?
+
+Al agregar un nivel, la cantidad de nodos se duplica, porque $n_h' = n_i' + 1$, pero $n_i' = n$, entonces $n_h' = n +1$. Reemplazando en (1) nos queda que $n' = n + (n + 1) + 1$. Entonces $n = 1 $.$ 2 \dots 2 = 2^h = 2^{log_2 n}$.
+Por ende, $h = log_2n$ y la altura del \'arbol era $h+1$. $\square$
+
+~
+
+Conclusi\'on, s\'i tuviesemos \'arboles perfectamente balanceados todas nuestras operaciones ser\'ian $O(log\ n)$. Pero mantener un balanceo perfecto es muy costoso, por lo que no es factible.
+Sin embargo, podemos tener un balanceo ``casi'' perfecto, haciendo que todas las ramas tengan ``casi'' la misma longitud, donde ese ``casi'' lo vamos a interpretar de la siguiente manera: la longitud entre dos ramas cualesquiera de un nodo difiere a lo sumo en 1.
+
+\'Esta clase de ABBs, son los llamads \'arboles AVL.
 
 \subsubsection{Rotaciones}
 
@@ -212,7 +253,7 @@ Las rotaciones son operaciones locales en un \'arbol de b\'usqueda que cambian l
 \end{SCfigure}
 
 
-%Falta ver inorder
+%Falta ver inorder, preorder y postorder
 
 \subsubsection{Complejidades}
 
