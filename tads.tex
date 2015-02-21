@@ -184,9 +184,21 @@ Si los elementos de un conjunto son numerables podremos realizar una construcci\
 
 Una vez definido un orden bien fundado sobre el conjunto podemos hablar del \textbf{principio de inducci\'on bien fundada}. Para tener esto ultimo $\prec$ debe definir un buen orden sobre el conjunto $A$, $P$ debe ser un predicado sobre $A$ y $P$ debe cumplir
 
-\begin{itemize}
+\begin{enumerate}
  \item $P$ debe valer para todos los elementos m\'inimos de $A$ de acuerdo a $\prec$, es decir $P$ debe valer para todos los elementos base.
- \item Se debe cumplir que $(\forall a\in A)[(\forall b \in A | b \prec a) P(b) \implies P(a)]$. Es decir que se debe cumplir que para todo $a$ cuya valuaci\'on $P(a)$ es verdadera, las valuaciones de todos sus ``predecesores'' $P(b)$ (en donde predecesores son aquellos que cumplen $b \prec a$), tambi\'en valen.
+ \item Se debe cumplir que $(\forall a\in A)[(\forall b \in A | b \prec a) P(b) \implies P(a)]$. Es decir, que para todo $a \in A$, cuando vale $P(b)$ para todos los $b \in A | b \prec a$, entonces vale $P(a)$.
+\end{enumerate}
+
+entonces $(\forall\ a \in A)\ P(a)$
+
+~
+
+\textbf{Demostraci\'on}:
+\begin{itemize}
+ \item Supongamos que $\prec$ define un orden bien fundado sobre $A$, que P cumple (1) y (2) pero que no vale para todos los elementos de $A$.
+ \item Como $\prec$ es un orden bien fundado, el conjunto $\{a \in A | \lnot P(a)\}$ tiene un elemento m\'nimo, que llamaremos $m$.
+ \item Si $m$ es un m\'inimo para $A$, entonces contradice (1).
+ \item Si no lo es, entonces tiene predecesores. Como $m$ era el m\'inimo elemento que no cumpl\'ia $P$, todos sus predecesores s\'i lo cumplen. Pero eso contradice (2). $\square$
 \end{itemize}
 
 
