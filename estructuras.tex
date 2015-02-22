@@ -566,7 +566,7 @@ Las dem\'as operaciones del \'arbol usaran la operaci\'on de splay de formas sim
 \subsection{Tries}
 Los Tries son arboles (K+1)-arios para alfabetos de K elementos, o lo que es lo mismo, cada nodo puede tener a lo sumo K+1 hijos. Su nombre viene de la palabra ``Re\textbf{trie}ve''.
 
-Motivaciones:
+\subsubsection{Motivaciones}
 \begin{itemize}
  \item Tiempo menos dependiente de la cantidad de claves.
  \item Rendimiento razonable en el peor caso.
@@ -579,9 +579,7 @@ De esta forma, se busca no hacer comparaciones de claves completas, sino de part
 
 Haciendo ciertas suposiciones, la b\'usqueda o inserci\'on en un \'arbol de \textit{n} claves de \textit{b} bits necesita en promedio \textit{log n} comparaciones de clave completa, y \textit{b} en el peor caso.
 
-~
-
-Algunas propiedades:
+\subsubsection{Propiedades}
 \begin{itemize}
  \item La estructura del trie es la misma independientemente del orden en el que se insertan las claves.
  \item A lo sumo una comparaci\'on de clave completa (cuando llega a una hoja).
@@ -592,12 +590,19 @@ Algunas propiedades:
  % trie-simple.png: 315x378 pixel, 72dpi, 11.11x13.34 cm, bb=0 0 315 378
 \end{center}
 
-~
-
-Desventajas:
+\subsubsection{Desventajas}
 \begin{itemize}
  \item Algunas implementaciones pueden requerir mucha memoria.
  \item Las operaciones sobre las componentes de las claves pueden no ser faciles, o ser muy ineficiente en algunos lenguajes de alto nivel.
+\end{itemize}
+
+\subsubsection{Complejidades}
+
+Para un Trie construido a partir de $n$ claves de $b$ bits:
+
+\begin{itemize}
+ \item \textbf{B\'usqueda} $O(b)$, promedio (haciendo ciertas suposiciones) $\Theta(log\ n)$.
+ \item \textbf{Inserci\'on} $O(b)$, promedio (haciendo ciertas suposiciones) $\Theta(log\ n)$.
 \end{itemize}
 
 \subsubsection{Tries compactos}
