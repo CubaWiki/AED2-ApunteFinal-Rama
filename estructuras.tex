@@ -504,15 +504,15 @@ Este tipo de \'arbol tiene su inspiraci\'on en los ABB \'optimos. Los ABB \'opti
 
 ~
 
-En estos \'arboles, los cuales utilizan exactamente la misma representaci\'on interna que un ABB com\'un sin ning\'un agregado, todas las operaciones toman $O(lg(n))$ en promedio. Cuando nos referimos a en promedio no nos referimos al promedio de los ABB o al Quicksort, no hay aleatorizaci\'on en los Splay Trees. De hecho, una operaci\'on simple puede tomar $\Theta(n)$ en el peor caso en donde $n$ es la cantidad de elementos en el \'arbol. Lo que podemos garantizar entonces es que cualquier secuencia de $k$ operaciones, comenzando con un \'arbol vac\'io, y con el \'arbol no creciendo mas que $>n$ elementos, entonces la secuencia a lo sumo toma $O(k\cdot lg(n))$ en el peor caso. Esto significa que podremos tener algunas pocas operaciones lentas pero la mayor\'ia ser\'an mucho mas r\'apidas, por lo que tendremos un balance en promedio de $lg(n)$ o mejor para cada operaci\'on. O dicho m\'as precisamente, los costos amortizados por operaci\'on son de $lg(n)$.
+En estos \'arboles, los cuales utilizan exactamente la misma representaci\'on interna que un ABB com\'un sin ning\'un agregado, todas las operaciones toman $O(lg(n))$ en promedio. Cuando nos referimos a en promedio no nos referimos al promedio de los ABB o al Quicksort, no hay aleatorizaci\'on en los Splay Trees. De hecho, una operaci\'on simple puede tomar $\Theta(n)$ en el peor caso en donde $n$ es la cantidad de elementos en el \'arbol. Lo que podemos garantizar entonces es que cualquier secuencia de $k$ operaciones, comenzando con un \'arbol vac\'io, y con el \'arbol no creciendo mas que $n$ elementos, entonces la secuencia a lo sumo toma $O(k\cdot lg(n))$ en el peor caso. Esto significa que podremos tener algunas pocas operaciones lentas pero la mayor\'ia ser\'an mucho mas r\'apidas, por lo que tendremos un balance en promedio de $lg(n)$ o mejor para cada operaci\'on. O dicho m\'as precisamente, los costos amortizados por operaci\'on son de $lg(n)$.
 
 ~
 
-Otra ventaja en cuanto a otras estructuras es que los Splay Trees son mucho mas f\'aciles de programar y adem\'as otorgan acceso mas r\'apido a los datos recientemente accedidos, es decir que de cierta forma los Splay Trees tienen ''memoria`` en este aspecto. Esto \'ultimo puede darnos una performance mayor en comparaci\'on a los \'arboles 234 si tenemos un \'arbol grande y solamente accedamos algunos de los elementos ignorando la mayoria de ellos, ya que como estaremos recurriendo frecuentemente a los mismos elementos los accesos en el Splay Tree se dar\'an en $O(1)$.
+Otra ventaja en cuanto a otras estructuras es que los Splay Trees son mucho mas f\'aciles de programar y adem\'as otorgan acceso mas r\'apido a los datos recientemente accedidos, es decir que de cierta forma los Splay Trees tienen ``memoria'' en este aspecto. Esto \'ultimo puede darnos una mayor performance en comparaci\'on a los \'Arboles 234 si tenemos un \'arbol grande y solamente accedemos a algunos de los elementos ignorando la mayoria de ellos, ya que como estaremos recurriendo frecuentemente a los mismos elementos los accesos en el Splay Tree se dar\'an en $O(1)$.
 
 ~
 
-Los Splay Trees, al igual que otros \'arboles balanceados, mantienen su balance mediante rotaciones. El balance de los Splay Trees no es perfecto, es por eso que si bien no nos garantizan una cota de $lg(n)$ en los peores casos los algoritmos utilizados para mantener cierto balance son mucho mas sencillos y r\'apidos que ene estructuras de datos balanceadas mas r\'igidamente. Adem\'as, no nos garantizaran una cota en el peor caso, pero si nos garantizan la cota en la mayor\'ia de las operaciones, lo que en la practica y para la mayor\'ia de los casos los hace igualmente buenos.
+Los Splay Trees, al igual que otros \'arboles balanceados, mantienen su balance mediante rotaciones. El balance de los Splay Trees no es perfecto, es por eso que si bien no nos garantizan una cota de $lg(n)$ en los peores casos los algoritmos utilizados para mantener cierto balance son mucho mas sencillos y r\'apidos que en estructuras de datos balanceadas mas r\'igidamente. Adem\'as, no nos garantizaran una cota en el peor caso, pero si nos garantizan la cota en la mayor\'ia de las operaciones, lo que en la practica y para la mayor\'ia de los casos los hace igualmente buenos.
 
 ~
 
@@ -525,21 +525,21 @@ Los Splay Trees, al igual que otros \'arboles balanceados, mantienen su balance 
 
 \subsubsection{B\'usqueda}
 
-Dada una clave $k$, empezaremos a buscar la clave de la misma manera que lo hacemos en un ABB hasta que encontremos la clave $k$ o hasta llegar a un $NIL$ (en el caso de que la clave no sea existente). Sea $x$ el nodo en donde la b\'usqueda termino, contenga o no $k$, elevaremos $x$ a trav\'es de una secuencia de rotaciones, de forma tal que $x$ se vuelva la ra\'iz, llamaremos a esta operaci\'on \textbf{splay}. Las razones por las cuales haremos esto ser\'an, en primer lugar, para mantener los elementos mas consultados en la ra\'iz o cerca de ella, de forma tal de que la consulta de estos sea verdaderamente r\'apida la pr\'oxima vez, y en segundo lugar, como este tipo de \'arboles puede desbalancearse (lo que es usualmente un estado temporal), si nos encontramos en un caso en donde exploremos hasta la profundidad del mismo, las rotaciones evitaran que esto pase de nuevo.
+Dada una clave $k$, empezaremos a buscar la clave de la misma manera que lo hacemos en un ABB hasta que encontremos la clave $k$ o hasta llegar a un $NIL$ (en el caso de que la clave no sea existente). Sea $x$ el nodo en donde la b\'usqueda termino, contenga o no $k$, elevaremos $x$ a trav\'es de una secuencia de rotaciones, de forma tal que $x$ se vuelva la ra\'iz, llamaremos a esta operaci\'on \textbf{splay}. Las razones por las cuales haremos esto ser\'an, en primer lugar, para mantener los elementos mas consultados en la ra\'iz o cerca de ella, de forma tal de que la consulta de estos sea verdaderamente r\'apida la pr\'oxima vez, y en segundo lugar, como este tipo de \'arboles puede desbalancearse (lo que es usualmente un estado temporal), si nos encontramos en un caso en donde exploramos hasta la profundidad del mismo, las rotaciones evitaran que esto pase de nuevo.
 
 \newpage
 
 Las rotaciones se daran en tres casos:
 
 \begin{enumerate}
- \item \textbf{Zig-zag} $x$ es el hijo izquierdo de un hijo derecho ($LR$) o su caso espejo ($RL$). Siendo $y$ el padre de $x$ y $z$ su abuelo, para resolver este caso haremos una rotaci\'on hacia la izquierda entre $y$ y $x$ y luego una rotaci\'on hacia la derecha entre $x$ y $z$. En el caso espejo realizaremos una rotaci\'on hacia la derecha y luego una hacia la izquierda, dejando a $x$ como la raiz del sub-\'arbol.
+ \item \textbf{Zig-zag} $X$ es el hijo izquierdo de un hijo derecho ($LR$) o su caso espejo ($RL$). Siendo $P$ el padre de $X$ y $G$ su abuelo, para resolver este caso haremos una rotaci\'on hacia la izquierda entre $P$ y $X$ y luego una rotaci\'on hacia la derecha entre $X$ y $G$. En el caso espejo realizaremos una rotaci\'on hacia la derecha y luego una hacia la izquierda, dejando a $X$ como la raiz del sub-\'arbol.
  
  \begin{SCfigure}[1][ht!]
  \centering
  \includegraphics[width=0.5\textwidth]{graficos/ZigZagSplay.pdf}
  \end{SCfigure}
  
- \item \textbf{Zig-zig} Este caso tiene una diferencia muy sutil con el caso anterior. Si $x$ es el hijo izquierdo de un hizo izquierdo ($LL$) o su caso espejo ($RR$). Siendo $y$ el padre de $x$ y $z$ su abuelo, para resolver este caso haremos primero una rotaci\'on entre $y$ y $z$ hacia la derecha, y luego ejecutaremos otra rotaci\'on hacia la derecha entre $x$ e $y$, dejando a $x$ como la ra\'iz del sub-\'arbol.
+ \item \textbf{Zig-zig} Este caso tiene una diferencia muy sutil con el caso anterior. Si $X$ es el hijo izquierdo de un hizo izquierdo ($LL$) o su caso espejo ($RR$). Siendo $P$ el padre de $X$ y $G$ su abuelo, para resolver este caso haremos primero una rotaci\'on entre $P$ y $G$ hacia la derecha, y luego ejecutaremos otra rotaci\'on hacia la derecha entre $X$ y $P$, dejando a $X$ como la ra\'iz del sub-\'arbol.
  
  \begin{SCfigure}[1][ht!]
  \centering
@@ -548,14 +548,14 @@ Las rotaciones se daran en tres casos:
  
  ~
  
- \item \textbf{Zig} Este es un caso final que se origina al tener a $x$ a una distancia original impar de la ra\'iz en el momento del acceso. Para solucionar esto, si $x$ es el hijo izquierdo haremos una rotaci\'on hacia la derecha entre $x$ y la ra\'iz, o si $x$ es el hijo derecho haremos una rotaci\'on hacia la izquierda.
+ \item \textbf{Zig} Este es un caso final que se origina al tener a $X$ a una distancia original impar de la ra\'iz en el momento del acceso. Para solucionar esto, si $X$ es el hijo izquierdo haremos una rotaci\'on hacia la derecha entre $X$ y la ra\'iz, o si $X$ es el hijo derecho haremos una rotaci\'on hacia la izquierda.
 \end{enumerate}
 
-Los casos $1$ y $2$ se repetir\'an hasta que $x$ sea la ra\'iz del \'arbol o un hijo de la ra\'iz, lo que dar\'a lugar al caso $3$. En los casos de tengamos un \'arbol totalmente degenerado hacia un lado (de forma tal que sea equivalente a una lista), la b\'usqueda nos costara tiempo $O(n)$ pero las rotaciones Zig-zig lograr\'an acortar la altura del \'arbol a la mitad, de forma tal de que las siguientes operaciones de consulta sean mucho mas eficientes. Esto ultimo se logra gracias a la forma de la rotaci\'on Zig-zig, la cual rota el abuelo y su padre antes que el hijo y su padre, si esto si hiciese en orden inverso obtendr\'iamos un \'arbol totalmente degenerado hacia la direcci\'on opuesta original. 
+Los casos $1$ y $2$ se repetir\'an hasta que $X$ sea la ra\'iz del \'arbol o un hijo de la ra\'iz, lo que dar\'a lugar al caso $3$. En los casos donde tengamos un \'arbol totalmente degenerado hacia un lado (de forma tal que sea equivalente a una lista), la b\'usqueda nos costara tiempo $O(n)$ pero las rotaciones Zig-zig lograr\'an acortar la altura del \'arbol a la mitad, de forma tal de que las siguientes operaciones de consulta sean mucho mas eficientes. Esto ultimo se logra gracias a la forma de la rotaci\'on Zig-zig, la cual rota el abuelo y su padre antes que el hijo y su padre, si esto si hiciese en orden inverso obtendr\'iamos un \'arbol totalmente degenerado hacia la direcci\'on opuesta original. 
 
 \subsubsection{Max/Min, Inserci\'on y Eliminaci\'on}
 
-Las dem\'as operaciones del \'arbol usaran la operaci\'on de splay de formas similares ya que es importante para el Splay Tree ejecutar un splay cada vez que realizamos una operaci\'on sobre el mismo, ya que de esta forma el \'arbol se mantiene actualizado y balanceado segun las ultimas operaciones.
+Las dem\'as operaciones del \'arbol usaran la operaci\'on de splay de formas similares ya que es importante para el Splay Tree ejecutar un splay cada vez que realizamos una operaci\'on sobre el mismo. De esta forma, el \'arbol se mantiene actualizado y balanceado segun las ultimas operaciones.
 
 \begin{itemize}
  \item En el caso de \textbf{max/min}, una vez encontrado la max/min clave del \'arbol, haremos un splay del nodo que lo contiene.
