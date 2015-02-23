@@ -108,22 +108,25 @@ Cuando decimos que el tiempo de un algoritmo es $\Omega(g(n))$, significa que no
 \end{enumerate}
 \subsubsection{Conjunto / Notaci\'on Asint\'otica No-Ajustada $o$}
 
-La cota superior asint\'otica provista por $O$ puede o no puede ser ajustada asint\'oticamente, pero la cota $2n = O(n^2)$ no lo es. Usaremos la notaci\'on $o$ (o chica) para definir una cota superior que no sea ajustada asint\'oticamente. Para una funci\'on dada $g(n)$, definiremos formalmente a $o(g(n))$ como el conjunto de funciones tales que:
+La cota superior asint\'otica provista por $O$ puede o no puede ser ajustada asint\'oticamente, por ejemplo la cota $2n = O(n^2)$ no lo es. Usaremos la notaci\'on $o$ (o chica) para definir una cota superior que no sea ajustada asint\'oticamente. Para una funci\'on dada $g(n)$, definiremos formalmente a $o(g(n))$ como el conjunto de funciones tales que:
 
 \begin{equation*}
- o(g(n)) = \{ f(n) : (\exists\ c, n_0 \in \Re_{>0}) \ (\forall n\ |\ n_0 \leq n)\ 0 \leq f(n) < c \cdot g(n) \}
+ o(g(n)) = \{ f(n) : (\forall c \in \Re_{>0})(\exists\ n_0 \in \Re_{>0}) \ (\forall n\ |\ n_0 \leq n)\ 0 \leq f(n) < c \cdot g(n) \}
 \end{equation*}
 
 ~
 
-Las definiciones de $O$ (o grande) y $o$ (o chica) son sumamente similares. La diferencia principal yace en que $f(n) = O(g(n))$, la cota $0 \leq f(n) \leq c \cdot g(n)$ se mantiene para alguna constante $c > 0$ mientras que en $f(n) = o(n)$, la cota $0 \leq f(n) < c \cdot g(n)$ se mantiene para todas las constantes $c > 0$. Intuitivamente, en la notaci\'on $o$, la funci\'on $f(n)$ se vuelve asint\'oticamente parecida a $g(n)$ a medida que $n$ tiende a infinito.
+Las definiciones de $O$ (o grande) y $o$ (o chica) son sumamente similares. La diferencia principal yace en que $f(n) = O(g(n))$, la cota $0 \leq f(n) \leq c \cdot g(n)$ se mantiene para alguna constante $c > 0$ mientras que en $f(n) = o(n)$, la cota $0 \leq f(n) < c \cdot g(n)$ se mantiene para todas las constantes $c > 0$.
+En este sentido, la notaci\'on $o$ es m\'as fuerte que la notaci\'on $O$: s\'i $f(n) \in o(g(n)) \implies f(n) \in O(g(n))$, pero no vale la vuelta.
+
+Intuitivamente, en la notaci\'on $o$, la funci\'on $f(n)$ es dominada asint\'oticamente por $g(n)$ a medida que $n$ tiende a infinito, para cualquier constante $c$.
 
 \subsubsection{Conjunto / Notaci\'on Asint\'otica No-Ajustada $\omega$}
 
 Anal\'ogicamente, $\omega$ es a $\Omega$ como $o$ es a $O$. Usaremos la notaci\'on $\omega$ para referirnos a una cota inferior que no sea ajustada asint\'oticamente. Una forma de definirla en funci\'on a $o$ sera que $f(n) \in \omega(g(n))$ si y solo si $g(n) \in o(f(n))$. De todas formas formalmente definiremos a $\omega$ como el conjunto de funciones tal que dada una funci\'on $g(n)$ es:
 
 \begin{equation*}
- \omega(g(n)) = \{ f(n) : (\exists\ c n_0 \in \Re_{>0}) \ (\forall n\ |\ n_0 \leq n)\ 0 \leq c \cdot g(n) < f(n) \}
+ \omega(g(n)) = \{ f(n) : (\forall c \in \Re_{>0})(\exists\ n_0 \in \Re_{>0}) \ (\forall n\ |\ n_0 \leq n)\ 0 \leq c \cdot g(n) < f(n) \}
 \end{equation*}
 
 ~
@@ -134,13 +137,17 @@ A medida que $n$ tiende a infinito la relaci\'on entre $f(n)/g(n)$ se vuelve arb
 A continuaci\'on se listan las principales categorias de complejidad temporal, en orden creciente:
 \begin{enumerate}
  \item $O(1)$ \textbf{Complejidad constante}: es independiente de los datos de entrada.
- \item $O(lg(n))$ \textbf{Complejidad logar\'itmica}: suele aparecer en determinados algoritmos con iteraci\'on o recursi\'on (por ejemplo, b\'usqueda binaria). Todos los logaritmos, sea cual sea su base, son del mismo orden, por lo que se representan en cualquier base.
+ \item $O(lg\ lg\ n)$ \textbf{Complejidad sublogar\'itmica}
+ \item $O(lg\ n)$ \textbf{Complejidad logar\'itmica}: suele aparecer en determinados algoritmos con iteraci\'on o recursi\'on (por ejemplo, b\'usqueda binaria). Todos los logaritmos, sea cual sea su base, son del mismo orden, por lo que se representan en cualquier base.
+ \item $O(n^c)$ \textbf{Complejidad sublineal} ($0 < c < 1$)
  \item $O(n)$ \textbf{Complejidad lineal}: suele aparecer en bucles simples cuando la complejidad de las operaciones internas es constante o en algunos algoritmos con recursi\'on.
- \item $O(n*lg(n))$: en algunos algoritmos de ``Divide \& Conquer'' (por ejemplo, Mergesort).
+ \item $O(n \cdot lg\ n) = O(lg\ n!)$ \textbf{Complejidad lineal logar\'itmica}: en algunos algoritmos de ``Divide \& Conquer'' (por ejemplo, Mergesort).
  \item $O(n^2)$ \textbf{Complejidad cuadr\'atica}: aparece en bucles o recursiones doblemente anidados.
  \item $O(n^3)$ \textbf{Complejidad c\'ubica}: en bucles o recursiones triples.
  \item $O(n^k)$ \textbf{Complejidad polin\'omica} ($k \geq 1$).
  \item $O(2^n)$ \textbf{Complejidad exponencial}: suele aparecer en subprogramas recursivos que contengan dos o m\'as llamadas recursivas.
+ \item $O(n!)$ \textbf{Complejidad factorial}
+ \item $O(n^n)$ \textbf{Complejidad potencial exponencial}
 \end{enumerate}
 
 \newpage
