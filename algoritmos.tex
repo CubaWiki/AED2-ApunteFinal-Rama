@@ -239,7 +239,24 @@ Pero no siempre podemos suponer que el input proviene de una distribuci\'on unif
 
 Funcionara cuando tengamos claves peque\~nas en un rango, por ejemplo desde $0$ hasta $q-1$, en donde $q \in O(n)$. Tendremos un arreglo de $q$ colas, numeradas desde $0$ a $q-1$, y encolaremos cada elemento de forma tal que la clave $i$ vaya a la cola $i$. Una vez hecho esto concatenaremos las colas en orden, de forma tal que el fin de la cola $i$ concatenado con el siguiente de la cola $i+1$. El tiempo del algoritmo sera de $\Theta(q+n)$, tomara $\Theta(q)$ en inicializar y concatenar cada una de las colas y $\Theta(n)$  en poner cada uno de los elementos en las colas. Si $q \in O(n)$, el tiempo total sera de $\Theta(n)$, si esta condici\'on no se cumple deberemos utilizar algoritmos mas complicados para resolver esto.
 
-%Dibujin de ejemplo sobre esto?
+~
+
+\begin{algorithmic}[1]
+ \Function{bucketSort}{$A, q$}
+    \State $L = array\ of\ q\ empty\ lists$ \Comment{$O(q)$}
+    \ForAll{$i \in [0, |A|-1]$} \Comment{$O(n)$}
+      \State $L[A[i].key]$.append($A[i]$)
+    \EndFor
+    \State $output = []$
+    \ForAll{$i \in [0,q-1]$} \Comment{$O(q + n)$}
+      \ForAll{$j \in [0,|L[i]|]$} \Comment{$O(|L[i]|)$}
+	\State $output[i+j] = L[i][j]$
+      \EndFor
+    \EndFor
+ \EndFunction
+\end{algorithmic}
+
+~
 
 Bucket sort es estable, esto quiere decir que elementos con las mismas claves se obtendr\'an en el mismo orden en el que ingresaron luego de que el arreglo sea ordenado por sus claves. Insertion, selection, mergesort pueden ser hechos f\'acilmente estables, al igual que quicksort con una lista enlazada (la versi\'on con arreglo no lo es). Heapsort, por otro lado nunca es estable.
 
