@@ -39,7 +39,7 @@ Al contrario del paradigma funcional los datos en el paradigma imperativo son tr
 
 \subsubsection*{Par\'ametros que se modifican}
 
-El mapeo de los par\'ametros de las funciones del tipo en las operaciones del m\'odulo no siempre es uno. De hecho en el paradigma imperativo se acostumbra a modificar los par\'ametros como parte de respuesta del algoritmo y a devolver en el valor de retorno de la funci\'on, alg\'un estado que informe si la operaci\'on se completo de forma correcta o si hubo alg\'un problema. Esto nos brinda una mayor versatilidad a la hora de dise\~nar las interfaces, ya que una misma funci\'on puede devolver varios tipos de resultados sin necesidad de hacerlo mediante una tupla y adem\'as dar alguna informaci\'on acerca de la ejecuci\'on.
+El mapeo de los par\'ametros de las funciones del tipo en las operaciones del m\'odulo no siempre es uno a uno. De hecho en el paradigma imperativo se acostumbra a modificar los par\'ametros como parte de respuesta del algoritmo y a devolver en el valor de retorno de la funci\'on, alg\'un estado que informe si la operaci\'on se completo de forma correcta o si hubo alg\'un problema. Esto nos brinda una mayor versatilidad a la hora de dise\~nar las interfaces, ya que una misma funci\'on puede devolver varios tipos de resultados sin necesidad de hacerlo mediante una tupla y adem\'as dar alguna informaci\'on acerca de la ejecuci\'on.
 
 \subsection{Tipos disponibles}
 
@@ -59,7 +59,7 @@ Recordemos que en el paradigma imperativo todos los valores son pasados por refe
 
 \textbf{*} En el caso de los arreglos dimensionables y est\'aticos, se pasan por referencia, y en el caso de las tuplas, cada una de sus componentes se pasa por referencia o por copia seg\'un sea un tipo primitivo o no.
 
-\subsection{Asignaci\'on y alising}
+\subsection{Asignaci\'on y aliasing}
 
 La expresi\'on $A \gets B$ (siendo $A$ y $B$ variables de un mismo tipo), denota la asignaci\'on del valor $B$ a la variable $A$. Esto funciona del mismo modo que el pasaje de par\'ametros. Si $A$ y $B$ pertenecen a un tipo primitivo $A$ pasara a ser copia de $B$, y si no son tipos primitivos, luego de haber efectuado la asignaci\'on, $A$ y $B$ har\'an referencia a la misma estructura f\'isica, es decir $A$ sera un alias de $B$ y viceversa (de ah\'i el nombre).
 
@@ -85,7 +85,7 @@ Mediante el uso de esta funci\'on podremos establecer de forma clara el mapeo en
 
 \section{Metodolog\'ia de dise\~no}
 
-Nuestro objetivo es obtener un dise\~no jer\'arquico y modular, para realizar esto hay varias formas pero presentaremos un m\'etodo que tiene las nociones de los distintos niveles en la jerarqu\'ia. Cada uno de los niveles tendr\'a asociado un m\'odulo de abstracci\'on. Para ser m\'as precisos, habr\'a distintos tipos abstractos de datos que deberemos dise\~nar, a cada uno de ellos le corresponder\'a un m\'odulo de abstracci\'on. A grandes rasgos, el m\'etodo se compone de los siguientes pasos:
+Nuestro objetivo es obtener un dise\~no jer\'arquico y modular. Para realizar esto hay varias formas pero presentaremos un m\'etodo que tiene las nociones de los distintos niveles en la jerarqu\'ia. Cada uno de los niveles tendr\'a asociado un m\'odulo de abstracci\'on. Para ser m\'as precisos, habr\'a distintos tipos abstractos de datos que deberemos dise\~nar, a cada uno de ellos le corresponder\'a un m\'odulo de abstracci\'on. A grandes rasgos, el m\'etodo se compone de los siguientes pasos:
 
 \begin{itemize}
  \item Elecci\'on del tipo abstracto de datos a dise\~nar.
@@ -123,9 +123,9 @@ Cada m\'odulo de abstracci\'on est\'a compuesto por dos secciones: la \textbf{de
 
 \begin{itemize}
  \item \textbf{Especificaci\'on} Puede omitirse si es uno de los TADs provistos por la c\'atedra, o incluirse s\'olo los cambios si es una extensi\'on de un TAD ya conocido.
- \item \textbf{Interfaz} La cual contendr\'a los servicios exportados, \'ordenes de complejidad, aspectos de alising, efectos secundarios, etc. En definitiva, todo lo que el usuario necesite saber.
+ \item \textbf{Interfaz} La cual contendr\'a los servicios exportados, \'ordenes de complejidad, aspectos de aliasing, efectos secundarios, etc. En definitiva, todo lo que el usuario necesite saber.
  \item \textbf{Representaci\'on} Estructura interna, invariante, funci\'on de abstracci\'on y algoritmos.
- \item \textbf{Servicios usados} \'Ordenes de complejidad, aspectos de alising, etc. requeridos de los tipos de soporte que utilizamos en nuestro m\'odulo.
+ \item \textbf{Servicios usados} \'Ordenes de complejidad, aspectos de aliasing, etc. requeridos de los tipos de soporte que utilizamos en nuestro m\'odulo.
 \end{itemize}
 
 
@@ -139,11 +139,11 @@ Durante la redefinici\'on de aridades no debemos limitarnos a cambiar una operac
 
 \subsubsection{Servicios exportados / Operaciones exportadas}
 
-En esta secci\'on deben estar expresados los detalles acerca de nuestro m\'odulo que resulten indispensables a sus usuarios. Es imprescindible tocar temas como la complejidad temporal de los algoritmos y cuestiones de alising y efectos secundarios de las operaciones. Adem\'as, pueden exhibirse comentarios (a modo informativo) con respecto a la implementaci\'on del m\'odulo que, aunque tengan menor importancia, sean de inter\'es para el usuario. Los puntos a recalcar que debe tocar esta \'area son los siguientes:
+En esta secci\'on deben estar expresados los detalles acerca de nuestro m\'odulo que resulten indispensables a sus usuarios. Es imprescindible tocar temas como la complejidad temporal de los algoritmos y cuestiones de aliasing y efectos secundarios de las operaciones. Adem\'as, pueden exhibirse comentarios (a modo informativo) con respecto a la implementaci\'on del m\'odulo que, aunque tengan menor importancia, sean de inter\'es para el usuario. Los puntos a recalcar que debe tocar esta \'area son los siguientes:
 
 \begin{itemize}
  \item Deducir y documentar la \textbf{complejidad temporal} de cada operaci\'on es fundamental dentro de esta area, ya que de no haber informaci\'on de la misma nuestro m\'odulo no podr\'ia ser utilizado por ning\'un otro m\'odulo cuyo contexto de uso restringiera tal aspecto. Dicho de otra forma, un usuario que deba responder a requerimientos de eficiencia temporal y deba usar nuestro m\'odulo, no podr\'a saber si esta cumpliendo con ellos si no documentamos los mismos.
- \item Conocimiento del \textbf{alising} es de vital importancia para el uso correcto y eficiente del m\'odulo. Si no inform\'asemos las cuestiones de alising referentes a las operaciones podr\'ia pasar que un usuario de nuestro m\'odulo modifique datos sin saberlo por estar utilizando alg\'un alias (en vez de una copia) generado a partir del uso de de una de nuestras operaciones, lo que provocar\'ia un problema muy grave en el desarrollo del programa.
+ \item Conocimiento del \textbf{aliasing} es de vital importancia para el uso correcto y eficiente del m\'odulo. Si no inform\'asemos las cuestiones de aliasing referentes a las operaciones podr\'ia pasar que un usuario de nuestro m\'odulo modifique datos sin saberlo por estar utilizando alg\'un alias (en vez de una copia) generado a partir del uso de de una de nuestras operaciones, lo que provocar\'ia un problema muy grave en el desarrollo del programa.
  \item Es importante indicar en las operaciones que \textbf{eliminan elementos de la estructura} si dichos elementos seguir\'an existiendo o ser\'an eliminados. Esto afecta a los usuarios que tengan referencias a dichos elementos. Si se los elimina, las referencias a ellos dejar\'an de ser v\'alidas, en caso contrario seguir\'an vigentes pero ya no estar\'an en la estructura, por lo que ser\'a el usuario el encargado de liberarlas al momento de implementar su m\'odulo ya que de no hacerlo podr\'a producir una potencial perdida de memoria.
 \end{itemize}
 
@@ -161,7 +161,7 @@ La estructura de representaci\'on de las instancias de los tipos s\'olo ser\'a a
 
 La elecci\'on de la estructura esta fundamentada sobre las operaciones que nos interesa optimizar y el contexto de uso en el que ser\'an utilizadas. No solo tomamos en cuenta la complejidad temporal para definir un criterio de optimizaci\'on sino que tambi\'en tomamos en cuenta el espacio de disco, espacio en memoria, reusabilidad, claridad, sencillez de la implementaci\'on, homogeneidad de los algoritmos, entre otros.
 
-Las variables en un programa referencias valores. Ser\'a imposible el acceso a la representaci\'on interna de \'estos y esto redundar\'a en la modularidad de nuestro dise\~no y en el ocultamiento de la informaci\'on. El ocultamiento nos permite hacer invisibles algunos aspectos que ser\'an encapsulados. Esto es \'util para aumentar el nivel de abstracci\'on y dise\~nar c\'odigo que sea m\'as f\'acilmente modificable, mantenible y extensible. Al acceder a los objetos s\'olo a trav\'es de su interfaz no nos atamos a su implementaci\'on, s\'olo a su funcionalidad. Cualquier cambio de implementaci\'on en un tipo que no altere la funcionalidad no nos obligar\'a a redise\~nar los tipos superiores.
+Las variables en un programa referencian valores. Ser\'a imposible el acceso a la representaci\'on interna de \'estos y esto redundar\'a en la modularidad de nuestro dise\~no y en el ocultamiento de la informaci\'on. El ocultamiento nos permite hacer invisibles algunos aspectos que ser\'an encapsulados. Esto es \'util para aumentar el nivel de abstracci\'on y dise\~nar c\'odigo que sea m\'as f\'acilmente modificable, mantenible y extensible. Al acceder a los objetos s\'olo a trav\'es de su interfaz no nos atamos a su implementaci\'on, s\'olo a su funcionalidad. Cualquier cambio de implementaci\'on en un tipo que no altere la funcionalidad no nos obligar\'a a redise\~nar los tipos superiores.
 
 \subsubsection{Relaci\'on entre la implementaci\'on y la abstracci\'on}
 
@@ -176,7 +176,7 @@ Rep: \widehat{\text{genero\_de\_representacion}} \rightarrow boolean
 
 El invariante de representaci\'on es un predicado que nos indica si una instancia de la estructura de representaci\'on es v\'alida para representar una instancia del tipo representado. De cierta forma, es el conocimiento sobre la estructura que necesitan las distintas operaciones para funcionar correctamente y que garantizan las mismas al finalizar su ejecuci\'on. Adem\'as funciona como un concepto coordinador entre las operaciones. En \'el quedan expresados las restricciones de coherencia de la estructura, surgidas de la redundancia de informaci\'on que pueda haber. Su dominio es la imagen funcional del tipo que estamos implementando, lo cual es necesario para que podamos ``tratar'' los elementos del dominio en l\'ogica de primer orden.
 
-El invariante debe ser cierto tanto al comienzo de las \textbf{operaciones exportadas} del tipo como al final de las mismas. Por lo tanto, las operaciones del tipo deber\'an preservarlo, aunque quiz\'as no sea cierto en alg\'un estado intermedio del algoritmo que implemente alguna operaci\'on. Las \textbf{operaciones auxiliares} o internas, es decir aquellas que no aparecen en la interfaz y por lo tanto son invisibles a factores externos del m\'odulo, no tienen la necesidad conservar el invariante, sera de nuestra responsabilidad conocer que modificaciones le realizan a la estructura interna (de hacerlas) para luego restaurar el invariante.
+El invariante debe ser cierto tanto al comienzo de las \textbf{operaciones exportadas} del tipo como al final de las mismas. Por lo tanto, las operaciones del tipo deber\'an preservarlo, aunque quiz\'as no sea cierto en alg\'un estado intermedio del algoritmo que implemente alguna operaci\'on. Las \textbf{operaciones auxiliares} o internas, es decir aquellas que no aparecen en la interfaz y por lo tanto son invisibles a factores externos del m\'odulo, no tienen la necesidad conservar el invariante, ser\'a nuestra responsabilidad conocer que modificaciones le realizan a la estructura interna (de hacerlas) para luego restaurar el invariante.
 
 De cierta forma, el invariante de representaci\'on fuerza a las operaciones a cumplir ciertos ordenes de complejidad y a preservar la coherencia en la estructura de representaci\'on. Adem\'as al ser un predicado que debe cumplirse gran parte del tiempo, podremos deducir propiedades del mismo que podremos usar como parte de nuestras demostraciones de correctitud y complejidad.
 
