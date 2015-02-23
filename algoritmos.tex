@@ -266,7 +266,7 @@ Si los elementos son claves y no hay informaci\'on asociada, contaremos las copi
 
 \subsection{Radix sort}
 
-Supongamos que queremos ordenar mil elementos que estar\'an en un rango de $[0, 10^8]$. En vez de proveer $10^8$ buckets, proveamos $10$ buckets, luego ordenaremos los elementos por el primer d\'igito solamente. En el ejemplo anterior los buckets tendran rangos, el primer bucket  contendra elementos desde $0$ hasta $9999$, el segundo desde $10000$ hasta $19999$, y asi. Luego al obtener cada cola podremos ordenar cada una recursivamente por el segundo d\'igito, etc. De esta forma dividiremos en subconjuntos cada vez mas peque\~nos el problema original. El problema con esto es que los buckets mas chicos ser\'an ordenados de forma ineficiente.
+Supongamos que queremos ordenar mil elementos que estar\'an en un rango de $[0, 10^8]$. En vez de proveer $10^8$ buckets, proveamos $10$ buckets, luego ordenaremos los elementos por el primer d\'igito solamente. De \'esta manera, los buckets tendran rangos: el primer bucket  contendra elementos desde $0$ hasta $9999$, el segundo desde $10000$ hasta $19999$, y asi. Luego al obtener cada cola podremos ordenar cada una recursivamente por el segundo d\'igito, etc. De esta forma dividiremos en subconjuntos cada vez mas peque\~nos el problema original. El problema con esto es que los buckets mas chicos ser\'an ordenados de forma ineficiente.
 
 ~
 
