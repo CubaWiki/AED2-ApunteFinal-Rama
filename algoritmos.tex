@@ -264,6 +264,29 @@ Bucket sort es estable, esto quiere decir que elementos con las mismas claves se
 
 Si los elementos son claves y no hay informaci\'on asociada, contaremos las copias de cada uno de los elementos utilizando por ejemplo un arreglo $S$. El arreglo comenzara lleno de ceros y a medida que contaremos iremos incrementando para la clave $i$ la posici\'on $i$ del arreglo. Luego construiremos el arreglo final en tiempo $O(n)$. Al igual que bucket sort el algoritmo toma $O(q+n)$ tiempo, y si $q \in O(n)$ el tiempo total sera de $\Theta(n)$.
 
+~
+
+\begin{algorithmic}[1]
+ \Function{countingSort}{$A, q$}
+    \State $count = empty\ array\ of\ q\ elements$ \Comment{$O(q)$}
+    \ForAll{$i \in [0, |A|-1]$} \Comment{Calculate the frequencies of each key: $O(n)$}
+      \State $count[A[i].key] += 1$
+    \EndFor
+    \State $total = 0$
+    \ForAll{$i \in [0, q-1]$} \Comment{Calculate the starting index of each key: $O(q)$}
+      \State $oldCount = count[i]$
+      \State $count[i] = total$
+      \State $total += oldCount$
+    \EndFor
+    \State $output = empty\ array\ of\ n\ elements$ \Comment{$O(n)$}
+    \ForAll{$i \in [0, |A|-1]$} \Comment{Copy to output array, preserving order of inputs with equal keys: $O(n)$}
+      \State $output[count[A[i].key]] = A[i]$
+      \State $count[A[i].key] += 1$
+    \EndFor
+ \EndFunction
+\end{algorithmic}
+
+
 \subsection{Radix sort}
 
 Supongamos que queremos ordenar mil elementos que estar\'an en un rango de $[0, 10^8]$. En vez de proveer $10^8$ buckets, proveamos $10$ buckets, luego ordenaremos los elementos por el primer d\'igito solamente. De \'esta manera, los buckets tendran rangos: el primer bucket  contendra elementos desde $0$ hasta $9999$, el segundo desde $10000$ hasta $19999$, y asi. Luego al obtener cada cola podremos ordenar cada una recursivamente por el segundo d\'igito, etc. De esta forma dividiremos en subconjuntos cada vez mas peque\~nos el problema original. El problema con esto es que los buckets mas chicos ser\'an ordenados de forma ineficiente.
