@@ -230,7 +230,7 @@ Los costos de \'este algoritmo son $O(n^2)$ en el caso peor, y $O(n*log(n))$ en 
 
 Esto se puede ver ya que el caso peor (para obtener complejidad cuadr\'atica) se da cuando en cada llamada recursiva elejimos como pivot al m\'inimo (o m\'aximo) elemento del arreglo.
 Como contraparte, el caso mejor se da cuando para cada llamada recursiva elejimos como pivot al mediano del arreglo.
-Para el caso promedio, podr\'iamos pensar en un input proveniente de una distribuci\'on uniforme. O sea, que la probabilidad de que el elemento i-\'esimo sea el pivot es 1/n, en cuyo caso la complejidad del algoritmo nos quedar\'ia $O(n*log(n)$.
+Para el caso promedio, podr\'iamos pensar en un input proveniente de una distribuci\'on uniforme. O sea, que la probabilidad de que el elemento i-\'esimo sea el pivot es 1/n, en cuyo caso la complejidad del algoritmo nos quedar\'ia $O(n*log(n))$.
 Pero no siempre podemos suponer que el input proviene de una distribuci\'on uniforme. S\'i ese no es el caso, podemos forzarlo de alguna forma. Por ejemplo: permutando el input, o elijiendo el pivot al azar.
 
 \subsection{Bubble sort}
