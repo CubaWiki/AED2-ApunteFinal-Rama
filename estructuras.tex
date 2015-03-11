@@ -275,8 +275,8 @@ El recorrido de \'arboles, en ingles \textit{Tree traversal}, se refiere al proc
 
 \textbf{Postorden (o ``postorder'')}:  (izquierdo, derecho, ra\'iz). Comenzando con el nodo ra\'iz:
 \begin{itemize}
- \item Recorrer el sub\'arbol izquierdo en preorden.
- \item Recorrer el sub\'arbol derecho en preorden.
+ \item Recorrer el sub\'arbol izquierdo en postorden.
+ \item Recorrer el sub\'arbol derecho en postorden.
  \item Visitar la raiz.
 \end{itemize}
 
@@ -458,11 +458,11 @@ Un \'arbol B tiene las siguientes propiedades:
 \end{enumerate}
 
 \subsubsection{Arboles 234}
-El \'arbol B mas simple ocurre cuando $t=2$. Cada nodo interno puede tener 2, 3 o 4 hijos, por lo que tendremos un \'arbol $2-3-4$. En la practica, valores muchos mas grandes de $t$ nos dar\'an \'arboles B con una altura menor. Gracias a la noci\'on de cotas podremos dar una cota para la altura de un \'arbol B de la forma $h \leq log_t((n+1)/2)$, en donde $n \geq 1$, para cualquier \'arbol B de $n-$claves de altura $h$ y grado minimo $y \geq 2$.
+El \'arbol B mas simple ocurre cuando $t=2$. Cada nodo interno puede tener 2, 3 o 4 hijos, por lo que tendremos un \'arbol $2-3-4$. En la practica, valores muchos mas grandes de $t$ nos dar\'an \'arboles B con una altura menor. Gracias a la noci\'on de cotas podremos dar una cota para la altura de un \'arbol B de la forma $h \leq log_t((n+1)/2)$, en donde $n \geq 1$, para cualquier \'arbol B de $n-$claves de altura $h$ y grado minimo $t \geq 2$.
 
 \subsubsection{Inserci\'on en Arboles 234}
 
-Durante la inserci\'on cada vez que encontremos un 3-nodo $x$ empujaremos al nodo del medio hacia su padre $z$ y partiremos el 2-nodo restante en dos 1-nodo. Para nodos distintos de la ra\'iz podremos hacer esto ya que el nodo $z$, por el cual ya habremos pasado, tendr\'a a lo sumo dos claves.  Si es la ra\'iz en la que nos encontramos, crearemos una nueva ra\'iz a la que podamos pasar la clave del medio. Es importante remarcar que los nodos se partir\'an a medida que los descubrimos, si se creo un 3-nodo a partir de la acci\'on de empujar una clave hacia su padre no haremos nada. Las razones por las cuales partimos los 3-nodos son asegurarnos de que haya lugar para la nueva clave en la hoja y para hacer lugar para cualquier clave que sea empujada hacia arriba. La \'unica forma en la que el \'arbol incrementara su profundidad es creando una nueva ra\'iz a causa de una inserci\'on.
+Durante la inserci\'on cada vez que encontremos un 3-nodo $x$ empujaremos al nodo del medio hacia su padre $z$ y partiremos el 2-nodo restante en dos 1-nodo. Para nodos distintos de la ra\'iz podremos hacer esto ya que el nodo $z$, por el cual ya habremos pasado, tendr\'a a lo sumo dos claves.  Si es la ra\'iz en la que nos encontramos, crearemos una nueva ra\'iz a la que podamos pasar la clave del medio. Es importante remarcar que los nodos se partir\'an a medida que los descubrimos, si se creo un 3-nodo a partir de la acci\'on de empujar una clave hacia su padre no haremos nada. Las razones por las cuales partimos los 3-nodos son asegurarnos de que haya lugar para la nueva clave en la hoja y para hacer lugar para cualquier clave que sea empujada hacia arriba. La \'unica forma en la que el \'arbol incrementar\'a su profundidad es creando una nueva ra\'iz a causa de una inserci\'on.
 
 \subsubsection{Eliminaci\'on en Arboles 234}
 
@@ -533,8 +533,6 @@ Los Splay Trees, al igual que otros \'arboles balanceados, mantienen su balance 
 \subsubsection{B\'usqueda}
 
 Dada una clave $k$, empezaremos a buscar la clave de la misma manera que lo hacemos en un ABB hasta que encontremos la clave $k$ o hasta llegar a un $NIL$ (en el caso de que la clave no sea existente). Sea $x$ el nodo en donde la b\'usqueda termino, contenga o no $k$, elevaremos $x$ a trav\'es de una secuencia de rotaciones, de forma tal que $x$ se vuelva la ra\'iz, llamaremos a esta operaci\'on \textbf{splay}. Las razones por las cuales haremos esto ser\'an, en primer lugar, para mantener los elementos mas consultados en la ra\'iz o cerca de ella, de forma tal de que la consulta de estos sea verdaderamente r\'apida la pr\'oxima vez, y en segundo lugar, como este tipo de \'arboles puede desbalancearse (lo que es usualmente un estado temporal), si nos encontramos en un caso en donde exploramos hasta la profundidad del mismo, las rotaciones evitaran que esto pase de nuevo.
-
-\newpage
 
 Las rotaciones se daran en tres casos:
 

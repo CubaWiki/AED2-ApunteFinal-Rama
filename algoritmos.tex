@@ -230,7 +230,7 @@ Los costos de \'este algoritmo son $O(n^2)$ en el caso peor, y $O(n*log(n))$ en 
 
 Esto se puede ver ya que el caso peor (para obtener complejidad cuadr\'atica) se da cuando en cada llamada recursiva elejimos como pivot al m\'inimo (o m\'aximo) elemento del arreglo.
 Como contraparte, el caso mejor se da cuando para cada llamada recursiva elejimos como pivot al mediano del arreglo.
-Para el caso promedio, podr\'iamos pensar en un input proveniente de una distribuci\'on uniforme. O sea, que la probabilidad de que el elemento i-\'esimo sea el pivot es 1/n, en cuyo caso la complejidad del algoritmo nos quedar\'ia $O(n*log(n)$.
+Para el caso promedio, podr\'iamos pensar en un input proveniente de una distribuci\'on uniforme. O sea, que la probabilidad de que el elemento i-\'esimo sea el pivot es 1/n, en cuyo caso la complejidad del algoritmo nos quedar\'ia $O(n*log(n))$.
 Pero no siempre podemos suponer que el input proviene de una distribuci\'on uniforme. S\'i ese no es el caso, podemos forzarlo de alguna forma. Por ejemplo: permutando el input, o elijiendo el pivot al azar.
 
 \subsection{Bubble sort}
@@ -263,6 +263,29 @@ Bucket sort es estable, esto quiere decir que elementos con las mismas claves se
 \subsection{Counting sort}
 
 Si los elementos son claves y no hay informaci\'on asociada, contaremos las copias de cada uno de los elementos utilizando por ejemplo un arreglo $S$. El arreglo comenzara lleno de ceros y a medida que contaremos iremos incrementando para la clave $i$ la posici\'on $i$ del arreglo. Luego construiremos el arreglo final en tiempo $O(n)$. Al igual que bucket sort el algoritmo toma $O(q+n)$ tiempo, y si $q \in O(n)$ el tiempo total sera de $\Theta(n)$.
+
+~
+
+\begin{algorithmic}[1]
+ \Function{countingSort}{$A, q$}
+    \State $count = empty\ array\ of\ q\ elements$ \Comment{$O(q)$}
+    \ForAll{$i \in [0, |A|-1]$} \Comment{Calculate the frequencies of each key: $O(n)$}
+      \State $count[A[i].key] += 1$
+    \EndFor
+    \State $total = 0$
+    \ForAll{$i \in [0, q-1]$} \Comment{Calculate the starting index of each key: $O(q)$}
+      \State $oldCount = count[i]$
+      \State $count[i] = total$
+      \State $total += oldCount$
+    \EndFor
+    \State $output = empty\ array\ of\ n\ elements$ \Comment{$O(n)$}
+    \ForAll{$i \in [0, |A|-1]$} \Comment{Copy to output array, preserving order of inputs with equal keys: $O(n)$}
+      \State $output[count[A[i].key]] = A[i]$
+      \State $count[A[i].key] += 1$
+    \EndFor
+ \EndFunction
+\end{algorithmic}
+
 
 \subsection{Radix sort}
 
@@ -326,7 +349,7 @@ El algoritmo se desarrolla en varias pasadas:
 
 \textbf{Acceso Secuencial Indexado (ISAM)}
 
-\textbf{Arboles B}
+\textbf{\'Arboles B}
 
 \textbf{Hashing Extensible}
 
