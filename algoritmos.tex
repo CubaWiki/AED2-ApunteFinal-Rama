@@ -1,8 +1,8 @@
 \chapter{Algoritmos}
 
-\section{Eliminaci\'on de la recursion}
+\section{Eliminaci\'on de la recursi\'on}
 
-La motivaci\'on de la eliminaci\'on de la recursion es b\'asicamente optimizar funciones recursivas mediante distintas formas. Para hacerlo se intentara cumplir ciertos objetivos como no repetir los c\'alculos (generalmente en problemas que presenten sub-estructura \'optima), no recorrer una estructura mas de una vez (o intentar hacerlo la menor cantidad posible de veces) y finalmente eliminar la recursion, ya que si bien una funci\'on iterativa y una recursiva podr\'an tener complejidades asint\'oticamente iguales, en la practica las funciones iterativas son mas o\'ptimas por diferencias de constantes (b\'asicamente por no tener llamadas recursivas).
+La motivaci\'on de la eliminaci\'on de la recursi\'on es b\'asicamente optimizar funciones recursivas mediante distintas formas. Para hacerlo se intentara cumplir ciertos objetivos como no repetir los c\'alculos (generalmente en problemas que presenten sub-estructura \'optima), no recorrer una estructura mas de una vez (o intentar hacerlo la menor cantidad posible de veces) y finalmente eliminar la recursi\'on, ya que si bien una funci\'on iterativa y una recursiva podr\'an tener complejidades asint\'oticamente iguales, en la practica las funciones iterativas son mas o\'ptimas por diferencias de constantes (b\'asicamente por no tener llamadas recursivas).
 
 ~
 
@@ -45,15 +45,15 @@ La motivaci\'on de la eliminaci\'on de la recursion es b\'asicamente optimizar f
 
 La metodolog\'ia consiste en \textbf{dividir} el problema en un numero de subproblemas que son instancias mas chicas del mismo problema, \textbf{conquistar} los subproblemas resolvi\'endolos recursivamente y cuando sean suficientemente chicos resolverlos de una forma directa y \textbf{combinar} las soluciones de los subproblemas en la soluci\'on para el problema original.
 
-Cuando los subproblemas son suficientemente grandes para resolverlos recursivamente, llamaremos al \textbf{caso recursivo}. Una vez que los subproblemas se vuelvan suficientemente chicos, diremos que la recursion ''toco fondo`` y que habremos llegado al \textbf{caso base}. A veces, en adici\'on a los subproblemas que son instancias mas chicas del mismo problema, deberemos resolver problemas que no son exactamente lo mismo que el problema original. Consideraremos resolver dichos subproblemas como una parte del paso de combinaci\'on.
+Cuando los subproblemas son suficientemente grandes para resolverlos recursivamente, llamaremos al \textbf{caso recursivo}. Una vez que los subproblemas se vuelvan suficientemente chicos, diremos que la recursi\'on ''toco fondo`` y que habremos llegado al \textbf{caso base}. A veces, en adici\'on a los subproblemas que son instancias mas chicas del mismo problema, deberemos resolver problemas que no son exactamente lo mismo que el problema original. Consideraremos resolver dichos subproblemas como una parte del paso de combinaci\'on.
 
 \subsection{Recurrencias}
 
-Las recurrencias van a la par con el paradigma de DyC, ya que nos dan una forma natural de caracterizar los tiempos de los algoritmos que hagan uso del paradigma. Una recurrencia es una ecuaci\'on o inecuaci\'on que describe una funci\'on en t\'erminos de su valor en entradas mas chicas. Las recurrencias pueden tomar muchas formas. Por ejemplo, un algoritmo recursivo podr\'a dividir los subproblemas en tama\~nos desiguales, tales como $2/3$ a $1/3$. Si los pasos de dividir y combinar toman tiempo lineal, tal algoritmo nos dar\'a la recurrencia $T(n) = T(2n/3) + T(n/3) + \Theta(n)$. Los subproblemas no estan necesariamente acotados a ser una fracci\'on constante del tama\~no del problema original. Por ejemplo, si en cada paso disminuy\'eramos 1 solo elemento, nos quedar\'ia una recurrencia del tipo $T(n) = T(n-1) + \Theta(1)$. Habr\'a 3 m\'etodos para resolver recurrencias, esto es para obtener las cotas asint\'oticas ``$\Theta$ o ''$O$`` de la soluci\'on:
+Las recurrencias van a la par con el paradigma de DyC, ya que nos dan una forma natural de caracterizar los tiempos de los algoritmos que hagan uso del paradigma. Una recurrencia es una ecuaci\'on o inecuaci\'on que describe una funci\'on en t\'erminos de su valor en entradas mas chicas. Las recurrencias pueden tomar muchas formas. Por ejemplo, un algoritmo recursivo podr\'a dividir los subproblemas en tama\~nos desiguales, tales como $2/3$ a $1/3$. Si los pasos de dividir y combinar toman tiempo lineal, tal algoritmo nos dar\'a la recurrencia $T(n) = T(2n/3) + T(n/3) + \Theta(n)$. Los subproblemas no están necesariamente acotados a ser una fracci\'on constante del tama\~no del problema original. Por ejemplo, si en cada paso disminuy\'eramos 1 solo elemento, nos quedar\'ia una recurrencia del tipo $T(n) = T(n-1) + \Theta(1)$. Habr\'a 3 m\'etodos para resolver recurrencias, esto es para obtener las cotas asint\'oticas ``$\Theta$ o ''$O$`` de la soluci\'on:
 
 \begin{itemize}
  \item En el m\'etodo de substituci\'on, conjeturaremos una cota y luego la probaremos utilizando inducci\'on matem\'atica.
- \item En el m\'etodo del \'arbol de recursion, convertiremos la recurrencia en un \'arbol cuyos nodos representaran los costos de varios niveles de la recursion. Usaremos t\'ecnicas para acotar sumatorias para resolver la recurrencia.
+ \item En el m\'etodo del \'arbol de recursi\'on, convertiremos la recurrencia en un \'arbol cuyos nodos representaran los costos de varios niveles de la recursi\'on. Usaremos t\'ecnicas para acotar sumatorias para resolver la recurrencia.
  \item El m\'etodo maestro proveer\'a cotas para recurrencias de la forma $T(n) = aT(n/b) + f(n)$, en donde $a \geq 1$, $b > 1$ y $f(n)$ es una funci\'on dada, las recurrencias de este tipo se presentan muy frecuentemente. Para utilizar el m\'etodo maestro ser\'a necesario memorizar tres casos, pero una vez hecho, podremos determinar cotas asint\'oticas muy f\'acilmente para recurrencias simples.
 \end{itemize}
 
@@ -74,7 +74,7 @@ El m\'etodo de substituci\'on para resolver recurrencias se compone de dos pasos
 
 ~
 
-El caso base hace referencia a cuando nuestro arreglo tiene tama\~no $1$, en cuyo caso devolveremos el arreglo sin ejecutar ninguna operaci\'on sobre el, y el caso recursivo hace referencia a la recursion del arreglo sobre cada una de sus mitades (siendo as\'i divide) y luego uni\'endolo en tiempo $n$ (siendo el conquer). En primer lugar vamos a acotar a $n$ por el m\'ultiplo de $2$ mayor o igual mas cercano, quedando as\'i $n \leq 2^k$ para alg\'un $k \in N$. Luego, reescribiremos a $T(n)$ haciendo el reemplazo por $k$.
+El caso base hace referencia a cuando nuestro arreglo tiene tama\~no $1$, en cuyo caso devolveremos el arreglo sin ejecutar ninguna operaci\'on sobre el, y el caso recursivo hace referencia a la recursi\'on del arreglo sobre cada una de sus mitades (siendo as\'i divide) y luego uni\'endolo en tiempo $n$ (siendo el conquer). En primer lugar vamos a acotar a $n$ por el m\'ultiplo de $2$ mayor o igual mas cercano, quedando as\'i $n \leq 2^k$ para alg\'un $k \in N$. Luego, reescribiremos a $T(n)$ haciendo el reemplazo por $k$.
 
 \begin{equation*}
   T(2^k) = \begin{cases}
@@ -121,15 +121,15 @@ La ultima formula puede ser generalizada cambiando sus constantes por variables.
 
 Luego, la conjetura quedar\'ia de la forma $T(2^k) = 2^k \cdot c + \sum_{i=1}^k 2^{k-i} f(2^i) \leq 2^k \cdot c + k \cdot 2^k f(2^k)$. Si definimos a $f(n) = n$ y a $c=1$, podremos observar que nos quedar\'a $T(2^k) \leq 2^k + k \cdot 2^{k+1}$ la cual solo difiere en una constante ya que utilizamos una cota mas bruta, pero pertenecer\'a a la misma clase que la funci\'on anterior.
 
-\subsubsection{M\'etodo del \'arbol de recursion}
+\subsubsection{M\'etodo del \'arbol de recursi\'on}
 
-Si bien podremos usar el m\'etodo de substituci\'on para proveer una prueba suficiente de que una soluci\'on a una recurrencia es correcta, tendremos problemas en encontrar una buena conjetura, algo en lo que nos ayudara el \'arbol de recursion.
+Si bien podremos usar el m\'etodo de substituci\'on para proveer una prueba suficiente de que una soluci\'on a una recurrencia es correcta, tendremos problemas en encontrar una buena conjetura, algo en lo que nos ayudara el \'arbol de recursi\'on.
 
-En un \'arbol de recursion, cada nodo representa el costo de un solo subproblema en alg\'un momento del conjunto de invocaciones recursivas, el nodo principal representar\'a el costo inmediato inicial de la funci\'on (sin contabilizar la recursion) y los nodos adyacentes a el, es decir el primer nivel, representar\'an el costo inmediato de cada paso. Como hojas del \'arbol tendremos los casos base de la recursion. Para obtener nuestra conjetura, sumaremos los costos de cada uno de los niveles del \'arbol para obtener un conjunto de costos por nivel, y luego sumaremos todos los conjuntos por nivel para obtener el costo total de todos los niveles de la recursion.
+En un \'arbol de recursion, cada nodo representa el costo de un solo subproblema en alg\'un momento del conjunto de invocaciones recursivas, el nodo principal representar\'a el costo inmediato inicial de la funci\'on (sin contabilizar la recursi\'on) y los nodos adyacentes a el, es decir el primer nivel, representar\'an el costo inmediato de cada paso. Como hojas del \'arbol tendremos los casos base de la recursi\'on. Para obtener nuestra conjetura, sumaremos los costos de cada uno de los niveles del \'arbol para obtener un conjunto de costos por nivel, y luego sumaremos todos los conjuntos por nivel para obtener el costo total de todos los niveles de la recursi\'on.
 
 ~
 
-Un \'arbol de recursion es el mejor m\'etodo para generar una buena conjetura, que luego podremos verificar utilizando el m\'etodo de substituci\'on. Cuando utilizamos el m\'etodo del \'arbol del recursion para generar una conjetura buena, por lo general es tolerable un leve grado de ''descuido``, dado que luego estaremos verificando la conjetura. Si somos suficientemente cuidadosos al dibujar el \'arbol de recursion y sumar los costos, podremos usar el \'arbol de recursion como una prueba directa para la soluci\'on de una recurrencia.
+Un \'arbol de recursi\'on es el mejor m\'etodo para generar una buena conjetura, que luego podremos verificar utilizando el m\'etodo de substituci\'on. Cuando utilizamos el m\'etodo del \'arbol del recursi\'on para generar una conjetura buena, por lo general es tolerable un leve grado de ''descuido``, dado que luego estaremos verificando la conjetura. Si somos suficientemente cuidadosos al dibujar el \'arbol de recursi\'on y sumar los costos, podremos usar el \'arbol de recursi\'on como una prueba directa para la soluci\'on de una recurrencia.
 
 \subsubsection{M\'etodo maestro}
 
@@ -191,8 +191,8 @@ El esquema general de dividir y conquistar consiste en:
 
 \subsection{Cota inferior para algoritmos basados en comparaciones}
 
-Una lista de $n$ elementos distintos puede tener $n!$ permutaciones o formas de orden distintas. Luego, una cota arbitrariamente mayor para $n! \leq n \cdot n \cdot ... \cdot n = n^n$ y una cota arbitrariamente menor podra ser $n! \geq n/2 \cdot n/2 \cdot ... \cdot n/2 = n/2^{n/2}$. Luego, ambas cotas perteneceran a $\Theta(n log(n))$ si les aplicamos un logaritmo, lo que nos implicara que $log(n!) \in \Theta(n lg(n))$.
-Todas las decisiones estaran basadas en comparar claves, tipicamente mediante ifs, es decir que estan basadas en resultados booleanos. Un algoritmo de ordenamiento correcto debe generar una secuencia distinta de comparaciones booleanas para cada permutacion distinta de $1.. n$. Como habra $n!$ diferentes permutaciones en una secuencia de $n$ elementos, deberemos tener $n!$ secuencias distintas de comparaciones. Si un algoritmo hace $\leq d$ preguntas booleanas, generara $\leq 2^d$ secuencias distintas de respuestas booleanas, y por lo tanto:
+Una lista de $n$ elementos distintos puede tener $n!$ permutaciones o formas de orden distintas. Luego, una cota arbitrariamente mayor para $n! \leq n \cdot n \cdot ... \cdot n = n^n$ y una cota arbitrariamente menor podr\'a ser $n! \geq n/2 \cdot n/2 \cdot ... \cdot n/2 = n/2^{n/2}$. Luego, ambas cotas perteneceran a $\Theta(n log(n))$ si les aplicamos un logaritmo, lo que nos implicara que $log(n!) \in \Theta(n lg(n))$.
+Todas las decisiones estar\'an basadas en comparar claves, t\'ipicamente mediante ifs, es decir que est\'an basadas en resultados booleanos. Un algoritmo de ordenamiento correcto debe generar una secuencia distinta de comparaciones booleanas para cada permutaci\'on distinta de $1.. n$. Como habr\'a $n!$ diferentes permutaciones en una secuencia de $n$ elementos, deberemos tener $n!$ secuencias distintas de comparaciones. Si un algoritmo hace $\leq d$ preguntas booleanas, generara $\leq 2^d$ secuencias distintas de respuestas booleanas, y por lo tanto:
 
 \begin{equation*}
  n! \leq 2^d \implies lg_2(n!) \leq d \implies d \in \Omega(n \cdot lg(n))
@@ -204,18 +204,18 @@ No podremos preguntar $d$ preguntas en menos de $d$ tiempo, si suponemos un tiem
 
 \subsection{Insertion sort}
 
-Es un algoritmo de ordenamiento in-place (es decir que no consume demasiada memoria adicional para ordenar la lista) y corre en tiempo $n^2$ en el peor caso. El invariante de este algoritmo es que la lista $S$ este ordenada. El algoritmo funcionara teniendo una lista $S$ que comenzara vacia y una lista sin ordenar $I$ de $n$ elementos, en cada paso obtendremos un elemento de $n$ y lo \textbf{insertaremos} ordenadamente en $S$, $S$ e $I$ pueden ser sub-arreglos del arreglo original. En el caso que tengamos $n$ claves fuera de lugar, el tiempo es de $O(w)$ en donde $w$ es el numero de ''intercambios`` a realizar. Si utilizamos un \'arbol balanceado de b\'usqueda como la estructura en $S$ el algoritmo se volver\'a $O(n\cdot lg(n))$ aunque sera mas lento que otros algoritmos de b\'usqueda por las constantes ocultas del \'arbol balanceado.
+Es un algoritmo de ordenamiento in-place (es decir que no consume demasiada memoria adicional para ordenar la lista) y corre en tiempo $n^2$ en el peor caso. El invariante de este algoritmo es que la lista $S$ este ordenada. El algoritmo funcionara teniendo una lista $S$ que comenzara vac\'ia y una lista sin ordenar $I$ de $n$ elementos, en cada paso obtendremos un elemento de $n$ y lo \textbf{insertaremos} ordenadamente en $S$, $S$ e $I$ pueden ser sub-arreglos del arreglo original. En el caso que tengamos $n$ claves fuera de lugar, el tiempo es de $O(w)$ en donde $w$ es el numero de ''intercambios`` a realizar. Si utilizamos un \'arbol balanceado de b\'usqueda como la estructura en $S$ el algoritmo se volver\'a $O(n\cdot lg(n))$ aunque sera mas lento que otros algoritmos de b\'usqueda por las constantes ocultas del \'arbol balanceado.
 
 \subsection{Selection sort y Heap sort}
 
-Es un algoritmo de ordenamiento in-place (es decir que no consume demasiada memoria adicional para ordenar la lista) y corre en tiempo $n^2$ en el peor caso. El invariante de este algoritmo es que la lista $S$ este ordenada. El algoritmo funcionara teniendo una lista $S$ que comenzara vacia y una lista sin ordenar $I$ de $n$ elementos, en cada paso \textbf{seleccionaremos} el m\'inimo elemento de $I$ y lo insertaremos al final en $S$, $S$ e $I$ pueden ser sub-arreglos del arreglo original.
+Es un algoritmo de ordenamiento in-place (es decir que no consume demasiada memoria adicional para ordenar la lista) y corre en tiempo $n^2$ en el peor caso. El invariante de este algoritmo es que la lista $S$ este ordenada. El algoritmo funcionara teniendo una lista $S$ que comenzara vac\'ia y una lista sin ordenar $I$ de $n$ elementos, en cada paso \textbf{seleccionaremos} el m\'inimo elemento de $I$ y lo insertaremos al final en $S$, $S$ e $I$ pueden ser sub-arreglos del arreglo original.
 
 Si cambiamos $I$ por un min-heap, podremos realizar la operaci\'on de encontrar un elemento m\'inimo en tiempo $O(lg(n))$, dejando al algoritmo con tiempo total en $O(n\cdot lg(n) + n) \subseteq P(n\cdot lg(n))$, en donde la suma en el primer caso ser\'a causada por convertir el arreglo en un heap. Esta ultima modificaci\'on nos dar\'a el algoritmo denominado como Heap sort, el cual tambi\'en ser\'a un ordenamiento in-place ya que el \'arbol del heap podr\'a ser guardado en un arreglo. Una optimizaci\'on importante para evitar algunas constantes a la hora de implementar el Heap sort es representar el mismo a la inversa de lo que normalmente lo har\'iamos en el arreglo, dejando la ra\'iz del \'arbol en el final del mismo. Esto provocara que a medida que saquemos el m\'inimo elemento del arreglo, el mismo vaya a parar (por el comportamiento mismo de la eliminaci\'on del heap) al comienzo del arreglo, que por definici\'on del tama\~no del heap, estar\'a fuera del mismo. Si queremos implementar esto mismo
 utilizando la representaci\'on cl\'asica del Heap sort, deberemos invertir el orden del arreglo una vez finalizadas las $n$ iteraciones.
 
 \subsection{Mergesort}
 
-Mergesort es el algoritmo de ordenamiento Divide and Conquer por excelencia. El mismo comenzara con una lista de $I$ elementos, la cual \textbf{dividir\'a} a la mitad por un total de $\lceil lg(n) \rceil$ veces. Una vez llegado al caso base, el cual tendr\'a un arreglo trivialmente ordenado de $1$ elemento, utilizara merge para combinar los resultados parciales de cada divisi\'on y de esta forma obtener el resultado al problema original. La funci\'on de recursion para este algoritmo sera de $T(n) = 2 \cdot T(n/2) + \Theta(n)$, que por el teorema maestro siendo $a=2$, $b=n/2$ y $f(n) = n$, nos quedara que $n^{lg_b(a)} = n^{lg_2(2)} = n^1$, por lo que se ajustara al segundo caso del teorema ya que $f(n) \subseteq O(n)$ lo que implicara que $T(n) \subseteq \Theta(n \cdot lg(n))$. Si bien Mergesort funcionara bien para listas y arreglos en el tiempo dado anteriormente, no es un algoritmo de ordenamiento in-sort, por lo que utilizara memoria adicional, lo que es para considerar ya que para arreglos habr\'a otras
+Mergesort es el algoritmo de ordenamiento Divide and Conquer por excelencia. El mismo comenzara con una lista de $I$ elementos, la cual \textbf{dividir\'a} a la mitad por un total de $\lceil lg(n) \rceil$ veces. Una vez llegado al caso base, el cual tendr\'a un arreglo trivialmente ordenado de $1$ elemento, utilizara merge para combinar los resultados parciales de cada divisi\'on y de esta forma obtener el resultado al problema original. La funci\'on de recursi\'on para este algoritmo sera de $T(n) = 2 \cdot T(n/2) + \Theta(n)$, que por el teorema maestro siendo $a=2$, $b=n/2$ y $f(n) = n$, nos quedara que $n^{lg_b(a)} = n^{lg_2(2)} = n^1$, por lo que se ajustara al segundo caso del teorema ya que $f(n) \subseteq O(n)$ lo que implicara que $T(n) \subseteq \Theta(n \cdot lg(n))$. Si bien Mergesort funcionara bien para listas y arreglos en el tiempo dado anteriormente, no es un algoritmo de ordenamiento in-sort, por lo que utilizara memoria adicional, lo que es para considerar ya que para arreglos habr\'a otras
 soluciones
 mejores en lo que respecta a espacio.
 
@@ -229,9 +229,9 @@ El Quick sort es un algoritmo muy estudiado, analizado y utilizado en la pr\'act
 Los costos de \'este algoritmo son $O(n^2)$ en el caso peor, y $O(n*log(n))$ en el caso mejor y promedio. En la pr\'actica el algoritmo es eficiente, pero la elecci\'on del pivot es fundamental.
 
 Esto se puede ver ya que el caso peor (para obtener complejidad cuadr\'atica) se da cuando en cada llamada recursiva elejimos como pivot al m\'inimo (o m\'aximo) elemento del arreglo.
-Como contraparte, el caso mejor se da cuando para cada llamada recursiva elejimos como pivot al mediano del arreglo.
+Como contraparte, el caso mejor se da cuando para cada llamada recursiva elegimos como pivot al mediano del arreglo.
 Para el caso promedio, podr\'iamos pensar en un input proveniente de una distribuci\'on uniforme. O sea, que la probabilidad de que el elemento i-\'esimo sea el pivot es 1/n, en cuyo caso la complejidad del algoritmo nos quedar\'ia $O(n*log(n))$.
-Pero no siempre podemos suponer que el input proviene de una distribuci\'on uniforme. S\'i ese no es el caso, podemos forzarlo de alguna forma. Por ejemplo: permutando el input, o elijiendo el pivot al azar.
+Pero no siempre podemos suponer que el input proviene de una distribuci\'on uniforme. S\'i ese no es el caso, podemos forzarlo de alguna forma. Por ejemplo: permutando el input, o eligiendo el pivot al azar.
 
 \subsection{Bubble sort}
 
@@ -289,7 +289,7 @@ Si los elementos son claves y no hay informaci\'on asociada, contaremos las copi
 
 \subsection{Radix sort}
 
-Supongamos que queremos ordenar mil elementos que estar\'an en un rango de $[0, 10^8]$. En vez de proveer $10^8$ buckets, proveamos $10$ buckets, luego ordenaremos los elementos por el primer d\'igito solamente. De \'esta manera, los buckets tendran rangos: el primer bucket  contendra elementos desde $0$ hasta $9999$, el segundo desde $10000$ hasta $19999$, y asi. Luego al obtener cada cola podremos ordenar cada una recursivamente por el segundo d\'igito, etc. De esta forma dividiremos en subconjuntos cada vez mas peque\~nos el problema original. El problema con esto es que los buckets mas chicos ser\'an ordenados de forma ineficiente.
+Supongamos que queremos ordenar mil elementos que estar\'an en un rango de $[0, 10^8]$. En vez de proveer $10^8$ buckets, proveamos $10$ buckets, luego ordenaremos los elementos por el primer d\'igito solamente. De \'esta manera, los buckets tendr\'an rangos: el primer bucket  contendr\'a elementos desde $0$ hasta $9999$, el segundo desde $10000$ hasta $19999$, y as\'i. Luego al obtener cada cola podremos ordenar cada una recursivamente por el segundo d\'igito, etc. De esta forma dividiremos en subconjuntos cada vez mas peque\~nos el problema original. El problema con esto es que los buckets mas chicos ser\'an ordenados de forma ineficiente.
 
 ~
 
@@ -311,7 +311,7 @@ En \'esta secci\'on vamos a considerar los casos en los cuales trabajamos con me
 Las principales caracter\'isticas de \'estos dispositivos son:
  \begin{enumerate}
   \item El tiempo de acceso a los elementos es mucho mayor que en memoria principal (t\'ipicamente, $10^6$ veces m\'as lento). Por lo tanto, queremos minimizar la cantidad de veces que un elemento hace el viaje desde la memoria secundaria a la principal.
-  \item A su vez, el tiempo de acceso est\'a dominado por el posicionamiento (m\'as que la transferencia en s\'i misma), es decir, conviene acceder a bloques de datos simultaneamente. 
+  \item A su vez, el tiempo de acceso est\'a dominado por el posicionamiento (m\'as que la transferencia en s\'i misma), es decir, conviene acceder a bloques de datos simult\'aneamente.
   \item Muchas veces, el manejo de memoria por parte del SO (caching) puede ser de buena ayuda s\'i se usa un m\'etodo con buena ``localidad de referencia''.
  \end{enumerate}
 
@@ -339,7 +339,7 @@ El algoritmo se desarrolla en varias pasadas:
 
 ~
 
-\textbf{Selecci\'on por sustituci\'on}: La idea en \'este m\'etodo es usar una Cola de Prioridad de tamaño M para armar bloques, ``pasar'' los elementos a trav\'es de una CP escribiendo siempre el m\'as pequeño y sustituyendolo por el siguiente. Pero, si el nuevo es menor que el que acaba de salir, lo marcamos como si fuera mayor, hasta que alguno de esos nuevos llegue al primer lugar de la CP.
+\textbf{Selecci\'on por sustituci\'on}: La idea en \'este m\'etodo es usar una Cola de Prioridad de tamaño M para armar bloques, ``pasar'' los elementos a trav\'es de una CP escribiendo siempre el m\'as pequeño y sustituy\'endolo por el siguiente. Pero, si el nuevo es menor que el que acaba de salir, lo marcamos como si fuera mayor, hasta que alguno de esos nuevos llegue al primer lugar de la CP.
 
 ~
 

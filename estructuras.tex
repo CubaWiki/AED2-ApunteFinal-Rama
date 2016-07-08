@@ -134,7 +134,7 @@ Anal\'ogicamente, $\omega$ es a $\Omega$ como $o$ es a $O$. Usaremos la notaci\'
 A medida que $n$ tiende a infinito la relaci\'on entre $f(n)/g(n)$ se vuelve arbitrariamente grande, es decir que tiende a infinito.
 
 \subsection{Funciones de Complejidad temporal comunes}
-A continuaci\'on se listan las principales categorias de complejidad temporal, en orden creciente:
+A continuaci\'on se listan las principales categor\'ias de complejidad temporal, en orden creciente:
 \begin{enumerate}
  \item $O(1)$ \textbf{Complejidad constante}: es independiente de los datos de entrada.
  \item $O(lg\ lg\ n)$ \textbf{Complejidad sublogar\'itmica}
@@ -186,7 +186,7 @@ Las claves en un \'arbol binario de b\'usqueda siempre est\'an guardadas de form
 
 \subsubsection{B\'usqueda}
 
-La b\'usqueda en un \'arbol binario se logra utilizando el invariante presentado anteriormente. El procedimiento comienza en la ra\'iz y por cada nodo $x$ que encuentra compara la clave $k$ con $x.clave$, si las dos claves son iguales, la b\'usqueda termina. Si $k$ es mas chico que $x.clave$, la b\'usqueda continua por el sub-\'arbol izquierdo de $x$, dado que el invariante del \'arbol binario de b\'usqueda implica que $k$ no puede ser guardado en el sub-\'arbol derecho. Sim\'etricamente, si $k$ es mas grande que $x.clave$, la b\'usqueda continua por el sub-\'arbol derecho. Los nodos encontrados durante la recursion forman un camino simple desde la ra\'iz, por lo que el tiempo de corrida de una b\'usqueda en un \'arbol binario es de $O(h)$, en donde $h$ es la altura del \'arbol la cual puede ser $n$ si tenemos un \'arbol totalmente degenerado, que de cierta forma terminar\'ia siendo una lista enlazada.
+La b\'usqueda en un \'arbol binario se logra utilizando el invariante presentado anteriormente. El procedimiento comienza en la ra\'iz y por cada nodo $x$ que encuentra compara la clave $k$ con $x.clave$, si las dos claves son iguales, la b\'usqueda termina. Si $k$ es mas chico que $x.clave$, la b\'usqueda continua por el sub-\'arbol izquierdo de $x$, dado que el invariante del \'arbol binario de b\'usqueda implica que $k$ no puede ser guardado en el sub-\'arbol derecho. Sim\'etricamente, si $k$ es mas grande que $x.clave$, la b\'usqueda continua por el sub-\'arbol derecho. Los nodos encontrados durante la recursi\'on forman un camino simple desde la ra\'iz, por lo que el tiempo de corrida de una b\'usqueda en un \'arbol binario es de $O(h)$, en donde $h$ es la altura del \'arbol la cual puede ser $n$ si tenemos un \'arbol totalmente degenerado, que de cierta forma terminar\'ia siendo una lista enlazada.
 
 Adem\'as, siempre podremos encontrar un elemento en un \'arbol binario cuya clave sea un m\'inimo o un m\'aximo siguiendo los punteros izquierdos o derechos desde la ra\'iz hasta que encontremos un $NIL$.
 
@@ -210,7 +210,7 @@ La estrategia general para eliminar un nodo $z$ de un \'arbol binario de b\'usqu
 
 Vimos que los ABB funcionan razonablemente bien en el caso promedio, pero no dan garant\'ias. Todos los algoritmos que vimos tienen un peor caso lineal. En \'este sentido, los arreglos tambi\'en son lineales en el peor caso, pero ocupan menos memoria.
 
-Pero si miramos en detalle, veremos que los algoritmos m\'as bien son $O(h)$, donde $h$ es la altura del \'arbol. Entonces, s\'i distribuy\'esemos los nodos del ABB de manera ``pareja'', de manera tal que el \'arbol tuviese la m\'inima altura y estuviese siempre parejo, obtendriamos unas complejidades mucho mejores.
+Pero si miramos en detalle, veremos que los algoritmos m\'as bien son $O(h)$, donde $h$ es la altura del \'arbol. Entonces, s\'i distribuy\'esemos los nodos del ABB de manera ``pareja'', de manera tal que el \'arbol tuviese la m\'inima altura y estuviese siempre parejo, obtendr\'iamos unas complejidades mucho mejores.
 
 ~
 
@@ -227,7 +227,7 @@ Supongamos que cada nodo tiene 0 o 2 hijos. Llamemos $n_i$ a la cantidad de nodo
 El caso base es trivial. $n = 3$ (raiz con dos hijos) $\implies n_h = 2 \land n_i = 1$ (la raiz). Entonces se cumple la propiedad.
 
 Para el paso inductivo, supongamos que vale para $n_h$ y $n_i$. Ahora, agreguemos un nivel al arbol. Las hojas se duplican, $n_h' = 2n_h$ y los nodos internos crecen en tantos como antes ten\'ia hojas:
-$n_i' = n_i + n_h$, por hipotesis inductiva: $n_i' = (n_h - 1) + n_h = 2n_h - 1 = n_h' - 1$. $\square$
+$n_i' = n_i + n_h$, por hip\'otesis inductiva: $n_i' = (n_h - 1) + n_h = 2n_h - 1 = n_h' - 1$. $\square$
 
 \textit{Corolario}: al menos la mitad de los nodos son hojas.
 
@@ -240,10 +240,10 @@ Por ende, $h = log_2n$ y la altura del \'arbol era $h+1$. $\square$
 
 ~
 
-Conclusi\'on, s\'i tuviesemos \'arboles perfectamente balanceados todas nuestras operaciones ser\'ian $O(log\ n)$. Pero mantener un balanceo perfecto es muy costoso, por lo que no es factible.
+Conclusi\'on, s\'i tuvi\'esemos \'arboles perfectamente balanceados todas nuestras operaciones ser\'ian $O(log\ n)$. Pero mantener un balanceo perfecto es muy costoso, por lo que no es factible.
 Sin embargo, podemos tener un balanceo ``casi'' perfecto, haciendo que todas las ramas tengan ``casi'' la misma longitud, donde ese ``casi'' lo vamos a interpretar de la siguiente manera: la longitud entre dos ramas cualesquiera de un nodo difiere a lo sumo en 1.
 
-\'Esta clase de ABBs, son los llamads \'arboles AVL.
+\'Esta clase de ABBs, son los llamadas \'arboles AVL.
 
 \subsubsection{Rotaciones}
 
@@ -268,7 +268,7 @@ El recorrido de \'arboles, en ingles \textit{Tree traversal}, se refiere al proc
 
 \textbf{Inorden (o ``inorder'')}:  (izquierdo, ra\'iz, derecho). Comenzando con el nodo ra\'iz:
 \begin{itemize}
- \item Recorrer el sub\'arbol izquierdo en inordern.
+ \item Recorrer el sub\'arbol izquierdo en inorden.
  \item Visitar la raiz.
  \item Recorrer el sub\'arbol derecho en inorden.
 \end{itemize}
@@ -304,7 +304,7 @@ Viendo el heap como un \'arbol, definiremos la altura de un nodo en un heap como
 
 \subsubsection{Mantener el invariante del heap}
 
-De aqui en mas, asumiremos que estaremos hablando de un max-heap, ya que el min-heap es an\'alogo. Para mantener el invariante del max-heap en un arreglo, llamaremos al procedimiento \textbf{Heapify}. Su entrada sera el arreglo $A$ y un \'indice $i$ del arreglo. Cuando es llamado, Heapify asume que los sub-\'arboles binarios con sus ra\'ices en $Izquierda(i)$ y $Derecha(i)$ ser\'an max-heaps, pero que $A[i]$ puede ser mas chico que que sus hijos, violando as\'i el invariante. Heapify deja que el valor en $A[i]$ ''decante`` en el max-heap, de forma tal que el sub-\'arbol con raiz en $i$ cumpla el invariante del heap y luego recursivamente se asegurara que el invariante sea cumplido en el sub-\'arbol en donde el valor $A[i]$ haya decantado.
+De aqu\'i en mas, asumiremos que estaremos hablando de un max-heap, ya que el min-heap es an\'alogo. Para mantener el invariante del max-heap en un arreglo, llamaremos al procedimiento \textbf{Heapify}. Su entrada sera el arreglo $A$ y un \'indice $i$ del arreglo. Cuando es llamado, Heapify asume que los sub-\'arboles binarios con sus ra\'ices en $Izquierda(i)$ y $Derecha(i)$ ser\'an max-heaps, pero que $A[i]$ puede ser mas chico que que sus hijos, violando as\'i el invariante. Heapify deja que el valor en $A[i]$ ''decante`` en el max-heap, de forma tal que el sub-\'arbol con ra\'iz en $i$ cumpla el invariante del heap y luego recursivamente se asegurara que el invariante sea cumplido en el sub-\'arbol en donde el valor $A[i]$ haya decantado.
 
 ~
 
@@ -404,12 +404,12 @@ nuevamente).
 
 \subsubsection{Peor caso en eliminaci\'on}
 
-Para lograr caracterizar un peor caso en el rebalanceo luego de la eliminaci\'on de un nodo, definiremos a $T$ como un \'arbol AVL en donde todos los nodos que no son hojas tendr\'an factor de balanceo $1$. Esto es que para todo nodo $x$ la diferencia entre la altura del sub-\'arbol derecho y el sub-\'arbol izquierdo sera $1$, es decir que $FDB(x) = altura(der(x))-altura(izq(x)) = 1$. Luego, si removemos una hoja $y$ del sub-\'arbol $izq(x)$, sea $z$ el padre de $y$ tal que $izq(z)=y$ y $izq(y) = NIL$, ocasionara que el FDB de $z$ se incremente de $1$ a $2$, ya que abremos acortado el sub-\'arbol izquierdo de $z$ en $1$ unidad.
+Para lograr caracterizar un peor caso en el rebalanceo luego de la eliminaci\'on de un nodo, definiremos a $T$ como un \'arbol AVL en donde todos los nodos que no son hojas tendr\'an factor de balanceo $1$. Esto es que para todo nodo $x$ la diferencia entre la altura del sub-\'arbol derecho y el sub-\'arbol izquierdo sera $1$, es decir que $FDB(x) = altura(der(x))-altura(izq(x)) = 1$. Luego, si removemos una hoja $y$ del sub-\'arbol $izq(x)$, sea $z$ el padre de $y$ tal que $izq(z)=y$ y $izq(y) = NIL$, ocasionara que el FDB de $z$ se incremente de $1$ a $2$, ya que habremos acortado el sub-\'arbol izquierdo de $z$ en $1$ unidad.
 
 \begin{SCfigure}[1][ht!]
  \centering
  \includegraphics[width=0.70\textwidth]{graficos/PeorCasoEliminacionAVL.pdf}
- \caption*{\newline \footnotesize En la primera figura se puede apreciar el nodo $y$ a ser eliminado, junto con su padre $z$ y el FDB de $z$ en el hexagono, la altura total es de $h+1$. En la segunda figura se puede apreciar el estado luego de la eliminaci\'on del nodo $y$ junto con el hijo de derecho de $z$ expandido y los FDB correspondientes a cada nodo recalculados. Finalmente, en la tercera figura se observa el estado luego de la rotaci\'on, lo que genera un decremento en la altura del sub-\'arbol.}
+ \caption*{\newline \footnotesize En la primera figura se puede apreciar el nodo $y$ a ser eliminado, junto con su padre $z$ y el FDB de $z$ en el hex\'agono, la altura total es de $h+1$. En la segunda figura se puede apreciar el estado luego de la eliminaci\'on del nodo $y$ junto con el hijo de derecho de $z$ expandido y los FDB correspondientes a cada nodo recalculados. Finalmente, en la tercera figura se observa el estado luego de la rotaci\'on, lo que genera un decremento en la altura del sub-\'arbol.}
 \end{SCfigure}
 
 Para compensar esto ejecutaremos una rotaci\'on hacia la izquierda entre los nodos $z$ y $der(z)$, lo que dejara a $z$ como hijo izquierdo de $der(z)$ y al hijo izquierdo de $der(z)$ como hijo derecho de $z$. Luego de la rotaci\'on los FDB de ambos nodos quedar\'an en $0$ pero la altura del \'arbol se ver\'a reducida en $1$, lo que provocar\'a que el padre original de $z$ (el abuelo de $y$), cambie su FDB de $1$ a $2$. De la misma forma deberemos continuar balanceando el resto de los nodos hasta llegar a la ra\'iz, en donde tendremos que $FDB(izq(raiz)) = 0$, $FDB(der(raiz)) = 1$ y $FDB(raiz) = 2$. Para resolver esta ultima situac\'ion podremos ejecutar una rotaci\'on hacia la derecha entre $izq(raiz)$ y $raiz$, o una rotaci\'on hacia la izquierda entre $der(raiz)$ y $raiz$. Finalmente habremos realizado exactamente $lg(alt(y))$ rotaciones, en donde $alt(y)$ es distancia a la que se encontraba $y$ de la ra\'iz, es decir su altura o nivel. Dentro de este esquema, si seleccionamos a $y$ como uno de los nodos a 
@@ -430,7 +430,7 @@ Los \'arboles B son \'arboles balanceados de b\'usqueda dise\~nados para trabaja
 
 ~
 
-Los \'arboles B difieren de los \'arboles RB en el sentido de que los nodos de los \'arboles B pueden tener muchos hijos, desde unos pocos hasta miles. Esto es, que el ''factor de ramificaci\'on`` (breanching factor) de un \'arbol B puede ser bastante grande, sin embargo usualmente depende en las caracter\'isticas de la unidad de disco usada. Este tipo de \'arboles son similares a los \'arboles B en el aspecto de que cada $n-$nodo tiene altura $O(lg(n))$. La altura exacta de un \'arbol B puede ser considerablemente menos que la de un \'arbol RB por su factor de ramificaci\'on, por lo que la base del logaritmo que expresa su altura puede ser mucho mayor.
+Los \'arboles B difieren de los \'arboles RB en el sentido de que los nodos de los \'arboles B pueden tener muchos hijos, desde unos pocos hasta miles. Esto es, que el ''factor de ramificaci\'on`` (branching factor) de un \'arbol B puede ser bastante grande, sin embargo usualmente depende en las caracter\'isticas de la unidad de disco usada. Este tipo de \'arboles son similares a los \'arboles B en el aspecto de que cada $n-$nodo tiene altura $O(lg(n))$. La altura exacta de un \'arbol B puede ser considerablemente menos que la de un \'arbol RB por su factor de ramificaci\'on, por lo que la base del logaritmo que expresa su altura puede ser mucho mayor.
 
 ~
 
@@ -450,7 +450,7 @@ Un \'arbol B tiene las siguientes propiedades:
  \item Cada nodo interno $x$ adem\'as contiene $x.n+1$ punteros $x.c_1,x.c_2,...,x.c_{x.n+1}$ a sus hijos. Los nodos hojas no tienen hijos, por lo que sus atributos $c_i$ estar\'an indefinidos.
  \item Las claves $x.key_i$ separan los rangos de las claves guardadas en cada sub-\'arbol. Si $k_i$ es cualquier clave guardada en el sub-\'arbol cuya ra\'iz es $x.c_i$, entonces $k_1 \leq x.key_1 \leq k_2 \leq x.key_2 \leq ... \leq x.key_{x.n} \leq k_{x.n+1}$.
  \item Todas las hojas tienen la misma profundidad, la cual ser\'a la altura del \'arbol $h$.
- \item Los nodos tienen cotas inferiores y superiores en el numero de claves que pueden contener. Expresaremos estas cotas en terminos de un entero fijo $t \geq 2$ llamado el grado m\'inimo del \'arbol B:
+ \item Los nodos tienen cotas inferiores y superiores en el numero de claves que pueden contener. Expresaremos estas cotas en t\'erminos de un entero fijo $t \geq 2$ llamado el grado m\'inimo del \'arbol B:
  \begin{enumerate}
   \item Cada nodo distinto a la ra\'iz debe tener al menos $t-1$ claves. Cada intervalo de nodos distinto que la raiz debe tener al menos $t$ hijos. Si el \'arbol no esta vac\'io, la ra\'iz debe tener al menos una clave.
   \item Cada nodo debe contener como mucho $2t-1$ claves. Entonces, un nodo interno puede tener a lo sumo $2t$ hijos. Diremos que el nodo esta \textbf{lleno} si contiene exactamente $2t - 1$ claves.
@@ -458,7 +458,7 @@ Un \'arbol B tiene las siguientes propiedades:
 \end{enumerate}
 
 \subsubsection{Arboles 234}
-El \'arbol B mas simple ocurre cuando $t=2$. Cada nodo interno puede tener 2, 3 o 4 hijos, por lo que tendremos un \'arbol $2-3-4$. En la practica, valores muchos mas grandes de $t$ nos dar\'an \'arboles B con una altura menor. Gracias a la noci\'on de cotas podremos dar una cota para la altura de un \'arbol B de la forma $h \leq log_t((n+1)/2)$, en donde $n \geq 1$, para cualquier \'arbol B de $n-$claves de altura $h$ y grado minimo $t \geq 2$.
+El \'arbol B mas simple ocurre cuando $t=2$. Cada nodo interno puede tener 2, 3 o 4 hijos, por lo que tendremos un \'arbol $2-3-4$. En la practica, valores muchos mas grandes de $t$ nos dar\'an \'arboles B con una altura menor. Gracias a la noci\'on de cotas podremos dar una cota para la altura de un \'arbol B de la forma $h \leq log_t((n+1)/2)$, en donde $n \geq 1$, para cualquier \'arbol B de $n-$claves de altura $h$ y grado m\'inimo $t \geq 2$.
 
 \subsubsection{Inserci\'on en Arboles 234}
 
@@ -466,17 +466,17 @@ Durante la inserci\'on cada vez que encontremos un 3-nodo $x$ empujaremos al nod
 
 \subsubsection{Eliminaci\'on en Arboles 234}
 
-Para la eliminacion, en primer lugar buscaremos la clave a eliminar. Si la clave se encuentra en una hoja la removeremos del \'arbol y si es un nodo interno la ``eliminaremos'' reemplazandola con la siguiente clave mas alta (que se encontrar\'a en un nodo hoja).
-Durante la eliminacion se traeran claves desde el padre o los hermanos de forma tal de asegurarnos de tener al menos  dos claves en el nodo donde se efectuara la eliminacion (o de donde obtendremos el reemplazo).
-De cierta forma estaremos haciendo una estrategia inversa a la inserci\'on donde simplemente empujabamos las claves.
+Para la eliminaci\'on, en primer lugar buscaremos la clave a eliminar. Si la clave se encuentra en una hoja la removeremos del \'arbol y si es un nodo interno la ``eliminaremos'' reemplaz\'andola con la siguiente clave mas alta (que se encontrar\'a en un nodo hoja).
+Durante la eliminaci\'on se traer\'an claves desde el padre o los hermanos de forma tal de asegurarnos de tener al menos  dos claves en el nodo donde se efectuara la eliminaci\'on (o de donde obtendremos el reemplazo).
+De cierta forma estaremos haciendo una estrategia inversa a la inserci\'on donde simplemente empuj\'abamos las claves.
 
 ~
 
-A medida que busquemos la clave a eliminar o su reemplazo, nos encontraremos en nodos que contengan solo una clave que deberemos lograr que tengan dos (para que al remover alguna de ellas, no nos quede un nodo vacio). Para lograr esto tendremos distintas estrategias seg\'un los posibles tres casos en donde nos encontremos:
+A medida que busquemos la clave a eliminar o su reemplazo, nos encontraremos en nodos que contengan solo una clave que deberemos lograr que tengan dos (para que al remover alguna de ellas, no nos quede un nodo vac\'io). Para lograr esto tendremos distintas estrategias seg\'un los posibles tres casos en donde nos encontremos:
 
 \begin{enumerate}
  \item Intentar robar una clave de los hermanos inmediatamente adyacentes. Si alguno de sus hermanos tiene mas de una clave ejecutara una rotaci\'on para obtenerlo.
- \item Si no hay hermano adyacente al que podamos robarle una clave, robaremos una clave al padre (esto sera posible al menos que sea la raiz) y fusionaremos la misma con el hermano siguiente u anterior (dependiendo de la desigualdad) formando un 3-nodo.
+ \item Si no hay hermano adyacente al que podamos robarle una clave, robaremos una clave al padre (esto sera posible al menos que sea la ra\'iz) y fusionaremos la misma con el hermano siguiente u anterior (dependiendo de la desigualdad) formando un 3-nodo.
  \item Si no hay hermano adyacente al que podamos robarle una clave, el padre es la ra\'iz y tiene solo una clave, entonces fusionaremos en un 3-nodo los hermanos y la ra\'iz, obteniendo as\'i un nuevo 3-nodo ra\'iz. Este sera el \'unico caso en donde la altura del \'arbol se ver\'a disminuida en una unidad.
 \end{enumerate}
 
@@ -493,7 +493,7 @@ reemplazarlo por el $42$.
 
 \subsubsection{Complejidades}
 
-Supongamos un \'Arbol 2-3-4 con altura $d$, entonces es facil ver que dicho \'arbol tiene entre $2^d$ y $4^d$ hojas, por lo tanto la cantidad de nodos totales (lo llamaremos $n$) es $n \geq 2^{d+1} -1$.
+Supongamos un \'Arbol 2-3-4 con altura $d$, entonces es f\'acil ver que dicho \'arbol tiene entre $2^d$ y $4^d$ hojas, por lo tanto la cantidad de nodos totales (lo llamaremos $n$) es $n \geq 2^{d+1} -1$.
 Luego, aplicando logaritmo a ambos lados y dando vuelta la desigualdad, $d \in O(log\ n)$.
 
 Ahora, el tiempo que tardamos en visitar cada nodo $\in O(1)$. Entonces, las operaciones sobre el \'arbol tienen como costo la cantidad de nodos que visitamos, o sea: $O(d) = O(log\ n)$.
@@ -515,7 +515,7 @@ En estos \'arboles, los cuales utilizan exactamente la misma representaci\'on in
 
 ~
 
-Otra ventaja en cuanto a otras estructuras es que los Splay Trees son mucho mas f\'aciles de programar y adem\'as otorgan acceso mas r\'apido a los datos recientemente accedidos, es decir que de cierta forma los Splay Trees tienen ``memoria'' en este aspecto. Esto \'ultimo puede darnos una mayor performance en comparaci\'on a los \'Arboles 234 si tenemos un \'arbol grande y solamente accedemos a algunos de los elementos ignorando la mayoria de ellos, ya que como estaremos recurriendo frecuentemente a los mismos elementos los accesos en el Splay Tree se dar\'an en $O(1)$.
+Otra ventaja en cuanto a otras estructuras es que los Splay Trees son mucho mas f\'aciles de programar y adem\'as otorgan acceso mas r\'apido a los datos recientemente accedidos, es decir que de cierta forma los Splay Trees tienen ``memoria'' en este aspecto. Esto \'ultimo puede darnos una mayor performance en comparaci\'on a los \'Arboles 234 si tenemos un \'arbol grande y solamente accedemos a algunos de los elementos ignorando la mayor\'ia de ellos, ya que como estaremos recurriendo frecuentemente a los mismos elementos los accesos en el Splay Tree se dar\'an en $O(1)$.
 
 ~
 
@@ -534,10 +534,10 @@ Los Splay Trees, al igual que otros \'arboles balanceados, mantienen su balance 
 
 Dada una clave $k$, empezaremos a buscar la clave de la misma manera que lo hacemos en un ABB hasta que encontremos la clave $k$ o hasta llegar a un $NIL$ (en el caso de que la clave no sea existente). Sea $x$ el nodo en donde la b\'usqueda termino, contenga o no $k$, elevaremos $x$ a trav\'es de una secuencia de rotaciones, de forma tal que $x$ se vuelva la ra\'iz, llamaremos a esta operaci\'on \textbf{splay}. Las razones por las cuales haremos esto ser\'an, en primer lugar, para mantener los elementos mas consultados en la ra\'iz o cerca de ella, de forma tal de que la consulta de estos sea verdaderamente r\'apida la pr\'oxima vez, y en segundo lugar, como este tipo de \'arboles puede desbalancearse (lo que es usualmente un estado temporal), si nos encontramos en un caso en donde exploramos hasta la profundidad del mismo, las rotaciones evitaran que esto pase de nuevo.
 
-Las rotaciones se daran en tres casos:
+Las rotaciones se dar\'an en tres casos:
 
 \begin{enumerate}
- \item \textbf{Zig-zag} $X$ es el hijo izquierdo de un hijo derecho ($LR$) o su caso espejo ($RL$). Siendo $P$ el padre de $X$ y $G$ su abuelo, para resolver este caso haremos una rotaci\'on hacia la izquierda entre $P$ y $X$ y luego una rotaci\'on hacia la derecha entre $X$ y $G$. En el caso espejo realizaremos una rotaci\'on hacia la derecha y luego una hacia la izquierda, dejando a $X$ como la raiz del sub-\'arbol.
+ \item \textbf{Zig-zag} $X$ es el hijo izquierdo de un hijo derecho ($LR$) o su caso espejo ($RL$). Siendo $P$ el padre de $X$ y $G$ su abuelo, para resolver este caso haremos una rotaci\'on hacia la izquierda entre $P$ y $X$ y luego una rotaci\'on hacia la derecha entre $X$ y $G$. En el caso espejo realizaremos una rotaci\'on hacia la derecha y luego una hacia la izquierda, dejando a $X$ como la ra\'iz del sub-\'arbol.
  
  \begin{SCfigure}[1][ht!]
  \centering
@@ -560,7 +560,7 @@ Los casos $1$ y $2$ se repetir\'an hasta que $X$ sea la ra\'iz del \'arbol o un 
 
 \subsubsection{Max/Min, Inserci\'on y Eliminaci\'on}
 
-Las dem\'as operaciones del \'arbol usaran la operaci\'on de splay de formas similares ya que es importante para el Splay Tree ejecutar un splay cada vez que realizamos una operaci\'on sobre el mismo. De esta forma, el \'arbol se mantiene actualizado y balanceado segun las ultimas operaciones.
+Las dem\'as operaciones del \'arbol usaran la operaci\'on de splay de formas similares ya que es importante para el Splay Tree ejecutar un splay cada vez que realizamos una operaci\'on sobre el mismo. De esta forma, el \'arbol se mantiene actualizado y balanceado seg\'un las ultimas operaciones.
 
 \begin{itemize}
  \item En el caso de \textbf{max/min}, una vez encontrado la max/min clave del \'arbol, haremos un splay del nodo que lo contiene.
@@ -598,7 +598,7 @@ Haciendo ciertas suposiciones, la b\'usqueda o inserci\'on en un \'arbol de \tex
 \subsubsection{Desventajas}
 \begin{itemize}
  \item Algunas implementaciones pueden requerir mucha memoria.
- \item Las operaciones sobre las componentes de las claves pueden no ser faciles, o ser muy ineficiente en algunos lenguajes de alto nivel.
+ \item Las operaciones sobre las componentes de las claves pueden no ser f\'aciles, o ser muy ineficiente en algunos lenguajes de alto nivel.
 \end{itemize}
 
 \subsubsection{Complejidades}
@@ -614,7 +614,7 @@ Para un Trie construido a partir de $n$ claves de $b$ bits:
 Consiste en colapsar las cadenas de caracteres o bits que llevan hacia hojas.
 Ejemplo: en un trie con dos claves ``Algo'' y ``Algoritmos'', el camino que lleva desde la primer `o' hasta la `s' puede ser compactado en un solo nodo para ahorrar espacio.
 \subsubsection{Tries Patricia}
-Son Tries m\'as compactos que los mencionados anteriormente. \textit{Patricia} es un acronimo de: Practical Algorithm To Retrieve Information Coded in Alphanumeric.
+Son Tries m\'as compactos que los mencionados anteriormente. \textit{Patricia} es un acr\'onimo de: Practical Algorithm To Retrieve Information Coded in Alphanumeric.
 La idea es colapsar todas las cadenas, no solo las que llevan a hojas (un eje ahora puede representar una cadena). 
 Ejemplo: en un trie con dos claves ``Algoritmo'' y ``Algoritmos'', el camino que lleva desde el nodo `A' hasta la \'ultima `o' puede ser compactado en un solo nodo para ahorrar espacio.
 
@@ -705,7 +705,7 @@ Eliminar un nodo de un \'arbol RB puede ser un poco mas complicado que insertar 
 Como vimos en la secci\'on de Estructuras B\'asicas, las listas son muy simples pero ineficientes. Implementar un Diccionario en dicha estructura nos dar\'ia complejidades $O(n)$ (b\'usqueda, inserci\'on y borrado).
 
 Las Skip lists buscan tomar ventaja de esta simplicidad, pero agregando una forma de avanzar ``m\'as r\'apido'' los elementos de la lista.
-En vez de que cada nodo de la lista tenga un puntero al siguiente, tendr\'an multiples punteros, dependiendo de su posici\'on en la lista, lo que nos permitir\'a dar saltos m\'as grandes a la hora de buscar/insertar un elemento.
+En vez de que cada nodo de la lista tenga un puntero al siguiente, tendr\'an m\'ultiples punteros, dependiendo de su posici\'on en la lista, lo que nos permitir\'a dar saltos m\'as grandes a la hora de buscar/insertar un elemento.
 Llevado al l\'imite, cada $2^i$-\'esimo nodo posee una referencia al nodo $2^i$ posiciones m\'as adelante en la lista:
 
 \begin{center}
