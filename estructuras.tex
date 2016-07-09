@@ -22,13 +22,12 @@ Una funci\'on pertenece al conjunto $\Theta(g(n))$ si existen constantes positiv
 \textbf{Propiedades de $\Theta$}:
 \begin{enumerate}
  \item Para cualquier funci\'on $f$ se tiene que $f \in \Theta(f)$.
- \item $f \in \Theta(g) \implies \Theta(f) \subset \Theta(g)$.
- \item $\Theta(f) = \Theta(g) \iff f \in \Theta(g) \land g \in \Theta(f)$.
+ \item $\Theta(f) = \Theta(g) \iff f \in \Theta(g) \iff g \in \Theta(f)$.
  \item S\'i $f \in \Theta(g) \land g \in \Theta(h) \implies f \in \Theta(h)$.
- \item S\'i $f \in \Theta(g) \land f \in \Theta(h) \implies f \in \Theta(max(g,h))$.
+ \item S\'i $f \in \Theta(g) \land f \in \Theta(h) \implies \Theta(g) = \Theta(h)$.
  \item Regla de la suma:
 
-	S\'i $f_1 \in \Theta(g) \land f_2 \in \Theta(h) \implies f_1 + f_2 \in O(g+h)$.
+	S\'i $f_1 \in \Theta(g) \land f_2 \in \Theta(h) \implies f_1 + f_2 \in \Theta(g+h)$.
  \item Regla del producto:
 
 	S\'i $f_1 \in \Theta(g) \land f_2 \in \Theta(h) \implies f_1 * f_2 \in \Theta(g*h)$.
@@ -90,10 +89,11 @@ Cuando decimos que el tiempo de un algoritmo es $\Omega(g(n))$, significa que no
 \textbf{Propiedades de $\Omega$}:
 \begin{enumerate}
  \item Para cualquier funci\'on $f$ se tiene que $f \in \Omega(f)$.
- \item $f \in \Omega(g) \implies \Omega(f) \subset O(g)$.
+ \item $f \in \Omega(g) \implies \Omega(f) \subset \Omega(g)$.
  \item $\Omega(f) = \Omega(g) \iff f \in \Omega(g) \land g \in \Omega(f)$.
  \item S\'i $f \in \Omega(g) \land g \in \Omega(h) \implies f \in \Omega(h)$.
  \item S\'i $f \in \Omega(g) \land f \in \Omega(h) \implies f \in \Omega(max(g,h))$.
+ \item $f(n) = \Omega(g(n)) \iff g(n) = O(f(n))$
  \item Regla de la suma:
 
 	S\'i $f_1 \in \Omega(g) \land f_2 \in \Omega(h) \implies f_1 + f_2 \in \Omega(g+h)$.
@@ -103,7 +103,7 @@ Cuando decimos que el tiempo de un algoritmo es $\Omega(g(n))$, significa que no
  \item S\'i existe $\lim_{n \to \infty} \frac{f(n)}{g(n)} = k$, seg\'un los valores que tome $k$:
 	\begin{enumerate}
 	  \item S\'i $k \neq 0$ y $k < \infty$ entonces $\Omega(f) = \Omega(g)$.
-	  \item S\'i $k = 0$ entonces $g \in \Omega(f)$, es decir, $\Omega(g) \subset \Omega(f)$, pero sin embargo se verifica que $g \notin O(f)$.
+	  \item S\'i $k = 0$ entonces $g \in \Omega(f)$, es decir, $\Omega(g) \subset \Omega(f)$, pero sin embargo se verifica que $g \notin \Omega(f)$.
 	\end{enumerate}
 \end{enumerate}
 \subsubsection{Conjunto / Notaci\'on Asint\'otica No-Ajustada $o$}
