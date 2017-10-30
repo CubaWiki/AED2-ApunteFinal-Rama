@@ -14,19 +14,19 @@ La motivaci\'on de la eliminaci\'on de la recursi\'on es b\'asicamente optimizar
 
 ~
 
-\textbf{Inmersion de genero} Se ampl\'ia el dominio de alg\'un par\'ametro de la funci\'on. Por ejemplo de naturales a enteros.
+\textbf{Inmersi\'on de genero} Se ampl\'ia el dominio de alg\'un par\'ametro de la funci\'on. Por ejemplo de naturales a enteros.
 
 ~
 
-\textbf{Recursion a cola} Esta sera una clase de funciones recursivas lineales en donde su ultimo paso es la llamada recursiva y adem\'as es \'unica. La propiedad de estas es que pueden ser transformadas autom\'aticamente a funciones iterativas.
+\textbf{Recursi\'on a cola} Esta sera una clase de funciones recursivas lineales en donde su ultimo paso es la llamada recursiva y adem\'as es \'unica. La propiedad de estas es que pueden ser transformadas autom\'aticamente a funciones iterativas.
 
 ~
 
-\textbf{Recursivas lineales no a cola} Son aquellas que tienen una \'unica llamada recursiva (por eso lineales) pero esta no es la ultima operaci\'on. Una funci\'on de este tipo puede ser aquella que tenga un condicional para separar entre el caso base y el caso recursivo. Este tipo de funciones pueden tambi\'en ser convertidas autom\'aticamente.
+\textbf{Recursivas lineales no a cola} Son aquellas que tienen una \'unica llamada recursiva (por eso lineales) pero esta no es la \'ultima operaci\'on. Una funci\'on de este tipo puede ser aquella que tenga un condicional para separar entre el caso base y el caso recursivo. Este tipo de funciones pueden tambi\'en ser convertidas autom\'aticamente.
 
 ~
 
-\textbf{Recursivas no lineales} Ser\'an aquellas que tienen mas de una llamada recursiva. Pueden ser \textbf{m\'ultiples} en donde contienen varias llamadas pero no es la ultima operaci\'on o \textbf{anidadas}, las cuales tienen mas de una llamada recursiva pero anidadas y adem\'as la llamada es la ultima operaci\'on.
+\textbf{Recursivas no lineales} Ser\'an aquellas que tienen m\'as de una llamada recursiva. Pueden ser \textbf{m\'ultiples} en donde contienen varias llamadas pero no es la \'ultima operaci\'on o \textbf{anidadas}, las cuales tienen mas de una llamada recursiva pero anidadas y adem\'as la llamada es la ultima operaci\'on.
 
 ~
 
@@ -34,22 +34,22 @@ La motivaci\'on de la eliminaci\'on de la recursi\'on es b\'asicamente optimizar
 
 ~
 
-\textbf{Precomputar valores} Por ejemplo, s\'i mi programa va a intentar factorizar, tal vez me convenga tener almacenados los \textit{n} primeros n\'umeros primos.
+\textbf{Precomputar valores} Por ejemplo, si mi programa va a intentar factorizar, tal vez me convenga tener almacenados los \textit{n} primeros n\'umeros primos.
 
 ~
 
-\textbf{Almacenar computos caros} S\'i ya comput\'e resultados caros, puede tener sentido almacenarlos (en memoria o en disco) en lugar de recomputarlos.
+\textbf{Almacenar c\'omputos caros} Si ya comput\'e resultados caros, puede tener sentido almacenarlos (en memoria o en disco) en lugar de recomputarlos.
 
 \newpage
 \section{Dividir y Conquistar}
 
-La metodolog\'ia consiste en \textbf{dividir} el problema en un numero de subproblemas que son instancias mas chicas del mismo problema, \textbf{conquistar} los subproblemas resolvi\'endolos recursivamente y cuando sean suficientemente chicos resolverlos de una forma directa y \textbf{combinar} las soluciones de los subproblemas en la soluci\'on para el problema original.
+La metodolog\'ia consiste en \textbf{dividir} el problema en un n\'umero de subproblemas que son instancias mas chicas del mismo problema, \textbf{conquistar} los subproblemas resolvi\'endolos recursivamente y cuando sean suficientemente chicos resolverlos de una forma directa y \textbf{combinar} las soluciones de los subproblemas en la soluci\'on para el problema original.
 
-Cuando los subproblemas son suficientemente grandes para resolverlos recursivamente, llamaremos al \textbf{caso recursivo}. Una vez que los subproblemas se vuelvan suficientemente chicos, diremos que la recursi\'on ''toco fondo`` y que habremos llegado al \textbf{caso base}. A veces, en adici\'on a los subproblemas que son instancias mas chicas del mismo problema, deberemos resolver problemas que no son exactamente lo mismo que el problema original. Consideraremos resolver dichos subproblemas como una parte del paso de combinaci\'on.
+Cuando los subproblemas son suficientemente grandes para resolverlos recursivamente, llamaremos al \textbf{caso recursivo}. Una vez que los subproblemas se vuelvan suficientemente chicos, diremos que la recursi\'on ''toc\'o fondo`` y que habremos llegado al \textbf{caso base}. A veces, en adici\'on a los subproblemas que son instancias m\'as chicas del mismo problema, deberemos resolver problemas que no son exactamente lo mismo que el problema original. Consideraremos resolver dichos subproblemas como una parte del paso de combinaci\'on.
 
 \subsection{Recurrencias}
 
-Las recurrencias van a la par con el paradigma de DyC, ya que nos dan una forma natural de caracterizar los tiempos de los algoritmos que hagan uso del paradigma. Una recurrencia es una ecuaci\'on o inecuaci\'on que describe una funci\'on en t\'erminos de su valor en entradas mas chicas. Las recurrencias pueden tomar muchas formas. Por ejemplo, un algoritmo recursivo podr\'a dividir los subproblemas en tama\~nos desiguales, tales como $2/3$ a $1/3$. Si los pasos de dividir y combinar toman tiempo lineal, tal algoritmo nos dar\'a la recurrencia $T(n) = T(2n/3) + T(n/3) + \Theta(n)$. Los subproblemas no están necesariamente acotados a ser una fracci\'on constante del tama\~no del problema original. Por ejemplo, si en cada paso disminuy\'eramos 1 solo elemento, nos quedar\'ia una recurrencia del tipo $T(n) = T(n-1) + \Theta(1)$. Habr\'a 3 m\'etodos para resolver recurrencias, esto es para obtener las cotas asint\'oticas ``$\Theta$ o ''$O$`` de la soluci\'on:
+Las recurrencias van a la par con el paradigma de DyC, ya que nos dan una forma natural de caracterizar los tiempos de los algoritmos que hagan uso del paradigma. Una recurrencia es una ecuaci\'on o inecuaci\'on que describe una funci\'on en t\'erminos de su valor en entradas m\'as chicas. Las recurrencias pueden tomar muchas formas. Por ejemplo, un algoritmo recursivo podr\'a dividir los subproblemas en tama\~nos desiguales, tales como $2/3$ a $1/3$. Si los pasos de dividir y combinar toman tiempo lineal, tal algoritmo nos dar\'a la recurrencia $T(n) = T(2n/3) + T(n/3) + \Theta(n)$. Los subproblemas no están necesariamente acotados a ser una fracci\'on constante del tama\~no del problema original. Por ejemplo, si en cada paso disminuy\'eramos 1 solo elemento, nos quedar\'ia una recurrencia del tipo $T(n) = T(n-1) + \Theta(1)$. Habr\'a 3 m\'etodos para resolver recurrencias, esto es para obtener las cotas asint\'oticas ``$\Theta$ o ''$O$`` de la soluci\'on:
 
 \begin{itemize}
  \item En el m\'etodo de substituci\'on, conjeturaremos una cota y luego la probaremos utilizando inducci\'on matem\'atica.
@@ -234,6 +234,8 @@ Para el caso promedio, podr\'iamos pensar en un input proveniente de una distrib
 Pero no siempre podemos suponer que el input proviene de una distribuci\'on uniforme. S\'i ese no es el caso, podemos forzarlo de alguna forma. Por ejemplo: permutando el input, o eligiendo el pivot al azar.
 
 \subsection{Bubble sort}
+
+En este algoritmo, tendremos un pivote $p$ que empezar\'a en el segundo elemento del arreglo, e ir\'a recorriendo el arreglo hasta el final. En cada paso, el elemento ubicado en el pivote ser\'a comparado con el anterior, y, si es menor (o mayor, dependiendo de c\'omo se quiera ordenar el arreglo), ser\'a intercambiado con el mismo. Luego, procede a hacer la misma comparaci\'on con el anterior a ese, intercambiando el elemento "para atr\'as", hasta que llegue al principio del arreglo o el elemento anterior sea mayor o igual, momento en el cual se mueve el pivote $p$ una posición para adelante, y se contin\'ua con el algoritmo en la nueva posición. La complejidad de este algoritmo es $O(n^2)$. 
 
 \subsection{Bucket sort}
 
