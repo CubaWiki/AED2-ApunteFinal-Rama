@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CompileFolder</key>
+	<string>/Users/nsoberon/Desktop</string>
+	<key>NotesScaleFactor</key>
+	<real>1</real>
+	<key>QRPanelSettings</key>
+	<dict>
+		<key>0A3688E4-A178-4FEC-92FC-40246FB583F8</key>
+		<dict>
+			<key>BinderUUID</key>
+			<string>0A3688E4-A178-4FEC-92FC-40246FB583F8</string>
+			<key>CurrentMetaData</key>
+			<integer>-1</integer>
+			<key>MainPaneWidth</key>
+			<real>475</real>
+			<key>ProjectBookmarksSplitInfo</key>
+			<array>
+				<string>{{0, 0}, {225, 495}}</string>
+				<string>{{235, 0}, {443, 495}}</string>
+			</array>
+			<key>ProjectBookmarksVisible</key>
+			<false/>
+			<key>ShowsFormatBar</key>
+			<true/>
+			<key>ShowsMetaData</key>
+			<false/>
+			<key>SplitInfo</key>
+			<array>
+				<string>{{0, 277}, {475, 167}}</string>
+			</array>
+			<key>TextSettings</key>
+			<dict>
+				<key>hasMultiplePages</key>
+				<false/>
+				<key>isRulerVisible</key>
+				<false/>
+				<key>lineNumberingInterval</key>
+				<integer>1</integer>
+				<key>showsLineNumbers</key>
+				<false/>
+				<key>textScaleFactor</key>
+				<real>1</real>
+				<key>usesFacingPages</key>
+				<false/>
+				<key>usesTypewriterScrolling</key>
+				<false/>
+			</dict>
+			<key>WindowFrame</key>
+			<string>402 207 475 522 0 0 1280 777 </string>
+		</dict>
+	</dict>
+	<key>SCRSelectedCompileOptionsInfoSaveName</key>
+	<dict>
+		<key>Tag</key>
+		<integer>1</integer>
+		<key>Title</key>
+		<string>Original</string>
+	</dict>
+	<key>binderIsCollapsed</key>
+	<true/>
+	<key>binderSelection</key>
+	<array>
+		<integer>1</integer>
+	</array>
+	<key>binderSplitFrames</key>
+	<array>
+		<string>{{0, 0}, {142, 631}}</string>
+	</array>
+	<key>binderState</key>
+	<array>
+		<string>ABE82ACE-900E-4DF3-975C-917A306AA787</string>
+	</array>
+	<key>binderWidth</key>
+	<real>191</real>
+	<key>collectionsHeight</key>
+	<real>101</real>
+	<key>collectionsRepresentedBinderDocumentsInfo</key>
+	<dict>
+		<key>MainID</key>
+		<string></string>
+		<key>SupportingID</key>
+		<string></string>
+	</dict>
+	<key>collectionsTabListIsCollapsed</key>
+	<true/>
+	<key>continuousSpellChecking</key>
+	<false/>
+	<key>editorSplitType</key>
+	<integer>0</integer>
+	<key>inspectorIsCollapsed</key>
+	<true/>
+	<key>inspectorSplitFrames</key>
+	<array>
+		<string>{{0, 0}, {256, 631}}</string>
+	</array>
+	<key>inspectorWidth</key>
+	<real>227</real>
+	<key>mainDocumentEditor.binderDocuments</key>
+	<array>
+		<string>0A3688E4-A178-4FEC-92FC-40246FB583F8</string>
+	</array>
+	<key>mainDocumentEditor.currentEditorViewMode</key>
+	<integer>0</integer>
+	<key>mainDocumentEditor.editorGroupsViewMode</key>
+	<integer>0</integer>
+	<key>mainDocumentEditor.lockedInPlace</key>
+	<false/>
+	<key>mainDocumentEditor.navigationHistory</key>
+	<dict>
+		<key>CurrentIndex</key>
+		<integer>0</integer>
+		<key>NavigationHistoryArray</key>
+		<array>
+			<dict>
+				<key>BinderDocUUIDs</key>
+				<array>
+					<string>0A3688E4-A178-4FEC-92FC-40246FB583F8</string>
+				</array>
+				<key>ViewMode</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>BinderDocUUIDs</key>
+				<array>
+					<string>E089B318-6AD6-4BFE-A53C-B1526A51E234</string>
+				</array>
+				<key>ViewMode</key>
+				<integer>0</integer>
+			</dict>
+		</array>
+	</dict>
+	<key>mainDocumentEditor.scrollRect</key>
+	<string>{{0, 0}, {547, 555}}</string>
+	<key>mainDocumentEditor.selectedRanges</key>
+	<string>{98715, 0}</string>
+	<key>mainDocumentEditor.textEditorState</key>
+	<dict>
+		<key>hasMultiplePages</key>
+		<false/>
+		<key>textScale</key>
+		<integer>100</integer>
+		<key>usesFacingPages</key>
+		<false/>
+	</dict>
+	<key>mainWindowFrame</key>
+	<string>297 114 547 663 0 0 1280 777 </string>
+	<key>supportingDocumentEditor.scrollRect</key>
+	<string>{{0, 0}, {620, 294}}</string>
+	<key>supportingDocumentEditor.selectedItemIDs</key>
+	<array/>
+	<key>supportingDocumentViewIsCurrent</key>
+	<false/>
+</dict>
+</plist>
