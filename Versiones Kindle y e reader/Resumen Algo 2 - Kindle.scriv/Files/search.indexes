@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SearchIndexes Version="1.0">
+    <Documents>
+        <Document ID="9A84985D-B13C-4D83-BAB9-8DAB32304943">
+            <Title>Sin título</Title>
+        </Document>
+        <Document ID="1D7DDED5-2DCD-45EF-B3AD-D6BE81D05908">
+            <Title>Sin título</Title>
+        </Document>
+        <Document ID="4B428535-1895-4A0E-AAE4-01BF205032CA">
+            <Title>Sin título</Title>
+        </Document>
+        <Document ID="07B449AB-BD74-4A0F-B62E-825F0942BBED">
+            <Title>Sin título</Title>
+        </Document>
+        <Document ID="0A3688E4-A178-4FEC-92FC-40246FB583F8">
+            <Title>Resumen Algo II</Title>
+            <Text>Capitulo 1
+
+Tipos Abstractos de Datos
+
+1.1 Introducción y noción
+
+Los tipos abstractos de datos (Tads) son modelos matemáticos que se construyen con el fin de exponer los aspectos relevantes de un problema bajo análisis. La razón por la cual son usados es porque gracias a los mismos es posible realizar un análisis exhaustivo junto con la comprensión cabal del funcionamiento del objeto de estudio, esto se logra utilizando la abstracción como herramienta para lograr la comprensión y mediante conceptos claves como lo son el encapsulamiento, podremos resaltar las cualidades relevantes de lo que queremos analizar.
+De cierta forma lo que queremos lograr es capturar lo mas fielmente posible, y con precision matemática, un problema, para el que luego encontraremos una solución. Es importante tener en cuenta que en la etapa de especificación solo debe preocuparnos describir el problema que se intenta resolver, y no sus eventuales soluciones.
+
+1.2 Sintaxis y semántica de un TAD
+
+Todo lenguaje tiene una gramática o sintaxis, las cuales son un conjunto de reglas que indican como se escriben las oraciones del lenguaje y las reglas semánticas, que indican como deben interpretarse las oraciones validas del lenguaje.
+Los lenguajes lógicos no son una excepción a estas.
+
+Sintaxis
+Para determinar un TAD, utilizaremos especificaciones de TADs (de la misma forma que se usan los axiomas para caracterizar estructuras matemáticas). Para especificar un TAD es necesario definir:
+
+-La signatura que exponen las operaciones y que caridad tienen los modelos.
+-Los axiomas son formulas bien formadas según ciertas reglas (sintácticas) que determinan el comportamiento de las operaciones.
+
+Semantica
+La semántica declara con precision que cosas son modelos de nuestra teoría, es decir le da un significado a las cosas que se pueden escribir de acuerdo a las reglas sintácticas. Un modelo de nuestra teoría es un ente matemático tal que cumple que cada uno de sus conjuntos corresponden con un genero del TAD y cada funcion con una operación, nosotros definiremos nuestro TAD de forma tal que acomodara los modelos matemáticos que se ajusten a el, de cierta forma la especificación del TAD funciona como un descriptor del modelo matemático. Un modelo matemático determina que elementos del mundo real estarán reflejados en la especificación y que operaciones se permitirá realizar sobre ellos.
+Por otro lado una teoría es consistente cuando en ella no existe una igualdad que afirme que verdadero es falso. Si introducimos una teoría inconsistente al TAD provocara que no haya un modelo que se ajuste al mismo, y por lo tanto, y burdamente dicho, provocara que el TAD no tenga sentido alguno ya que ningún modelo se ajustara a el y en consecuencia no seremos capaces de modelar nada.
+Las instancias de un TAD son las que representan, mediante la abstracción, un objeto de la vida real y cualquier modelo que sea descripto por un TAD especifico representa a todas las instancias posibles del objeto modelado. Es interesante remarcar que cuando nos referimos a instancias podemos estar hablando del mismo objeto y su evolución con respecto al tiempo, esto también es modelaba y podremos definir una instancia del objeto para cada instante del tiempo ( o al menos para los cambios relevantes que queramos observar mediante el modelo).
+
+1.3 Conceptos a tener en cuenta
+
+1.3.1 Metalenguaje
+Muchas veces al intentar describir propiedades acerca de un lenguaje formal no nos alcanza con dicho lenguaje, y es por ello que necesitamos de un metalenguaje para lograrlo. En las especificaciones de TADs, el metalenguaje es utilizado para escribir las restricciones de las funciones y para describir la igualdad observaciones.
+
+1.3.2 Restricciones sobre funciones totales
+En el formalismo de los tipos abstractos de datos solo se permite especificar funciones totales, es decir aquellas que están definidas para todo su dominio. Lo que técnicamente estamos haciendo no es restringir el dominio de las funciones sino definirlas solo para la parte del dominio que nos interesa (por este motivo utilizaremos predicados del metalenguaje para restringirlas), o dicho de otra forma, no diremos que valores toma la función cuando sus parámetros no cumplen con la restricción.
+En consecuencia, cuando utilizamos una restricción estaremos subespecificando. Las restricciones son una parte fundamental del TAD, con ellas explicitamos los casos para los cuales ciertas operaciones no tienen sentido (por el marco del problema o por una limitación técnica) y aportan claridad y coherencia a una especificación, por ello en este caso estaremos haciendo un uso licito de la subespecificacion. De cierta forma las restricciones nos permiten limitar el universo al cual aplican ciertas operaciones de nuestros TADs.
+
+Es importante remarcar el caso cuando utilizamos una función con su dominio restringido g(x) dentro de la definición de otra función h(x). Cuando sucede esto tendremos que asegurarnos de no llamar a g con parámetros de su dominio que estén restringidos. Para evitar esto y lograr que h este bien definida tendremos dos opciones. La primera consiste en agregar las restricciones necesarias a h para no llamar a g con parámetros restringidos, y la segunda, que es prácticamente lo mismo pero desde otra perspectiva, es manejar la parte conflictiva del dominio h, es decir aquellos valores de los parámetros de h en donde llamaríamos a g de forma ilegal, mediante un condicional en h para efectuar otras operaciones o hacer un ajuste antes de llamar a g de forma tal de no producir ninguna violacion. Dicho de otra forma esto ultimo seria como definir a h como una función partida.
+
+1.3.3 Incertidumbre mediante subespecifiación
+Las restricciones nos servirán para expresar sobre que valores de los parámetros de una función determinada no daremos ninguna descripción, sin embargo es por ello que también deberemos asegurarnos de que si determinado valor de los parámetros de una operación es valido de acuerdo a las restricciones, este indicando mediante los axiomas, cual es el resultado para aquellos valores. En algunos casos no diremos exactamente que resultado da la función, si no que indicaremos que características tiene ese resultado.
+Esto ultimo es un concepto sutil y avanzado que a veces también recibe el nombre de subespecificacion y solo comparte el nombre con el descripto en la sección anterior. La intención que reside detrás de el es la de dejar algunos aspectos particulares del TAD sin una definición precisa, lo cual se convierte en un recurso muy util para manejar algunas incertidumbres de forma practica. La forma de lograr esto es caracterizando el resultado de una función de forma débil. Un ejemplo especifico de los tipos básicos es la operación dameUno del tipo conjunto, la cual lo único que nos dice es que nos devolverá un elemento perteneciente al conjunto sin especificar bajo que criterio lo hará. Esto significa que cualquier forma de elección que se decida implementar al conjunto va a ser apropiada, mientras que satisfagan la característica de elegir un elemento del conjunto.
+
+1.3.4 No existe el orden de evaluación
+En algunos lenguajes de programación una función puede estar definida en partes y las partes de la misma pueden estar ordenadas mediante un orden de evaluación. Esto de alguna forma simplifica el esquema de evaluación de las funciones, ya que en vez de usar condicionales en la función y sobre los datos, podremos usar multiples definiciones a las que und ato se ajustara dependiendo si el pattern matching lo detecta como valido y en donde la evaluación terminara con la primer coincidencia, es decir con la primer definición en el orden de evaluación que sea valida para el dato. En estos casos las funciones se suelen ordenar desde los casos mas particulares hacia los casos mas generales.
+En la especificación de los TADs la idea del pattern matching todavia esta latente, pero por otro lado el orden de evaluación no existirá. Esto sucede ya que todos los axiomas valen a la vez, no se evalúan en orden, y a causa de ello no deberemos definir un axioma para un caso particular de algún parámetro (como ejemplo, si es un numero cuando el mismo vale cero).
+
+1.4 Estructura de un TAD
+Se explicaran a continuación cada uno de los componentes que conforman un tipo abstracto de datos.
+
+1.4.1 Igualdad observaciones o Semántica observacional
+Definición
+La igualdad observaciones es un predicado que nos dice cuando dos instancias del aspecto de la vida real que nuestro TAD esta modelando se comportan de la misma manera. El concepto de la igualdad observaciones es un concepto semántico ( es decir que le da sentido al TAD) y no sintáctico, por lo que es necesario utilizar el metalenguaje para describirla.
+
+Semantica inicial
+Para los Tads, una semántica posible es la semántica inicial, que burdamente descripta trata de partir el universo de acuerdo a las ecuaciones que aparecen en el TAD, de esta forma la relación de igualdad que queda definida es una congruencia (significa que las instancias del tipo están en la misma clase de equivalencia y pertenecerán a la misma sin importar que función se les aplique). La desventaja de esto ultimo es que los modelos resultantes no son muy bonitos.
+
+Semantica observacional
+A causa de la incomodidad de la semántica inicial se invento la semántica observaciones, en la cual hay un conjunto de funciones etiquetadas como observadores básicos que particionan el universo de instancias de acuerdo a ellos. La intención es que estas particiones sean congruencias por lo que no puede haber inconsistencias entre declarar una igualdad entre dos instancias y la información (distinta) que nos puede brindar alguna de sus funciones acerca de ellas.
+
+1.4.2 Observadores básicos. 
+Definicion
+Los observadores básicos son un conjunto de funciones pertenecientes al TAD que permiten participar al universo de sus instancias en clases de equivalencia, con la idea de agrupar en cada clase a las instancias que posean un comportamiento similar con respecto al estudio que queremos realizar. Deseamos que el TAD se convierta en una congruencia, es decir, una relación de equivalencia en la que si se aplica cualquier operación a dos instancias de la misma clase los resultados obtenidos formen parte de la misma clase.
+
+Ruptura de congruencia
+Si comparamos instancias observacionalmente iguales no debería pasar que al aplicar un observador a ambas obtengamos resultados observacionalmente distintos, de la misma forma que si tenemos instancias observacionalmente distintas no podrá pasar que al aplicar todos los observadores a ambas obtengamos los mismos resultados. En ambos casos el TAD no se comportaría como una congruencia (solamente seria una clase de equivalencia dad por la igualdad observaciones).
+
+Minimalismo y axiomatizacion de observadores
+Cuando realizamos la selección de funciones del TAD para agruparlas como observadores es preferible tener un conjunto de observadores minimal, esto es que no deberían existir observadores que solo identifiquen aspectos de la instancia que ya han sido identificados por otros observadores. Ademas, es considerado buena practica axiomatizar los observadores básicos en función de los generadores y no de otros observadores. La axiomatizacion utilizando observadores de reserva, en la practica, para otras operaciones. Notar que, salvo en los casos en que la operación tenga una restricción con respecto a alguna instancia, la cantidad de axiomas que tendremos sera aproximadamente el producto cartesiano entre la cantidad de observadores básicos y los generadores.
+
+Sobreespecificacion en los observadores
+Decimos que una operación esta sobreespecificada cuando hay varias formas de saber cual es su resultado para unos valores dados de sus parámetros. Si bien esto puede estar definido en forma legal, y no romper con el modelo, puede resultar un poco confuso a la hora de conocer un resultado ya que pueden haber varios caminos para obtenerlo.
+El problema se presenta cuando obtenemos resultados distintos dependiendo si seguimos caminos distintos.
+
+1.4.3 Generadores
+
+Definición
+Los generadores son un conjunto de funciones que retornan un resultado del genero principal del TAD especificado, y que tienen la particularidad de que a partir de una aplicación finita de ellos se pueden generar o construir absolutamente todas las instancias del TAD. Esto es, que no puede existir una instancia del problema que estamos modelando que sea relevante y que no podamos generar su representación a partir de una sucesión de aplicaciones de los generadores del TAD.
+
+Estructura de generadores
+El conjunto de generadores puede ser clasificado de la siguiente manera:
+-Generadores base o no recursivos son aquellos que no reciben como parámetro ninguna instancia del tipo que están generando, es decir, serán usados como base de los generadores recursivos.
+-Generadores recursivos son aquellos que reciben como parámetro al menos una instancia del tipo que están generando, esto es, un generador base o una aplicación de un generador recursivo a otra/s instancia/s del TAD (que bien esta misma puede ser una sucesión de aplicaciones de generadores).
+
+Ademas de recibir como parámetros a instancias del tipo que generan, los generadores pueden recibir como parámetros otros tipos que usaran como información de la instancia (por ejemplo números o strings).
+
+Transparencia referencial
+Es importante notar que al aplicar un generador recursivo a una instancia de un TAD no se esta modificando la instancia que recibe como parámetro dado que en nuestro lenguaje no existe la noción de ‘cambio de estado’, por lo que realmente se estará haciendo sera generar una nueva instancia basada en la anterior, cuyo comportamiento podrá ser descripto mediante la aplicación de los observadores básicos sobre ella. Es definitiva, los resultados de las funciones solo dependen de sus argumentos.
+
+Importancia en la estructura de los generadores / Inducción estructural
+Dado que todas las instancias de un TAD están generadas a partir de un generador base o a partir de la aplicación de un generador recursivo, se vuelve un pilar fundamental a la hora de realizar demostraciones de propiedades sobre los tipos abstractos de datos, ya que nos ofrece un esquema de demostración dividido en dos partes maleable a un esquema de inducción; en donde la primer parte demostrara la propiedad para todas las instancias generadas por generadores base y la segunda demostrara la propiedad para todas las instancias generadas por generadores recursivos.
+Este esquema de inducción es conocido como inducción estructural.
+
+1.4.4 Otras operaciones
+
+En esta categoría estaran el resto de las operaciones que se necesitan declarar en un TAD incluyendo las operaciones auxiliares que no se exportan. La diferencia primordial entre las operaciones que se encuentren en esta categoría y las operaciones encontradas en la categoría de observadores básicos, es que las operaciones en esta sección no deberán devolver valores distintos cuando se apliquen sobre dos instancias observacionalmente iguales del TAD. Dicho de otra forma, no deberán dar información del TAD que no este cubierta por los observadores básicos, de lo contrario la congruencia del mismo sera imposibilitada.
+
+1.4.5 Generos, Usa y Exporta
+
+En la sección de géneros se incluirán todos los géneros nuevos que se describen en el TAD. El genero es el nombre colectivo con el que se va a hacer referencia a instancias del TAD que estamos definiendo, el cual es diferente al tipo del TAD. Un tipo es el conjunto de operaciones, axiomas y demás que componen al TAD. En la sección de usa se incluyen los nombres de los TADs que necesitaremos para definir el nuevo tipo, desde el punto de vista formal lo que estamos haciendo es incluir otras teorías en la que estamos definiendo. Por ultimo, la sección exporta servirá para incluir todos los elementos declarados en el TAD que queremos que puedan ser utilizados por otros TADs, por defecto se exportaran los generadores y observadores básicos.
+
+1.5 Al especificar recordar
+
+Estas son una serie de consideraciones a tener en cuenta en el momento de especificar. Algunas de ellas son buenas practicas, otras son ideas de formas que deberemos, o es recomendable, hacer ciertas cosas y otras están escritas para remarcar en que cosas no deberemos caer.
+
+1.5.1 No axiomatizar sobre casos restringidos
+
+A la hora de axiomatizar una función con restricciones no se ha de realizar ningún tipo de consideración para ‘controlar’ que los argumentos cumplan efectivamente las restricciones ya que cuando la función es usada todos los argumentos siempre cumplen las restricciones que impusimos, y es por ello que asi debe considerarse cuando axiomatizamos.
+
+1.5.2 No axiomatizar sobre generadores de otros tipos
+
+Si bien no es algo que este completamente mal como en el punto anterior, la axiomatizacion de operaciones sobre generadores de otros tipos puede ocasionar que la igualdad observaciones del tipo usado sea violada, algo que nunca se podrá dar si en su lugar utilizamos los observadores básicos. Es por ello que es preferible que al realizar axiomatizacoines se efectúen en función de los observadores del tipo usado y no sobre los generadores.
+
+1.5.3 Comportamiento automatico
+
+La idea del comportamiento automático es no modelar operaciones para casos que se dan de forma implícita o automática. Por ejemplo si cada vez que se da cierta condición A se produce el efecto B a traves de una acción C que se da de forma automática, seguramente no haga falta hacer alusión a la elección C de ninguna forma (si es que no nos interesa conocer nada de ella puntualmente) para modelar correctamente el objeto de estudio. Muchas veces podremos tener cadenas de condiciones - acciones - consecuencias en donde las acciones y consecuencias se den de forma automática y la consecuencia de una sea la condición de otra cadena de este tipo. En estos casos solamente para falta modelar lo suficiente para saber cuando se cumple la primera condición de la cadena y en base de eso podremos definir alguna operación que modele solamente la ultima consecuencia de la satisfacción de la condición, pasando por alto todas aquellas acciones o consecuencias de la vida real que ocurren en el medio y no nos interesa modelar.
+
+1.5.4 Recursion y recursion mutua
+
+La idea detrás de una definición recursiva es ir simplificando la instancia hasta el punto en donde no se puede simplificar mas, el llamado caso base. Allí el axioma se resuelve directamente sin usar el concepto que esta definiendo, lo importante es que para resolver el caso base nos basta con saber que tiene que devolver la función para ese caso particular, lo cual es relativamente sencillo.
+La auto-referencia a la definición que se esta dando se realiza ene l caso recurso, donde se descompone el objeto sobre el cual se esta definiendo y se aplica la definición a esas simplificaciones del mismo. En nuestras definiciones recursivas deberemos garantizar que eventualmente se llegara al caso base para todos los valores sobre los que se encuentra definida (mejor dicho, no restringida) la operación. La manera mas habitual de garantizar esto es que en cada caso recurso se logre disminuir la complejidad de los parámetros involucrados.
+La auto-referencia a las definiciones puede darse de manera indirecta. Lo que encontramos en estos casos es recursion mutua; donde una definición no hace auto-referencia directamente sino que a través de otra definición. La recursion mutua puede darse en mas de dos niveles. En estos casos las consideraciones respecto de la disminución de la complejidad se verán un poco mas complicadas pero seguirán vigentes. Cuando planteamos una recursion debemos concentrarnos en resolver cada caso particular correctamente sin preocuparnos por los otros. Luego si cada caso se resuelve bien, el conjunto también sera correcto.
+
+1.5.5 Interfaces gruesas
+
+Se define como interfaz gruesa a la situación que se da cuando se proveen mas datos que los necesarios en una determinada función. Un indicador de que estamos cayendo en esto es el uso excesivo de los observadores dentro de la axiomatizacion de una función. Es decir, si no utilizamos toda la instancia que tenemos, sino que proyectamos sistemáticamente una de las características de la instancia, vale preguntarse si no correspondería tener solo esa característica en primer lugar.
+
+1.6 Inducción estructural
+
+La inducción estructural nos servirá para demostrar teoremas o propiedades sobre nuestros tipos mediante el uso de sus axiomas y la inducción como herramienta para demostrar su validez para un dominio coordinaba con todo N.
+Para hacerlo se podrán seguir una serie de pasos:
+-Convencernos que es cierto Si bien no es un paso realmente necesario, es importante para nosotros. Si la propiedad es cierta a simple vista entonces no tendremos problemas en buscar una demostración a la misma, pero cuando su veracidad no es tan fácilmente visible es importante darnos cuenta de porque vale, ya que de lo contrario tendremos problemas al demostrarlo o al creer que la demostración es correcta.
+-Plantear la propiedad como predicado unario Básicamente esto consiste en quitar el cuantificador que liga a la variable sobre la que vamos a realizar la inducción. Por ejemplo si tenemos algo como (∀s : secu(α)) (Long(Duplicar(s)) = 2·Long(s)) el predicado unario resultante seria P (s) ≡ (Long(Duplicar(s)) = 2·Long(s)), de forma tal que la expresión inicial nos quedaría (∀s : secu(α))P (s), que seria equivalente.
+-Plantear el esquema de induccion El esquema de inducción consiste en plantear los casos base que debemos probar asi como los pasos inductivos. Este esquema es propio del tipo, ya que se deriva de su conjunto de generadores, por lo tanto para cualquier propiedad que se quiera probar sobre un TAD dado, el esquema de inducción sera el mismo. Para el ejemplo anterior, el esquema de inducción quedaría de la forma (∀s : secu(α))P (s) =⇒ (∀a : α)P (a•s) en donde P (s) es la hipótesis inductiva y (∀a : α)P (a•s) es la tesis inductiva. 
+-Demostracion Para probar la validez de la propiedad probaremos primero el caso base para cada uno de los generadores base y luego el paso inductivo con cada uno de los generadores recursivos, tal como lo sugiere el esquema de inducción.
+
+1.6.1 Fundamento teórico 
+
+La inducción completa es una instancia particular de la inducción estructural, es decir que la inducción estructural es una generalización de la inducción completa para otros tipos de datos mas allá de los números naturales. La inducción estructural tiene su fundamento teórico sobre el principio de inducción bien fundada, para el cual es necesario previamente un orden bien fundado.
+-Orden bien fundado Decimos que &lt; define un buen orden sobre un conjunto A (o equivalentemente, que tiene un buen orden fundado), sii &lt; es un orden total sobre A y todo X ⊆ A tal que X ̸= ∅ tiene un elemento que es mínimo de acuerdo a &lt;. Es decir, si hay un orden total definido sobre A y ademas todo subconjunto de A tiene un mínimo, entonces tendremos un buen orden fundado. De cierta forma se pide que el orden total definido sea consistente.
+-Orden total Decimos que &lt; define un orden total sobre el conjunto A, sii define un buen orden parcial y ademas tiene compatibilidad (o tricotomía). Esto ultimo es ∀a, b ∈ A se cumple que a ≺ b ∨ b ≺ a. Por ejemplo ≤ es un orden total en N.
+-Orden parcial Decimos que &lt; define un orden parcial sobre un conjunto A, sii &lt; es una relación reflexiva, antisimetrica y transitiva. Si se quita la reflexividad se habla de un orden parcial débil. Por ejemplo &lt; es un orden parcial débil en N. 
+
+Construcción de un orden bien fundado
+Si los elementos de un conjunto son numerales podremos realizar una construcción de un orden bien fundado realzando un mareo con los números naturales. Como las instancias de cualquier TAD son numerables, siendo T las instancias del TAD que estamos mapeando y N el conjunto de naturales definiremos la funcion f : T -&gt; N tal que x ≺f y ⇐⇒ f(x) ≤ f(y). De esa forma &lt; f sera el orden bien fundado sobre T. En el caso particular de los TADs sabemos que los mismos son definidos de forma inductiva. Por ello, f puede ser definida de la siguiente forma:
+- Si x es un elemento base de T, entonces f(x) = 0
+- Si x se construye a partir de los elementos x1, … , xn, entonces f(x) = 1 + max(f(x1), … , f(xn))
+
+Principio de induccion bien fundada
+Una vez definido un orden bien fundado sobre el conjunto podemos hablar del principio de induccion bien fundada. Para esto ultimo &lt; debe definir un buen orden sobre el conjunto A, P debe ser un predicado sobre A y P debe cumplir:
+- P debe valer para todos los elementos minimos de A de acuerdo a &lt;, es decir P debe valer para todos los elementos base.
+- Se debe cumplir que (∀a ∈ A)[(∀b ∈ A|b ≺ a)P(b) =⇒ P(a)] . Es decir que se debe cumplir que para todo a cuya valuacion P(a) es verdadera, las valuaciones de todos sus ‘predecesores’ P(b) (en donde predecesores son aquellos que cumplen b &lt; a), tambien valen.
+
+Esquema de induccion estructural
+- Llamaremos g1, …, gk a los generadores del tipo T que no toman como parametro una instancia de T, es decir que estos seran los generadores base.
+- Llamaremos gk+1, …, gn a los que si toman una instancia de T, es decir que estos seran los generadores recursivos.
+-El primer paso para la induccion es probar el caso base, es decir P(gi) ^ … ^ (∀i:T)[P(i) =⇒ P(gn(i))]. Esto es, para cada uno de los generadores recursivos, pruebo el paso inductivo con todas las instancias posibles como precedente de forma tal de obtener todas sus posibles variantes (por simplificar no se incluyo la variacion de los argumentos de los generadores). De esto podremos concluir que (∀i : T )P (i). 
+
+
+Capitulo 2
+
+Diseño jerarquico de tipos de datos abstractos
+
+2.1 Introduccion y nocion
+
+En la etapa de especificacion de problemas, lo unico que hemos hecho es detallar que debemos hacer, pero no nos hemos preocupado por como hacerlo, es decir que el objetivo era describir el comportamiento del problema a resolver, pero no interesaba determinar como lo resolveriamos. Esto significa que al especificar estamos describiendo el problema, recien al diseñar comenzamos a resolverlo.
+
+2.1.1 Diseño
+
+Al diseñar, centraremos nuestro interés tanto en el ámbito en el que sera usado el tipo abstracto de datos como en los aspectos que se necesitan optimizar de este tipo, los cuales pueden estar dados por requerimientos explícitos de eficiencia temporal o espacial. Sobre la base de esta información, a la que llamaremos contexto de uso, diseñaremos nuestro tipo aprovechando las ventajas que el contexto nos ofrezca y cuidando de responder a los requisitos que nos plantea. Es importante remarcar que un tipo se define por sus funciones antes que por sus valores. La forma en que los valores se reperesentan es menos importante que las funciones que proveen para manipularlos. Los generadores de los tipos describen la forma abstracta de construir elementos, nunca la forma de construirlos o representarlos fisicamente.
+En esta etapa, al buscarle representaciones menos abstractas al modelo especificado, es donde realmente comenzaremos a aprovechar el nivel de abstraccion. Cuanto mas abstracto sea el modelo, mas opciones de diseño tendremos disponibles en cada paso. Basicamente nuestra metodologia de diseño partira entonces de un modelo abstracto no implementable directamente en un lenguaje imperativo de programacion, y aplicara iterativamente sobre dicho modelo suvcesivos pasos de refinamiento hasta llegar a estructuras que si son implementables. En cada una de estas sucesivas iteraciones estaremos realizando, de cierta forma, una desabstraccion.
+Es importante tener en cuenta que en la especificacion estaremos centrados en un paradigma funcional y en la etapa de diseño nos centraremos en paradigma imperativo, por lo que tendremos un cambio de paradigma ademas de la desabstraccion del modelo, lo que nos conllevara ciertas dificultades. Uno de los objetivos del lenguaje de diseño es justamente permitir un cambio de paradigma que resulte ordenado.
+
+2.1.2 Jerarquico
+
+Cada iteracion de desabstraccion de este proceso definira un nivel de nuestro diseño. Por su parte, cada uno de estos niveles tendra asociado uno o mas modulos de abstraccion, que indicaran como se resuelven las operaciones de un modulo utilizando otras operaciones de modulos del nivel inmediato inferior. Cada uno de estos modulos de abstraccion resultantes de cada iteracion, sera implementable en un lenguaje de programacion, obteniendo de tal forma un diseño estratificado en niveles donde los modulos de un cierto nivel son usuarios de los servicios que les brindan los del nivel inmediato inferior y no conocen (ni usan) a los modulos de otros niveles. Un modulo dara a conocer los servicios que provee a traves de una declaracion de las operaciones que exporte junto con la aridad de cada una de ellas, se daran a conocer las precondiciones (estado esperado de la maquina antes de ejecutarse la operacion) y las postcondiciones (como incidira la ejecucion en el estado anterior). Esta informacion estara incluida en la interfaz del modulo.
+Esta separacion o encapsulamiento en niveles provocara que cualquier cambio de implementacion de nivel n sera transparente al nivel superior n + 1, siempre que el nivel n mantenga su interfaz. Esto es, que el modulo exporte al menos las mismas funciones que se exportaban antes y la funcionalidad provista por las mismas no cambie, auqneue puede haber mejorado su performance. Podremos verificar la validez del cambio de diseño viendo que la veracidad de las precondiciones y postcondiciones del nivel rediseñado se mantiene con respecto a la version anterior.
+
+2.2 Lenguaje de diseño
+
+Este es el lenguaje que utilizaremos para diseñar nuestros modulos, el mismo si bien sera un pseudocodigo, estara muy basado en lenguajes que se utilizan en la vida real, de esta forma la transicion desde el diseño a los mismos sera casi inmediata.
+
+2.2.1 Paradigma imperativo
+
+Para especificar formalmente el problema a resolver escribiamos el tipo abstracto de datos siguiendo un paradigma funcional. Sin embargo al diseñar, debemos realizar un cambio de paradigma para poder expresar nuestra representacion del modelo en un lenguaje imperativo, el cual se ajusta a los lenguajes de programacion mas bastamente usados. En esta seccion discutiremos los principales aspectos que deberemos tener en cuenta al afrontar tal cambio.
+
+Valores vs. Objetos
+Las aridades de las operaciones que definimos en la especificacion para los tipos estan en una notacion funcional, esto quiere decir que supone que las mismas construyen un objeto nuevo y lo devuelven a aquel que las llamo. Una caracteristica de esta notacion es la transparencia referencial, esto es que una expresion siempre da el mismo resultado sin importar su contexto. En este paradigma los datos solo tienen sentido en cuanto sean argumentos o resultados de funciones.
+Al contrario del paradigma funcional los datos en el paradigma imperativo son tratados como entidades independientes de las funciones que los utilizan. Es usual que se trabaje con una instancia de un objeto que se va modificando y cuyos valores anteriores no interesen. Por lo tanto, por cuestiones de optimizacion y uso, no tiene sentido construir cada vez un objeto nuevo para devolverlo como resultado de una funcion, sino que en cambio se modificara el objeto original.
+
+Parametros que se modifican
+El mapeo de los parametros de las funciones del tipo en las operaciones del modulo no siemrpre es uno. De hecho en el paradigma imperativo se acostumbra a modificar los parametros como parte de respuesta del algoritmo y a devolver en el valor de retorno de la funcion, algun estado que informe si la operacion se copmleto de forma correcta o si hubo algun problema. Esto nos brinda una mayor versatilidad a la hora de diseñar las interfaces, ya que una misma funcion puede devolver varios tipos de resultados sin necesidad de hacerlo mediante una tupla y ademas dar alguna informacion acerca de la ejecucion.
+
+2.2.2 Tipos disponibles
+
+Los tipos listados a continuacion seran considerados tipos absicos y no seran diseñados: bool, nat, int, real, char, string, genero, puntero&lt;tipo_dato&gt;, arreglo[nat] de tipo_dato, tupla&lt;campo, tipo_dato x … x campo tipo_dato&gt;, arreglo_dimensionable de tipo_dato.
+
+2.2.3 Declaracion de operaciones y pasaje de parametros
+
+Para declarar las oepraciones se le asignara un nombre, se describiran los argumentos y los tipos de cada uno como asi tambien el tipo de dato del valor de retorno de la funcion. El pasaje de parametros puede pertenecer a 3 tipos:
+-Entrada El valor es usado como dato pero no es posible modificarlo (en C++ la equivalencia seria el const). Se denota anteponiendo al nombre de la variable en el tipo de la operacion el simbolo ‘in’
+-Salida El valor se genera en la operacion, y se almacena en el parametro formal con el que se invoco a la funcion pero no es usado como dato. Se lo denota con un ‘out’. La variable resultado (la que devuelve la funcion) pertenece a esta categoria.
+-Entrada-Salida Combina los conceptos anteriores, se los denota con ‘in/out’
+
+Recordemos que en el paradigma imperativo todos los valores son pasados por referencia, exceptuando a los tipos primitivos (bool, nat, int, real, char, puntero) que son pasados por valor o copia*. Al ser pasados por referencia y al ser del tipo de entrada-salida o salida y efectuar una asignacion sobre el mismo, el valor con el que fue llamada la funcion es sobreescrito y el nuevo valor sera el que mantendra la variable luego de salir de la funcion, esto quiere decir que la variable que pasamos como parametro de la funcion es efectivamente modificada por mas que nos encontremos dentro del scope de la funcion.
+* En el caso de los arreglos dimensionables y estaticos, se pasan por referencia, y en el caso de las tuplas, cada una de sus componentes se pasa por referencia o por copia segun sea un tipo primitivo o no.
+
+2.2.4 Asignacion y alising
+
+La expresion A &lt;- B (siendo A y B variables de un mismo tipo), denota la asignacion del valor B a la variable A. Esto funciona del mismo modo que el apsaje de parametros. Si A y B pertenecen a un tipo primitivo A pasara a ser copia de B, y si no son tipos primitivos, luego de haber efectuado la asignacion, A y B haran referencia a la misma estructura fisica, es decir A sera un alias de B y viceversa (de ahi el nombre).
+
+2.2.5 Relacion entre el diseño y la especificacion, precondiciones y postcondiciones
+
+Al describir la interfaz de un modulo para cada una de las operaciones deberemos indicar cuales son sus restricciones y que efectos produce en el estado de la maquina. Para describir esto haremos uso de la especificacion del tipo abstracto de datos asociado al modulo, lo que en consecuencia nos obligara a describir la relacion que existe entre las variables del diseño y el tipo abstracto de datos especificado. Queremos poder describir en la interfaz cual es el resultado final luego de aplicada una operacion teniendo en cuenta los parametros con los cuales se las invoca y las relaciones entre ellos.
+Cuando nos pasa esto tenemos el problema de que los tipos y operaciones a las que queremos hacer referencia estan en el mundo de los TADs y por otro lado, las funciones sobre las que queremos describir su entrada y resultado estan en el mundo del diseño. Por lo que de cierta forma queremos comparar elementos que no estan definidos en base a axiomas, con elementos que si lo estan. Para subsanar esta dificultad, existira la funcion f.
+Llamaremos G1 al conjunto de generos del paradigma imperativo y Gf al conjunto de generos del paradigma funcional. Sub-indexaremos con I a los generos de G1 y con F a los de Gf. Es decir, disponemos de una funcion que dado un genero del paradigma imperativo nos da su ‘equivalente’ en el paradigma funcional, la misma queda definida como:
+						f: G1 -&gt; Gf
+Mediante el uso de esta funcion podremos establecer de forma clara el mapeo entre las operaciones del modulo y las funciones de la especificacion cuando escribamos las precondiciones y postcondiciones de cada operacion del modulo.
+
+2.3 Metodologia de diseño
+
+Nuestro objetivo es obtener un diseño jerarquico y modular, para realizar esto hay varias formas pero presentaremos un metodo que tiene las nociones de los distintos niveles en la jerarquia. Cada uno de los niveles tendra asociado un modulo de abstraccion. Para ser mas precisos, habra distintos tipos abstractos de datos que deberemos diseñar, a cada uno de ellos le correspondera un modulo de abstraccion. A grandes rasgos, el metodo se compone de los siguientes pasos:
+-Eleccion del tipo abstracto de datos a diseñar
+-Implementacion del modulo de abstraccion para el tipo abstracto de datos elegido.
+-Iteracion o finalizacion.
+
+2.3.1 Eleccion del tipo a diseñar
+
+El orden en el cual se diseñan los tipos es arbitrario. Sin embargo es una buena practica comenzar por los tipos mas importantes, pues estos seran los principales generadores de requerimientos de eficiencia para los tipos menos importantes o de niveles inferiores. De cierta forma estamos aplicando el esquema top.down. Es importante notar que el proceso de diseño posee una natural ida y vuelta. Por ejemplo, la redefinicion de las funciones de un tipo puede obligarnos a reveer la seccion representacion de un tipo que basa su diseño en este. Si lo vemos desde el punto de vista explicitamente jerarquico, la redefinicion de las operaciones de un tipo de un nivel, puede obligarnos a redefinir a un modulo de nivel superior.
+
+Cuando diseñamos un modulo, no necesariamente debemos diseñar todos los tipos que usamos en la especificacion. Esto quiere decir que a veces sucede que en la especificacion realizamos ciertas tareas utilizando tipos que en la etapa de diseño, al no ser el objetivo la descripcion del problema y serlo la resolucion del mismo, podemos no necesitar. Es decir que si tenemos un tipo que no se exporta directamente y solamente necesitamos algunas de sus operaciones, podemos quizas evitar usarlo y reemplazarlo por algo mas ligero que cumpla nuestros requerimientos. Esto expresa que la manera en que se axiomatizan los tipos en el TAD no es importante a la hora de realizar el diseño, sino que solamente es importante lo que dichos axiomas significan.
+
+2.3.2 Implementacion del modulo de abstraccion para el tipo elegido
+
+Una vez elegido el tipo a diseñar, implementaremos su modulo de abstraccion correspondiente. El modulo de abstraccion debera describir de forma clara y concisa las operaciones que podra realizar, como asi tambien los efectos de las mismas sobre los datos, las complejidades temporales y espaciales que tomaran su uso y cuales de las operaciones podran ser utilizadas externamente, es decir, cuales se exportaran. Ademas de dar una descripcion externa del mismo poseera otra seccion en la cual se xplicitara la implementacion de cada una de las operaciones (incluyendo operaciones privadas auxiliares) como asi tambien la estructura de datos interna utilizada para llevar a cabo las tareas.
+
+2.3.3 Iteracion o finalizacion
+
+En este punto tenemos un diseño que puede contener tipos para los que no tenemos una propuesta de diseño. En realidad son otros problemas a resolver de nivel de abstraccion menor  al original. Por lo tanto, debemos volver a repetir el metodo con los nuevos tipos a diseñar.
+La iteracion prosigue hasta llegar a tipos que tengamos diseñados en nuestra biblioteca o sean primitivos. Por otro lado, la reutilizacion de tipos ahorra tiempo de diseño pero ya que es posible reutilizar tipos que fueron diseñados con criterios distintos a los que deseamos, podriamosperder parte de la eficiencia buscada lo que sera tolerable siempre y cuando no rompa las restricciones planteadas por el contexto de uso.
+
+2.4 Modulo de abstraccion
+
+Cada modulo de abstraccion esta compuesto por dos secciones: la definicion de la interfaz y la definicion de la representacion. En la interfaz se describe la funcionalidad del modulo y en que contexto puede ser usado. En la representacion se elige, bajo algun criterio, una forma de representacion utilizando otros modulos y se resuelven las operaciones del modulo en funcion de su representacion. Dicho de otra forma, se eligen las estructuras de datos internas que representan el modulo y se implementan los algoritmos que la interfaz expresa. Un modulo de diseño debe tener la siguiente estructura:
+
+#
+-Especificacion Puede omitirse si es uno de los TADs provistos por la catedra, o incluirse solo los cambios si es una extension de un TAD ya conocido.
+-Interfaz La cual contendra los servicios exportados, ordenes de complejidad, aspectos de aliasing, efectos secundarios, etc. En definitiva, todo lo que el usuario necesite saber.
+-Representacion Estructura interna, invariante, funcion de abstraccion y algoritmos.
+-Servicios usados Ordenes de complejidad, aspectos de aliasing, etc requeridos de los tipos de soporte que utilizamos en nuestro modulo.
+
+2.4.1 Aspectos de la Interfaz
+
+En este paso tomamos las decisiones concernientes al cambio de paradigma. Una forma de lograr esto es redefinir las aridades de las funciones adaptandolas a un lenguaje imperativo explicitando los requerimientos (precondiciones) para la aplicacion de cada operacion y los efectos que tiene sobre el estado de la maquina (postcondiciones). Para escribir las precondiciones y las postcondiciones usaremos un lenguaje de descripcion de estados aprovechando la especificacion del tipo a diseñar.
+Durante la redefinciion de aridades no debemos limitarnos a cambiar una operacion por un procedimiento como asi tambien a respetar exactamente la cantidad de parametros que tienen una operacion. Siempre podremos decidir usar mas de un procedimiento para reemplazar a una operacion del tipo abstracto como asi tambien, y contrariamente, tendremos la posibilidad de unir varias funciones del tipo abstracto en una sola del diseño. Ademas de poder evitar totalmente el mapeo uno a uno podremos incluir funciones que no tengan sentido desde el punto de vista abstracto pero sean utiles dentro del paradigma imperativo, por ejemplo funciones para copiar instancias del tipo o funciones como ‘comprimir’ cuyos efectos sean visibles solo desde la eficiencia temporal y espacial de las operaciones, pero no signifiquen un cambio en el valor representado. Todas estas decisiones dependen del contexto de uso.
+
+Servicios exportados / Operaciones exportadas
+En esta seccion deben estar expresados los detalles acerca de nuestro modulo que resulten indispensables a sus usuarios. Es imprescindible tocar temas como la complejidad temporal de los algoritmos y cuestiones de aliasing y efectos secundarios de las operaciones. Ademas, pueden exhibirse comentarios (a modo informativo) con respecto a la implementacion del modulo que, aunque tengan menor importancia, sean de interes para el usuario. Los puntos a recalcar que debe tocar esta area son los siguientes:
+
+-Deducir y documentar la complejidad temporal de cada operacion es fundamental dentro de esta area, ya que de no haber informacion de la misma nuestro modulo no podria ser utilizado por ningun otro modulo cuyo contexto de uso restringiera tal aspecto. Dicho de otra forma, un usuario que deba responder a requerimientos de eficiencia temporal y deba usar nuestro modulo, no podra saber si esta cumpliendo con ellos si no documentamos los mismos.
+-Conocimientos del aliasing es de vital importancia para el uso correcto y eficiente del modulo. Si no informasemos las cuestiones de aliasing referentes a las operaciones podria pasar que un usuario de nuestro modulo modifique datos sin saberlo por estar utilizando algun alias (en vez de una copia) generado a partir del uso de una de nuestras operaciones, lo que provocaria un problema muy grave en el desarrollo del programa.
+-Es importante indicar en las operaciones que eliminan elementos de la estructura si dichos elementos seguiran existiendo o seran eliminados. Esto afecta a los usuarios que tengan referencias a dichos elementos. Si se los elimina, las referencias a ellos dejaran de ser validas, en caso contrario seguiran vigentes pero ya no estaran en la estructura, por lo que sera el usuario el encargado de liberarlas al momento de implementar su modulo ya que de no hacerlo podra producir una potencial perdida de memoria.
+
+Contexto de uso y requerimientos de eficiencia de los servicios prestados
+Como dijimos al inicio, el contexto de uso esta dado por el entorno en donde vaya a ser usado el programa del cual se derivaran, a traves de un analisis de las funciones que seran mas usadas, los requerimientos de eficiencia y ademas que estructuras de datos que se ajustan mejor al contexto de uso. La idea es que la principal justificacion para el resultado obtenido en cada iteracion de diseño es el contexto de uso que se le impuso al diseñador.
+
+2.4.2 Aspectos de la Implementacion
+
+El objetivo de esta seccion es definir la forma en que representaremos el tipo que estamos diseñando en esta iteracion (o nivel). La eleccion de una forma de representacion esta dada por la eleccion de una o mas estructuras, las cuales deberan estar debidamente justificadas. Ademas de elegir la estructura de representacion, es necesario definir cual es la relacion entre la estructura de representacion y el tipo representado. Por ultimo, se deberan proveer los algoritmos que operan sobre la estructura y que resuelven cada una de las operaciones.
+La estructura de representacion de las instancias de los tipos solo sera accesible (modificable, consultable) a traves de las operaciones que se hayan detallado en la interfaz del modulo de abstraccion respectivo. Las operaciones no exporatadas tambien tendran acceso a esta informacion, pero solo podran ser invocadas desde operaciones del mismo modulo, es decir la visibilidad de las mismas fuera del modulo sera nula.
+
+Eleccion de la estructura de representacion
+La eleccion de la estructura esta fundamentada sobre las operaciones que nos interesa optimizar y el contexto de uso en el que seran utilizadas. No solo tomamos en cuenta la complejidad temporal para definir un criterio de optimizacion sino que tambien tomamos en cuenta el espacio de disco, espacio en memoria, reusabilidad, claridad, sencillez de la implementacion, homogeneidad de los algoritmos, entre otros.
+Las variables en un programa referencian valores. Sera imposible el acceso a la representacion interna de estos y esto redundara en la modularidad de nuestro diseño y en el ocultamiento de la informacion. El ocultamiento nos permite hacer invisibles algunos aspectos que seran encapsulados. Esto es util para aumentar el nivel de abstraccion y diseñar codigo que sea mas facilmente modificable, mantenible y extensible. Al acceder a los objetos solo a traves de su interfaz no nos atamos a su implementacion, solo a su funcionalidad. Cualquier cambio de implementacion en un tipo que no altere la funcionalidad no nos obligara a rediseñar los tipos superiores.
+
+Relacion entre la implementacion y la abstraccion
+Para poder relacionar el mundo de los TADs con el mundo del diseño haremos uso de dos funciones que nos facilitaran esta tarea. Ambas funciones tendran su dominio en las instancias de representacion, estas son todas las formas que tendremos de instanciar la estructura de datos que elegimos en la representacion sin restriccion alguna. Como podremos imaginar, muchas de estas formas de instancias de la representacion no tendran sentido alguno para el tipo que estamos representando, mas que nada si las variables de nuestra representacion tienen alguna correlacion (por ejemplo, cantidad de elementos y la lista con dichos elementos), es aqui en donde invariante de representacion cobrara importancia, ya que es el que nos indicara que instancias de la representacion tienen sentido para el tipo abstracto que estamos representando y cuales no. Luego, la funcion de abstraccion servira para llevar una instancia de representacion al mundo de los TADs, es decir a una instancia del tipo abstracto de datos que estamos representando.
+
+Invariante de representacion
+￼
+El invariante de representacion es un predicado que nos indicara si una instancia de la estructura de representacion es valida para representar una instancia del tipo representado. De cierta forma, es el conocimiento sobre la estructura que necesitan las distintas operaciones para funcionar correctamente y que garantizan las mismas al finalizar su ejecucion. Ademas funciona como un concepto coordinador entre las oepraciones. En el quedan expresadas las restricciones de coherencia de la estructura, surgidas de la redundancia de informacion que pueda haber. Su dominio es la imagen funcional del tipo que estamos implementando, lo cual es necesario para que podamos ‘tratar’ los elementos del dominio en logica de primer orden.
+El invariante debe ser cierto tanto al comienzo de las operaciones exportadas del tipo como al final de las mismas. Por lo tanto, las operaciones del tipo deberan preservarlo, aunque quizas no sea cierto en algun estado intermedio del algoritmo que implemente alguna operacion. Las operaciones auxiliares o internas, es decir aquellas que no aparecen en la interfaz y por lo tanto son invisibles a factores externos del modulo, no tienen la necesidad de conservar el invariante, sera de nuestra responsabilidad conocer que modificaciones le realizan a la estructura interna (de hacerlas) para luego restaurar el invariante.
+De cierta forma, el invariante de representacion fuerza a las operaciones a cumplir ciertos ordenes de complejidad y a presevar la coherencia en la estructura de representacion. Ademas al ser un predicado que debe cumplirse gran parte del tiempo, podremos deducir propiedades del mismo que podremos usar como parte de nuestras demostraciones de correctitud y complejidad.
+
+Funcion de abstraccion
+￼
+La funcion de abstraccion es una herramienta que permite vincular una estructura de representacion con el valor abstracto al que representa, es decir con el TAD vinculado al modulo de abstraccion. Tiene por dominio al conjunto de instancias que son la imagen abstracta del tipo de representacion (al igual que el invariante de representacion) y que ademas vrifican el invariante de representacion, por esto mismo la funcion sera sobreyectiva. La funcion devuelve una imagen abstracta de la instancia del tipo representado (aquella instancia que estamos pretendiendo representar del tipo abstracto) y diremos que T  representa a A si Abs(T) =obs A, en donde T es una instancia de la representacion y A una instancia del TAD. Informalmente la funcion de abstraccion cumple la funcion de verificar que las funciones que alteran la estructura de representacion realicen lo que esta especificado en el TAD y no otra cosa.
+￼
+Tendremos dos formas de escribir la funcion de abstraccion. La primera de ellas, en funcion de sus observadores basicos. Dado que los observadores identifican de manera univoca al objeto del cual hablan, si nosotros describimos el valor que tienen los observadores basicos una vez aplicados al objeto, estaremos describiendo desde un punto observacional pero sin ambiguedad el objeto representado. Otra forma de describir la funcion de abstraccion es utilizando los generadores del tipo de representacion. La eleccion de elegir una forma u otra de hacerlo depende de la comodidad y declaratividad.
+Dicho de otra forma, el objetivo de la funcion de abstraccion es poner en consonancia el tipo de soporte del modulo abstracto con los observadores del tipo que esta siendo representado. Una de las formas de realizar esto es caracterizando el valor de todos los observadores del TAD en base a valores de la instancia de la estructura de representacion, de esa forma obtiene una instancia del TAD en consonancia con el modulo abstracto.
+
+Algoritmos
+En este paso se implementaran las operaciones del tipo a diseñar en terminos de operaciones de los tipos soporte.
+Deben aparecer los algoritmos de cada una de las operaciones, sean estas de la interfaz o auxiliares. En el caso de las funciones auxiliares, es recomenadble incluir junto a sus algoritmos, sus precondiciones y postcondiciones. En el diseño de los algoritmos hay que tener en cuenta que las operaciones deben satisfacer sus pre/postcondiciones, y ademas deben satisfacer los requerimientos de eficiencia surgidos en el contexto de uso.
+
+Servicios usados
+Aqui es donde indicaremos que responsabilidades le dejamos a los tipos soporte que usamos. Son las pautas y requerimientos que se extraen del diseño de este tipo para el diseño de los tipos de la representacion. Luego pasaran a ser las interfaces y los contextos de uso y requerimientos de eficiencia para los modulos de soporte de los tipos usados en la representacion.
+
+Capitulo 3
+
+Complejidad y Estructuras de Datos
+
+3.1 Complejidad
+
+3.1.1 Notacion asintotica
+
+Las notaciones que usamos para describir la complejidad temporal asintotica de un algoritmo estan definidos en terminos de funciones cuyos dominios son el conjunto de los numeros naturales N = {0, 1, 2, …}. Estas notificaciones son convenientes para describir el tiempo en el peor caso de una funcion T(n), la cual usualmente esta definida solo en tamaños de entrada enteros. Sin embargo a veces encontramos conveniente abusar de la notacion aintotica, en variadas formas. De todas formas, deberemos cerciorarnos de entender precisamente el significado de la notacion, para que cuando hagamos abuso de la misma no estemos usandola de forma erronea. Usaremos la notacion asintotica primariamente para describir los tiempos que insumen los algoritmos, sin embargo la notacion asintotica aplica a funciones.
+
+Conjunto / Notacion Asintotica Θ 
+Para una funcion g(n) dada, notaremos a Θ(g(n)) como el conjunto de funciones f(n) que a partir de un numero n0 &gt; 0 sus valores pueden ser acotados entre c1g(n) y c2g(n) para algun c1, c2 ∈ R&gt;0 . Descripto formalmente quedaria de la siguiente manera:
+
+Θ(g(n))={f(n):(∃c1,c2,n0 ∈R&gt;0)(∀n|n0 ≤n)0≤c1·g(n)≤f(n)≤c2·g(n)} 
+
+Una funcion pertenece al conjunto Θ(g(n)) si existen constantes positivas c1 y c2 tal que f(n) puede ser ’sandwicheada’ entre c1g(n) y c2g(n), para un n suficientemente grande. Como Θ(g(n)) es un conjunto, podremos excribir ‘f(n) ∈ Θ(g(n))’ para indicar que f(n) es un miembro de  Θ(g(n)), a veces escribiremos ‘f(n) = Θ(g(n))’ para expresar exactamente lo mismo. Cuando una funcion f(n) es acotada superiormente por otra funcion c.g(n) para algun c y a partir de algun n, diremos que f(n) esta acotada asintoticamente por g(n) o que f(n) tiene un comportamiento asintotico a g(n). En el caso de Θ(g(n)) diremos que g(n) es una cota asintoticamente ajustada para f(n).
+Conjunto / Notacion Asintotica O
+Cuando solo tenemos una cota asintotica superior, usaremos el conjuno O. Para una funcion dada g(n), denotaremos por O(g(n)) al conjunto de funciones tales que:
+O(g(n))={f(n):(∃c,n0 ∈R&gt;0)(∀n|n0 ≤n)0≤f(n)≤c·g(n)} 
+Es decir que para todos los valores de n a la derecha de n0, el valor de la funcion f(n) es o esta por debajo de c.g(n). Escribiremos f(n) = O(g(n)) para indicar que una funcion f(n) es un miembro del set O(g(n)). Notar que f(n) = Θ(g(n)) implica f(n) = O(g(n)), ya que la nocion de  Θ es mucho mas fuerte que la nocion de O. Esto es, escrito en forma de teoria de conjuntos, que vale la inclusion Θ(g(n)) ⊆ O(g(n)).
+Conjunto / Notacion Asintotica Ω
+Ω provee una cota asintotica inferior. Para una funcion dada g(n), notaremos a Ω(g(n)) como el conjunto de funciones tales que:
+Ω(g(n))={f(n):(∃cn0 ∈R&gt;0)(∀n|n0 ≤n)0≤c·g(n)≤f(n)} 
+Cuando decimos que el tiempo de un algoritmo es Ω(g(n)), significa que no importa que particular entrada de tamaño n para cada valor de n, el tiempo que tardara el algoritmo con dicha entrada sera de al menos un numero constante de veces g(n), para un n suficientemente grande. Equivalentemente, esto nos da una cota temporal inferior para el mejor caso del algoritmo. De las definiciones de las notaciones asintoticas, es facil ver que para cualquier dos funciones f(n) y g(n), tendremos que f(n) = Θ(g(n)) si y solo si f(n) = O(g(n)) y f(n) =  Ω(g(n)). Usando una notacion de teoria de conjuntos esto seria equivalente a decir que Ω(g(n))∩O(g(n)) = Θ(g(n)), y si f(n) ∈ Ω(g(n))∧f ∈ O(g(n)) entonces f(n) pertenecera a ambos conjuntos, por lo que en particular pertenecera a la interseccion Θ(g(n)).
+Conjunto / Notacion Asintotica No-Ajustada o
+La cota superior asintotica provista por O puede o no ser ajustada asintoticamente, pero la cota 2n = O(n2) no lo es. Usaremos la notacion o (o chica) para definir una cota superior que no sea ajustada asintoticamente. Para una funcion dada g(n), definiremos formalmente a o(g(n)) como el conjunto de funciones tales que:
+o(g(n))={f(n):(∃c,n0 ∈R&gt;0)(∀n|n0 ≤n)0≤f(n)&lt;c·g(n)} 
+Las definiciones de O (o grande) y o (o chica) son sumamente similares. La diferencia principal yace en que f(n) = O(g(n)), la cota 0 ≤ f(n) ≤ c · g(n) se mantiene para alguna constante c &gt; 0. Intuitivamente, en la notacion o, la funcion f(n) se vuelve asintoticamente parecida a g(n) a medida que n tiende a infinito.
+Conjunto / Notacion Asintotica No-Ajustada ω
+Analogicamente, ω es a Ω como o es a O. Usaremos la notacion ω para referirnos a una cota inferior que no sea ajustada asintoticamente. Una forma de definirla en funcion a o sera que f(n) ∈ ω(g(n)) si y solo si g(n) ∈ o(f(n)). De todas formas formalmente definiremos a  ω como el conjunto de funciones tal que dada una funcion g(n) es:
+ω(g(n))={f(n):(∃cn0 ∈R&gt;0)(∀n|n0 ≤n)0≤c·g(n)&lt;f(n)} 
+A medida que n tiende a infinito la relacion entre f(n) / g(n) se vuelve arbitrariamente grande, es decir que tiende a infinito. 
+
+3.2 Estructuras Basicas
+3.2.1 Lista
+3.2.2 Cola
+3.2.3 Pila
+3.2.4 Arreglo dimensionable
+
+3.3 Arboles
+3.3.1 Arbol binario de busqueda
+Un arbol binario de busqueda es un arbol basado en nodos binarios el cual puede ser representado por una estructura de punteros en donde cada nodo es un objeto. En adicion a la clave y los datos, cada nodo contiene los atributos izquierda, derecha y p, los cuales son punteros que apuntan a su hijo izquierdo, hijo derecho y padre, respectivamente. Si un hijo o un padre esta perdido el atributo apropiado contiene el valor NIL. El nodo raiz es el unico nodo cuyo padre es NIL.
+Las claves en un arbol binario de busqueda siempre estan guardadas de forma tal de satisfacer el invariante del arbol binario de busqueda, el cual se define como: ‘Sea x un nodo en un arbol binario de busqueda. Si y es un nodo en el sub-arbol izquierdo de x, entonces y.clave ≤ x.clave. Si y es un nodo en el sub-arbol derecho de x, entonces x.clave ≤ y.clave’
+Busqueda
+La busqueda en un arbol binario se logra utilizando el invariante presentado anteriormente. El procedimiento comienza en la raiz y por cada nodo x que encuentra compara la clave k con x.clave, si las dos claves son iguales, la busqueda termina. Si k es mas chico que x.clave, la busqueda continua por el sub-arbol izquierdo de x, dado que el invariante del arbol binario de busqueda implica que k no puede ser guardado en el sub-arbol derecho. El caso en que k es mas grande, ocurre de manera simetrica. Los nodos encontrados durante la recursion forman un camino simple desde la raiz, por lo que el tiempo de recorrida de una busqueda en un arbol binario es de O(h), en donde h es la alutra del arbol la cual puede ser n si tenemos un arbol totalmente degenerado, que de cierta forma terminaria siendo una lista enlazada.
+Ademas, siempre podremos encontrar un elemento en un arbol binario cuya clave sea un minimo o un maximo siguiendo los punteros izquierdos o derechos desde la raiz hasta que encontremos un NIL.
+Insercion
+Las operaciones de insercion y borrado causa que la dinamica del conjunto representado por un arbol binario de busqueda cambie. La estructura de datos debe ser modificada para reflejar este cambio, pero de forma tal que el invariante se conserve.
+Para insertar un nuevo valor v en un arbol binario de busqueda T, crearemos un nuevo nodo z de tal forma que z.clave = v, z.isq = NIL y z.der = NIL. Modificara T u alguno de los atributos de z de tal forma que inserte z en la posicion apropiada del arbol. Para lograr insertar el nuevo nodo el procedimiento guardara en una variable p un puntero al nodo actual en donde se encuentra mientras que ejecuta una busqueda en el arbol. Una vez que llega a un nodo NIL durante la  busqueda, asigna z.p = p y compara z.clave con p.clave, si es mayor asigna p.izq = z y si es menor p.der = z, de esta forma el invariante queda restaurado. El tiempo de esta operacion se encontrara en el orden de O(h), siendo que h puede ser n en el peor caso el tiempo sera de O(n), sin embargo el caso promedio, suponiendo una distribucion uniforme en la entrada de los valores, sera de O(lg(n)).
+Borrado
+La estrategia general para eliminar un nodo z de un arbol binario de busqueda T tiene 3 casos basicos, pero como veremos uno de ellos es algo engañoso:
+- Si z no tiene hijos, entones simplemente lo removeremos modificando su padre z.p reemplazando el puntero a z por NIL
+- Si z solo tiene un hijo, entonces elevaremos dicho hijo para tomar la posicion de z modificando el padre z.p reemplazando el puntero a z por el puntero al unico hijo de z.
+- Si z tiene dos hijos, entonces encontraremos el minimo y en el sub-arbol derecho de z (es decir, su sucesor), para tomar la posicion de z en el arbol. Como y era el minimo del sub-arbol derecho de z, y.izq sera NIL y si y tiene un hijo izquierdo lo elevaremos al padre de y. Luego, con y libre de hijos, lo reemplazaremos por z y le asignaremos los sub-arboles derecho e izquierdo como hijos de y. Esto mismo se puede hacer si tomamos como y el maximo del sub-arbol izquierdo de z.
+Rotaciones
+Las rotaciones son operaciones locales en un arbol de busqueda que cambian la estructura de punteros del mismo preservando el invariante del arbol binario, son mayormente usadas en las distintas implementaciones de arboles balanceados para sjutar los factores de balanceo del mismo. Usaremos dos tipos de rotaciones, rotaciones hacia la izquierda y rotaciones hacia la derecha. Cuando hacemos una rotacion hacia la izquierda en un nodo x, asumimos que su hijo derecho y no es NIL; x podra ser cualquier nodo en el arbol cuyo hijo derecho no es NIL. La rotacion hacia la izquierda ‘pivotea’ alrededor del enlace de x a y y hace a y la nueva raiz del sub-arbol, dejando como hijo izquierdo de y a x y trasladando a el hijo izquierdo de y al lugar del hijo derecho de x.
+￼
+Si nos imaginamos la rotacion como bolillas e hilos, ‘tirariamos’ y hacia arriba a la izquierda, haciendo que x baje y queda a la altura del hijo izquierdo de y. Luego, como el hijo izquierdo de y se encontraba en el sub-arbol derecho de x, sera mas grande que x, por lo que lo podremos asignar como hijo derecho de x.
+Complejidades
+Busqueda  O(n) (caso promedio O(lg(n)))
+Insercion O(n) (caso promedio O(lg(n)))
+Borrado O(n) (caso promedio O(lg(n)))
+Espacio O(n)
+
+3.3.2 Heap
+La estructura de datos del heap (binario) es un arreglo de objetos que podremos ver como un arbol binario casi completo. Cada nodo del arbol corresponde a un elemento del arreglo y el arbol esta completamente lleno en todos los niveles excepto en el ultimo, el cual esta lleno desde la izquierda hasta algun punto. Un arreglo A que representa un heap es un objeto con dos atributos, A.length que nos dira la cantidad de elementos en el arreglo y A.heap_size que representara cuantos elementos en el heap estan guardados en el arreglo A. Esto es, que a pesar que A[1…A.length] contenga numeros, solo los elementos en A[1…A.heap_size] (en donde 0 ≤ A.heap_size ≤ A.length) son elementos validos del heap.
+La raiz del arbol estara situada en A[1], y dado el indice i de un nodo, facilmente podremos computar los indices de su padre, hijo derecho e izquierdo. Los computos del indico del padre estara definido de la forma Padre(i) = ⌊i/2⌋, mientras que los indices de los hijos podran ser computados de la forma Izquierda(i) = 2i y Derecha(i) = 2i + 1, en donde i ∈ [1..A.heap_size]. Hay dos tipos de heaps binarios, max-heaps y min-heaps. En ambos casos, los valores de los nodos satisfacen el invariante del heap, el cual depende del tipo de heap con el que trabajemos. En un max-heap, el invariante del max-heap nos dice que para cada nodo i que no sea la raiz se debe cumplir que A[Padre(i)] ≥ A[i], esto es que el valor de un nodo debe ser como maximo el valor de su padre. Entonces, el maximo en un max-heap estara guardado en la raiz, y el sub-arbol con raiz en un nodo no podra contener valores mas grandes que el nodo en si mismo. Un min-heap esta organizado de la forma opuesta, el invariante de min-heap nos dice que para cada nodo i distinto de la raiz se debe cumplir A[Padre(i)] ≤ A[i], por lo que el elemento minimo de un min-heap estara en la raiz.
+Viendo el heap como un arbol, definiremos la altura de un nodo en un heap como el numero de aristas en el camino simple mas largo desde el nodo mismo hasta una hoja, y definiremos la altura del heap como la altura de su raiz. Ya que un heap de n elementos esta basado en un arbol binario completo, su altura pertenecera a Θ(lg(n)).
+Mantener el invariante del heap
+De aque en mas, asumiremos que estaremos hablando de un max-heap, ya que el min-heap es analogo. Para mantener el invariante del max-heap en un arreglo, llamaremos al procedimiento Heapify. Su entrada sera el arreglo A y un indice i del arreglo. Cuando es llamado, Heapify asume que los sub-arboles binarios con sus raices en Izquierda(i) y Derecha(i) seran max-heaps, pero que A[i] puede ser mas chico que sus hijos, violando asi el invariante. Heapify deja que el valor en A[i] ‘decante’ en el max-heap, de forma tal que el sub-arbol con raiz en i cumpla el invariante del heap y luego recursivamente se asegurara que el invariante sea cumplido en el sub-arbol en donde el valor A[i] haya decantado.
+Puntualmente lo que realiza Heapify es, estando situado en i, compara el valor con los valores de los hijos de i. Si ninguno de los valores de los hijos es mas grande que el valor de i lo deja como esta, en el caso contrario intercambia el valor de i con el valor de su hijo mas grande. Si bien en el nodo original el invariante se cumple, el invariante puede ser violado en el sub-arbol cuya raiz fue intercambiada por lo que se realiza una llamada recursiva utilizando como i el nuevo indice donde el valor fue intercambiado.
+El tiempo de Heapify en un sub-arbol de tamaño n con su raiz en un nodo i sera el tiempo  Θ(1) para ajustar la relacion entre los elementos A[i], A[Izquierda(i)] y A[Derecha(i)], mas el tiempo que tome correr Heapify en un sub-arbol con su raiz en alguno de los hijos del nodo i (asumiendo que la llamada recursiva ocurra). El peor caso ocurrira cuando el nivel inferior del arbol se encuentre exactamente a la mitad de estar lleno, por lo que cada uno de los sub-arboles de los hijos tendran como mucho 2n/3 elementos. Podremos describir el tiempo de Heapify con la recurrencia T(n) ≤  T(2n/3) + Θ(1). Si tuviesemos T(n) = T(2n/3) + Θ(1), la recurrencia se ajusta al segundo caso del teorema maestro, por lo que T(n) ⊆  Θ(lg(n)) pero como tenemos una relacion de menor o igual en la recurrencia original, T(n) ⊂  O(lg(n)).
+Construyendo un heap
+Podremos usar el procedimiento Heapify de forma bottom-up para convertir un arreglo A[1…n], en donde n = A.length, en un max-heap. Los elementos en el sub-arreglo A[⌊n/2⌋ + 1..n] son todas hojas del arbol, y por lo tanto cada uno es un heap de 1 elemento por el cual podemos comenzar. El procedimiento para construir un heap va por cada uno de los nodos del arbol restantes comenzando por el indice mas grande, es decir i = ⌊A.length/2⌋.,1 y ejecutara Heapify en cada uno de ellos. Una cota grosera para este procedimiento es O(nlg(n)), ya que hara n llamadas a Heapify. Sin embargo, una cota mas ajustada puede ser dada basandonos en que la altura de un arbol heap de n elementos es ⌊lg(n)⌋ y como mucho tiene ⌈n/2h+1⌉ nodos de cualquier altura h, la cual correspondera con O(n).
+Extraccion de maximo e insercion
+El maximo en un max-heap sera A[1], el cual una vez extraido no sera eliminado del arreglo sino que sera intercambiado por el ultimo elemento del arreglo y luego se decrementara A.heap_size en una unidad, dejando fuera del scope al ultimo elemento del arreglo que sera aquel que acabamos de extraer. El unico problema con esto es que estaremos rompiendo el invariante del heap, pero para solucionarlo solo nos bastara con aplicar Heapify(A,1) ya que el resto de los sub-heaps seguiran siendo validos. Como todas las operaciones son Θ(1) exceptuando Heapifym la cual sera usada una sola vez, el tiempo total del algoritmo sera de O(lg(n)).
+En resumen
+Los heaps son arboles balanceados en donde la clave de cada nodo es mayor o igual que la de sushijos y en donde todo sub-arbol es un heap. Adicionalmente puede o no cumplir que por la forma de su implementacion sea izquierdista, esto quiere decir que el arbol estara todo lleno exceptuando su ultimo nivel, el cual se llenara de izquierda a derecha.
+Su representacion podra estar dada por cualquier tipo de estructura para arboles binarios, pero si bien sera mas eficiente si se lo representa en un arreglo, pasaremos a una representacion estatica por lo que podremos perder tiempo agrandando un arreglo. Sea un nodo v, la posicion dentro de un heap se calcula:
+- Si v es la raiz, P(v) = 1
+- Si v es un nodo que no es la raiz, su padre u sera P(v) = ⌊P(u)/2⌋. Sea i un índice de un nodo: Padre(i) = ⌊i/2⌋ 
+- Si v es un hijo izquierdo de u P(v) = 2P(u). Sea i un indice de un nodo: Derecho(i) = 2i.
+- Si v es un hijo derecho de u P(v) = 2P(v) + 1. Sea i un indice de un nodo: Izquierdo(i) = 2i + 1.
+Complejidades
+Las complejidades de las operaciones del heap quedaran de la forma:
+- Ver el maximo o minimo / Proximo O(1)
+- Extraer el maximo o minimo / Desencolar O(lg(n))
+- Ingresar nuevo elemento / Encolar O(lg(n))
+- Construir heap a partir de arreglo / Heapify O(n)
+
+3.3.3 Arbol balanceado en altura (AVL)
+Un arbol AVL es un arbol binario de busqueda que esta balanceado en altura. Esto es, que por cada nodo x, la altura de los sub-arboles izquierdo y derecho de x difieren en a lo sumo 1. Para implementar un arbol AVL mantendremos un atributo extra en cada nodo x.fdb que representara el factor de balanceo del nodo x. El factor de balanceo para un nodo x se calculara de la forma FDB(x) = altura(der(x)) - altura(izq(x)).
+
+Insercion
+La insercion de un nuevo nodo en un principio se realiza de la misma manera que en un ABB normal. Luego de haber insertado el nodo se realizan dos acciones:
+- Se recalculan los factores de balanceo de forma bottom-up, es decir comenzando por el nodo recien insertado hasta la raiz. Esto funciona ya que los factores de balanceo de otros nodos que no pertenezcan a la rama del nodo recien insertados no se veran afectados opr la insercion.
+- Si durante el recalculo aparece un factor ±2 en alguno de los pasos, habra que rebalancear el nodo antes de continuar.
+Durante el rebalanceo de un nodo apareceran distintos casos para los cuales deberemos aplicar distintas rotaciones.
+La notacion de cada uno de los casos va de la forma D1D2, siendo x el nodo que necesitamos rebalancear D2 indicara el hijo de x en cuyo sub-arbol D1 fue hecha la insercion del nuevo elemento. Es decir, si tenemos un caso RL, significa que estando parados en un nodo x la insercion fue hecha en el sub-arbol derecho del hijo izquierdo de x. De cierta forma la notacion se traduce desde abajo hacia arriba en un arbol.
+Estos casos son LL y RR, a los cuales sera suficiente con aplicarles rotaciones simples para solucionarlos y LR y RL a los cuales habria que aplicarles una rotacion para dejarlos en alguno de los casos anteriores y una segunda rotacion para terminar de balancearlos. Tanto LL a RR y LR a RL son casos simetricos unos de otros.
+￼
+Caso RR: En la primera figura se observa el estado inicial, dentro de los hexagonos se encuentra el FDB de cada nodo. En la segunda figura se puede observar el estado luego de la insercion y FDB desbalanceado del nodo P. Ejecutando una rotacion hacia la izquierda entre P y Q se restaura, como se ve en la tercera figura. El caso LL es simetrico a este caso. 
+￼
+Caso LR: En la primera figura se observa el estado inicial. En la segunda figura se puede observar el estado luego de la insercion con el hijo izquierdo R de Q expandido, la primera rotacion se ejecutara hacia la derecha entre R y Q. La tercer figura refleja el estado luego de la primera rotacion, en este estado se ejecutara la segunda rotacion que sera hacia la izquierda entre P y R. La cuarta figura refleja el estado final con el nodo balanceado. El caso RL es simetrico a este caso.
+Las rotaciones en el caso de insercion no influyen en los antepasados de x, por lo que su balance no sera modificado, y por lo tanto a lo sumo necesitaremos realizar dos rotaciones para rebalancear el arbol luego de una insercion. El tiempo que tomara entonces una insercion sera O(2lg(n)) ⊆ O(lg(n)), ya que deberemos buscar el lugar para insertar el nodo y luego recalcular todos los factores de balanceo de la rama (de ser necesario se rebalanceara alguno de los nodos).
+Eliminacion
+El borrado en un AVL en un principio se realiza de la misma forma que en un arbol binario, luego de haberlo hecho se ejecuta un recalculo de los factores y un rebalanceo sobre la rama que se vio afectada por el mismo. Una diferencia improtante entre la insercion y el borrado es que a la hora de realizar los rebalanceos en la insercion los antepasados de un nodo x desbalanceado no se veran influenciados mientras que durante un rebalanceo luego de un borrado si lo haran.
+Esto ultimo se debe a que durante la insercion estaremos agregando una hoja nueva, y por la naturaleza del AVL el balanceo de un sub-arbol T con su raiz en x ocasiona que la altura de T se acorte. Esto significa que de cierta forma mediante el balanceo estaremos cancelando el incremento de altura en el sub-arbol T ocasionado por la insercion, por lo que los antepasados de x no sufren modificaciones. En el caso de una eliminacion, el balanceo ocasionara tambien que la altura del sub-arbol se acorte pero no habra compensacion por una insercion, lo que decantara en una modificacion de los factores de balanceo de los antepasados de x, pudiendo esto llegar a provocar lg(n) balanceos. La complejidad de la operacion de eliminacion sera entonces de O(2lg(n)) ⊆ O(lg(n)) ya que tendremos que buscar el nodo a eliminar, actualizar los factores de balanceo y, en el peor caso, balancear toda la rama afectada (podremos actualizar los factores y rebalancear sin iterar nuevamente).
+Peor caso en eliminacion
+Para lograr caracterizar un peor caso en el rebalanceo luego de la eliminacion de un nodo, definiremos a T como un arbol AVL en donde todos los nodos que no son hojas tendran su factor de balance 1. Esto es que para todo nodo x la diferencia entre la altura del sub-arbol derecho y el sub-arbol izquierdo sera 1, es decir que FDB(x) = altura(der(x)) - altura(izq(x)) = 1. Luego, si removemos una hoja y del sub-arbol izq(x), sea z el padre de y tal que izq(z) = y y izq(y) = NIL, ocasionara que el FDB de z se incremente de 1 a 2, ya que habremos acortado el sub-arbol izquierdo de z en 1 unidad.
+￼
+En la primera figura se puede apreciar el nodo y a ser eliminado, junto con su padre z y el FDB de z en el hexagono, la altura total es de h+1. En la segunda figura se puede apreciar el estado luego de la eliminacion del nodo y junto con el hijo de derecho de z expandido y los FDB correspondientes a cada nodo recalculados. Finalmente, en la tercera figura se observa el estado luego de la rotacion, lo que genera un decremento en la altura del sub-arbol.
+Para compensar esto ejecutaremos una rotacion hacia la izquierda entre los nodos z y der(z), lo que dejara a z como hijo izquierdo de der(z) y al hijo izquierdo de der(x) como hijo derecho de z. Luego de la rotacion los FDB de ambos nodos quedaran en 0 pero la altura del arbol se vera reducida en 1, lo que provocara que el padre original de z (el abuelo de y), cambie su FDB de 1 a 2. De la misma forma deberemos continuar balanceando el resto de los nodos hasta llegar a la raiz, en donde tendremos que FDB(izq(raiz)) = 0, FDB(der(raiz)) = 1 y FDB(raiz) = 2. Para resolver esta ultima situacion podremos ejecutar una rotacion hacia la derecha entre izq(raiz) y raiz, o una rotacion hacia la izquierda entre der(raiz) y raiz. Finalmente habremos realizado exactamente lg(alt(y)) rotaciones en donde alt(y) es la distancia a la que se encontraba y de la raiz, es decir su altura o nivel. Dentro de este esquema, si seleccionamos a y como uno de los nodos a nivel ⌊lg(n)⌋ del arbol, entonces tendremos el peor caso de balanceo, por lo que la compleijdad del balanceo luego de una eliminacion sera de O(lg(n)).
+Complejidades
+- Busqueda O(lg(n))
+- Insercion O(lg(n))
+- Borrado O(lg(n))
+- Espacio O(n)
+
+3.3.4 B
+
+Los arboles B son arboles balanceados de busqueda diseñados para trabajar bien en discos rigidos u otros dispositivos de almacenamiento secundario. Los arboles B son similares a los arboles RB, pero son mejores minimizando las operaciones I/O. Varios sistemas de base de datos utilizan los arboles B o variantes para guardar informacion.
+Los arboles B difieren de los arboles RB en el sentido de que los nodos de los arboles B pueden tener muchos hijos, desde unos pocos hasta miles. Esto es, que el ‘factor de ramificacion’ (branching factor) de un arbol B puede ser abstante grande, sin embargo usualmente depende en las caracteristicas de la unidad de disco usada. Este tipo de arboles son similares a los arboles B en el aspecto de que cada n-nodo tiene altura O(lg(n)). La altura exacta de un arbol B puede ser considerablemente menos que la de un arbol RB por su factor de ramificacion, por lo que la base del logaritmo que expresa su altura puede ser mucho mayor.
+Los arboles B generalizan los arboles binarios en una forma natural. Si un nodo interno de un arbol B x contiene x.n claves, entonces tendra x.n + 1 hijos. Las claves en un nodo x sirven como puntos de division deparando los rangos de claves manejados por x en x.n + 1 sub-rangos, cada uno manejado por un hijo de x. Cuando buscamos una clave en un arbol B, haremos una decision entre x.n + 1 caminos basada en comparaciones con las x.n claves guardadas en el nodo x.
+Un arbol B tiene las siguientes propiedades:
+1. Cada nodo x tiene los siguientes atributos:
+a) x.n, el numero de claves actualmente guardadas en el nodo z.
+b) Las x.n claves, x.key1,…,x.keyx.n, guardadas en orden creciente de forma que x.key1 ≤ x.key2 ≤ … ≤ x.keyx.n
+c) x.leaf, un valor booleano que es veradero si x es una hoja y falso si es un nodo interno.
+2. Cada nodo interno x ademas contiene x.n + 1 punteros x.c1,…,xcx.n+1 a sus hijos. Los nodos hojas no tienen hijos, por lo que sus atributos ci estaran indefinidos.
+3. Las claves x.keyi separan los rangos de las claves guardadas en cada sub-arbol. Si ki es cualquier clave guardada en el sub-arbol cuya raiz es x.ci entonces k1 ≤ x.key1 ≤ … ≤ x.keyx.n ≤ kx.n+1.
+4. Todas las hojas tienen la misma profundidad, la cual sera la altura del arbol h.
+5. Los nodos tienen cotas inferiores y superiores en el numero de claves que pueden contener. Expresaremos estas cotas en terminos de un entero fijo t ≥ 2 llamado el grado minimo del arbol B:
+a) Cada nodo distinto a la raiz debe tener al menos t-1 claves. Cada intervalo de nodos distinto que la raiz debe tener al menos t hijos. Si el arbol no esta vacio, la raiz debe tener al menos una clave.
+b) Cada nodo debe contener como mucho 2t-1 claves. Entonces, un nodo interno puede tener a lo sumo 2t hijos. Diremos que el nodo esta lleno si contiene exactamente 2t-1 claves.
+Arboles 234
+El arbol B mas simple ocurre cuando t=2. Cada nodo interno puede tener 2,3 o 4 hijos, por lo que tendremos un arbol 2-3-4. En la practica, valores mucho mas grandes de t nos daran arboles B con una altura menor. Gracias a la nocion de cotas podremos dar una cota para la altura de un arbol B de la forma h ≤ logt((n+1)/2), en donde n ≥ 1, para cualquier arbol B de n-claves de altura h y grado minimo y ≥ 2.
+
+Insercion en Arboles 234
+Durante la insercion cada vez que encontremos un 3-nodo x empujaremos al nodo del medio hacia su padre z y partiremos el 2-nodo restnte en dos 1-nodo. Para nodos distintos de la raiz podremos hacer esto ya que el nodo x, por el cual ya habremos pasado, tendra a lo sumo dos claves. Si es la raiz en la que nos encontramos, crearemos una nueva raiz a la que podamos pasar la clave del medio. Es importante remarcar que los nodos se partiran a medida que los descubrimos, si se creo un 3-nodo a partir de la accion de empujar una clave hacia su padre no haremos nada. Las razones por las cuales partimos los 3-nodos son asegurarnos de que haya lugar para la nueva clave en la hoja y para hacer lugar para cualquier clave que sea empujada hacia arriba. La unica forma en la que el arbol incrementara su profundidad es creando una nueva raiz a causa de una insercion.
+
+Eliminacion en Arboles 234
+Para la eliminacion, en primer lugar buscaremos la clave a eliminar, si se encuentra en una hoja la eliminaremos y si es un nodo interno una vez encontrada la eliminaremos y buscaremos con la siguiente clave mas alta (que se encontrara en un nodo hoja). Durante la eliminacion se traeran claves desde el padre o los hermanos de forma tal de asegurarnos de al menos tener dos claves en el nodo donde se efectuara la eliminacion (o de donde obtendremos el reemplazo), de cierta forma estaremos haciendo una estrategia inversa a la insercion donde simplemente empujabamos las claves.
+A medida que busquemos la clave a eliminar o su reemplazo, nos encontraremos en nodos que contengan solo una clave que deberemos lograr que tengan dos. Para lograr esto tendremos distintas estrategias segun los posibles tres casos en donde nos encontremos:
+1. Intenta robar una clave de los hermanos inmediatamente adyacentes. Si alguno de sus hermanos tiene mas de una clave ejecutara una rotacion para obtenerlo.
+2. Si no hay hermano adyacente al que podamos robarle una clave, robaremos una clave al padre (esto sera posible al menos que sea la raiz) y fusionaremos la misma con el hermano siguiente u anterior (dependiendo de la desigualdad) formando un 3-nodo.
+3. Si no hay hermano adyacente al que podamos robarle una clave, el padre es la raiz y tiene solo una clave, entonces fusionaremos en un 3-nodo los hermanos y la raiz, obteniendo asi un nuevo 3-nodo raiz. Este sera el unico caso en donde la altura del arbol se vera disminuida en una unidad.
+Mostraremos los tres casos mediante un ejemplo al cual se le removera la raiz.
+￼
+Como queremos remover el 40, el objetivo sera reemplazarlo por el 42 que se encuentra en una de las hojas del arbol. Una vez parados en el 1-nodo que contiene la clave 50, veremos que aplica el tercer caso ya que el padre es la raiz, y el unico hermano inmediato tiene solo una clave, por lo que haremos una fusion como se aprecia en la segunda figura. Luego descenderemos por la rama dirigida hacia el 1-nodo que contiene el 43, veremos que en esta instancia el primer caso es el que se ajusta, por lo cual realizaremos una rotacion para terminar con un 2-nodo como se aprecia en la tercera figura. Finalmente en la tercera figura habremos descendido por el nodo que contiene a 42 pero todavia no podremos usarlo para reemplazar a 40 ya que es un 1-nodo. En esta situacion el caso que se ajustara sera el segundo, ya que el unico hermano inmediato es el 47, por lo que bajaremos el 43 y lo fusionaremos con el 47, llegando asi a la cuarta figura en donde podremos eliminar la clave de la raiz y reemplazarlo por el 42.
+
+3.3.5 Splay trees
+
+Este tipo de arbol tiene su inspiracion en los ABB optimos. Los ABB optimos son arboles cuyos elementos esta ubicados mas cerca o lejos de la raiz segun la frecuencia con la que son consultados (similar a la codificacion de Huffman), de esta forma optimizando los tiempos de las operaciones. El problema de este tipo de arboles son la rigidez, el desconocimiento de la frecuencia de las operaciones y la variabilidad que pueden sufrir estas ultimas. Los Splay Trees son ABB optimos aproximados que se modifican segun la frecuencia de los ultimos elementos consultados, de esta forma mantendremos algo cercano a un ABB optimo que se ira optimizando para los elementos que consultemos mas frecuentemente.
+En estos arboles, los cuales utilizan exactamente la misma representacion interna que un ABBcomun sin ningun agregado, todas las operaciones toman O(lg(n)) en promedio. Cuando nos referimos a en primedio no nos referimos al promedio de los ABB o al Quicksort, no hay aleatorizacion en los Splay Trees. De hecho, una operacion simple puede tomar Θ(n) en el peor caso en donde n es la cantidad de elementos en el arbol. Lo que podemos garantizar entonces es que cualquier secuencia de k operaciones, comenzando con un arbol vacio, y con el arbol no creciendo mas que &gt; n elementos, entonces la secuencia a lo sumo toma O(klg(n)) en el peor caso. Esto significa que podremos tener algunas pocas operaciones lentas pero en la mayoria seran mucho mas rapidas, por lo que tendremos un balance en promedio de lg(n) o mejor para cada operacion.
+Otra ventaja en cuanto a otras estructuras es que los Splay Trees son mucho mas faciles de programar y ademas otorgan acceso mas rapido a los datos recientemente accedidos, es decir que de cierta forma los Splay Trees tienen ‘memoria’ en este aspecto. Esto ultimo puede darnos una performance mayor en comparacion a los arboles 234 si tenemos un arbol grande y solamente accedemos a algunos de los elementos ignorando la mayoria de ellos, ya que como estaremos recurriendo frecuentemente a los mismos elementos los accesos en el Splay Tree se daran en O(1).
+Los Splay Trees, al igual que otros arboles balanceados, mantienen su balance mediante rotaciones. El balance de los Splay Trees no es perfecto, es por eso que si bien no nos garantizan una cota de lg(n) en los peores casos los algoritmos utilizados para mantener cierto balance son mucho mas sencillos y rapidos que en estructuras de datos balanceadas mas rigidamente. Ademas, no nos garantizaran una cota en el peor caso, pero si nos garantizan la cota en la mayoria de las operaciones, lo que en la practica y para la mayoria de los casos los hace igualmente buenos.
+Busqueda
+Dada una clave k, empezaremos a buscar la clave de la misma manera que lo hacemos en un ABB hasta que encontremos la clave k o hasta llegar a un NIL (en el caso de que la clave no sea existente). Sea x el nodo en donde la busqueda termino, contenga o no k, elevaremos x a traves de una secuencia de rotaciones, de forma tal que x se vuelva la raiz, llamaremos a esta operacion splay. Las razones por las cuales haremos esto seran, en primer lugar, para mantener los elementos mas consultados en la raiz o cerca de ella, de forma tal de que la consulta de estos sea verdaderamente rapida la proxima vez, y en segundo lugar, como este tipo de arboles puede desbalancearse (lo que es usualmente un estado temporal), si nos encontramos en un caso en donde exploremos hasta la profundidad del mismo, las rotaciones evitaran que esto pase de nuevo.
+Las rotaciones se daran en tres casos:
+1. Zig-zag x es el hijo izquierdo de un hijo derecho (LR) o su caso espejo (RL). Siendo y el padre de x y z su abuelo, para resolver este caso haremos una rotacion hacia la izquierda entre y y x y luego una rotacion hacia la derecha entre x y z. En el caso espejo realizaremos una rotacion hacia la derecha y luego una hacia la izquierda dejando a x como la raiz del sub-arbol.
+￼
+2. Zig-zig Este caso tiene una diferencia muy sutil con el caso anterior. Si x es el hijo izquierdo de un hijo izquierdo (LL) o su caso espejo (RR). Siendo y el padre de x y z su abuelo, para resolver este caso haremos primero una rotacion entre y y hacia la derecha, y luego ejecutaremos otra rotacion hacia la derecha entre x e y, dejando a x como la raiz del sub-arbol.
+￼ 
+3. Zig Este es un caso final que se origina al tener a x a una distancia original impar de la raiz en el momento del acceso. Para solucionar esto, si x es el hijo izquierdo haremos una rotacion hacia la derecha entre x y la raiz, o si x es el hijo derecho haremos una rotacion hacia la izquierda.
+Los casos 1 y 2 se repetiran hasta que x sea la raiz del arbol o un hijo de la raiz, lo que dara lugar al caso 3. En los casos que tengamos un arbol totalmente degenerado hacia un lado (de forma tal que sea equivalente a una lista), la busqueda nos costara tiempo O(n) pero las rotaciones Zig-zig lograran acortar la altura del arbol a la mitad, de forma tal de que las siguientes operaciones de consulta sean mucho mas eficientes. Esto ultimo se logra gracias a la forma de la rotacion Zig-zig, la cual rota el abuelo y su padre antes que el hijo y su padre, si esto se hiciese en orden inverso obtendriamos un arbol totalmente degenerado hacia la direccion opuesta original.
+Max/Min, Insercion y Eliminacion
+Las demas operaciones del arbol usaran la operacion de splay de formas similares ya que es importante para el Splay Tree ejecutar un splay cada vez que realizamos una operacion sobre el mismo, ya que de esta forma el arbol se mantiene actualizado y balanceado segun las ultimas operaciones.
+- En el caso de max/min, una vez encontrada la max/min clave del arbol, haremos un splay del nodo que lo contiene.
+- En el caso de la insercion, una vez insertado el elemento haremos splay sobre el elemento.
+- En el caso de la eliminacion, una vez eliminado de la misma forma que hariamos en un ABB comun, sea x el nodo eliminado del arbol, ejecutaremos splay sobre el padre de x. Si la clave que queriamos eliminar no existe, aun deberemos ejecutar un splay sobre algo, por lo que lo haremos donde termino la busqueda, tal como en la primera operacion. 
+
+3.3.6 Tries
+Tries compactos
+Tries Patricia
+3.3.7 Red-Black
+Los arboles RB son unos de los tantos esquemas en donde son ‘balanceados’ para asegurar que las operaciones tomen O(lg(n)) en el peor caso. Un arbol RB es un arbol binario de busqueda con un almacenamiento de un dato extra en cada nodo, su color, el cual puede ser rojo o negro. Restringiendo los colores de los nodos en cualquier camino simple desde la raiz a una hoja, los arboles RB se aseguan que no haya camino mas largo que el doble que cualquier otro, de esta forma el arbol esta aproximadamente balanceado.
+Cada nodo del arbol ahora contiene los atributos color, clave, izquierda, derecha y p. Si un hijo o el padre de un nodo no existe, el puntero correspondiente al atributo del nodo contiene el valor NIL. Un arbol RB tiene las siguientes propiedades:
+1. Todos los nodos son rojos o negros.
+2. La raiz es negra.
+3. Cada hoja (NIL) es negra.
+4. Si un nodo es rojo, entonces ambos hijos son negros.
+5. Por cada nodo, todos los caminos simples desde el nodo a hojas de descendientes tienen el mismo numero de nodos negros.
+Como conveniencia para lidiar con las condiciones borde en el codigo del arbol RB, usaremos un unico centinela para presentar NIL. Para un arbol RB T, el centinela T.nil es un objeto con los mismos atributos que cualquier otro nodo en el arbol. Si atributo de color es negro, y sus otros atributos tomaran valores arbitrarios. Usaremos este centinela de forma tal que podamos tratar un hijo NIL de un nodo x como un nodo ordinario cuyo padre es x. A pesar de que en cambio podriamos agregar un nodo centinela distinto para cada NIL en el arbol, de forma tal que el padre de NIL este bien definido, ese enfoque nos resultaran en una perdida de espacio.
+Llamaremos al numero de nodos negros de un camino simple desde x, pero no incluyendolo, hasta una hoja la black-height de un nodo, denominada por bh(x). Por la propiedad 5, la nocion de black-height estara bien definida, dado que todos los caminos simples descendientes desde el nodo tendran la misma cantidad de nodos negros.
+Lema (cota de altura)
+Un arbol RB con n nodos internos tiene como mucho altura 2.lg(n+1).
+Prueba Empezaremos mostrando que el sub-arbol con su raiz en cualquier nodo x contiene al menos 2bh(x) − 1 nodos internos, esta sera nuestra hipotesis inductiva y probaremos la propiedad utilizando induccion en la altura de x.
+Para el caso base, si la altura de x es 0, entonces x debe ser una hoja (T.nil), y el sub-arbol con su raiz en x efectivamente contiene al menos 2bf(h) − 1 = 20 − 1 = 0 nodos internos. Para el paso inductivo, consideraremos un nodo x que tiene una altura positiva y es un nodo interno con 2 hijos (recordar que estamos considerando a los NIL como hijos). Cada hijo tiene una black-height de bh(x) o bh(x) - 1, dependiendo en si su color es rojo o negro, es decir si suma o no a la black-height. Dado que la altura de un hijo de x es menor que la altura de x en si mismo, podremos aplicar la hipotesis inductiva para concluir que cada hijo tiene al menos 2bh(x)−1 − 1  nodos internos. Entonces, el sub-arbol con su raiz en x contiene al menos (2bh(x)−1 − 1) + (2bh(x)−1 − 1) + 1 = 2bh(x) − 1 nodos internos, lo que prueba la propiedad.
+Para concluir la prueba del lema, sea h la altura del arbol y de acuerdo con la propiedad 4, al menos la mitad de los nodos en un camino simple desde la raiz a una hoja, sin incluir la raiz, deben ser negros (ya que no hay restriccion sobre un nodo negro con un hijo negro, y para tener la minima cantidad de negros deberan estar alternados con rojos).
+En consecuencia, la black-height de la raiz debe ser al menos h/2, entonces n ≥ 2h/2 − 1 =⇒ n + 1 ≥ 2h/2 . Si aplicamos logaritmo a ambos lados nos queda que lg(n+1) ≥ h/2 ⇒ h ≤ 2 · lg(n + 1), lo que prueba el lema.
+
+Busqueda, maximo y minimo
+Como consecuencia directa del lema las operaciones de busqueda, y por lo consecuente las de maximo y minimo tendran tiempo O(lg(n)) en el peor caso, en un arbol RB.
+Insercion
+Podemos insertar un nodo nuevo en arbol RB de n nodos en tiempo O(lg(n)). Para lograrlo, haremos algo muy parecido a la insercion del arbol binario de busqueda. Insertaremos el nuevo nodo z tal como lo hariamos en un arbol binario de busqueda normal, y luego le dariamos color rojo. Para garantizar que las propiedades del arbol RB se mantengan, realizaremos un procedimiento de reacomodacion que recoloreara y ejecutara rotaciones sobre los nodos existentes.
+
+En la insercion de z se mantendran las propiedades 1 y 3, ya que no estaremos introduciendo un nuevo color y ya que z tendra dos hijos NIL que estaran pintados de negro. Por lo que, las unicas propiedades que pueden llegar a violar seran la propiedad 2, que requiere que la raiz sea negra, y la propiedad 4, que dice que un nodo rojo no puede tener un hijo rojo. Ambas posibles violaciones son a causa de que z sea pintado rojo.
+Deberemos considerar seis casos para la reacomodacion, la cual se realizara en un ciclo hasta que el arbol sea correcto, pero tres de los seis casos son simetricos a los otros tres, por lo que realmente solamente necesitaremos considerar tres casos. Distinguiremos el caso 1 del caso 2 y 3 observando el color del hermano del padre de z, dicho de otra forma, el tio de z. Es aqui donde los 6 casos pasan a ser 3 . Si z.p es el hijo derecho, entonces el tio sera z.p.p.izq, de lo contrario sera z.p.p.der. Para trabajar sobre los 3 casos distintos, haremos de cuenta que z.p es el hijo izquierdo, despues de todo si es el derecho solamente habra que hacer un cambio de palabras. Si el color del tio y es rojo, entonces ejecutaremos el caso 1, de otra forma el control pasa al caso 2 y 3. En los 3 casos, el abuelo z.p.p es negro, dado que el padre z.p es rojo, y la propiedad 4 es solo violada entre z y z.p
+- Caso 1: El tio y de z es rojo: Como z.p.p es negro, podremos pintar z.p y y negros, solucionando el problema entre z y z.p, y podremos pintar z.p.p de negro para mantener la propiedad 5. Deberemos repetir la reacomodacion definiendo a z = z.p.p. El puntero de z se mueve dos niveles mas arriba en el arbol.
+- Caso 2: El tio y de z es negro y z es un hijo derecho: En este caso utilizaremos una rotacion hacia la izquierda para transformar la situacion en el caso 3, en donde z sera el hijo izquierdo. Dado que z y z.p son rojos, la rotacion no afecta el black-height de los nodos o la propiedad 5. z ahora sera z.p.
+- Caso 3: El tio y de z es negro y z es un hijo izquierdo: Si entramos en el caso 3 directamente o a traves del caso 2, el tio y de z es negro, ya que de otra forma hubiesemos ejecutado el caso 1. En este caso ejecutaremos una rotacion hacia la derecha entre el padre z.p y su abuelo z.p.p, lo que dejara al abuelo de z como hermano de z. Haciendo un intercambio de colores entre el padre de z y el ahora hermano de z, lograremos restablecer la propiedad 4 y ademas nos aseguramos de mantener la propiedad 5.
+￼
+z, p y a representan el nodo nuevo z, su padre y su abuelo, respectivamente. En el primer momento estaremos en el caso 2 y una vez ejecutada la rotacion pasaremos al segundo momento. Si bien no cambiaremos los nombres por claridad, el puntero z ahora estara apuntando a p. En este momento estariamos en el caso 3, haciendo una rotacion hacia la derecha mas pasariamos al ultimo estado que cumplira todas las propiedades.
+Dado que la altura de un arbol RB de n nodos pertenece a O(lg(n)), la insercion principal del nuevo nodo z tomara tiempo O(lg(n)). Cuando ejecutamos la reacomodacion, solo es necesario ejecutarla nuevamente cuando ocurre el primer caso, y cuando sucede el puntero de z se mueve dos niveles hacia arriba del arbol. Por lo tanto el numero de veces maximo que deberemos ejecutar la reacomodacion sera O(lg(n)), por lo que la insercion tomara en total O(lg(n)).
+Eliminacion
+Eliminar un nodo de un arbol RB puede ser un poco mas complicado que insertar un nodo. El procedimiento para eliminar un nodo de un arbol RB esta basado en la eliminacion del arbol binario de busqueda.
+Complejidades
+- Busqueda O(lg(n))
+- Insercion O(lg(n))
+- Borrado O(lg(n))
+- Espacio O(n) 
+
+3.4 Hash
+Muchas aplicaciones requieren un conjunto dinamico que solo soporte las operaciones de diccionario insercion, busqueda y eliminacion. Una tabla de hash es una estructura de datos efectiva para implementar diccionarios. Si bien buscar un elemento en una tabla de hash puede tardar tanto como buscar un elemento en una lista enlazada (Θ(n) en el peor caso), en la practica la tabla de hash tiene una muy buena performance. Bajo asunciones razonables, el tiempo promedio de buscar un elemento en una tabla de hash es de O(1).
+3.4.1 Direccionamiento abierto
+
+3.4.2 Barrido lineal
+H(c,i) = (h’(c) + i) mod |A|, donde h’ es otra funcion de hashing. Esto genera A[h’(c)], A[h’(c) + 1]…
+Esto puede provocar aglomeracion primaria, y es que cada elemento vaya chocando porque estan todos adelantados en uno (por ejemplo h= mod 101 e insertamos 2, 103, 104, 105, …). Cuando hay aglomeracion primaria si dos secuencias colisionan en algun momento, luego siguen colisionando.
+
+3.4.3 Barrido cuadratico
+En el cuadratico la i esta afectada al cuadrado, y se evita la aglomeracion primaria porque el polinomio varia segun el numero de intento. Sin embargo, puede haber aglomeracion secundaria: si colisionan en el primer intento, luego siguen colisionando.(h(c1) = h(c2) =&gt; h(c1,i) = h(c2,i)).
+
+3.4.4 Hashing doble
+El barrido depende de la clave tambien. H(c,i) = h1(c) + i h2(c), con h1 y h2 dos funcinoes de hashing. El hashing doble es poco probable que tenga aglomeracion primaria y deberia reducir los casos de algomeracion secundaria
+
+3.4.5 Hashing dinamico o extensible
+
+3.4.6 Como generar funciones de hashing
+Debe asignarse a los valores de entrada un numero entero. Si no son un numero entero, esto puede ser complicado. 
+Basado en division
+C mod |A| : es rapido pero genera colisiones, sobre todo si |A| = 10p pues colisionan los que comparten ultimos digitos. Lo mismo para 2p con los bits menos significativos. En general, deberia depender de todos los digitos y no solo de una parte. En general es bueno elegir numeros primos lejanos a potencias de 2.
+Basados en particion y extraccion
+Si la clave es muy larga, podemos dividirla y manipular las partes como si fuesen varios argumentos. Ej: sumar cada 4 digitos de una tarjeta de credito. Eso seria particionar, extraer seria quedarse con una parte. Ej: los ultimos 4 digitos.
+El hash tambien sirve para seguridad: preimagine dificil y baja colicion
+
+
+Capitulo 4
+Algoritmos 
+4.1 Eliminacion de la recursion
+La motivacion de la eliminacion de la recursion es basicamente optimizar funciones recursivas mediante distintas formas. Para hacerlo se intentara cumplir ciertos objetivos como no repetir los calculos (generalmente en problemas que presenten sub-estructura optima), no recorrer una estructura mas de una vez (o intentar hacerlo la menor cantidad de veces posible) y finalmente eliminar la recursion, ya que si bien una funcion iterativa y una recursiva podran tener complejidades asintoticamente iguales, en la practica las funciones iterativas son mas optimas por diferencias de constantes (basicamente por no tener llamadas recursivas).
+Inmersion de rango: Agregar un nuevo parametro de salida a la funcion, es decir si la salida original era un entero, ahora sera una tupla de enteros. La idea del nuevo parametro que agregamos es darnos “algo mas” que lo estrictamente necesario de forma tal que nos sirva para calcular mas eficientemente otro resultado y asi reducir la complejidad. Esta tecnica tambien es conocida como generalizacion de funciones.
+Inmersion de dominio: En este caso agregaremos un parametro de entrada que va conteniendo resultados intermedios. De esta forma podremos optimizar la complejidad de problemas que presenten subestructura optima.
+Inmersion de genero: Se amplia el dominio de algun parametro de la funcion. Por ejemplo de naturales a enteros.
+Recursion a la cola: Esta sera una clase de funciones recursivas lineales en donde su ultimo paso es la llamada recursiva y ademas es unica. La propiedad de estas es que pueden ser transformadas automaticamente a funciones iterativas.
+Recursivas lineales no a la cola: Son aquellas que tienen una unica llamada recursiva (por eso lineales) pero esta no es la ultima operacion. Una funcion de este tipo puede ser aquella que tenga un condicional para separar entre el caso base y el caso recursivo. Este tipo de funciones pueden tambien ser convertidas automaticamente.
+Recursivas no lineales: Seran aquellas que tienen ams de una llamada recursiva. Pueden ser multiples en donde contienen varias llamadas pero no es la ultima operacion o anidadas, las cuales tienen mas de una llamada recursiva pero anidadas y ademas la llamada es la ultima operacion.
+Folding / Unfolding: El desplegado consiste en reemplazar la definicion de la funcion por su expresion. El plegado puede pensarse como la inversa de la anterior. Se trata de reemplazar la definicion de una expresion por una llamada a funcion.
+
+4.2 Divide &amp; Conquer
+La metodologia consiste en dividir el problema en un numero de subproblemas que son instancias mas chicas del mismo problema, conquistar los subproblemas resolviendolos recursivamente y cuando sean suficientemente chicos resolverlos de una forma directa y combinar las soluciones de los subproblemas en la solucion para el problema original.
+Cuando los subproblemas son suficientemente grandes para resolverlos recursivamente, llamaremos al caso recursivo. Una vez que los subproblemas se vuelvan suficientemente chicos, diremos que la recursion ‘toco fondo’ y que habremos llegado al caso base. A veces, en adicion a los subproblemas que son instancias mas chicas del mismo problema, deberemos resolver problemas que no son exactamente lo mismo que el problema original. Consideraremos resolver dichos subproblemas como una parte del paso de combinacion.
+
+4.2.1 Recurrencias
+Las recurrencias van a la par con el paradigma de DyC, ya que nos dan una forma natural de caracterizar los tiempos de los algoritmos que hagan uso del paradigma. Una recurrencia es una ecuacion o inecuacion que describe una funcion en terminos de su valor en entradas mas chicas. Las recurrencias pueden tomar muchas formas. Por ejemplo, un algoritmo recursivo podra dividir los subproblemas en tamaños desiguales, tales como 2/3 a 1/3. Si los pasos de dividir y combinar toman tiempo lineal, tal algoritmo nos dara la recurrencia T(n) = T(2n/3) + T(n/3) + Θ(1). Habra 3 metodos para resolver recurrencias, esto es para obtener las cotas asintoticas Θ o O de la solucion:
+- En el metodo de sustitucion, conjeturaremos una cota y luego la probaremos utilizando induccion matematica.
+- En el metodo del arbol de recursion, convertiremos la recurrencia en un arbol cuyos nodos representaran los costos de varios niveles de la recursion. Usaremos tecnicas para acotar sumatorias para resolver la recurrencia.
+- El metodo maestro proveera cotas para recurrencias de la forma T(n) = aT(n/b) + f(n), en donde a ≥ 1, b &gt; 1 y f(n) es una funcion dada, las recurrencias de este tipo se presentan muy frecuentemente. Para utilizar el metodo maestro sera necesario memorizar tres casos, pero una vez hecho, podremos determinar cotas asintoticas muy facilmente para recurrencias simples.
+Ocasionalmente podremos ver recurrencias que no son igualdades sino que seran desigualdades, como lo es T(n) ≤ 2T(n/2) + Θ(n). Dado que dicha recurrencia solo nos da nocion de una cota superior en T(n), daremos la solucion con notacion O en vez de Θ. De igual forma, con la desigualdad invertida T(n) ≥ 2T(n/2) + Θ(n), la recurrencia solo nos dara la idea de una cota inferior de T(n), por lo tanto usaremos Ω para dar su solucion.
+Metodo de sustitucion
+El metodo de sustitucion para resolver recurrencias se compone de dos pasos. El primero de ellos es conjeturar una formula general de la solucion y el segundo es usar induccion matematica para encontrar las constantes y mostrar que la solucion funciona. Veamos este metodo mediante un ejemplo. Tomemos la recurrencia perteneciente a MergeSort.
+￼
+El caso base hace referencia a cuando nuestro arreglo tiene tamaño 1, en cuyo caso devolveremos el arreglo sin ejecutar ninguna operacion sobre el, y el caso recursivo hace referencia a la recursion del arreglo sobre cada una de sus mitades (siendo asi divide) y luego uniendolo en tiempo n (siendo el conquer). En primer lugar vamos a acotar a n por el multiplo de 2 mayor o igual mas cercano, quedando asi n ≤ 2k para algun k ∈ N. Luego, reescribiremos a T(n) haciendo el reemplazo por k.
+￼
+Probemos alguno de sus valores y analicemos los resultados correspondeintes para encontrar algun patron que nos ayude a visualizar la formula general.
+T(20) = 1 
+T(21)=2·T(20)+21 =2+2 =21 +1·21 
+T(22)=2·T(21)+22  =22 +2·22 
+T(23)=2·T(22)+23  =23 +3·23 
+T(24)=2·T(23)+24  =24 +4·24 
+
+T(2k)=2k +k·2k 
+Probaremos que esta conjetura es valida utilizando induccion en N. El caso base es trivial, ya que T(20) = 20 + 0.20 = 0, por lo que coincide con la definicion. Luego para el paso inductivo, consideraremos que la formula vale hasta k (nuestra hipotesis inductiva) y queremos ver que vale para k+1 (nuestra tesis inductiva).
+T(2 )=2T(2 )+2 = 2(2 +k·2 )+2 =2 +k·2 +2 =2 +(k+1)·2k+1
+Por lo que nuestra tesis inductiva sera valida y la formula general que encontramos valdra para todo n ∈ N. Como n ≤ 2k ⇐⇒ log(n) ≤ k para algún k, tendremos que T(n) ≤ n+n·log(n) y por lo tanto T (n) ⊆ O(n · log(n)). De la misma forma, si utilizamos el multiplo de 2 menor o igual mas cercano a n, obtendremos la misma cota pero perteneciente a Ω(n · log(n)), por lo que nos implicara que T (n) ⊆ Θ(n · log(n)). 
+La ultima formula puede ser generalizada cambiando sus constantes por variables.
+￼
+Luego, la conjetura quedaria de la forma T(2k) = 2k · c + ki=1 2k−if(2i) ≤ 2k · c + k · 2kf(2k). Si definimos a f(n) = n y a c=1, podremos observar que nos quedara T(2k) ≤ 2k + k · 2k+1 la cual solo difiere en una constante que utilizamos una cota mas bruta, pero pertenecera a la misma clase que la funcion anterior.
+Metodo del arbol de recursion
+Si bien podremos usar el metodo de sustitucion para proveer una prueba suficiente de que una solucion a una recurrencia es correcta, tendremos problemas en encontrar una buena conjetura, algo en lo que nos ayudara el arbol de recursion.
+En un arbol de recursion, cada nodo representa el costo de un solo subproblema en algun momento del conjunto de invocaciones recursivas, el nodo principal representara el costo inmediato inicial de la funcion (sin contabilizar la recursion) y los nodos adyacentes a el, es decir el primer nivel, representara el costo inmediato de cada paso. Como hojas del arbol tendremos los casos base de la recursion. Para obtener nuestra conjetura, sumaremos los costos de cada uno de los niveles del arbol para obtener un conjunto de costos por nivel, y luego sumaremos todos los conjuntos por nivel para obtener el costo total de todos los niveles de la recursion.
+Un arbol de recursion es el mejor metodo para generar una buena conjetura, que luego podremos verificar utilizando el metodo de sustitucion. Cuando utlizamos el metodo del arbol de recursion para generar una conjetura buena, por lo general es tolerable un leve grado de ‘descuido’, dado que luego estaremos verificando la conjetura. Si somos suficientemente cuidadosos al dibujar el arbol de recursion y sumar los costos, podremos usar el arbol de recursion como una prueba directa para la solucion de una recurrencia.
+Metodo maestro
+El metodo maestro provee una receta para resolver recurrencias que tengan la forma:
+￼
+En donde a ≥ 1 y b &gt; 1 son constantes y f(n) es una funcion ainstoticamente positiva. Para usar el metodo maestro, habra que memorizar tres casos, pero una vez hecho se podran resolver recurrencias muy facilmente, muchas veces sin la necesidad de usar lapiz y papel. El metodo maestro tiene su base en el teorema maestro, el cual dice que siendo a ≥ 1 y b &gt; 1 constantes, f(n) una funcion y T(n) esta definido en los enteros no-negativos por la recurrencia anterior, entonces T(n) tiene las siguientes cotas asintoticas:
+- Si f(n) ⊆ O(nlogb(a)−ε) para alguna constante ε &gt; 0, entonces T(n) ⊆ Θ(nlogb(a)).
+- Si f(n) ⊆ Θ(nlogb(a)), entonces T(n) ⊆ Θ(nlogb(a) · lg(n)). 
+- Si f(n) ⊆ Ω(nlogb(a)+ε) para alguna constante ε &gt; 0, y si existe alguna constante c &lt; 1 y se cumple que af(n/b) ≤ cf(n) a partir de un n suficientemente grande, entones T(n) ⊆ Θ(f(n)). 
+En cada uno de los tres casos, comparamos la funcion f(n) con la funcion nlogb(a). Intuitivamente, la polinomialmente mas grande de las dos funciones determina la solucion a la recurrencia. En el primer caso, la funcion  nlogb(a) es polinomialmente mas grande, entonces la solucion sera ⊆ Θ(nlogb(a)). En el tercer casi si f(n) significa que es la funcion polinomialmente mas grande, entonces la solucion sera T(n)  ⊆ Θ(f(n)), la condicion de regularidad en este caso esta presente para asegurarse de que f(n) sea polinomialmente mas grande. Finalmente, en el segundo caso, las dos funciones son ‘del mismo tamaño’, esto quiere decir que cualquiera puede ser utilizada como cota asintotica de la otra, se multiplicaaran por un factor logaritmico y la solucion sera T(n)  ⊆ Θ(nlogb(a) · lg(n)) ⊆ Θ(f(n).lg(n)). Es importante remarcar que el teorema maestro no cubre todos los casos de f(n), por lo cual habra algunos casos que caeran en las brechas entre alguno de los casos, puntualmente cuando f(n) sea mas grande o mas chica que nlogb(a) asintoticamente pero no lo sea polinomialmente.
+Para utlizar el teorema maestro simplemente debemos determinar a que caso pertenece la recurrencia (si es que lo hace) y escribir la respuesta.
+4.2.2 En resumen
+La metodologia consiste en dividir un problema en problemas similares pero mas chicos, en resolver estos problemas menores hasta que podamos resolverlos de forma ADHOC y luego combinar las soluciones de los problemas menores para obtener la solucion del problema original. Este metodo tiene sentido siempre y cuando la division y la combinacion no sean excesivamente caras.
+El esquema general de dividir y conquistar consiste en:
+- Si X es suficientemente chico, entonces resolveremos el problema de forma ADHOC.
+- En caso contrario, haremos una descomposicion en sub instancias X1, X2, …, Xk en donde para cada una tendremos Yi &lt;- DC(Xi) sub soluciones, que luego combinaremos las Yi soluciones para construir la solucion general para X.
+
+4.3 Ordenamiento
+4.3.1 Cota inferior para algoritmos basados en comparaciones
+Una lista de n elementos distintos puede tener n! Permutaciones o formas de orden distintas. Luego, una cota arbitrariamente mayor para n! ≤ n · n · ... · n = nn y una cota arbitrariamente menor podra ser n! ≥ n/2 · n/2 · ... · n/2 = n/2n/2. Luego, ambas cotas perteneceran a Θ(nlog(n)) si les aplicamos un logaritmo, lo que nos implicara que log(n!) ∈ Θ(nlg(n)). Todas las decisiones estaran basadas en comparar claves, tipicamente mediante ifs, es decir que estan basadas en resultados booleanos. Un algoritmo de ordenamiento correcto debe generar una secuencia distinta de comparaciones booleanas para cada permutacion distinta de 1..n. Como habra n! Diferentes permutaciones en una secuencia de n elementos, deberemos tener n! Secuencias distintas de comparaciones. Si un algoritmo hace ≤ d preguntas booleanas, generara ≤ 2d secuencias distintas de respuestas booleanas, y por lo tanto:
+n!≤2d =⇒ lg2(n!)≤d =⇒ d∈Ω(n·lg(n)) 
+No podremos preguntar d preguntas en menor de d tiempo, si suponemos un tiempo acotado para cada preguntar, por lo que el algoritmo gasta Θ(d) tiempo preguntando d preguntas. Por lo que todo algoritmo de ordenamiento basado en comparaciones toma en el peor caso Ω(n.lg(n)) tiempo. Algoritmos mas rapidos que estos deberan hacer decisiones de q-caminos para un q grande.
+Selection Sort
+- El arreglo esta ordenado hasta la parte i en la iteracion i.
+- Se busca el minimo entre i y n-1 (o sea, la mitad no ordenada).
+- Se intercambia el minimo con A[i].
+- Se itera hacia i+1-
+Complejidad O(n2).
+Insertion Sort
+- Se asume que esta ordenado hasta la parte i en la iteracion i.
+- Se toma el elemento i y se lo inserta ordenado en el arreglo de 0 a i.
+- Se itera.
+- Complejidad O(n2).
+Bubble Sort
+- Se asume que de i para adelante esta ordenado el arreglo.
+- Se mueve el elemento mas grande de [0, i-1] hasta i-1, o sea, se tira el maximo al final.
+- Se itera.
+- Complejidad O(n2).
+Quick Sort
+- Ejemplo de divide and conquer
+- Se trata de dividir el arreglo de n en dos de n/2 y luego pegarlos.
+- Algoritmo
+	- Si tiene n ≤ 1, esta ordenado.
+	- Si no, se toma el elemento k y se ponen todos los elementos menores a k en un arreglo y todos los mayores en otro. Luego se aplica lo mismo a estos dos subarreglos y se pegan.
+- Si elegimos mal el piveote (el k), es decir, un max o min, tiene complejidad O(n2). Si elegimos el mediano siempre, el algoritmo tiene complejidad O(n.lg(n)) por el teorema maestro.
+- En el caso general, tambien por Teorema Maestro, la complejidad es O(n lg(n)) siempre que la muestra sea uniforme. Se podria randomizar antes el arreglo, manteien la complejidad pero aumenta la constante.
+Merge Sort
+- Otro ejemplo de Divide and Conquer
+- Se trata de partir un arreglo de n en dos n/2, ordenados y combinarlos luego (esto es lo mas caro).
+- Se divide en [0, n/2) y [n/2, n) se ordenan y luego se pegan ordenados intercaladamente.
+- La complejidad es O(n.lg(n)) por teorema maestro.
+Heap Sort
+- Convertimos un arreglo en un heap usando el algoritmo Heapify de Floyd en O(n).
+- Desencolamos los n elementos en O(n.lg(n)) y los colocamos en un arreglo de n posiciones.
+Bucket Sort
+Counting Sort
+Radix Sort
+
+4.4 Compresion
+4.4.1 Codificacion por longitud de series
+La codificacion por longitud de series esta basada en la redundancia de los caracteres en una serie. Podremos reemplazar una secuencia de repeticiones de un caracter por un solo ejemplar del mismo acompañado de la cantidad de repeticiones. Por ejemplo, la secuencia AAABBAABCDCCCD puede ser codificada  3A2B2A1B1C1D3C1D. A esta ultima, podremos mejorarla obviando los 1 y no cambiar las secuencias de longitud 2 (ya que ocupan lo mismo), 3ABBAABCDCCCD.
+4.4.2 Codigos de longitud fija
+Hay varias formas de representar la informacion de un archivo. Una de ellas es diseñar un codigo binario de caracteres en el cual cada caracter sera representado por un unico string binario, el cual llamaremos simplemente codigo. Si usamos codigos de longitud fija en un alfabeto de 6 caracteres, necesitaremos 3 bits para representar esos 6 caracteres (a=000, b=001, …). Suponiendo que tenemos un archivo con 100mil caracteres necesitariamos 300mil bits para codificarlo.
+4,4,3 Codigos de longitud variable
+Un codigo de longitud variable reduce el espacio utilizado por los codigos de longitud fija asignandole codigos mas cortos a los caracteres mas usados y codigos mas largos a caracteres menos usados. De esta forma, utilizando el mismo texto en el ejemplo anterior con una codificacion apropiada, podremos reducir 300mil bits a 224 bits, ganando asi un 25%. Sin embargo esta codificacion lleva consigo un problema.
+La codificacion es simple para cualquier codificacion binaria de caracteres (sea o no variable), dado que lo unico que tenemos que hacer es traducir cada uno de los caracteres a su correspondiente codigo y concatenarlo. El problema se presenta en la decodificacion de un archivo codificado. En la decodificacion de un archivo codificado con codigos de longitud fija la tarea es trivial, ya que estaremos seleccionando una cantidad fija de bits para cada letra distinta. En cambio, si la codificacion fue realizada con longitud variable, podriamos tener problemas al reconocer el codigo de un caracter si no tomamos recaudos al respecto. Una forma de lograr esto es agregar un caracter que indique una separacion entre dos codigos, otra forma para lograr esto sin el uso de un separador son los codigos prefijos.
+Los codigos prefijos simplifican la decodificacion ya que ningun codigo es prefijo de ningun otro, de esta forma el codigo con el que comienza un archivo codificado no es ambiguo y por lo tanto nos desambigua el resto del archivo. Podremos simplemente identificar el codigo inicial, traducirlo al caracter correspondiente, y repetir el proceso de decodificacion para el resto del archivo codificado. El proceso de decodificacion necesita una representacion conveniente para el codigo prefijo de forma tal que facilmente pueda obtener el caracter inicial. Un arbol  binario cuyas hojas sean los caracteres dados nos dara dicha representacion. Interpretaremos el codigo binario como un camino desde la raiz hasta el caracter, en donde 0 significara ir al hijo derecho y 1 significara ir al hijo izquierdo. Notar que estos no son arboles de busqueda binarios, sino que seran mas bien equivalentes a tries binarios.
+4.4.4 Codigos prefijos optimos
+Un codigo optimo para un archivo es siempre representado como un arbol binario completo, en donde cada nodo que no sea una hoja tiene dos hijos. Por ejemplo, si una codificacion contiene codigos comenzando en 10 pero ninguno comenzando en 11, entonces no sera optimo. Si C es el alfabeto de donde todos los caracteres son obtenidos y todas las frecuencias de aparicion de los caracteres son positivas, entonces el arbol de prefijo optimo tiene exactamente |C| hojas, una para cada letra del alfabeto, y exactamente |C| - 1 nodos internos.
+Dado un arbol T correspondiente a un codigo de prefijos, facilmente podremos computar el numero de bits requeridos para codificar un archivo para cada caracter c en C. Sea el atributo c.frec el que denote la frecuencia de c en el archivo y sea dT (c) una funcion que denota la profundidad de c en el arbol (notar que ademas es la longitud en bits utilizados para codificarc), el numero de bits requeridos para codificar un archivo sera:
+￼
+Que definiremos como el costo de un arbol T.
+4.4.5 Codigos de Huffman
+Huffman invento un algoritmo goloso que construye un codigo prefijo optimo o arbol prefijo optimo llamado codigo de Huffman o arbol de Huffman. En el pseudocodigo a continuacion, asumiremos que C es un conjunto de n caracteres y que cada caracter c ∈ C es un objeto con atributo c.frec que nos informara de su frecuencia. El algoritmo construye el arbol de Huffman T correspondiente al codigo de Huffman de forma bottom-up. Comienza con un conjunto de |C| Hojas y realiza una secuencia de |C| - 1 operaciones de ‘merge’ para crear el arbol final. El algoritmo utiliza una cola de prioridad Q ordenaba por el atributo frec en donde el elemento que tendra mas prioridad sera aquel con el valor minimo. Q sera utilizada para identificar los 2 objetos menos frecuentes de forma tal de mergearlos. Cuando mergeamos dos objetos, el resultado es un nuevo objeto cuya frecuencia es la suma de las frecuencias de los dos objetos que fueron mergeados. En esta implementacion los costos estaran calculados como si hubiesemos implementado la cola de prioridad con un heap.
+￼
+La complejidad del algoritmo esta calculada groseramente ya que el unico momento en el que el heap tendra n elementos sera cuando se agregue el ultimo elemento al mismo en la linea 3 o en el comienzo de la iteracion en la linea 6.
+Es importante remarcar la relaciom existente entre las repeticiones de los caracteres y la altura del arbol de Huffman. Un texto que contiene |C| caracteres distintos sera representado por un arbol de algura ⌈lg2(|C|)⌉ como minimo. Cuando decimos como minimo hacemos referencia al caso cuando todos los caracteres tienen la misma frecuencia. Es interesante remarcar que la longitud fija de |C| elementos, lo cual tiene sentido ya que al ser todas las frecuencias iguales los caracteres terminaran con la misma longitud en su codificacion.
+A medida que haya caracteres que aparezcan con distinta frecuencia que otros, el arbol se ‘degenerara’ y por lo consecuente su altura se extendera, pudiendo ser |C| - 1 en el caso de que el arbol este totalmente degenerado hacia un lado. Para que el arbol sea totalmente degenerado se debe cumplir que para f: N -&gt; N f(i) = ci.frec, vale que f(i-1) + f(i-2) &lt; f(i).
+</Text>
+        </Document>
+        <Document ID="E089B318-6AD6-4BFE-A53C-B1526A51E234">
+            <Title>Sin título</Title>
+        </Document>
+        <Document ID="5A2F60F0-1B19-4D0F-8E4C-D6B0EBD1835E">
+            <Title>Sin título</Title>
+        </Document>
+    </Documents>
+</SearchIndexes>

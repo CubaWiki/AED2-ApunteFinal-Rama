@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompileSettings>
+    <ProjectSettings>
+        <Content Scope="Included" IncludeGroupText="Yes">
+            <Filter State="Off" Exclude="No" Type="Label">
+                <CollectionID>450A2019-4166-4211-9662-56C95E6B8F88</CollectionID>
+                <Label>-1</Label>
+                <Status>-1</Status>
+            </Filter>
+        </Content>
+        <Options>
+            <RemoveAnnotations>Yes</RemoveAnnotations>
+            <Links>
+                <ConvertDocumentLinksToHTML>Yes</ConvertDocumentLinksToHTML>
+            </Links>
+            <Scriptwriting>
+                <IncludeTitles>Yes</IncludeTitles>
+                <IncludeSynopses>Yes</IncludeSynopses>
+                <FootnotesAsScriptNotes>Yes</FootnotesAsScriptNotes>
+                <CommentsAsScriptNotes>Yes</CommentsAsScriptNotes>
+            </Scriptwriting>
+            <Ebook>
+                <StartAfterFrontMatter>Yes</StartAfterFrontMatter>
+                <Cover>
+                    <ImageDocument Source="FrontMatter"></ImageDocument>
+                    <Title>Portada</Title>
+                    <SVG Width="600" Height="800"><![CDATA[]]></SVG>
+                </Cover>
+                <TOC PandocDepth="3">
+                    <HTML Generate="Yes">
+                        <Title>Contenido</Title>
+                    </HTML>
+                </TOC>
+            </Ebook>
+        </Options>
+        <MetaData>
+            <ProjectTitle>Resumen Algo 2 - Kindle</ProjectTitle>
+            <ProjectAbbreviatedTitle>Resumen Algo 2 - Kindle</ProjectAbbreviatedTitle>
+            <Authors>
+                <Author FileAs="Soberon, Nico" Role="aut">Nico Soberon</Author>
+            </Authors>
+            <Surname>Soberon</Surname>
+            <Forename>Nico</Forename>
+            <EbookLanguage>en</EbookLanguage>
+            <FountainTitlePageMetaData>
+                <Value Key="Title"><![CDATA[<$projecttitle>]]></Value>
+                <Value Key="Author"><![CDATA[<$author>]]></Value>
+            </FountainTitlePageMetaData>
+            <MMDMetaData>
+                <Value Key="Title"><![CDATA[<$projecttitle>]]></Value>
+                <Value Key="Author"><![CDATA[<$author>]]></Value>
+            </MMDMetaData>
+        </MetaData>
+    </ProjectSettings>
+    <CurrentFileType>kf8</CurrentFileType>
+    <FormatSettings>
+        <Format ID="DEFAULT">
+            <SectionLayouts>
+                <Type ID="646E1863-9EAB-474D-8DF3-BC5C03216CD9">NEW-PAGE-HEADER-WITH-TEXT</Type>
+                <Type ID="72892C23-BECC-4E09-95A5-FFC93862801A">TEXT-SECTION</Type>
+            </SectionLayouts>
+        </Format>
+    </FormatSettings>
+    <LastUsedFormats>
+        <Print>DEFAULT</Print>
+        <kf8>DEFAULT</kf8>
+        <epub3>DEFAULT</epub3>
+    </LastUsedFormats>
+</CompileSettings>
