@@ -36,7 +36,7 @@ make
 
 ## Version Ereader
 
-Nicolas Soberon realizo una version para ereaders y la aporto al repositorio, la cual puede ser encontrada compilada en epub y mobi en la carpeta "ereader". En la misma carpeta se halla el codigo fuente de esta version, el cual puede ser editado utilizando Scrivener ([Scrivener-MW][MAC/Windows], [Scrivener-Linux][Linux]).
+Nicolas Soberon realizo una version para ereaders y la aporto al repositorio, la cual puede ser encontrada compilada en epub y mobi en la carpeta "ereader". En la misma carpeta se halla el codigo fuente de esta version, el cual puede ser editado utilizando Scrivener ([MAC/Windows][Scrivener-MW], [Linux][Scrivener-Linux]).
 
 ## Y el PDF compilado? Donde esta?!
 
