@@ -47,8 +47,8 @@ Bueno, bueno... pero pensa en contribuir si ves algo mejorable/mal! Podes ir a l
 [Kile]: http://kile.sourceforge.net/
 [LaTeX]: http://www.latex-project.org/
 [yEd]: http://www.yworks.com/en/products_yed_about.html
-[Berkeley-SplayTrees]: http://www.youtube.com/watch?v=G5QIXywcJlY
-[Berkeley-234]: http://www.youtube.com/watch?v=zqrqYXkth6Q
-[Berkeley-Sorting]: http://www.youtube.com/watch?v=EiUvYS2DT6I
+[Berkeley-SplayTrees]: http://www.infocobuild.com/education/audio-video-courses/computer-science/CS61B-Spring2014-Berkeley/lecture-23.html
+[Berkeley-234]: http://www.infocobuild.com/education/audio-video-courses/computer-science/CS61B-Spring2014-Berkeley/lecture-18.html
+[Berkeley-Sorting]: http://www.infocobuild.com/education/audio-video-courses/computer-science/CS61B-Spring2014-Berkeley/lecture-20.html
 [Scrivener-MW]: https://www.literatureandlatte.com/scrivener/download
 [Scrivener-Linux]: http://www.literatureandlatte.com/forum/viewforum.php?f=33
