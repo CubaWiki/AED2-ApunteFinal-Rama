@@ -34,6 +34,10 @@ En un sistema GNU/Linux con TexLive debería alcanzar con:
 make
 ~~~
 
+## Version Ereader
+
+Nicolas Soberon realizo una version para ereaders y la aporto al repositorio, la cual puede ser encontrada compilada en epub y mobi en la carpeta "ereader". En la misma carpeta se halla el codigo fuente de esta version, el cual puede ser editado utilizando Scrivener ([Scrivener-MW][MAC/Windows], [Scrivener-Linux][Linux]).
+
 ## Y el PDF compilado? Donde esta?!
 
 Bueno, bueno... pero pensa en contribuir si ves algo mejorable/mal! Podes ir a la [seccion de releases][Releases] para bajar la ultima compilacion de los PDFs. ¡Ojo! Tene en cuenta que el PDF puede no estar en la última versión.
@@ -46,3 +50,5 @@ Bueno, bueno... pero pensa en contribuir si ves algo mejorable/mal! Podes ir a l
 [Berkeley-SplayTrees]: http://www.youtube.com/watch?v=G5QIXywcJlY
 [Berkeley-234]: http://www.youtube.com/watch?v=zqrqYXkth6Q
 [Berkeley-Sorting]: http://www.youtube.com/watch?v=EiUvYS2DT6I
+[Scrivener-MW]: https://www.literatureandlatte.com/scrivener/download
+[Scrivener-Linux]: http://www.literatureandlatte.com/forum/viewforum.php?f=33
