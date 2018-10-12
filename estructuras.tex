@@ -340,9 +340,9 @@ Su representaci\'on podr\'a estar dada por cualquier tipo de estructura para \'a
 
 \begin{itemize}
  \item Si $v$ es la ra\'iz, $P(v) = 1$
- \item Si $v$ es un nodo que no es la ra\'iz, su padre $u$ sera $P(v) = \lfloor P(u)/2\rfloor$. Sea $i$ un \'indice de un nodo: $Padre(i) = \lfloor i/2\rfloor$.
+ \item Si $v$ es un nodo que no es la ra\'iz, su padre $u$ sera $P(u) = \lfloor P(v)/2\rfloor$. Sea $i$ un \'indice de un nodo: $Padre(i) = \lfloor i/2\rfloor$.
  \item Si $v$ es un hijo izquierdo de $u$ $P(v) = 2P(u)$. Sea $i$ un \'indice de un nodo: $Derecho(i) = 2i$.
- \item Si $v$ es un hijo derecho de $u$ $P(v) = 2P(v)+1$. Sea $i$ un \'indice de un nodo: $Izquierdo(i) = 2i+1$.
+ \item Si $v$ es un hijo derecho de $u$ $P(v) = 2P(u)+1$. Sea $i$ un \'indice de un nodo: $Izquierdo(i) = 2i+1$.
 \end{itemize}
 
 \subsubsection{Complejidades}
