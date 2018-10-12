@@ -3,7 +3,7 @@
 \section{Complejidad}
 \subsection{Notaci\'on asint\'otica}
 
-Las notaciones que usamos para describir la complejidad temporal asint\'otica de un algoritmo est\'an definidos en t\'erminos de funciones cuyos dominios son el conjunto de los n\'umeros naturales $N = \{0,1,2,...\}$. Estas notaciones son convenientes para describir el tiempo en el peor caso de una funci\'on $T(n)$, la cual usualmente esta definida solo en tama\~nos de entrada enteros. Sin embargo a veces encontramos conveniente abusar de la notaci\'on asint\'otica en variadas formas. De todas formas, deberemos cerciorarnos de entender precisamente el significado de la notaci\'on, para que cuando hagamos abuso de la misma no estemos us\'andola de forma err\'onea. Usaremos la notaci\'on asint\'otica primariamente para describir los tiempos que insumen los algoritmos, sin embargo la notaci\'on asint\'otica aplica a funciones.
+Las notaciones que usamos para describir la complejidad temporal asint\'otica de un algoritmo est\'an definidos en t\'erminos de funciones cuyos dominios son el conjunto de los n\'umeros naturales $N = \{0,1,2,...\}$. Estas notaciones son convenientes para describir el tiempo en el peor caso de una funci\'on $T(n)$, la cual usualmente est\'a definida solo en tama\~nos de entrada enteros. Sin embargo a veces encontramos conveniente abusar de la notaci\'on asint\'otica en variadas formas. De todas formas, deberemos cerciorarnos de entender precisamente el significado de la notaci\'on, para que cuando hagamos abuso de la misma no estemos us\'andola de forma err\'onea. Usaremos la notaci\'on asint\'otica primariamente para describir los tiempos que insumen los algoritmos, sin embargo la notaci\'on asint\'otica aplica a funciones.
 
 \subsubsection{Conjunto / Notaci\'on Asint\'otica $\Theta$}
 
@@ -15,7 +15,7 @@ Para una funci\'on $g(n)$ dada, notaremos a $\Theta(g(n))$ como el conjunto de f
 
 ~
 
-Una funci\'on pertenece al conjunto $\Theta(g(n))$ si existen constantes positivas $c_1$ y $c_2$ tal que $f(n)$ puede ser ``sandwicheada'' entre $c_1g(n)$ y $c_2g(n)$, para un $n$ suficientemente grande. Como $\Theta(g(n))$ es un conjunto, podremos escribir ``$f(n) \in \Theta(g(n))$'' para indicar que $f(n)$ es un miembro de $\Theta(g(n))$, a veces escribiremos ``$f(n) = \Theta(g(n))$'' para expresar exactamente lo mismo. Cuando una funci\'on $f(n)$ es acotada superiormente por otra funci\'on $c \cdot g(n)$ para alg\'un $c$ y a partir de alg\'un $n$, diremos que $f(n)$ esta \textbf{acotada asint\'oticamente} por $g(n)$ o que $f(n)$ tiene un \textbf{comportamiento asint\'otico} a $g(n)$. En el caso de $\Theta(g(n))$ diremos que $g(n)$ es una \textbf{cota asint\'oticamente ajustada} para $f(n)$.
+Una funci\'on pertenece al conjunto $\Theta(g(n))$ si existen constantes positivas $c_1$ y $c_2$ tal que $f(n)$ puede ser ``sandwicheada'' entre $c_1g(n)$ y $c_2g(n)$, para un $n$ suficientemente grande. Como $\Theta(g(n))$ es un conjunto, podremos escribir ``$f(n) \in \Theta(g(n))$'' para indicar que $f(n)$ es un miembro de $\Theta(g(n))$, a veces escribiremos ``$f(n) = \Theta(g(n))$'' para expresar exactamente lo mismo. Cuando una funci\'on $f(n)$ es acotada superiormente por otra funci\'on $c \cdot g(n)$ para alg\'un $c$ y a partir de alg\'un $n$, diremos que $f(n)$ est\'a \textbf{acotada asint\'oticamente} por $g(n)$ o que $f(n)$ tiene un \textbf{comportamiento asint\'otico} a $g(n)$. En el caso de $\Theta(g(n))$ diremos que $g(n)$ es una \textbf{cota asint\'oticamente ajustada} para $f(n)$.
 
 ~
 
@@ -171,7 +171,7 @@ Siendo las complejidades resultantes:
  \item \textbf{Encolar} $O(1)$
  \item \textbf{B\'usqueda} $O(n)$
 \end{itemize}
-Una clara limitaci\'on de \'esta implementaci\'on es que solo puede almacenar hasta MAX\_CANTIDAD elementos al mismo tiempo. Se puede resolver esto y agregar algunas ventajas utilizando \textbf{Memoria Din\'amica}.
+Una clara limitaci\'on de esta implementaci\'on es que solo puede almacenar hasta MAX\_CANTIDAD elementos al mismo tiempo. Se puede resolver esto y agregar algunas ventajas utilizando \textbf{Memoria Din\'amica}.
 
 \subsection{Pila}
 \subsection{Arreglo dimensionable}
@@ -180,7 +180,7 @@ Una clara limitaci\'on de \'esta implementaci\'on es que solo puede almacenar ha
 \section{\'Arboles}
 \subsection{\'Arbol binario de b\'usqueda}
 
-Un \'arbol binario de b\'usqueda es un \'arbol basado en nodos binarios el cual puede ser representado por una estructura de punteros en donde cada nodo es un objeto. En adici\'on a la clave y a los datos, cada nodo contiene los atributos izquierda, derecha y p, los cuales son punteros que apuntan a su hijo izquierdo, hijo derecho y padre, respectivamente. Si un hijo o un padre esta perdido el atributo apropiado contiene el valor $NIL$. El nodo ra\'iz es el \'unico nodo cuyo padre es $NIL$.
+Un \'arbol binario de b\'usqueda es un \'arbol basado en nodos binarios el cual puede ser representado por una estructura de punteros en donde cada nodo es un objeto. En adici\'on a la clave y a los datos, cada nodo contiene los atributos izquierda, derecha y p, los cuales son punteros que apuntan a su hijo izquierdo, hijo derecho y padre, respectivamente. Si un hijo o un padre est\'a perdido el atributo apropiado contiene el valor $NIL$. El nodo ra\'iz es el \'unico nodo cuyo padre es $NIL$.
 
 Las claves en un \'arbol binario de b\'usqueda siempre est\'an guardadas de forma tal de satisfacer la \textbf{invariante del \'arbol binario de b\'usqueda}, el cual se define como: ''Sea $x$ un nodo en un \'arbol de b\'usqueda binario. Si $y$ es un nodo en el sub-\'arbol izquierdo de $x$, entonces $y.clave \leq x.clave$. Si $y$ es un nodo en el sub-\'arbol derecho de $x$, entonces $y.clave \geq x.clave$``
 
@@ -291,16 +291,16 @@ El recorrido de \'arboles, en ingles \textit{Tree traversal}, se refiere al proc
 
 \subsection{Heap}
 
-La estructura de datos del heap (binario) es un arreglo de objetos que representa una Cola de Prioridad y que podremos ver como un \'arbol binario casi-completo. Cada nodo del \'arbol corresponde a un elemento del arreglo y el \'arbol esta completamente lleno en todos los niveles excepto en el ultimo, el cual esta lleno desde la izquierda hasta alg\'un punto. Un arreglo $A$ que representa un heap es un objeto con dos atributos, $A.lenght$ que nos dir\'a la cantidad de elementos en el arreglo y $A.heap\_size$ que representara cuantos elementos en el heap est\'an guardados en el arreglo $A$. Esto es, que a pesar que $A[1..A.length]$ contenga n\'umeros, solo los elementos en $A[1..A.heap\_size]$ (en donde $0 \leq A.heap\_size \leq A.length$) son elementos validos del heap.
+La estructura de datos del heap (binario) es un arreglo de objetos que representa una Cola de Prioridad y que podremos ver como un \'arbol binario casi-completo. Cada nodo del \'arbol corresponde a un elemento del arreglo y el \'arbol est\'a completamente lleno en todos los niveles excepto en el ultimo, el cual est\'a lleno desde la izquierda hasta alg\'un punto. Un arreglo $A$ que representa un heap es un objeto con dos atributos, $A.lenght$ que nos dir\'a la cantidad de elementos en el arreglo y $A.heap\_size$ que representara cuantos elementos en el heap est\'an guardados en el arreglo $A$. Esto es, que a pesar que $A[1..A.length]$ contenga n\'umeros, solo los elementos en $A[1..A.heap\_size]$ (en donde $0 \leq A.heap\_size \leq A.length$) son elementos validos del heap.
 
 ~
 
-La ra\'iz del \'arbol estar\'a situada en $A[1]$, y dado el \'indice $i$ de un nodo, f\'acilmente podremos computar los \'indices de su padre, hijo derecho e izquierdo. El c\'omputo del \'indice del padre estar\'a definido de la forma $Padre(i) = \lfloor i/2 \rfloor$, mientras que los \'indices de los hijos podr\'an ser computados de la forma $Izquierda(i) = 2i$ y $Derecha(i) = 2i+1$, en donde $i \in [1..A.heap\_size]$. Hay dos tipos de heaps binarios, max-heaps y min-heaps. En ambos casos, los valores de los nodos satisfacen el invariante del heap, el cual depende del tipo de heap con el que trabajemos. En un max-heap, el invariante del max-heap nos dice que para cada nodo $i$ que no sea la ra\'iz se debe cumplir que $A[Padre(i)] \geq A[i]$, esto es que el valor de un nodo debe ser como m\'aximo el valor de su padre. Entonces, el m\'aximo en un max-heap estar\'a guardado en la ra\'iz, y el sub-\'arbol con ra\'iz en un nodo no podr\'a contener valores mas grandes que el nodo en si mismo. Un min-heap esta 
+La ra\'iz del \'arbol estar\'a situada en $A[1]$, y dado el \'indice $i$ de un nodo, f\'acilmente podremos computar los \'indices de su padre, hijo derecho e izquierdo. El c\'omputo del \'indice del padre estar\'a definido de la forma $Padre(i) = \lfloor i/2 \rfloor$, mientras que los \'indices de los hijos podr\'an ser computados de la forma $Izquierda(i) = 2i$ y $Derecha(i) = 2i+1$, en donde $i \in [1..A.heap\_size]$. Hay dos tipos de heaps binarios, max-heaps y min-heaps. En ambos casos, los valores de los nodos satisfacen el invariante del heap, el cual depende del tipo de heap con el que trabajemos. En un max-heap, el invariante del max-heap nos dice que para cada nodo $i$ que no sea la ra\'iz se debe cumplir que $A[Padre(i)] \geq A[i]$, esto es que el valor de un nodo debe ser como m\'aximo el valor de su padre. Entonces, el m\'aximo en un max-heap estar\'a guardado en la ra\'iz, y el sub-\'arbol con ra\'iz en un nodo no podr\'a contener valores mas grandes que el nodo en si mismo. Un min-heap est\'a 
 organizado de la forma opuesta, el invariante de min-heap nos dice que para cada nodo $i$ distinto de la ra\'iz se debe cumplir $A[Padre(i)] \leq A[i]$, por lo que el elemento m\'inimo de un min-heap estar\'a en la ra\'iz.
 
 ~
 
-Viendo el heap como un \'arbol, definiremos la altura de un nodo en un heap como el numero de aristas en el camino simple mas largo desde el nodo mismo hasta una hoja, y definiremos la altura del heap como la altura de su ra\'iz. Ya que un heap de $n$ elementos esta basado en un \'arbol binario completo, su altura pertenecer\'a a $\Theta(lg(n))$.
+Viendo el heap como un \'arbol, definiremos la altura de un nodo en un heap como el numero de aristas en el camino simple mas largo desde el nodo mismo hasta una hoja, y definiremos la altura del heap como la altura de su ra\'iz. Ya que un heap de $n$ elementos est\'a basado en un \'arbol binario completo, su altura pertenecer\'a a $\Theta(lg(n))$.
 
 \subsubsection{Mantener el invariante del heap}
 
@@ -308,7 +308,7 @@ De aqu\'i en mas, asumiremos que estaremos hablando de un max-heap, ya que el mi
 
 ~
 
-Puntualmente lo que realiza Heapify es, estando situado en $i$, compara el valor con los valores de los hijos de $i$. Si ninguno de los valores de los hijos es mas grande que el valor de $i$ lo deja como esta, en el caso contrario intercambia el valor de $i$ con el valor de su hijo mas grande. Si bien en el nodo original el invariante se cumple, el invariante puede ser violado en el sub-\'arbol cuya ra\'iz fue intercambiada por lo que se realiza una llamada recursiva utilizando como $i$ el nuevo \'indice donde el valor fue intercambiado.
+Puntualmente lo que realiza Heapify es, estando situado en $i$, compara el valor con los valores de los hijos de $i$. Si ninguno de los valores de los hijos es mas grande que el valor de $i$ lo deja como est\'a, en el caso contrario intercambia el valor de $i$ con el valor de su hijo mas grande. Si bien en el nodo original el invariante se cumple, el invariante puede ser violado en el sub-\'arbol cuya ra\'iz fue intercambiada por lo que se realiza una llamada recursiva utilizando como $i$ el nuevo \'indice donde el valor fue intercambiado.
 
 ~
 
@@ -357,7 +357,7 @@ Las complejidades de las operaciones del heap quedaran de la forma:
 
 \subsection{\'Arbol balanceado en altura (AVL)}
 
-Un \'arbol AVL es un \'arbol binario de b\'usqueda que esta balanceado en altura. Esto es, que por cada nodo $x$, la altura de de los sub-\'arboles izquierdo y derecho de $x$ difieren en a lo sumo $1$. Para implementar un \'arbol AVL mantendremos un atributo extra en cada nodo $x.fdb$ que representara el factor de balanceo del nodo $x$. El factor de balanceo para un nodo $x$ se calculara de la forma $FDB(x) = altura(der(x)) - altura(izq(x))$.
+Un \'arbol AVL es un \'arbol binario de b\'usqueda que est\'a balanceado en altura. Esto es, que por cada nodo $x$, la altura de de los sub-\'arboles izquierdo y derecho de $x$ difieren en a lo sumo $1$. Para implementar un \'arbol AVL mantendremos un atributo extra en cada nodo $x.fdb$ que representara el factor de balanceo del nodo $x$. El factor de balanceo para un nodo $x$ se calculara de la forma $FDB(x) = altura(der(x)) - altura(izq(x))$.
 
 \subsubsection{Inserci\'on}
 
@@ -452,8 +452,8 @@ Un \'arbol B tiene las siguientes propiedades:
  \item Todas las hojas tienen la misma profundidad, la cual ser\'a la altura del \'arbol $h$.
  \item Los nodos tienen cotas inferiores y superiores en el numero de claves que pueden contener. Expresaremos estas cotas en t\'erminos de un entero fijo $t \geq 2$ llamado el grado m\'inimo del \'arbol B:
  \begin{enumerate}
-  \item Cada nodo distinto a la ra\'iz debe tener al menos $t-1$ claves. Cada intervalo de nodos distinto que la raiz debe tener al menos $t$ hijos. Si el \'arbol no esta vac\'io, la ra\'iz debe tener al menos una clave.
-  \item Cada nodo debe contener como mucho $2t-1$ claves. Entonces, un nodo interno puede tener a lo sumo $2t$ hijos. Diremos que el nodo esta \textbf{lleno} si contiene exactamente $2t - 1$ claves.
+  \item Cada nodo distinto a la ra\'iz debe tener al menos $t-1$ claves. Cada intervalo de nodos distinto que la raiz debe tener al menos $t$ hijos. Si el \'arbol no est\'a vac\'io, la ra\'iz debe tener al menos una clave.
+  \item Cada nodo debe contener como mucho $2t-1$ claves. Entonces, un nodo interno puede tener a lo sumo $2t$ hijos. Diremos que el nodo est\'a \textbf{lleno} si contiene exactamente $2t - 1$ claves.
  \end{enumerate}
 \end{enumerate}
 
@@ -625,7 +625,7 @@ Ejemplo: en un trie con dos claves ``Algoritmo'' y ``Algoritmos'', el camino que
 
 \subsection{Red-Black}
 
-Los \'arboles RB son unos de los tantos esquemas en donde son ''balanceados`` para asegurar que las operaciones tomen $O(lg(n))$ en el peor caso. Un \'arbol RB es un \'arbol binario de b\'usqueda con un almacenamiento de un dato extra en cada nodo, su color, el cual puede ser rojo o negro. Restringiendo los colores de los nodos en cualquier camino simple desde la ra\'iz a una hoja, los \'arboles RB se aseguran que no haya camino mas largo que el doble que cualquier otro, de esta forma el \'arbol esta aproximadamente balanceado.
+Los \'arboles RB son unos de los tantos esquemas en donde son ''balanceados`` para asegurar que las operaciones tomen $O(lg(n))$ en el peor caso. Un \'arbol RB es un \'arbol binario de b\'usqueda con un almacenamiento de un dato extra en cada nodo, su color, el cual puede ser rojo o negro. Restringiendo los colores de los nodos en cualquier camino simple desde la ra\'iz a una hoja, los \'arboles RB se aseguran que no haya camino mas largo que el doble que cualquier otro, de esta forma el \'arbol est\'a aproximadamente balanceado.
 
 Cada nodo del \'arbol ahora contiene los atributos color, clave, izquierda, derecha y p. Si un hijo o el padre de un nodo no existe, el puntero correspondiente al atributo del nodo contiene el valor $NIL$. Un \'arbol RB tiene las siguientes propiedades:
 
@@ -686,7 +686,7 @@ Dado que la altura de un \'arbol RB de $n$ nodos pertenece a $O(lg(n))$, la inse
 
 \subsubsection{Eliminaci\'on}
 
-Eliminar un nodo de un \'arbol RB puede ser un poco mas complicado que insertar un nodo. El procedimiento para eliminar un nodo de un \'arbol RB esta basado en la eliminaci\'on del \'arbol binario de b\'usqueda.
+Eliminar un nodo de un \'arbol RB puede ser un poco mas complicado que insertar un nodo. El procedimiento para eliminar un nodo de un \'arbol RB est\'a basado en la eliminaci\'on del \'arbol binario de b\'usqueda.
 
 %TODO: Falta completar esto, pagina 323 del cormen.
 
