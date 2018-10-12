@@ -203,7 +203,7 @@ La estrategia general para eliminar un nodo $z$ de un \'arbol binario de b\'usqu
 \begin{itemize}
  \item Si $z$ no tiene hijos, entonces simplemente lo removeremos modificando su padre $z.p$ reemplazando el puntero a $z$ por $NIL$.
  \item Si $z$ solo tiene un hijo, entonces \textbf{elevaremos} dicho hijo para tomar la posici\'on de $z$ modificando el padre $z.p$ reemplazando el puntero a $z$ por el puntero al \'unico hijo de $z$.
- \item Si $z$ tiene dos hijos, entonces encontraremos el m\'inimo $y$ en el sub-\'arbol derecho de $z$ (es decir, su sucesor), para tomar la posici\'on de $z$ en el \'arbol. Como $y$ era el m\'inimo del sub-\'arbol derecho de $z$, $y.izq$ sera $NIL$ y si $y$ tiene un hijo izquierdo lo elevaremos al padre de $y$. Luego, con $y$ libre hijos, lo reemplazaremos por $z$ y le asignaremos los sub-\'arboles derecho e izquierdo, como hijos de $y$. Esto mismo se puede hacer si tomamos como $y$ el m\'aximo del sub-\'arbol izquierdo de $z$.
+ \item Si $z$ tiene dos hijos, entonces encontraremos el m\'inimo $y$ en el sub-\'arbol derecho de $z$ (es decir, su sucesor), para tomar la posici\'on de $z$ en el \'arbol. Como $y$ era el m\'inimo del sub-\'arbol derecho de $z$, $y.izq$ sera $NIL$ y si $y$ tiene un hijo derecho lo elevaremos al padre de $y$. Luego, con $y$ libre hijos, lo reemplazaremos por $z$ y le asignaremos los sub-\'arboles derecho e izquierdo, como hijos de $y$. Esto mismo se puede hacer si tomamos como $y$ el m\'aximo del sub-\'arbol izquierdo de $z$.
 \end{itemize}
 
 \subsubsection{Balanceo perfecto}
